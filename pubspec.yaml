@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.4
   intl: ^0.17.0
+  flutter_map_location_marker: ^4.1.4
  # flutter_naver_map: ^0.10.5
 
 dev_dependencies:
