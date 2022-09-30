@@ -45,5 +45,7 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>지도 마커를 위해 위치정보를 얻습니다.</string>
 </dict>
 </plist>
