@@ -14,12 +14,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("홈"),
+      ),
       body: Column(
         children: [
           Text("음식점 이름"),
