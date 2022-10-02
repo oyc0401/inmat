@@ -1,18 +1,21 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:restaurant/Widget/Profile.dart';
 
 import 'Community.dart';
+import 'RandomFoodSelect.dart';
 import 'Search.dart';
 import 'home.dart';
 
-class Navigation extends StatefulWidget {
-  const Navigation({Key? key}) : super(key: key);
+class NavigatePage extends StatefulWidget {
+  const NavigatePage({Key? key}) : super(key: key);
 
   @override
-  State<Navigation> createState() => _NavigationState();
+  State<NavigatePage> createState() => _NavigatePageState();
 }
 
-class _NavigationState extends State<Navigation> {
+class _NavigatePageState extends State<NavigatePage> {
   int _selectedIndex = 0;
 
   @override
@@ -55,6 +58,10 @@ class _NavigationState extends State<Navigation> {
           icon: Icon(Icons.search),
         ),
         BottomNavigationBarItem(
+          label: "랜덤",
+          icon: Icon(Icons.menu_book),
+        ),
+        BottomNavigationBarItem(
           label: "커뮤니티",
           icon: Icon(Icons.question_answer),
         ),
@@ -70,6 +77,7 @@ class _NavigationState extends State<Navigation> {
     return [
       const Home(),
       const Search(),
+      const RandomFoodSelect(),
       const Community(),
       const Profile(),
     ];
