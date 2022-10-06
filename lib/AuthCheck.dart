@@ -18,29 +18,40 @@ class _AuthCheckState extends State<AuthCheck> {
       appBar: AppBar(
         title: Text("회원 체크"),
       ),
-      body: Column(
-        children: [
-          CupertinoButton(
-              child: Text("메인 페이지 이동"),
-              onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => const NavigatePage(),
-                    ),
-                    (route) => false);
-              }),
-          CupertinoButton(
-              child: Text("로그인 페이지 이동"),
-              onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => const SignIn(),
-                    ),
-                    (route) => false);
-              }),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CupertinoButton(
+                  color: Colors.grey,
+                  child: Text("메인 페이지 이동"),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const NavigatePage(),
+                        ),
+                        (route) => false);
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CupertinoButton(
+                  color: Colors.grey,
+                  child: Text("로그인 페이지 이동"),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const SignIn(),
+                        ),
+                        (route) => false);
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }
