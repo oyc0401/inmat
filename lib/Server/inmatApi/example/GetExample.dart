@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant/Server/inmatApi/GetPreferMenu.dart';
+import 'package:restaurant/Server/inmatApi/src/GetPreferMenu.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,11 +25,12 @@ class GetExample extends StatefulWidget {
 }
 
 class _GetExampleState extends State<GetExample> {
-  MenuThumbnail menuThumbnail =
-      MenuThumbnail(id: "id", imageUrl: "menuUrl", name: "name");
+  List<MenuThumbnail> menuThumbnail = [
+    MenuThumbnail(id: "id", imageUrl: "menuUrl", name: "name")
+  ];
 
   setMenu() async {
-    menuThumbnail = await InMatApi.home.Getprefer(Gender.man);
+    menuThumbnail = await InMatApi.home.preferMenu(Gender.man);
     setState(() {});
   }
 
@@ -38,9 +39,9 @@ class _GetExampleState extends State<GetExample> {
     return Scaffold(
       appBar: AppBar(title: Text("Api")),
       body: Column(children: [
-        Text(menuThumbnail.id),
-        Text(menuThumbnail.imageUrl),
-        Text(menuThumbnail.name),
+        Text(menuThumbnail[0].id),
+        Text(menuThumbnail[0].imageUrl),
+        Text(menuThumbnail[0].name),
         CupertinoButton(
           child: Text("버튼"),
           onPressed: () {
