@@ -15,7 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   // List<Widget> list=[ ToDayWidget(), ToDayWidget()];  ************
 
   // static List<String> RestaurantName = [
@@ -49,16 +48,13 @@ class _HomeState extends State<Home> {
       drawerEdgeDragWidth: 20,
       drawerEnableOpenDragGesture: true,
       body: ListView(children: [
-        ToDayWidget(),
-        FavorateFood(),
-        BestFood(),
+        FoodForm(title: "오늘 이건 어때요?"),
+        FoodForm(title: "남성이 선호하는 음식"),
+        FoodForm(title: "최근 일주일 인기 음식점"),
       ]),
     );
   }
 }
-
-
-
 
 class FoodWidget extends StatelessWidget {
   const FoodWidget({Key? key}) : super(key: key);
@@ -80,9 +76,11 @@ class FoodWidget extends StatelessWidget {
   }
 }
 
-class ToDayWidget extends StatelessWidget {
+class FoodForm extends StatelessWidget {
   //const
-  ToDayWidget({Key? key}) : super(key: key);
+  FoodForm({Key? key, required this.title}) : super(key: key);
+
+  String title;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +89,7 @@ class ToDayWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "오늘 이거 어때요?",
+            title,
             style: TextStyle(fontSize: 24),
           ),
           Container(
@@ -111,86 +109,8 @@ class ToDayWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: FoodWidget(),
                 ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
 
-class FavorateFood extends StatelessWidget {
-  //const
-  FavorateFood({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Text(
-            "남성이 좋아하는 음식",
-            style: TextStyle(fontSize: 24),
-          ),
-          Container(
-            height: 160,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FoodWidget(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FoodWidget(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FoodWidget(),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class BestFood extends StatelessWidget {
-  //const
-  BestFood({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Text(
-            "최근 일주일 인기 음식점",
-            style: TextStyle(fontSize: 24),
-          ),
-          Container(
-            height: 160,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FoodWidget(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FoodWidget(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FoodWidget(),
-                ),
               ],
             ),
           )
