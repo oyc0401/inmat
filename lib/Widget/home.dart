@@ -15,24 +15,25 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   // List<Widget> list=[ ToDayWidget(), ToDayWidget()];  ************
 
-  static List<String> RestaurantName = [
-    'sample1',
-    'sample2',
-    'sample3',
-  ];
+  // static List<String> RestaurantName = [
+  //   'sample1',
+  //   'sample2',
+  //   'sample3',
+  // ];
 
-  static List<String> RestaurantImagePath = [
-    'images/sample1.jpg',
-    'images/sample2.jpg',
-    'images/sample3.jpg',
-  ];
+  // static List<String> RestaurantImagePath = [
+  //   'images/sample1.jpg',
+  //   'images/sample2.jpg',
+  //   'images/sample3.jpg',
+  // ];
 
-  final List<infinityRestaurant> RestaurantData = List.generate(
-      RestaurantName.length,
-          (index) => infinityRestaurant(
-          RestaurantName[index], RestaurantImagePath[index]));
+  // final List<infinityRestaurant> RestaurantData = List.generate(
+  //     RestaurantName.length,
+  //         (index) => infinityRestaurant(
+  //         RestaurantName[index], RestaurantImagePath[index]));
 
   @override
   Widget build(BuildContext context) {
@@ -47,29 +48,34 @@ class _HomeState extends State<Home> {
       ),
       drawerEdgeDragWidth: 20,
       drawerEnableOpenDragGesture: true,
-      body:  ListView.builder(
-        itemCount: RestaurantData.length,
-        itemBuilder: (context, index){
-          return Card(
-            child: ListTile(
-              title: Text(
-                  RestaurantData[index].name
-              ),
-              leading: SizedBox(
-                height: 50, width: 50, child: Image.asset(RestaurantData[index].imgPath),
-              ),
-            ),
-          );
-        },
-      ),
+      body: ListView(children: [
+        ToDayWidget(),
+        FavorateFood(),
+        BestFood(),
+      ]),
+    );
+  }
+}
 
-      // ListView(
-      //   children: [
-      //     // Row(children: list,),          *************
-      //     ToDayWidget(),
-      //     // ToDayWidget(), ToDayWidget(), ToDayWidget(), ToDayWidget(), ToDayWidget(),
-      //   ],
-      // ),
+
+
+
+class FoodWidget extends StatelessWidget {
+  const FoodWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Container(
+            width: 150,
+            height: 100,
+            color: Colors.grey,
+          ),
+          Text("음식 이름"),
+        ],
+      ),
     );
   }
 }
@@ -78,78 +84,118 @@ class ToDayWidget extends StatelessWidget {
   //const
   ToDayWidget({Key? key}) : super(key: key);
 
-  static List<String> RestaurantName = [
-    'sample1',
-    'sample2',
-    'sample3',
-  ];
-
-  static List<String> RestaurantImagePath = [
-    'images/sample1.jpg',
-    'images/sample2.jpg',
-    'images/sample3.jpg',
-  ];
-
-  final List<infinityRestaurant> RestaurantData = List.generate(
-      RestaurantName.length,
-      (index) => infinityRestaurant(
-          RestaurantName[index], RestaurantImagePath[index]));
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        // mainAxisAlignment: ,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            "오늘 이거 어때요?",
+            style: TextStyle(fontSize: 24),
+          ),
           Container(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(child: Text("오늘 이건 어때요?")),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            height: 160,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: FoodWidget(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: FoodWidget(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: FoodWidget(),
+                ),
+              ],
             ),
-          ),
-          Container(
-            height: 1.0,
-            width: 500,
-            color: Colors.black,
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          SizedBox(
-            child: Image.asset('assets/images/sample1.jpg'),
-          ),
-          Container(
-            child: Center(child: Text(" 갈비탕")),
-            decoration: BoxDecoration(color: Colors.grey[300]),
-          ),
-          Text("00이 선호하는 음식"),
-          Text("최근 일주일 인기 음식점"),
-          Text("최근 남겨진 리뷰"),
-          // ListView.builder(
-          //     itemCount: RestaurantData.length,
-          //     itemBuilder: (context, index){
-          //       return Card(
-          //         child: ListTile(
-          //           title: Text(
-          //             RestaurantData[index].name
-          //           ),
-          //           leading: SizedBox(
-          //             height: 50, width: 50, child: Image.asset(RestaurantData[index].imgPath),
-          //           ),
-          //         ),
-          //       );
-          //     },
-          // ),
-          Text("음식점 이름"),
-          Text("음식점 이름"),
+          )
         ],
       ),
     );
   }
 }
 
+class FavorateFood extends StatelessWidget {
+  //const
+  FavorateFood({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Text(
+            "남성이 좋아하는 음식",
+            style: TextStyle(fontSize: 24),
+          ),
+          Container(
+            height: 160,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: FoodWidget(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: FoodWidget(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: FoodWidget(),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class BestFood extends StatelessWidget {
+  //const
+  BestFood({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Text(
+            "최근 일주일 인기 음식점",
+            style: TextStyle(fontSize: 24),
+          ),
+          Container(
+            height: 160,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: FoodWidget(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: FoodWidget(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: FoodWidget(),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
