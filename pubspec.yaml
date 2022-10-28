@@ -43,6 +43,9 @@ dependencies:
   flutter_fortune_wheel: ^1.2.0
  # flutter_naver_map: ^0.10.5
 
+
+
+
 dev_dependencies:
   cupertino_icons: ^1.0.4
   flutter_test:
@@ -61,7 +64,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/
+    - assets/images/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
