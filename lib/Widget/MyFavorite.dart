@@ -7,7 +7,7 @@ class MyFavorite extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("내가 좋아하는 음식점"),
+        title: Text("내가 좋아요 누른 음식점"),
       ),
       body: Container(),
     );

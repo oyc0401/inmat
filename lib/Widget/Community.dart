@@ -47,6 +47,10 @@ class _PostingState extends State<Posting> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(10),
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(100)
+        // ),
         child: Column(
           children: [
             // width: double.infinity,
@@ -55,9 +59,17 @@ class _PostingState extends State<Posting> {
             // // color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
             // child: Center(child: Text(widget.number.toString())),
             Container(
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(
+                    30,
+                  ),
+                  topLeft: Radius.circular(30),
+                ),
+              ),
               height: 50,
               width: MediaQuery.of(context).size.width,
-              color: Colors.red,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -74,10 +86,13 @@ class _PostingState extends State<Posting> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(width: 10,),
-                  Expanded(child: Text('내용~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-                      '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-                      '~~~~~~~~~~~~~~~~~~~~~~~~~~~~'),
+                  Column(
+                    children: [
+                      Text('내용'  ),
+                      TextButton(onPressed: () {} , child: Text('더보기')),
+                    ],
                   ),
+
                 ],
               ),
             ),
@@ -94,14 +109,34 @@ class _PostingState extends State<Posting> {
               height: 50,
               width: MediaQuery.of(context).size.width,
               color: Colors.green,
-              child: Center(child: Text('좋아요 칸')),
+              child: Row(
+                children: [
+                  Row(
+                    children: [
+                      Center(child: Icon(Icons.favorite_border)),
+                 Icon(Icons.comment),
+                    ],
+                  ),
+                 Spacer(),
+                  Text("1일전"),
+                ],
+              ),
             ),
             Container(
+              decoration: BoxDecoration(
+                color: Colors.teal,
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(
+                    30,
+                  ),
+                  bottomLeft: Radius.circular(30),
+                ),
+              ),
               height: 50,
               width: MediaQuery.of(context).size.width,
-              color: Colors.orange,
               child: Center(child: Text('댓글 칸')),
             ),
+            Container(height: 30,)
           ],
         ),
 

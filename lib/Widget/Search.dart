@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/rendering/box.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:restaurant/Widget/Search1.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -10,52 +11,107 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+
+  bool isText=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      appBar: AppBar(actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.search), // 장바구니 아이콘 생성
-          onPressed: () {
-            // 아이콘 버튼 실행
-            print('Shopping cart button is clicked');
-          },
-        ),
-      ],
+    floatingActionButton: FloatingActionButton(child: Text("d"),onPressed: (){
+      if(!isText){
+        isText=true;
+      }else{
+        isText=false;
+      }
+      setState(() {
 
-          //  , title: child: TextField(),
-          // Text("검색"), centerTitle: true, elevation: 0.0, leading: IconButton(icon: Icon(Icons.arrow_back_ios),onPressed: (){
-          //     print('menu button is clicked');
-          //   },
-          //  ),
+      });
+
+    },),
+      body: Column(
+        children: [
+          SearchScreen(),
+          isText?SearchText():recommend(),
+        ],
+      ),
+
+    );
+  }
+}
+
+class recommend extends StatelessWidget {
+  const recommend({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(margin: EdgeInsets.all(10),  color: Colors.lightBlue,
+
+            child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+            Container(margin: EdgeInsets.all(10), child: Text('최근검색어',textAlign: TextAlign.start, style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),)),
+            Container( margin: EdgeInsets.all(5), child: Text('1. 김치찌개',style: TextStyle(fontSize: 15,)),),
+            Container( margin: EdgeInsets.all(5), child: Text('2. 냉면',style: TextStyle(fontSize: 15,)),),
+            Container( margin: EdgeInsets.all(5), child: Text('3. 갈비탕',style: TextStyle(fontSize: 15,)),),
+            Container( margin: EdgeInsets.all(5), child: Text('4. 삼겹살',style: TextStyle(fontSize: 15,)),),
+            Container( margin: EdgeInsets.all(5), child: Text('5. 돈가스',style: TextStyle(fontSize: 15,)),),
 
 
+          ],),),
+          SizedBox(height: 20,),
+          Container(margin: EdgeInsets.all(10), color: Colors.lightBlue,child: Column(children: [
+            Container(margin: EdgeInsets.all(10), child: Text('인기검색어',textAlign: TextAlign.start, style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),)),
+            Container(padding: EdgeInsets.all(5), margin: EdgeInsets.all(5), child: Text('1. 김치찌개',style: TextStyle(fontSize: 15,)),),
+            Container(padding: EdgeInsets.all(5), margin: EdgeInsets.all(5), child: Text('2. 냉면',style: TextStyle(fontSize: 15,)),),
+            Container(padding: EdgeInsets.all(5), margin: EdgeInsets.all(5), child: Text('3. 갈비탕',style: TextStyle(fontSize: 15,)),),
+            Container(padding: EdgeInsets.all(5), margin: EdgeInsets.all(5), child: Text('4. 삼겹살',style: TextStyle(fontSize: 15,)),),
+            Container(padding: EdgeInsets.all(5), margin: EdgeInsets.all(5), child: Text('5. 돈가스',style: TextStyle(fontSize: 15,)),),
 
 
+          ],),),
 
-          ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              height: 200,
-              margin: EdgeInsets.all(50),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50), color: Colors.white),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(' 인기검색어',
-                    style: TextStyle(color: Colors.black, fontSize: 50)),
-              ),
-            ),
-            Container(
-              height: 200,
-              color: Colors.white,
-              margin: EdgeInsets.all(50),
-            ),
-          ],
-        ),
+        ],
+      ),
+    );
+  }
+}
+
+class SearchText extends StatelessWidget {
+  const SearchText({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(margin: EdgeInsets.all(10),  color: Colors.redAccent,
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+
+                Container( margin: EdgeInsets.all(5), child: Text('짬뽐',style: TextStyle(fontSize: 15,)),),
+                Container( margin: EdgeInsets.all(5), child: Text('짜장면',style: TextStyle(fontSize: 15,)),),
+                Container( margin: EdgeInsets.all(5), child: Text('3. 갈비탕',style: TextStyle(fontSize: 15,)),),
+                Container( margin: EdgeInsets.all(5), child: Text('4. 삼겹살',style: TextStyle(fontSize: 15,)),),
+                Container( margin: EdgeInsets.all(5), child: Text('5. 돈가스',style: TextStyle(fontSize: 15,)),),
+
+
+              ],),),
+
+
+        ],
       ),
     );
   }

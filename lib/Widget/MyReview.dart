@@ -5,6 +5,11 @@ class MyReview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("내가 쓴 리뷰"),
+      ),
+      body: Container(),
+    );
   }
 }

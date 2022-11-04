@@ -5,6 +5,11 @@ class MyPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("내가 쓴 게시글"),
+      ),
+      body: Container(),
+    );
   }
 }

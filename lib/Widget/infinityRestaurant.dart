@@ -6,3 +6,4 @@ class infinityRestaurant{
 
   infinityRestaurant(this.name, this.imgPath);
 }
+
