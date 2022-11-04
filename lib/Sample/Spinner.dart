@@ -35,7 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
         Expanded(
           child: FortuneWheel(
             onFling: () {
+              // controller.close();
               controller.add(1);
+
             },
 
             selected: controller.stream,
