@@ -42,6 +42,7 @@ dependencies:
   google_maps_flutter: ^2.2.1
   flutter_fortune_wheel: ^1.2.0
  # flutter_naver_map: ^0.10.5
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
