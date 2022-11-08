@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'NavigatePage.dart';
+import '../NavigatePage.dart';
 
 class RegisterProfile extends StatefulWidget {
   const RegisterProfile({Key? key}) : super(key: key);
