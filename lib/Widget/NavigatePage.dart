@@ -79,7 +79,7 @@ class _NavigatePageState extends State<NavigatePage> {
       const Search(),
       const RandomFoodSelect(),
       const Community(),
-      const Profile(),
+      const ProfilePage(),
     ];
   }
 }

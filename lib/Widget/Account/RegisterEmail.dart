@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/Server/User/auth/inMatAuth.dart';
 
+import '../../Server/User/auth/struct.dart';
 import '../NavigatePage.dart';
 import '../../Server/User/auth/inmatRegisterEmail.dart';
 
