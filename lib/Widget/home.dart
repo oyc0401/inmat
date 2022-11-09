@@ -20,12 +20,23 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text("홈"),
       ),
-      body: Column(
-        children: [
-          Text("음식점 이름"),
-          Text("음식점 사진 url"),
-          Text("음식점 설명"),
-        ],
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              child: Text("오늘 이건 어때요?"),
+              decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            ),
+            ),
+            Text("00이 선호하는 음식"),
+            Text("최근 일주일 인기 음식점"),
+            Text("최근 남겨진 리뷰"),
+            Text("음식점 이름"),
+            Text("음식점 이름"),
+          ],
+        ),
       ),
     );
   }

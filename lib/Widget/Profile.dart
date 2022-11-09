@@ -12,7 +12,13 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("내 정보"),
+        title: Text("마이페이지"),
+        actions: <Widget>[
+          IconButton(
+        icon: Icon(Icons.settings), // 장바구니 아이콘 생성
+         onPressed: () {
+       },)
+    ],
       ),
       body: Container(),
     );
