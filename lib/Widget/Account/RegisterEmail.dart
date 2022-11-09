@@ -5,7 +5,7 @@ import 'package:restaurant/Server/User/auth/inMatAuth.dart';
 
 import '../../Server/User/auth/struct.dart';
 import '../NavigatePage.dart';
-import '../../Server/User/auth/inmatRegisterEmail.dart';
+import '../../Server/User/auth/inmatRegister.dart';
 
 class ProfileForm with ChangeNotifier {
   int _age = 0;
@@ -114,9 +114,9 @@ class RegisterInput extends StatelessWidget {
               password: "qwe12345&&",
               profile: Profile(
                   age: 10,
-                  gender: "dsa",
-                  nickName: "nickName",
-                  phoneNumber: "phoneNumber"),
+                  gender: "M",
+                  nickName: "한국어",
+                  phoneNumber: "010-2748-2332"),
             );
           }),
       // CupertinoButton(

@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:restaurant/Server/User/auth/InMatHTTP/inMatHttp.dart';
 
-import 'InMatHTTP/inMatHttp.dart';
-
-class InMatSignIn {
-  void emailSignIn({required Map user}) async {
+class InMatRegister {
+  Future<void> registerEmail({required Map user}) async {
     InMatHttp inMatHttp = InMatHttp();
     Map response = await inMatHttp.publicPost(
-        url: "http://prod.sogogi.shop:9000/users/login", body: user);
+        url: "http://prod.sogogi.shop:9000/users/signup", body: user);
 
     if (response['isSuccess'] == false) {
       throw Exception(
@@ -17,5 +16,3 @@ class InMatSignIn {
     }
   }
 }
-
-void main() {}
