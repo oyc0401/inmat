@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant/Server/User/auth/inMatAuth.dart';
 
-import '../../Server/User/auth/struct.dart';
+
+import '../../inmat/auth/inMatAuth.dart';
 import '../NavigatePage.dart';
-import '../../Server/User/auth/inmatRegister.dart';
+
 
 class ProfileForm with ChangeNotifier {
   int _age = 0;
@@ -111,6 +111,7 @@ class RegisterInput extends StatelessWidget {
           onPressed: () {
             InMatAuth.registerEmail(
               id: "test123",
+              email: "dsad32@gmail.com",
               password: "qwe12345&&",
               profile: Profile(
                   age: 10,

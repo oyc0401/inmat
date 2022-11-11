@@ -1,12 +1,9 @@
-import 'dart:convert';
-
-import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
-import 'package:restaurant/Server/User/auth/InMatHTTP/inMatHttp.dart';
+import '../../inMatHttp.dart';
 
 class InMatRegister {
   Future<void> registerEmail({required Map user}) async {
     InMatHttp inMatHttp = InMatHttp();
+    print(user);
     Map response = await inMatHttp.publicPost(
         url: "http://prod.sogogi.shop:9000/users/signup", body: user);
 
@@ -16,3 +13,7 @@ class InMatRegister {
     }
   }
 }
+
+
+
+// 12 20

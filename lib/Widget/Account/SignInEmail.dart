@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant/Server/User/auth/InMatSignIn.dart';
-import 'package:restaurant/Server/User/auth/inMatAuth.dart';
 
+import '../../inmat/auth/inMatAuth.dart';
 import '../NavigatePage.dart';
 import 'RegisterEmail.dart';
 import 'RegisterProfile.dart';
@@ -56,7 +55,7 @@ class _SignInEmailState extends State<SignInEmail> {
                 print(id);
                 print(password);
 
-                InMatAuth.signInEmail(id: "dsad", password: "223mcas");
+                InMatAuth.signInEmail(id: "test123", password: "qwe12345&&");
               }),
         ],
       ),

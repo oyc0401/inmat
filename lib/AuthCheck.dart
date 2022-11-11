@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/Widget/NavigatePage.dart';
 import 'package:restaurant/dartPage.dart';
 
-import 'Server/User/inMatUser.dart';
-import 'Server/User/user.dart';
+
 import 'Widget/Account/ChooseSignIn.dart';
+import 'inmat/user/inMatUser.dart';
+import 'inmat/user/user_model.dart';
 
 class AuthCheck extends StatefulWidget {
   const AuthCheck({Key? key}) : super(key: key);
