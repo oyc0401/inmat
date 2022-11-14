@@ -7,23 +7,25 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant/AuthCheck.dart';
 import 'package:restaurant/inmat/user/inMatUser.dart';
-import 'package:restaurant/inmat/user/instance/InMatInstance.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Widget/NavigatePage.dart';
 import 'Widget/home.dart';
 
-void main() {
-  //InMatUser.downLoad();
+void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await InMatUser.instance.downLoad();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Google Maps Demo',
       home: AuthCheck(),
     );
   }
 }
-

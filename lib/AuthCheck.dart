@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/Widget/NavigatePage.dart';
 import 'package:restaurant/dartPage.dart';
 
-
 import 'Widget/Account/ChooseSignIn.dart';
 import 'inmat/user/inMatUser.dart';
 import 'inmat/user/user_model.dart';
@@ -19,6 +18,7 @@ class _AuthCheckState extends State<AuthCheck> {
   @override
   Widget build(BuildContext context) {
     User? user = InMatUser.instance.currentUser;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("회원 체크"),
@@ -27,7 +27,7 @@ class _AuthCheckState extends State<AuthCheck> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("user information: $user"),
+            Text("user information: ${user ?? "null"}"),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CupertinoButton(
