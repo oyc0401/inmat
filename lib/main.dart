@@ -13,6 +13,7 @@ import 'Widget/NavigatePage.dart';
 import 'Widget/home.dart';
 
 void main() async {
+  // DB에서 유저 정보 가져오기
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await InMatUser.instance.downLoad();
 

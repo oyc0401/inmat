@@ -1,5 +1,5 @@
 import 'package:restaurant/inmat/user/database/userDataBase.dart';
-import 'package:restaurant/inmat/user/update/update.dart';
+import 'package:restaurant/inmat/inMatAPI/update.dart';
 
 import 'user_model.dart';
 

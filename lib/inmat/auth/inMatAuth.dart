@@ -1,8 +1,9 @@
+import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 import 'package:restaurant/inmat/user/inMatUser.dart';
 
-import 'inMatProfile.dart';
-import 'signin/InMatSignIn.dart';
-import 'signin/inmatRegister.dart';
+import '../inMatAPI/inMatProfile.dart';
+import '../inMatAPI/InMatSignIn.dart';
+import '../inMatAPI/inmatRegister.dart';
 
 
 class Profile {

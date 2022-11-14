@@ -37,11 +37,9 @@ class InMatHttp {
       headers: {
         "Content-Type": "application/json",
         'Accept': 'application/json',
-        //HttpHeaders.authorizationHeader: "Basic $token"
       },
       body: bodyJson,
     );
-    //print(bodyJson);
 
     // 요청 성공하면 리턴
     if (response.statusCode == 200) {

@@ -1,16 +1,18 @@
-import '../../inMatHttp.dart';
+import 'inMatHttp.dart';
 
-class InMatRegister {
+class InMatRegister extends InMatHttp{
   Future<void> registerEmail({required Map user}) async {
-    InMatHttp inMatHttp = InMatHttp();
-    print(user);
-    Map response = await inMatHttp.publicPost(
+    print("회원가입 하는 중...");
+    Map response = await publicPost(
         url: "http://prod.sogogi.shop:9000/users/signup", body: user);
 
     if (response['isSuccess'] == false) {
+      print("회원가입 실패!");
       throw Exception(
           'Failed to load sign in: ${response['code']}, ${response['message']}');
     }
+    print("회원가입 성공!");
+    return;
   }
 }
 
