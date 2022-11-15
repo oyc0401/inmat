@@ -49,6 +49,30 @@ class InMatHttp {
           'Failed to load post ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
     }
   }
+
+  Future<Map> publicPatch({required String url, required Map body,required String token}) async {
+    Uri uri = Uri.parse(url);
+
+    var bodyJson = json.encode(body);
+    final Response response = await http.patch(
+      uri,
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        "X-ACCESS-TOKEN": "$token"
+      },
+      body: bodyJson,
+    );
+
+    // 요청 성공하면 리턴
+    if (response.statusCode == 200) {
+      print(json.decode(utf8.decode(response.bodyBytes)));
+      return json.decode(utf8.decode(response.bodyBytes));
+    } else {
+      throw Exception(
+          'Failed to load post ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
+    }
+  }
 }
 
 class ExpirationAccessToken implements Exception {

@@ -1,8 +1,8 @@
 class InUser {
-  InUser();
+  InUser(this.name, this.id);
 
-  factory InUser.instance() {
-    return InUser();
+  factory InUser.instance(String name, int id) {
+    return InUser(name, id);
   }
 
   String name = "null";
@@ -10,9 +10,9 @@ class InUser {
 }
 
 void main() {
-  InUser inUser = InUser.instance();
+  InUser inUser = InUser.instance("111", 1);
 
-  inUser.name = "하이";
-  InUser inUser2 = InUser.instance();
-  print(inUser2.name);
+  //inUser.name = "하이";
+  InUser inUser2 = InUser.instance("111", 1);
+  print(inUser == inUser2);
 }

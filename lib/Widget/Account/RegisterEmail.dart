@@ -108,9 +108,9 @@ class RegisterInput extends StatelessWidget {
 
       CupertinoButton(
           child: Text("회원가입"),
-          onPressed: () {
+          onPressed: () async {
             try {
-              InMatAuth.registerEmail(
+              await InMatAuth.registerEmail(
                 id: "test123",
                 password: "qwe12345&&",
                 profile: Profile(
@@ -126,6 +126,7 @@ class RegisterInput extends StatelessWidget {
               // 닉네임 중복 메세지 띄우기
             } catch (e) {
               // 오류 메세지 띄우기
+              print(e);
             }
           }),
 
@@ -139,6 +140,7 @@ class RegisterInput extends StatelessWidget {
               );
             } catch (e) {
               // 오류 메세지 띄우기
+              print(e);
             }
           }),
       CupertinoButton(
@@ -151,6 +153,7 @@ class RegisterInput extends StatelessWidget {
               );
             } catch (e) {
               // 오류 메세지 띄우기
+              print(e);
             }
           }),
     ]);

@@ -52,16 +52,17 @@ class _SignInEmailState extends State<SignInEmail> {
           ),
           CupertinoButton(
               child: Text("로그인"),
-              onPressed: () {
+              onPressed: () async{
                 print(id);
                 print(password);
 
                 try {
-                  InMatAuth.signInEmail(id: "test123", password: "qwe12345&&");
+                  await InMatAuth.signInEmail(id: "test123", password: "qwe12345&&");
                 } on SignInFailed {
                   // 로그인 실패 메세지 띄우기
                 } catch (e) {
                   // 오류 메세지 띄우기
+                  print(e);
                 }
               }),
         ],

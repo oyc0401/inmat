@@ -1,5 +1,5 @@
 import 'package:restaurant/inmat/user/database/userDataBase.dart';
-import 'package:restaurant/inmat/inMatAPI/update.dart';
+import 'package:restaurant/inmat/inMatAPI/inMatupdate.dart';
 
 import 'user_model.dart';
 
@@ -27,20 +27,20 @@ class InMatUser {
 
   save(Map<String, dynamic> user) async {
     _user.addAll(user);
-    _saveDataBase(user);
+   // _saveDataBase(user);
   }
 
-  update(Map<String, dynamic> user) async {
-    InMatUpdate profileUpdate = InMatUpdate();
-    await profileUpdate.update(user);
-    _user.addAll(user);
-    _saveDataBase(user);
-  }
+  // update(Map<String, dynamic> user) async {
+  //   InMatUpdate profileUpdate = InMatUpdate();
+  //   await profileUpdate.update(user);
+  //   _user.addAll(user);
+  //   //_saveDataBase(user);
+  // }
 
-  _saveDataBase(Map<String, dynamic> user) async {
-    InMatUserDataBase interface = InMatUserDataBase();
-    interface.save(user);
-  }
+  // _saveDataBase(Map<String, dynamic> user) async {
+  //   InMatUserDataBase interface = InMatUserDataBase();
+  //   interface.save(user);
+  // }
 
 }
 
