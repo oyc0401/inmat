@@ -4,16 +4,19 @@ import 'package:restaurant/inmat/inMatAPI/inMatupdate.dart';
 import 'user_model.dart';
 
 class InMatUser {
-  InMatUser._();
+  InMatUser._privateConstructor();
 
-  static InMatUser get instance {
-    return InMatUser._();
-  }
+  static InMatUser get instance => _instance;
 
-  static Map<String, dynamic> _user = {};
+  static final InMatUser _instance = InMatUser._privateConstructor();
+
+
+  /// [_user]에 현재 정보룰 저장한다.
+  Map<String, dynamic> _user={};
+
 
   User? get currentUser {
-    if(_user.isEmpty){
+    if (_user.isEmpty) {
       return null;
     }
     return User(_user);
@@ -27,20 +30,20 @@ class InMatUser {
 
   save(Map<String, dynamic> user) async {
     _user.addAll(user);
-   // _saveDataBase(user);
+    // _saveDataBase(user);
   }
 
-  // update(Map<String, dynamic> user) async {
-  //   InMatUpdate profileUpdate = InMatUpdate();
-  //   await profileUpdate.update(user);
-  //   _user.addAll(user);
-  //   //_saveDataBase(user);
-  // }
+// update(Map<String, dynamic> user) async {
+//   InMatUpdate profileUpdate = InMatUpdate();
+//   await profileUpdate.update(user);
+//   _user.addAll(user);
+//   //_saveDataBase(user);
+// }
 
-  // _saveDataBase(Map<String, dynamic> user) async {
-  //   InMatUserDataBase interface = InMatUserDataBase();
-  //   interface.save(user);
-  // }
+// _saveDataBase(Map<String, dynamic> user) async {
+//   InMatUserDataBase interface = InMatUserDataBase();
+//   interface.save(user);
+// }
 
 }
 
