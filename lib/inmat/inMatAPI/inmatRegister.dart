@@ -8,6 +8,13 @@ class InMatRegister extends InMatHttp{
 
     if (response['isSuccess'] == false) {
       print("회원가입 실패!");
+
+      if (response['code'] == 3030) {
+        throw OverlappingAccount();
+      } else if (response['code'] == 3035) {
+        throw OverlappingNickName();
+      }
+
       throw Exception(
           'Failed to load sign in: ${response['code']}, ${response['message']}');
     }

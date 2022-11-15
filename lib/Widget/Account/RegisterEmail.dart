@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant/inmat/inMatAPI/InMatCheckNickname.dart';
+import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
 import '../../inmat/auth/inMatAuth.dart';
 import '../NavigatePage.dart';
@@ -107,27 +109,50 @@ class RegisterInput extends StatelessWidget {
       CupertinoButton(
           child: Text("회원가입"),
           onPressed: () {
-            InMatAuth.registerEmail(
-              id: "test123",
-              password: "qwe12345&&",
-              profile: Profile(
-                  email: "dsad32@gmail.com",
-                  age: 10,
-                  gender: "M",
-                  nickName: "한국어",
-                  phoneNumber: "010-2748-2332"),
-            );
+            try {
+              InMatAuth.registerEmail(
+                id: "test123",
+                password: "qwe12345&&",
+                profile: Profile(
+                    email: "dsad32@gmail.com",
+                    age: 10,
+                    gender: "M",
+                    nickName: "한국어",
+                    phoneNumber: "010-2748-2332"),
+              );
+            } on OverlappingAccount {
+              // 아이디 중복 메세지 띄우기
+            } on OverlappingNickName {
+              // 닉네임 중복 메세지 띄우기
+            } catch (e) {
+              // 오류 메세지 띄우기
+            }
           }),
-      // CupertinoButton(
-      //     child: Text("회원정보 입력 이동"),
-      //     onPressed: () {
-      //       Navigator.push(
-      //         context,
-      //         CupertinoPageRoute(
-      //           builder: (context) => const RegisterProfile(),
-      //         ),
-      //       );
-      //     }),
+
+      CupertinoButton(
+          child: Text("아이디 중복 체크"),
+          onPressed: () async {
+            bool can = false;
+            try {
+              can = await InMatAuth.checkId(
+                id: "test123",
+              );
+            } catch (e) {
+              // 오류 메세지 띄우기
+            }
+          }),
+      CupertinoButton(
+          child: Text("닉네임 중복 체크"),
+          onPressed: () async {
+            bool can = false;
+            try {
+              can = await InMatAuth.checkNickName(
+                nickName: "한국어",
+              );
+            } catch (e) {
+              // 오류 메세지 띄우기
+            }
+          }),
     ]);
   }
 }

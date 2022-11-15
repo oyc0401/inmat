@@ -23,8 +23,7 @@ class InMatHttp {
       return json.decode(utf8.decode(response.bodyBytes));
     } else {
       throw Exception(
-          'Failed to load get ${response.statusCode}, ${utf8.decode(
-              response.bodyBytes)}');
+          'Failed to load get ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
     }
   }
 
@@ -47,18 +46,51 @@ class InMatHttp {
       return json.decode(utf8.decode(response.bodyBytes));
     } else {
       throw Exception(
-          'Failed to load post ${response.statusCode}, ${utf8.decode(
-              response.bodyBytes)}');
+          'Failed to load post ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
     }
   }
 }
 
+class ExpirationAccessToken implements Exception {
+  @override
+  String toString() {
+    return "액세스 토큰이 만료되었습니다.";
+  }
+}
+
+class SignInFailed implements Exception {
+  @override
+  String toString() {
+    return "없는 아이디이거나 비밀번호가 틀렸습니다.";
+  }
+}
+
+class AccessDenied implements Exception {
+  @override
+  String toString() {
+    return "접근에 권한이 없습니다.";
+  }
+}
+
+class OverlappingAccount implements Exception {
+  @override
+  String toString() {
+    return "중복된 아이디입니다.";
+  }
+}
+
+class OverlappingNickName implements Exception {
+  @override
+  String toString() {
+    return "중복된 닉네임 입니다.";
+  }
+}
 
 void main() async {
   Uri uri = Uri.parse("http://prod.sogogi.shop:9000/users/signup");
 
   var bodyJson = json.encode({
-    "username":"dsadas",
+    "username": "dsadas",
     "email": "dsadas@gmail.com",
     "password": "dsaadsa321?",
     "age": 0,
@@ -82,9 +114,7 @@ void main() async {
     print(json.decode(utf8.decode(response.bodyBytes)));
     return json.decode(utf8.decode(response.bodyBytes));
   } else {
-    throw Exception('Failed to load post ${response.statusCode}, ${utf8.decode(
-        response.bodyBytes)}');
+    throw Exception(
+        'Failed to load post ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
   }
 }
-
-

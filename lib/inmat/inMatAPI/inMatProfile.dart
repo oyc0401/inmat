@@ -9,6 +9,13 @@ class InMatProfile extends InMatHttp {
 
     if (response['isSuccess'] == false) {
       print("프로필 불러오기 실패!");
+
+      if (response['code'] == 401) {
+        throw ExpirationAccessToken();
+      } else if (response['code'] == 403) {
+        throw AccessDenied();
+      }
+
       throw Exception(
           'Failed to load profile: ${response['code']}, ${response['message']}');
     }

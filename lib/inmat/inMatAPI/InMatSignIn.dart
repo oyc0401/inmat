@@ -1,7 +1,6 @@
-
 import 'inMatHttp.dart';
 
-class InMatSignIn extends InMatHttp{
+class InMatSignIn extends InMatHttp {
   Future<String> emailSignIn({required Map user}) async {
     print("이메일 로그인 중...");
     Map response = await publicPost(
@@ -9,10 +8,14 @@ class InMatSignIn extends InMatHttp{
 
     if (response['isSuccess'] == false) {
       print("이메일 로그인 실패!");
+      if (response['code'] == 3010) {
+        throw SignInFailed();
+      }
       throw Exception(
           'Failed to load sign in: ${response['code']}, ${response['message']}');
     }
-    String token=response['result']['token'];
+
+    String token = response['result']['token'];
     print("이메일 로그인 성공!");
     return token;
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
 import '../../inmat/auth/inMatAuth.dart';
 import '../NavigatePage.dart';
@@ -55,7 +56,13 @@ class _SignInEmailState extends State<SignInEmail> {
                 print(id);
                 print(password);
 
-                InMatAuth.signInEmail(id: "test123", password: "qwe12345&&");
+                try {
+                  InMatAuth.signInEmail(id: "test123", password: "qwe12345&&");
+                } on SignInFailed {
+                  // 로그인 실패 메세지 띄우기
+                } catch (e) {
+                  // 오류 메세지 띄우기
+                }
               }),
         ],
       ),

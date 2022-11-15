@@ -1,10 +1,11 @@
+import 'package:restaurant/inmat/inMatAPI/InMatCheckId.dart';
+import 'package:restaurant/inmat/inMatAPI/InMatCheckNickname.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 import 'package:restaurant/inmat/user/inMatUser.dart';
 
 import '../inMatAPI/inMatProfile.dart';
 import '../inMatAPI/InMatSignIn.dart';
 import '../inMatAPI/inmatRegister.dart';
-
 
 class Profile {
   Profile({
@@ -31,9 +32,12 @@ class InMatAuth {
       // await InMatUser.instance.setToken(token);
       print(token);
 
+      // 토큰을 받고 서버의 정보를 얻어온다.
+      /// [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만 로그인 직후에 가져오는 것이라 생략한다.
       InMatProfile inMatProfile = InMatProfile();
       Map<String, dynamic> profile =
           await inMatProfile.getProfile(token: token);
+
       print(profile);
       profile['token'] = token;
 
@@ -70,6 +74,28 @@ class InMatAuth {
     // 회원가입을 한다.
     // 로그인을 한다.
     // 개인정보와 토큰을 DB에 저장한다.
+  }
+
+  static checkNickName({
+    required String nickName,
+  }) async {
+    try {
+      InMatCheckNickName inMatNickName = InMatCheckNickName();
+      return await inMatNickName.check(nickName: nickName);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static checkId({
+    required String id,
+  }) async {
+    try {
+      InMatCheckId inMatCheckId = InMatCheckId();
+      return await inMatCheckId.check(username: id);
+    } catch (e) {
+      print(e);
+    }
   }
 }
 
