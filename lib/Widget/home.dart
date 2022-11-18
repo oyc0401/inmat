@@ -38,67 +38,68 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("인맛"),
+        title: Text("인맛 InMAt"),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 100 ,
-              child: const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Text('카테고리'),
-              ),
-            ),
-            ListTile(
-              title: Text('밥',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-              dense: true,
-              visualDensity: VisualDensity(vertical: -3),),
-            ListTile(
-              title: const Text('음식명'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text('음식명'),
-              onTap: () {
-              },
-            ),
-            ListTile(
-              title: const Text('음식명'),
-              onTap: () {
-              },
-            ),
-            ListTile(
-              title: const Text('음식명'),
-              onTap: () {
-              },
-            ),
-
-            ListTile(title: Text('술',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-              dense: true,
-              visualDensity: VisualDensity(vertical: -3),),
-            ListTile(
-              title: const Text('칵테일 바'),
-              onTap: () {
-              },
-            ),ListTile(
-              title: const Text('칵테일 바'),
-              onTap: () {
-              },
-            ),ListTile(
-              title: const Text('칵테일 바'),
-              onTap: () {
-              },
-            ),ListTile(
-              title: const Text('칵테일 바'),
-              onTap: () {
-              },
-            ),
-          ],
-        ),
-      ),
+      // drawer: Drawer(
+      //   child: ListView(
+      //     children: [
+      //       SizedBox(
+      //         height: 100 ,
+      //         child: const DrawerHeader(
+      //           decoration: BoxDecoration(
+      //             color: Colors.blue,
+      //           ),
+      //           child: Text('카테고리'),
+      //         ),
+      //       ),
+      //       ListTile(
+      //         title: Text('밥',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+      //         dense: true,
+      //         visualDensity: VisualDensity(vertical: -3),),
+      //       ListTile(
+      //         title: const Text('음식명'),
+      //         onTap: () {},
+      //       ),
+      //       ListTile(
+      //         title: const Text('음식명'),
+      //         onTap: () {
+      //         },
+      //       ),
+      //       ListTile(
+      //         title: const Text('음식명'),
+      //         onTap: () {
+      //         },
+      //       ),
+      //       ListTile(
+      //         title: const Text('음식명'),
+      //         onTap: () {
+      //         },
+      //       ),
+      //
+      //       ListTile(title: Text('술',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+      //         dense: true,
+      //         visualDensity: VisualDensity(vertical: -3),),
+      //       ListTile(
+      //         title: const Text('칵테일 바'),
+      //         onTap: () {
+      //         },
+      //       ),ListTile(
+      //         title: const Text('칵테일 바'),
+      //         onTap: () {
+      //         },
+      //       ),ListTile(
+      //         title: const Text('칵테일 바'),
+      //         onTap: () {
+      //         },
+      //       ),ListTile(
+      //         title: const Text('칵테일 바'),
+      //         onTap: () {
+      //         },
+      //       ),
+      //     ],
+      //   ),
+      // ),
+      // ^ 카테고리 속성
       drawerEdgeDragWidth: 20,
       drawerEnableOpenDragGesture: true,
       body: ListView(children: [

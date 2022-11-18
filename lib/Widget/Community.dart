@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Post.dart';
 
 class Community extends StatefulWidget {
   const Community({Key? key}) : super(key: key);
@@ -21,11 +22,10 @@ class _CommunityState extends State<Community> {
                 return Posting(
                   number: index,
                 );
-              }
-          )
-      ),
+              })),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.edit), backgroundColor: Colors.grey,
+        child: Icon(Icons.edit),
+        backgroundColor: Colors.grey,
         onPressed: () {
           print("edit");
         },
@@ -48,99 +48,115 @@ class _PostingState extends State<Posting> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
-        // decoration: BoxDecoration(
-        //   borderRadius: BorderRadius.circular(100)
-        // ),
-        child: Column(
-          children: [
-            // width: double.infinity,
-            // height: 100,
-            // // color: Colors.blue,
-            // // color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
-            // child: Center(child: Text(widget.number.toString())),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(
-                    30,
-                  ),
-                  topLeft: Radius.circular(30),
+      // decoration: BoxDecoration(
+      //   borderRadius: BorderRadius.circular(100)
+      // ),
+      child: Column(
+        children: [
+          // width: double.infinity,
+          // height: 100,
+          // // color: Colors.blue,
+          // // color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+          // child: Center(child: Text(widget.number.toString())),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(
+                  30,
                 ),
+                topLeft: Radius.circular(30),
               ),
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(width: 10,),
-                  Text('직성자명 : 제목 ~~~~'),
-                ],
-              ),
-              ),
-            Container(
+            ),
+            height: 50,
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text('직성자명 : 제목 ~~~~'),
+              ],
+            ),
+          ),
+          GestureDetector(
+            onTap: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Post() ),
+              );
+            },
+            child: Container(
               height: 100,
               width: MediaQuery.of(context).size.width,
               color: Colors.blue,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(width: 10,),
+                  SizedBox(
+                    width: 10,
+                  ),
                   Column(
                     children: [
-                      Text('내용'  ),
-                      TextButton(onPressed: () {} , child: Text('더보기')),
+                      Text('내용'),
+                      TextButton(onPressed: () {}, child: Text('더보기')),
                     ],
                   ),
-
                 ],
               ),
             ),
-            Container(
+          ),
+          GestureDetector(
+            child: Container(
               height: 250,
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              child: Center(child: Text('사진 칸')),
-            ),
-            // Container(
-            //   child: Image.network('https://www.naver.com/'),
-            // ),
-            Container(
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.green,
-              child: Row(
-                children: [
-                  Row(
-                    children: [
-                      Center(child: Icon(Icons.favorite_border)),
-                 Icon(Icons.comment),
-                    ],
-                  ),
-                 Spacer(),
-                  Text("1일전"),
-                ],
+              child: Center(
+                child: Image.network(
+                    'https://www.adobe.com/kr/creativecloud/photography/hub/guides/media_133e6757a291061a3fda84b01af31e5cbc3034eb3.jpeg?width=2000&format=webply&optimize=medium'),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.teal,
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(
-                    30,
-                  ),
-                  bottomLeft: Radius.circular(30),
+          ),
+          // Container(
+          //   child: Image.network('https://www.adobe.com/kr/creativecloud/photography/hub/guides/media_133e6757a291061a3fda84b01af31e5cbc3034eb3.jpeg?width=2000&format=webply&optimize=medium'),
+          // ),
+          Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.green,
+            child: Row(
+              children: [
+                Row(
+                  children: [
+                    Center(child: Icon(Icons.favorite_border)),
+                    Icon(Icons.comment),
+                  ],
                 ),
-              ),
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-              child: Center(child: Text('댓글 칸')),
+                Spacer(),
+                Text("1일전"),
+              ],
             ),
-            Container(height: 30,)
-          ],
-        ),
-
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.teal,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(
+                  30,
+                ),
+                bottomLeft: Radius.circular(30),
+              ),
+            ),
+            height: 50,
+            width: MediaQuery.of(context).size.width,
+            child: Center(child: Text('댓글 칸')),
+          ),
+          Container(
+            height: 30,
+          )
+        ],
+      ),
     );
   }
 }
-

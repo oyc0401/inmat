@@ -20,7 +20,8 @@ class _RandomFoodSelectState extends State<RandomFoodSelect> {
         title: Text("음식 랜덤 추천"),
       ),
       body: SafeArea(
-        child: Container(
+        child:
+        Container(
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

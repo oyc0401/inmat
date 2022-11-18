@@ -82,7 +82,7 @@ class _ProfileState extends State<Profile> {
                             MaterialPageRoute(builder: (_) => MyFavorite()));},
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.blueAccent,
-                          fixedSize: const Size(370, 60),
+                          fixedSize: const Size(360, 60),
                           backgroundColor: Colors.white70,
                           textStyle: const TextStyle(fontSize: 24),
                         ),
@@ -119,7 +119,7 @@ class _ProfileState extends State<Profile> {
                       MaterialPageRoute(builder: (_) => MyReview()));},
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.blueAccent,
-                    fixedSize: const Size(370, 60),
+                    fixedSize: const Size(360, 60),
                     backgroundColor: Colors.white70,
                     textStyle: const TextStyle(fontSize: 24),
                   ),
@@ -151,7 +151,7 @@ class _ProfileState extends State<Profile> {
                       MaterialPageRoute(builder: (_) => MyPost()));},
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.blueAccent,
-                    fixedSize: const Size(370, 60),
+                    fixedSize: const Size(360, 60),
                     backgroundColor: Colors.white70,
                     textStyle: const TextStyle(fontSize: 24),
                   ),
@@ -183,7 +183,7 @@ class _ProfileState extends State<Profile> {
                       MaterialPageRoute(builder: (_) => Notice  ()));},
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.blueAccent,
-                    fixedSize: const Size(370, 60),
+                    fixedSize: const Size(360, 60),
                     backgroundColor: Colors.white70,
                     textStyle: const TextStyle(fontSize: 24),
                   ),

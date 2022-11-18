@@ -37,6 +37,10 @@ class _SearchScreenState extends State<SearchScreen> {
               Expanded(
                 flex: 6,
                 child: TextField(
+                  // // controller: controller.nicknameController,
+                  // inputFormatters: <TextInputFormatter>[
+                  //   FilteringTextInputFormatter.allow(RegExp(r'[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|ᆞ|ᆢ]')), // 검색창에 한글만 입력되게 하기
+                  // ],
                   focusNode: focusNode,
                   style: TextStyle(fontSize: 15 , color: Colors.white),
                   autofocus: true,
