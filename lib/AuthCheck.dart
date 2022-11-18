@@ -45,12 +45,12 @@ class _AuthCheckState extends State<AuthCheck> {
                   color: Colors.grey,
                   child: Text("로그인 페이지 이동"),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.push(
                         context,
                         CupertinoPageRoute(
                           builder: (context) => const SignIn(),
                         ),
-                        (route) => false);
+                    );
                   }),
             ),
             Padding(
@@ -59,12 +59,12 @@ class _AuthCheckState extends State<AuthCheck> {
                   color: Colors.grey,
                   child: Text("로그인 페이지 2 이동"),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.push(
                         context,
                         CupertinoPageRoute(
                           builder: (context) => const SignIn2(),
                         ),
-                        (route) => false);
+                    );
                   }),
             ),
             Padding(
@@ -73,12 +73,12 @@ class _AuthCheckState extends State<AuthCheck> {
                   color: Colors.grey,
                   child: Text("회원가입 페이지 이동"),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.push(
                         context,
                         CupertinoPageRoute(
                           builder: (context) => const SignUp(),
                         ),
-                        (route) => false);
+                        );
                   }),
             ),
             Padding(
@@ -87,12 +87,12 @@ class _AuthCheckState extends State<AuthCheck> {
                   color: Colors.grey,
                   child: Text("비밀번호 찾기 페이지 이동"),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.push(
                         context,
                         CupertinoPageRoute(
                           builder: (context) => const PasswordFind(),
                         ),
-                        (route) => false);
+                        );
                   }),
             )
           ],

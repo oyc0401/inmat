@@ -18,14 +18,16 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       backgroundColor: Color(0xffFF8C66),
       appBar: AppBar(
-        backgroundColor: Color(0xffFF8C66),
+        backgroundColor: Color(0x00000000),
+        elevation: 0,
+
         iconTheme: IconThemeData(
           color: Colors.black,//색변경
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: (){
-            // Navigator.pop(context);
+             Navigator.pop(context);
             // 뒤로가기 버튼 누르면 이동하는 곳
           },
         ),

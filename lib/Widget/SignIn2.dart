@@ -11,9 +11,21 @@ class _SignIn2State extends State<SignIn2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //
-      // ),
+     appBar: AppBar(
+       backgroundColor: Color(0x00000000),
+       elevation: 0,
+
+       iconTheme: IconThemeData(
+         color: Colors.black,//색변경
+       ),
+       leading: IconButton(
+         icon: Icon(Icons.arrow_back_ios),
+         onPressed: (){
+           Navigator.pop(context);
+           // 뒤로가기 버튼 누르면 이동하는 곳
+         },
+       ),
+     ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
