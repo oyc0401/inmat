@@ -2,6 +2,7 @@ import 'package:restaurant/inmat/inMatAPI/InMatCheckId.dart';
 import 'package:restaurant/inmat/inMatAPI/InMatCheckNickname.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 import 'package:restaurant/inmat/user/inMatUser.dart';
+import 'package:restaurant/inmat/user/user_model.dart';
 
 import '../inMatAPI/inMatProfile.dart';
 import '../inMatAPI/InMatSignIn.dart';
@@ -24,7 +25,41 @@ class Profile {
   String phoneNumber;
 }
 
+enum AuthStatus {
+  user,
+  guest,
+  reSignIn,
+}
+
 class InMatAuth {
+  static Future<AuthStatus> initialize() async {
+    User? current = InMatUser.instance.currentUser;
+    if (current == null) {
+      // 비 회원 상태
+      print('비 회원 상태');
+      return AuthStatus.guest;
+    }
+
+      try {
+        Map<String, dynamic> profile = await getProfile(current.token);
+        await InMatUser.instance.save(profile);
+        return AuthStatus.user;
+
+      } on ExpirationAccessToken {
+        // 액세스 토큰 만료
+      } on AccessDenied {
+        // 접근 권한 없음
+      } catch (e) {
+        // 오류 메세지 띄우기
+        print(e);
+      }
+
+    //DB 삭제
+    InMatUser.instance.delete();
+
+    return AuthStatus.reSignIn;
+  }
+
   static signInEmail({required String id, required String password}) async {
     InMatSignIn sign = InMatSignIn();
     String token =
@@ -33,8 +68,7 @@ class InMatAuth {
 
     // 토큰을 받고 서버의 정보를 얻어온다.
     /// [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만 여기선 로그인 직후에 가져오는 것이라 생략한다.
-    InMatProfile inMatProfile = InMatProfile();
-    Map<String, dynamic> profile = await inMatProfile.getProfile(token: token);
+    Map<String, dynamic> profile = await getProfile(token);
 
     print(profile);
     profile['token'] = token;
@@ -44,6 +78,11 @@ class InMatAuth {
     // 로그인 후 토큰을 받는다.
     // 토큰을 이용해 개인정보를 받는다.
     // 개인정보와 토큰을 DB에 저장한다.
+  }
+
+  static Future<Map<String, dynamic>> getProfile(String token) async {
+    InMatProfile inMatProfile = InMatProfile();
+    return await inMatProfile.getProfile(token: token);
   }
 
   static registerEmail({
@@ -84,8 +123,22 @@ class InMatAuth {
   static updateProfile(Map<String, dynamic> user) async {
     InMatUpdate profileUpdate = InMatUpdate();
     String token = InMatUser.instance.currentUser!.token;
-    await profileUpdate.update(token, user);
-    InMatUser.instance.save(user);
+
+    //Map<String, dynamic> current = InMatUser.instance.currentUser!.toUpdateMap();
+    // current.addAll(user);
+    // print(current);
+
+    Map<String, dynamic> current = user;
+    //user['nickName']= user['nickName'] ?? InMatUser.instance.currentUser!.nickName;
+
+    Map m = {
+      'profileImgUrl': 'www.dsads.jjj',
+      //  'nickName': '하이',
+      'age': 20,
+      'gender': 'F'
+    };
+    await profileUpdate.update(token, m);
+    // InMatUser.instance.save(current);
   }
 }
 

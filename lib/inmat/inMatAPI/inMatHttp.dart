@@ -13,7 +13,7 @@ class InMatHttp {
       headers: {
         "Content-Type": "application/json",
         'Accept': 'application/json',
-        "X-ACCESS-TOKEN": "$token"
+        'Authorization': 'Bearer $token',
       },
     );
 
@@ -59,7 +59,7 @@ class InMatHttp {
       headers: {
         "Content-Type": "application/json",
         'Accept': 'application/json',
-        "X-ACCESS-TOKEN": "$token"
+        'Authorization': 'Bearer $token',
       },
       body: bodyJson,
     );
@@ -70,7 +70,7 @@ class InMatHttp {
       return json.decode(utf8.decode(response.bodyBytes));
     } else {
       throw Exception(
-          'Failed to load post ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
+          'Failed to load patch ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
     }
   }
 }

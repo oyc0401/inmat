@@ -36,12 +36,12 @@ class _AuthCheckState extends State<AuthCheck> {
                   color: Colors.grey,
                   child: Text("메인 페이지 이동"),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.push(
                         context,
                         CupertinoPageRoute(
                           builder: (context) => const NavigatePage(),
                         ),
-                        (route) => false);
+                       );
                   }),
             ),
             Padding(
@@ -50,12 +50,12 @@ class _AuthCheckState extends State<AuthCheck> {
                   color: Colors.grey,
                   child: Text("로그인 페이지 이동"),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.push(
                         context,
                         CupertinoPageRoute(
                           builder: (context) => const SignIn(),
                         ),
-                        (route) => false);
+                       );
                   }),
             ),
             Padding(
@@ -68,6 +68,7 @@ class _AuthCheckState extends State<AuthCheck> {
                       await InMatAuth.updateProfile({
                         "age": 20,
                         "gender": "F",
+
                       });
                     } on ExpirationAccessToken {
                       // 액세스 토큰 만료: 로그아웃 후 다시 로그인

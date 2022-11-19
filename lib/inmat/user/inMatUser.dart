@@ -10,13 +10,15 @@ class InMatUser {
 
   static final InMatUser _instance = InMatUser._privateConstructor();
 
+  /// [_user]에 현재 정보룰 저장해둔다.
+  Map<String, dynamic> _user = {};
 
-  /// [_user]에 현재 정보룰 저장한다.
-  Map<String, dynamic> _user={};
+  Map<String, dynamic> _token = {};
 
-
+  /// [_user]가 null 이거나 토큰이 없으면 [null]을 리턴한다.
+  /// [currentUser]가 [null]이 아니라는것은 현재 토큰이 존재한다는 뜻이다.
   User? get currentUser {
-    if (_user.isEmpty) {
+    if (_token.isEmpty || _user.isEmpty) {
       return null;
     }
     return User(_user);
@@ -24,13 +26,16 @@ class InMatUser {
 
   Future<void> downLoad() async {
     InMatUserDataBase interface = InMatUserDataBase();
-    Map<String, dynamic> user = await interface.get();
-    _user = user;
+    Map<String, dynamic> token = await interface.get();
+    _token = token;
   }
 
   save(Map<String, dynamic> user) async {
     _user.addAll(user);
-    // _saveDataBase(user);
+  }
+
+  delete() {
+    _user.clear();
   }
 
 // update(Map<String, dynamic> user) async {
@@ -44,7 +49,6 @@ class InMatUser {
 //   InMatUserDataBase interface = InMatUserDataBase();
 //   interface.save(user);
 // }
-
 }
 
 void main() {

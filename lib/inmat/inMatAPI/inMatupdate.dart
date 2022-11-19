@@ -4,7 +4,7 @@ class InMatUpdate extends InMatHttp {
   update(String token, Map user) async {
     print("프로필 업데이트 중...");
     Map response = await publicPatch(
-        url: "http://prod.sogogi.shop:9000/users/profile",
+        url: "http://prod.sogogi.shop:9000/users/profiles",
         body: user,
         token: token);
 
@@ -20,7 +20,7 @@ class InMatUpdate extends InMatHttp {
       }
 
       throw Exception(
-          'Failed to load sign in: ${response['code']}, ${response['message']}');
+          'Failed to load update profile: ${response['code']}, ${response['message']}');
     }
     print("프로필 업데이트 성공!");
   }

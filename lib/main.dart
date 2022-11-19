@@ -6,6 +6,7 @@ import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant/AuthCheck.dart';
+import 'package:restaurant/inmat/auth/inMatAuth.dart';
 import 'package:restaurant/inmat/user/inMatUser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,6 +17,8 @@ void main() async {
   // DB에서 유저 정보 가져오기
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await InMatUser.instance.downLoad();
+   await InMatAuth.initialize();
+
 
   runApp(MyApp());
 }
