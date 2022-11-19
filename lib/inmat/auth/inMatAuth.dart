@@ -34,46 +34,54 @@ enum AuthStatus {
 class InMatAuth {
   static Future<AuthStatus> initialize() async {
     User? current = InMatUser.instance.currentUser;
+    print(current);
     if (current == null) {
       // 비 회원 상태
       print('비 회원 상태');
       return AuthStatus.guest;
     }
 
-      try {
-        Map<String, dynamic> profile = await getProfile(current.token);
-        await InMatUser.instance.save(profile);
-        return AuthStatus.user;
-
-      } on ExpirationAccessToken {
-        // 액세스 토큰 만료
-      } on AccessDenied {
-        // 접근 권한 없음
-      } catch (e) {
-        // 오류 메세지 띄우기
-        print(e);
-      }
+    try {
+      Map<String, dynamic> profile = await getProfile(current.token);
+      await InMatUser.instance.saveUser(profile);
+      return AuthStatus.user;
+    } on ExpirationAccessToken {
+      // 액세스 토큰 만료
+    } on AccessDenied {
+      // 접근 권한 없음
+    } catch (e) {
+      // 오류 메세지 띄우기
+      print(e);
+    }
 
     //DB 삭제
-    InMatUser.instance.delete();
+    InMatUser.instance.deleteUser();
 
     return AuthStatus.reSignIn;
   }
 
+  static signOut() {
+    InMatUser.instance.deleteToken();
+    InMatUser.instance.deleteUser();
+  }
+
   static signInEmail({required String id, required String password}) async {
     InMatSignIn sign = InMatSignIn();
-    String token =
-        await sign.emailSignIn(user: {"username": id, "password": password});
-    // await InMatUser.instance.setToken(token);
+    Map<String, dynamic> token = await sign.emailSignIn(user: {
+      "username": id,
+      "password": password,
+    });
+
+    await InMatUser.instance.saveToken(token);
+    String accessToken = token['token'];
 
     // 토큰을 받고 서버의 정보를 얻어온다.
     /// [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만 여기선 로그인 직후에 가져오는 것이라 생략한다.
-    Map<String, dynamic> profile = await getProfile(token);
+    Map<String, dynamic> profile = await getProfile(accessToken);
 
     print(profile);
-    profile['token'] = token;
 
-    await InMatUser.instance.save(profile);
+    await InMatUser.instance.saveUser(profile);
 
     // 로그인 후 토큰을 받는다.
     // 토큰을 이용해 개인정보를 받는다.

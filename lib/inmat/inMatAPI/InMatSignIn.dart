@@ -1,7 +1,7 @@
 import 'inMatHttp.dart';
 
 class InMatSignIn extends InMatHttp {
-  Future<String> emailSignIn({required Map user}) async {
+  Future<Map<String,dynamic>> emailSignIn({required Map user}) async {
     print("이메일 로그인 중...");
     Map response = await publicPost(
         url: "http://prod.sogogi.shop:9000/users/login", body: user);
@@ -15,7 +15,7 @@ class InMatSignIn extends InMatHttp {
           'Failed to load sign in: ${response['code']}, ${response['message']}');
     }
 
-    String token = response['result']['token'];
+    Map<String,dynamic> token = response['result'];
     print("이메일 로그인 성공!");
     return token;
   }

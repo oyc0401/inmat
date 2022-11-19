@@ -1,3 +1,4 @@
+import 'package:restaurant/inmat/TokenDatabase.dart';
 import 'package:restaurant/inmat/user/database/userDataBase.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatupdate.dart';
 
@@ -11,43 +12,52 @@ class InMatUser {
   static final InMatUser _instance = InMatUser._privateConstructor();
 
   /// [_user]에 현재 정보룰 저장해둔다.
-  Map<String, dynamic> _user = {};
+  final Map<String, dynamic> _user = {};
 
-  Map<String, dynamic> _token = {};
+  final Map<String, dynamic> _token = {};
 
   /// [_user]가 null 이거나 토큰이 없으면 [null]을 리턴한다.
   /// [currentUser]가 [null]이 아니라는것은 현재 토큰이 존재한다는 뜻이다.
   User? get currentUser {
-    if (_token.isEmpty || _user.isEmpty) {
+    if (_token.isEmpty ) {
       return null;
     }
-    return User(_user);
+    return User(user: _user, token: _token);
   }
 
   Future<void> downLoad() async {
-    InMatUserDataBase interface = InMatUserDataBase();
+    TokenDataBase interface = TokenDataBase();
     Map<String, dynamic> token = await interface.get();
-    _token = token;
+    saveToken(token);
   }
 
-  save(Map<String, dynamic> user) async {
-    _user.addAll(user);
+  saveToken(Map<String, dynamic> token) async {
+    _token.addAll(token);
+    _saveDataBase(token);
   }
 
-  delete() {
-    _user.clear();
+  deleteToken() {
+    _token.clear();
+    TokenDataBase interface = TokenDataBase();
+    interface.delete();
   }
+
+  saveUser(Map<String, dynamic> user) async => _user.addAll(user);
+
+  deleteUser() => _user.clear();
+
+  _saveDataBase(Map<String, dynamic> token) async {
+    TokenDataBase interface = TokenDataBase();
+    interface.save(token);
+  }
+
+
 
 // update(Map<String, dynamic> user) async {
 //   InMatUpdate profileUpdate = InMatUpdate();
 //   await profileUpdate.update(user);
 //   _user.addAll(user);
 //   //_saveDataBase(user);
-// }
-
-// _saveDataBase(Map<String, dynamic> user) async {
-//   InMatUserDataBase interface = InMatUserDataBase();
-//   interface.save(user);
 // }
 }
 

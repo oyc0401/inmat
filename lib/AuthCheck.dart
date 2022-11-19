@@ -37,11 +37,11 @@ class _AuthCheckState extends State<AuthCheck> {
                   child: Text("메인 페이지 이동"),
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => const NavigatePage(),
-                        ),
-                       );
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => const NavigatePage(),
+                      ),
+                    );
                   }),
             ),
             Padding(
@@ -51,24 +51,32 @@ class _AuthCheckState extends State<AuthCheck> {
                   child: Text("로그인 페이지 이동"),
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => const SignIn(),
-                        ),
-                       );
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => const SignIn(),
+                      ),
+                    );
                   }),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CupertinoButton(
                   color: Colors.redAccent,
+                  child: Text("로그아웃"),
+                  onPressed: () {
+                    InMatAuth.signOut();
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CupertinoButton(
+                  color: Colors.lightGreen,
                   child: Text("회원 정보 수정"),
                   onPressed: () async {
                     try {
                       await InMatAuth.updateProfile({
                         "age": 20,
                         "gender": "F",
-
                       });
                     } on ExpirationAccessToken {
                       // 액세스 토큰 만료: 로그아웃 후 다시 로그인
@@ -80,6 +88,17 @@ class _AuthCheckState extends State<AuthCheck> {
                       print(e);
                       // 오류 메세지 알림
                     }
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CupertinoButton(
+                  color: Colors.blue,
+                  child: Text("새로고침"),
+                  onPressed: () {
+                    setState(() {
+
+                    });
                   }),
             ),
           ],

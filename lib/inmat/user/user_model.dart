@@ -1,5 +1,10 @@
 class User {
-  User(Map<String, dynamic> user) : _user = user;
+  User({
+    required Map<String, dynamic> user,
+    required Map<String, dynamic> token,
+  }) : _user = user {
+    _user.addAll(token);
+  }
 
   final Map<String, dynamic> _user;
 
