@@ -2,6 +2,9 @@ PODS:
   - Flutter (1.0.0)
   - flutter_compass (0.0.1):
     - Flutter
+  - fluttertoast (0.0.2):
+    - Flutter
+    - Toast
   - geolocator_apple (1.2.0):
     - Flutter
   - google_maps_flutter_ios (0.0.1):
@@ -14,10 +17,12 @@ PODS:
     - GoogleMaps/Base
   - shared_preferences_ios (0.0.1):
     - Flutter
+  - Toast (4.0.0)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_compass (from `.symlinks/plugins/flutter_compass/ios`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
@@ -25,12 +30,15 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - GoogleMaps
+    - Toast
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
   flutter_compass:
     :path: ".symlinks/plugins/flutter_compass/ios"
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   google_maps_flutter_ios:
@@ -41,10 +49,12 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_compass: cbbd285cea1584c7ac9c4e0c3e1f17cbea55e855
+  fluttertoast: 74526702fea2c060ea55dde75895b7e1bde1c86b
   geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
   google_maps_flutter_ios: 66201f392bf62d500f07670a30488a247b9bb5b9
   GoogleMaps: bc56ffb0324e345a2d91bac1a64a920f9c8f1b20
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 

@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -10,6 +9,16 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  void showMessage() {
+    Fluttertoast.showToast(
+        msg: "개발 중 입니다.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,15 +38,24 @@ class _SignInState extends State<SignIn> {
         ),
       ),
       body: Column(children: [
-        const Expanded(
-          child: InMatLoginLogo(),
+        Expanded(
+          child: InMatLoginLogo(
+            onclick: () {
+              showMessage();
+            },
+            onclickLocation: () {
+              showMessage();
+            },
+          ),
         ),
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
           child: LoginButton(
             text: '카카오로 계속하기',
-            onclick: () {},
+            onclick: () {
+              showMessage();
+            },
             color: const Color(0xffFFE26A),
             textColor: const Color(0xff2E2E2E),
           ),
@@ -46,7 +64,9 @@ class _SignInState extends State<SignIn> {
           padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
           child: LoginButton(
             text: 'Apple로 계속하기',
-            onclick: () {},
+            onclick: () {
+              showMessage();
+            },
             color: const Color(0xff343434),
           ),
         ),
@@ -54,18 +74,24 @@ class _SignInState extends State<SignIn> {
           padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
           child: LoginButton(
             text: 'Google로 계속하기',
-            onclick: () {},
+            onclick: () {
+              showMessage();
+            },
             color: const Color(0xff1570FF),
           ),
         ),
         const SizedBox(
           height: 13,
         ),
-        EmailLoginButton(onclick: () {}),
+        EmailLoginButton(onclick: () {
+          showMessage();
+        }),
         const SizedBox(
           height: 50,
         ),
-        GuestButton(onclick: () {}),
+        GuestButton(onclick: () {
+          showMessage();
+        }),
         const SizedBox(
           height: 37,
         ),
@@ -75,7 +101,12 @@ class _SignInState extends State<SignIn> {
 }
 
 class InMatLoginLogo extends StatelessWidget {
-  const InMatLoginLogo({Key? key}) : super(key: key);
+  const InMatLoginLogo(
+      {Key? key, required this.onclick, required this.onclickLocation})
+      : super(key: key);
+
+  final VoidCallback onclick;
+  final VoidCallback onclickLocation;
 
   @override
   Widget build(BuildContext context) {
@@ -95,28 +126,36 @@ class InMatLoginLogo extends StatelessWidget {
           style: TextStyle(fontSize: 20),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 135, vertical: 16),
-
+          padding: const EdgeInsets.symmetric(vertical: 16),
           child: InkWell(
-            onTap: (){},
+            onTap: onclick,
             borderRadius: BorderRadius.circular(100),
             child: Container(
               height: 45,
+              width: 160,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
                 border: Border.all(color: Colors.black),
               ),
               child: Center(
-                  child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    '인맛을 소개합니다',
-                    style: TextStyle(fontSize: 13),
-                  ),
-                  Icon(Icons.navigate_next),
-                ],
-              )),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    const Text(
+                      '인맛을 소개합니다',
+                      style: TextStyle(fontSize: 13),
+                    ),
+                    const Flexible(
+                      flex: 3,
+                      child: Icon(Icons.navigate_next),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
@@ -133,12 +172,12 @@ class InMatLoginLogo extends StatelessWidget {
             ],
           ),
           child: InkWell(
-            onTap: (){},
+            onTap: onclickLocation,
             borderRadius: BorderRadius.circular(100),
-            child: SizedBox(
+            child: const SizedBox(
               width: 56,
               height: 56,
-              child: const Icon(Icons.pin_drop, size: 34),
+              child: Icon(Icons.pin_drop, size: 34),
             ),
           ),
         ),

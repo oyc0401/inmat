@@ -44,6 +44,8 @@ dependencies:
  # flutter_naver_map: ^0.10.5
   shared_preferences: ^2.0.15
   provider: ^6.0.4
+  fluttertoast: ^8.1.1
+
 
 
 
