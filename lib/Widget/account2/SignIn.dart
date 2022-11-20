@@ -51,7 +51,7 @@ class _SignInState extends State<SignIn> {
         const SizedBox(height: 50),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
-          child: LoginButton(
+          child: SocialLoginButton(
             text: '카카오로 계속하기',
             onclick: () {
               showMessage();
@@ -62,7 +62,7 @@ class _SignInState extends State<SignIn> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
-          child: LoginButton(
+          child: SocialLoginButton(
             text: 'Apple로 계속하기',
             onclick: () {
               showMessage();
@@ -72,7 +72,7 @@ class _SignInState extends State<SignIn> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
-          child: LoginButton(
+          child: SocialLoginButton(
             text: 'Google로 계속하기',
             onclick: () {
               showMessage();
@@ -186,8 +186,8 @@ class InMatLoginLogo extends StatelessWidget {
   }
 }
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({
+class SocialLoginButton extends StatelessWidget {
+  const SocialLoginButton({
     Key? key,
     required this.text,
     required this.onclick,
