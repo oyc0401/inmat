@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 import '../NavigatePage.dart';
 import 'RegisterEmail.dart';
-import 'RegisterProfile.dart';
+
 import 'SignInEmail.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class ChooseSignIn extends StatefulWidget {
+  const ChooseSignIn({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<ChooseSignIn> createState() => _ChooseSignInState();
 }
 
-class _SignInState extends State<SignIn> {
+class _ChooseSignInState extends State<ChooseSignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
