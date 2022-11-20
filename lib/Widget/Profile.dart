@@ -8,14 +8,14 @@ import 'MyPost.dart';
 import 'Notice.dart';
 //화면 이동
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'NavigatePage.dart';
-import 'RegisterEmail.dart';
-import 'RegisterProfile.dart';
+
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
