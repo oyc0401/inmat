@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant/inmat/auth/inmat_account.dart';
 import 'package:restaurant/inmat/inMatAPI/InMatCheckNickname.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
@@ -110,7 +111,7 @@ class RegisterInput extends StatelessWidget {
           child: Text("회원가입"),
           onPressed: () async {
             try {
-              await InMatAuth.registerEmail(
+              await InMatAccount.registerEmail(
                 id: "test123",
                 password: "qwe12345&&",
                 profile: Profile(
@@ -135,7 +136,7 @@ class RegisterInput extends StatelessWidget {
           onPressed: () async {
             bool can = false;
             try {
-              can = await InMatAuth.checkId(
+              can = await InMatAccount.checkId(
                 id: "test123",
               );
             } catch (e) {
@@ -148,7 +149,7 @@ class RegisterInput extends StatelessWidget {
           onPressed: () async {
             bool can = false;
             try {
-              can = await InMatAuth.checkNickName(
+              can = await InMatAccount.checkNickName(
                 nickName: "한국어",
               );
             } catch (e) {

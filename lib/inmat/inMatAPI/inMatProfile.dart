@@ -1,6 +1,6 @@
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
-class InMatProfile extends InMatHttp {
+class InMatGetProfile extends InMatHttp {
   Future<Map<String, dynamic>> getProfile({required String token}) async {
     print("프로필 불러오는 중...");
 

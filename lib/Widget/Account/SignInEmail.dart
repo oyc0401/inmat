@@ -57,7 +57,7 @@ class _SignInEmailState extends State<SignInEmail> {
                 print(password);
 
                 try {
-                  await InMatAuth.signInEmail(id: "test123", password: "qwe12345&&");
+                  await InMatAuth.instance.signInEmail("test123", "qwe12345&&");
                 } on SignInFailed {
                   // 로그인 실패 메세지 띄우기
                 } catch (e) {

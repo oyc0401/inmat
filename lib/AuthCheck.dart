@@ -6,8 +6,8 @@ import 'package:restaurant/inmat/auth/inMatAuth.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
 import 'Widget/Account/ChooseSignIn.dart';
-import 'inmat/user/inMatUser.dart';
-import 'inmat/user/user_model.dart';
+import 'inmat/auth/user_model.dart';
+
 
 class AuthCheck extends StatefulWidget {
   const AuthCheck({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class AuthCheck extends StatefulWidget {
 class _AuthCheckState extends State<AuthCheck> {
   @override
   Widget build(BuildContext context) {
-    User? user = InMatUser.instance.currentUser;
+    User? user = InMatAuth.instance.currentUser;
 
     return Scaffold(
       appBar: AppBar(
@@ -64,7 +64,7 @@ class _AuthCheckState extends State<AuthCheck> {
                   color: Colors.redAccent,
                   child: Text("로그아웃"),
                   onPressed: () {
-                    InMatAuth.signOut();
+                    InMatAuth.instance.signOut();
                   }),
             ),
             Padding(
@@ -74,7 +74,7 @@ class _AuthCheckState extends State<AuthCheck> {
                   child: Text("회원 정보 수정"),
                   onPressed: () async {
                     try {
-                      await InMatAuth.updateProfile({
+                      await InMatAuth.instance.updateProfile({
                         "age": 20,
                         "gender": "F",
                       });

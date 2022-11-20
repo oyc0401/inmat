@@ -1,18 +1,36 @@
-class InUser {
-  InUser(this.name, this.id);
+class Alphabet {
+  static String name = "하이";
 
-  factory InUser.instance(String name, int id) {
-    return InUser(name, id);
+  getName() {
+    return name;
   }
 
-  String name = "null";
-  int id = 0;
+  setName(String n){
+    name=n;
+  }
 }
 
-void main() {
-  InUser inUser = InUser.instance("111", 1);
+class A extends Alphabet {}
 
-  //inUser.name = "하이";
-  InUser inUser2 = InUser.instance("111", 1);
-  print(inUser == inUser2);
+class B extends Alphabet {}
+
+void main() {
+  A a = A();
+  B b = B();
+
+  print(a.getName());
+  print(b.getName());
+  print('');
+
+  a.setName("111");
+  print(a.getName());
+  print(b.getName());
+  print('');
+
+  b.setName("222");
+  print(a.getName());
+  print(b.getName());
+  print('');
+
+
 }

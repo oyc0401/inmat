@@ -1,29 +1,16 @@
+import 'package:restaurant/inmat/database/token_database.dart';
+
+import 'package:restaurant/inmat/auth/InMatToken.dart';
 import 'package:restaurant/inmat/inMatAPI/InMatCheckId.dart';
 import 'package:restaurant/inmat/inMatAPI/InMatCheckNickname.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
-import 'package:restaurant/inmat/user/inMatUser.dart';
-import 'package:restaurant/inmat/user/user_model.dart';
 
 import '../inMatAPI/inMatProfile.dart';
 import '../inMatAPI/InMatSignIn.dart';
 import '../inMatAPI/inMatupdate.dart';
 import '../inMatAPI/inmatRegister.dart';
 
-class Profile {
-  Profile({
-    required this.age,
-    required this.email,
-    required this.gender,
-    required this.nickName,
-    required this.phoneNumber,
-  });
-
-  int age;
-  String email;
-  String gender;
-  String nickName;
-  String phoneNumber;
-}
+import 'user_model.dart';
 
 enum AuthStatus {
   user,
@@ -32,9 +19,30 @@ enum AuthStatus {
 }
 
 class InMatAuth {
+  /// 싱글톤 패턴
+  InMatAuth._privateConstructor();
+
+  static InMatAuth get instance => _instance;
+
+  static final InMatAuth _instance = InMatAuth._privateConstructor();
+
+  /// 저장소
+  static InMatProfile currentProfile = InMatProfile();
+
+  /// [_user]가 null 이거나 토큰이 없으면 [null]을 리턴한다.
+  /// [currentUser]가 [null]이 아니라는것은 현재 토큰이 존재한다는 뜻이다.
+  User? get currentUser {
+    if (currentProfile.tokenIsEmpty()) {
+      return null;
+    }
+    return User(
+        user: currentProfile.getProfile(), token: currentProfile.getToken());
+  }
+
+
+  /// 앱을 처음 시작할 때 유저 계정이 어떤 상태인지 확인하기 위해 사용한다.
   static Future<AuthStatus> initialize() async {
-    User? current = InMatUser.instance.currentUser;
-    print(current);
+    User? current = InMatAuth.instance.currentUser;
     if (current == null) {
       // 비 회원 상태
       print('비 회원 상태');
@@ -42,9 +50,11 @@ class InMatAuth {
     }
 
     try {
-      Map<String, dynamic> profile = await getProfile(current.token);
-      await InMatUser.instance.saveUser(profile);
+      Map<String, dynamic> profile =
+          await InMatAuth.instance.getProfile(current.token);
+      currentProfile.saveUser(profile);
       return AuthStatus.user;
+
     } on ExpirationAccessToken {
       // 액세스 토큰 만료
     } on AccessDenied {
@@ -55,82 +65,52 @@ class InMatAuth {
     }
 
     //DB 삭제
-    InMatUser.instance.deleteUser();
+
+    currentProfile.deleteUser();
 
     return AuthStatus.reSignIn;
   }
 
-  static signOut() {
-    InMatUser.instance.deleteToken();
-    InMatUser.instance.deleteUser();
+
+  /// 로그아웃
+  void signOut() {
+    currentProfile.deleteToken();
+    currentProfile.deleteUser();
   }
 
-  static signInEmail({required String id, required String password}) async {
+
+  /// 로그인 후 토큰을 받는다.
+  /// 토큰을 이용해 개인정보를 받는다.
+  /// 개인정보와 토큰을 DB에 저장한다.
+  Future<void> signInEmail(String id, String password) async {
     InMatSignIn sign = InMatSignIn();
     Map<String, dynamic> token = await sign.emailSignIn(user: {
       "username": id,
       "password": password,
     });
 
-    await InMatUser.instance.saveToken(token);
+    await currentProfile.saveToken(token);
     String accessToken = token['token'];
 
     // 토큰을 받고 서버의 정보를 얻어온다.
     /// [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만 여기선 로그인 직후에 가져오는 것이라 생략한다.
     Map<String, dynamic> profile = await getProfile(accessToken);
 
-    print(profile);
-
-    await InMatUser.instance.saveUser(profile);
-
-    // 로그인 후 토큰을 받는다.
-    // 토큰을 이용해 개인정보를 받는다.
-    // 개인정보와 토큰을 DB에 저장한다.
+    await currentProfile.saveUser(profile);
   }
 
-  static Future<Map<String, dynamic>> getProfile(String token) async {
-    InMatProfile inMatProfile = InMatProfile();
+
+  /// 현재 프로필을 가져온다.
+  Future<Map<String, dynamic>> getProfile(String token) async {
+    InMatGetProfile inMatProfile = InMatGetProfile();
     return await inMatProfile.getProfile(token: token);
   }
 
-  static registerEmail({
-    required String id,
-    required String password,
-    required Profile profile,
-  }) async {
-    InMatRegister register = InMatRegister();
-    await register.registerEmail(user: {
-      "username": id,
-      "password": password,
-      "email": profile.email,
-      "age": profile.age,
-      "gender": profile.gender,
-      "nickName": profile.nickName,
-      "phoneNumber": profile.phoneNumber,
-    });
 
-    // 회원가입을 한다.
-    // 로그인을 한다.
-    // 개인정보와 토큰을 DB에 저장한다.
-  }
-
-  static checkNickName({
-    required String nickName,
-  }) async {
-    InMatCheckNickName inMatNickName = InMatCheckNickName();
-    return await inMatNickName.check(nickName: nickName);
-  }
-
-  static checkId({
-    required String id,
-  }) async {
-    InMatCheckId inMatCheckId = InMatCheckId();
-    return await inMatCheckId.check(username: id);
-  }
-
-  static updateProfile(Map<String, dynamic> user) async {
+  /// 프로필 정보를 업데이트 한다. (작업 중)
+  Future<void> updateProfile(Map<String, dynamic> user) async {
     InMatUpdate profileUpdate = InMatUpdate();
-    String token = InMatUser.instance.currentUser!.token;
+    String token = InMatAuth.instance.currentUser!.token;
 
     //Map<String, dynamic> current = InMatUser.instance.currentUser!.toUpdateMap();
     // current.addAll(user);
@@ -148,6 +128,8 @@ class InMatAuth {
     await profileUpdate.update(token, m);
     // InMatUser.instance.save(current);
   }
+
+
 }
 
 void main() {
