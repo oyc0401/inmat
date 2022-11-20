@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/Widget/NavigatePage.dart';
 import 'package:restaurant/dartPage.dart';
-import 'package:restaurant/inmat/auth/inMatAuth.dart';
+import 'package:restaurant/inmat/auth/inmat_auth.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
 import 'Widget/Account/ChooseSignIn.dart';

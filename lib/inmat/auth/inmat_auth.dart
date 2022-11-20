@@ -1,6 +1,6 @@
 import 'package:restaurant/inmat/database/token_database.dart';
 
-import 'package:restaurant/inmat/auth/InMatToken.dart';
+import 'package:restaurant/inmat/auth/Inmat_token.dart';
 import 'package:restaurant/inmat/inMatAPI/InMatCheckId.dart';
 import 'package:restaurant/inmat/inMatAPI/InMatCheckNickname.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
@@ -92,7 +92,6 @@ class InMatAuth {
     await currentProfile.saveToken(token);
     String accessToken = token['token'];
 
-    // 토큰을 받고 서버의 정보를 얻어온다.
     /// [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만 여기선 로그인 직후에 가져오는 것이라 생략한다.
     Map<String, dynamic> profile = await getProfile(accessToken);
 

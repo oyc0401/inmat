@@ -5,7 +5,7 @@ import 'package:restaurant/inmat/auth/inmat_account.dart';
 import 'package:restaurant/inmat/inMatAPI/InMatCheckNickname.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
-import '../../inmat/auth/inMatAuth.dart';
+import '../../inmat/auth/inmat_auth.dart';
 import '../NavigatePage.dart';
 
 class ProfileForm with ChangeNotifier {

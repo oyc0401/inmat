@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
-import '../../inmat/auth/inMatAuth.dart';
+import '../../inmat/auth/inmat_auth.dart';
 import '../NavigatePage.dart';
 import 'RegisterEmail.dart';
 import 'RegisterProfile.dart';
