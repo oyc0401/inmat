@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:restaurant/Widget/account2/email_signin_page.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignInPageState extends State<SignInPage> {
   void showMessage() {
     Fluttertoast.showToast(
         msg: "개발 중 입니다.",
@@ -37,6 +39,7 @@ class _SignInState extends State<SignIn> {
           },
         ),
       ),
+
       body: Column(children: [
         Expanded(
           child: InMatLoginLogo(
@@ -48,7 +51,7 @@ class _SignInState extends State<SignIn> {
             },
           ),
         ),
-        const SizedBox(height: 50),
+
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
           child: SocialLoginButton(
@@ -84,7 +87,11 @@ class _SignInState extends State<SignIn> {
           height: 13,
         ),
         EmailLoginButton(onclick: () {
-          showMessage();
+          Navigator.push(
+            context,
+            CupertinoPageRoute(builder: (context) => const EmailSignInPage()),
+          );
+
         }),
         const SizedBox(
           height: 50,

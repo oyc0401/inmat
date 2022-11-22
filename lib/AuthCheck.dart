@@ -6,8 +6,8 @@ import 'package:restaurant/inmat/auth/user_model.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
 import 'Widget/Account/ChooseSignIn.dart';
-import 'Widget/account2/SignIn.dart';
-import 'Widget/account2/SignIn2.dart';
+import 'Widget/account2/signin_page.dart';
+import 'Widget/account2/email_signin_page.dart';
 import 'Widget/account2/SignUp.dart';
 import 'Widget/account2/PasswordFind.dart';
 
@@ -32,6 +32,7 @@ class _AuthCheckState extends State<AuthCheck> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Row(),
               Text("user information: ${user ?? "null"}"),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -60,7 +61,10 @@ class _AuthCheckState extends State<AuthCheck> {
                 padding: const EdgeInsets.all(8.0),
                 child: CupertinoButton(
                     color: Colors.yellow,
-                    child: Text("회원 정보 수정",style: TextStyle(color: Colors.black),),
+                    child: Text(
+                      "회원 정보 수정",
+                      style: TextStyle(color: Colors.black),
+                    ),
                     onPressed: () async {
                       try {
                         await InMatAuth.instance.updateProfile({
@@ -85,9 +89,7 @@ class _AuthCheckState extends State<AuthCheck> {
                     color: Colors.blue,
                     child: Text("새로고침"),
                     onPressed: () {
-                      setState(() {
-
-                      });
+                      setState(() {});
                     }),
               ),
               Padding(
@@ -113,53 +115,54 @@ class _AuthCheckState extends State<AuthCheck> {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => const SignIn(),
+                          builder: (context) => const SignInPage(),
                         ),
                       );
                     }),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                    color: Colors.grey,
-                    child: Text("로그인 페이지 2 이동"),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => const SignIn2(),
-                        ),
-                      );
-                    }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                    color: Colors.grey,
-                    child: Text("회원가입 페이지 이동"),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => const SignUp(),
-                        ),
-                      );
-                    }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                    color: Colors.grey,
-                    child: Text("비밀번호 찾기 페이지 이동"),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => const PasswordFind(),
-                        ),
-                      );
-                    }),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: CupertinoButton(
+              //       color: Colors.grey,
+              //       child: Text("로그인 페이지 2 이동"),
+              //       onPressed: () {
+              //         Navigator.push(
+              //           context,
+              //           CupertinoPageRoute(
+              //             builder: (context) => const EmailSignInPage(),
+              //           ),
+              //         );
+              //       }),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: CupertinoButton(
+              //     color: Colors.grey,
+              //     child: Text("회원가입 페이지 이동"),
+              //     onPressed: () {
+              //       Navigator.push(
+              //         context,
+              //         CupertinoPageRoute(
+              //           builder: (context) => const SignUpPage(),
+              //         ),
+              //       );
+              //     },
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: CupertinoButton(
+              //       color: Colors.grey,
+              //       child: Text("비밀번호 찾기 페이지 이동"),
+              //       onPressed: () {
+              //         Navigator.push(
+              //           context,
+              //           CupertinoPageRoute(
+              //             builder: (context) => const PasswordFind(),
+              //           ),
+              //         );
+              //       }),
+              // ),
             ],
           ),
         ),
@@ -167,4 +170,3 @@ class _AuthCheckState extends State<AuthCheck> {
     );
   }
 }
-
