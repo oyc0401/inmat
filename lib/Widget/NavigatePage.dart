@@ -1,12 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:restaurant/Widget/Profile.dart';
+import 'package:restaurant/Widget/profile/Profile.dart';
 
-import 'Community.dart';
-import 'RandomFoodSelect.dart';
-import 'Search.dart';
-import 'home.dart';
+
+import 'spinner/RandomFoodSelect.dart';
+import 'search/Search.dart';
+import 'community/Community.dart';
+import 'home/home.dart';
 
 class NavigatePage extends StatefulWidget {
   const NavigatePage({Key? key}) : super(key: key);

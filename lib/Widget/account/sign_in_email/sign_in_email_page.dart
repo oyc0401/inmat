@@ -2,47 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant/inmat/auth/inmat_auth.dart';
-import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
-import 'signup_page.dart';
-
-class SignInForm with ChangeNotifier {
-  String _username = "test123";
-  String _password = "qwe12345&&";
-
-  String get username => _username;
-
-  String get password => _password;
-
-  setUsername(String username) {
-    _username = username;
-    notifyListeners();
-  }
-
-  setPassword(String password) {
-    _password = password;
-    notifyListeners();
-  }
-
-  signIn() async {
-    print('id      : $username');
-    print('password: $password');
-    //"test123", "qwe12345&&");
-
-    try {
-      await InMatAuth.instance.signInEmail(username, password);
-      showMessage('로그인 성공: $username, $password');
-    } on SignInFailed {
-      // 로그인 실패 메세지 띄우기
-      showMessage('없는 아이디이거나 비밀번호가 틀렸습니다.\n$username, $password');
-    } catch (e) {
-      // 오류 메세지 띄우기
-      print(e);
-      showMessage('$e');
-    }
-  }
-}
+import '../sign_up/sign_up_page.dart';
+import 'email_sign_in_model.dart';
 
 void showMessage(String text) {
   Fluttertoast.showToast(
@@ -53,6 +15,7 @@ void showMessage(String text) {
       textColor: Colors.white,
       fontSize: 16.0);
 }
+
 
 class EmailSignInPage extends StatefulWidget {
   const EmailSignInPage({Key? key}) : super(key: key);
@@ -79,8 +42,8 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
           },
         ),
       ),
-      body: ChangeNotifierProvider<SignInForm>(
-        create: (context) => SignInForm(),
+      body: ChangeNotifierProvider<EmailSignInModel>(
+        create: (context) => EmailSignInModel(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -173,7 +136,7 @@ class LoginBox extends StatelessWidget {
           const SizedBox(height: 36),
           LoginButton(
             onclick: () async {
-              Provider.of<SignInForm>(context, listen: false).signIn();
+              Provider.of<EmailSignInModel>(context, listen: false).signIn();
             },
           ),
         ],
@@ -194,7 +157,7 @@ class IDTextForm extends StatelessWidget {
         TextFormField(
           initialValue: "test123",
           onChanged: (text) {
-            Provider.of<SignInForm>(context, listen: false).setUsername(text);
+            Provider.of<EmailSignInModel>(context, listen: false).setUsername(text);
           },
         )
       ],
@@ -215,7 +178,7 @@ class PasswordTextForm extends StatelessWidget {
           initialValue: "qwe12345&&",
           obscureText: true,
           onChanged: (text) {
-            Provider.of<SignInForm>(context, listen: false).setPassword(text);
+            Provider.of<EmailSignInModel>(context, listen: false).setPassword(text);
           },
         )
       ],

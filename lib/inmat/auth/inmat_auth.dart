@@ -119,8 +119,8 @@ class InMatAuth {
     //user['nickName']= user['nickName'] ?? InMatUser.instance.currentUser!.nickName;
 
     Map m = {
-      'profileImgUrl': 'www.dsads.jjj',
-      //  'nickName': '하이',
+      // 'profileImgUrl': 'www.dsads.jjj',
+       'nickName': '하이',
       'age': 20,
       'gender': 'F'
     };

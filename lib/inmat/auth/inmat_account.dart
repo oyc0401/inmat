@@ -24,14 +24,14 @@ class InMatAccount {
     // 개인정보와 토큰을 DB에 저장한다.
   }
 
-  static checkNickName({
+  static Future<bool> checkNickName({
     required String nickName,
   }) async {
     InMatCheckNickName inMatNickName = InMatCheckNickName();
     return await inMatNickName.check(nickName: nickName);
   }
 
-  static checkId({
+  static Future<bool> checkId({
     required String id,
   }) async {
     InMatCheckId inMatCheckId = InMatCheckId();
