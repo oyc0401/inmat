@@ -16,14 +16,9 @@ void showMessage(String text) {
       fontSize: 16.0);
 }
 
-class SignUpPage extends StatefulWidget {
+class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
-  @override
-  State<SignUpPage> createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,32 +37,32 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
       body: SafeArea(
-        child: ChangeNotifierProvider<SignUpModel>(
-          create: (context) => SignUpModel(),
-          child: Container(
+        child: SingleChildScrollView(
+          child: ChangeNotifierProvider<SignUpModel>(
+            create: (context) => SignUpModel(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Flexible(
-                  flex: 3,
-                  child: Container(),
-                ),
-                // SizedBox(
-                //   height: 20,
+                // Flexible(
+                //   flex: 3,
+                //   child: Container(),
                 // ),
-                Text(
+                SizedBox(
+                  height: 20,
+                ),
+                const Text(
                   '회원가입',
                   style: TextStyle(fontSize: 40),
                 ),
-                Flexible(
-                  flex: 1,
-                  child: Container(),
-                ),
-                // SizedBox(
-                //   height: 20,
+                // Flexible(
+                //   flex: 1,
+                //   child: Container(),
                 // ),
-                Padding(
+                SizedBox(
+                  height: 20,
+                ),
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
                   child: SignupBox(),
                 ),
@@ -75,8 +70,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 //   flex: 3,
                 //   child: Container(),
                 // ),
-                SizedBox(
+                const SizedBox(
                   height: 44,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: ProfileFormBox(),
                 ),
 
                 // Padding(
@@ -110,6 +109,7 @@ class SignupBox extends StatelessWidget {
               onclick: () {
                 Provider.of<SignUpModel>(context, listen: false).checkID();
               },
+              turnOn: Provider.of<SignUpModel>(context).canId,
             ),
           ),
           const PassWordTextField(),
@@ -120,7 +120,7 @@ class SignupBox extends StatelessWidget {
             onclick: () {
               Provider.of<SignUpModel>(context, listen: false).signup();
             },
-            on: Provider.of<SignUpModel>(context).canSignUp,
+            turnOn: Provider.of<SignUpModel>(context).canSignUp,
           ),
           const SizedBox(
             height: 14,
@@ -134,11 +134,15 @@ class SignupBox extends StatelessWidget {
   }
 }
 
-
 class IdTextField extends StatelessWidget {
-  const IdTextField({Key? key, required this.onclick}) : super(key: key);
+  const IdTextField({
+    Key? key,
+    required this.onclick,
+    required this.turnOn,
+  }) : super(key: key);
 
   final VoidCallback onclick;
+  final bool turnOn;
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +164,7 @@ class IdTextField extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 6.0),
             child: Row(
               children: [
-                Text(
+                const Text(
                   "아이디 중복확인",
                   style: TextStyle(
                     fontSize: 12,
@@ -168,19 +172,17 @@ class IdTextField extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(2.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: Icon(
                     Icons.done,
                     size: 12,
-                    color: Provider.of<SignUpModel>(context).canId
-                        ? Colors.blueAccent
-                        : Color(0xff5F5F5F),
+                    color: turnOn ? Colors.blueAccent : const Color(0xff5F5F5F),
                   ),
                 ),
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -263,14 +265,14 @@ class SignUpTextField extends StatelessWidget {
     return TextField(
       onChanged: onChanged,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-        border: OutlineInputBorder(),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+        border: const OutlineInputBorder(),
         labelText: labelHint,
       ),
     );
   }
 }
-
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({
@@ -278,19 +280,19 @@ class SignUpButton extends StatelessWidget {
     required this.onclick,
     // required this.color,
     // required this.textColor,
-    required this.on,
+    required this.turnOn,
   }) : super(key: key);
   final VoidCallback onclick;
 
   // final Color color;
   // final Color textColor;
-  final bool on;
+  final bool turnOn;
 
   @override
   Widget build(BuildContext context) {
     return Ink(
       decoration: BoxDecoration(
-        color: on ? Color(0xffFF8C66) : Color(0xffD9D9D9),
+        color: turnOn ? const Color(0xffFF8C66) : const Color(0xffD9D9D9),
         borderRadius: BorderRadius.circular(15),
       ),
       child: InkWell(
@@ -302,7 +304,7 @@ class SignUpButton extends StatelessWidget {
             child: Text(
               '본인인증하고 가입하기',
               style: TextStyle(
-                color: on ? Colors.white : Color(0xffB2B2B2),
+                color: turnOn ? Colors.white : const Color(0xffB2B2B2),
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
