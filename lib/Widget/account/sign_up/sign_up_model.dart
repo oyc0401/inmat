@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:restaurant/Widget/account/sign_up/sign_up_model.dart';
 import 'package:restaurant/inmat/auth/inmat_account.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 
@@ -13,7 +14,7 @@ void showMessage(String text) {
       fontSize: 16.0);
 }
 
-class SignUpForm with ChangeNotifier {
+class SignUpObject with ChangeNotifier {
   String _username = "";
   String _password = "";
   String _rePassword = "";
@@ -45,12 +46,8 @@ class SignUpForm with ChangeNotifier {
 
   String get phoneNumber3 => _phoneNumber3;
 
-  bool _canID = false;
-  bool _canNickName = false;
-
   setUsername(String username) {
     _username = username;
-    _canID = false;
     notifyListeners();
   }
 
@@ -81,7 +78,6 @@ class SignUpForm with ChangeNotifier {
 
   setNickName(String nickName) {
     _nickName = nickName;
-    _canNickName = false;
     notifyListeners();
   }
 
@@ -99,21 +95,88 @@ class SignUpForm with ChangeNotifier {
     _phoneNumber3 = number;
     notifyListeners();
   }
+}
 
-  checkID(){
+class SignUpModel extends SignUpObject {
+  ValidAccount validation = ValidAccount();
+  bool _canID = false;
+  bool _canNickName = false;
 
+  String get number => "$phoneNumber1-$phoneNumber2-$phoneNumber3";
+
+  // 유효성 검사
+  bool get validUsername => validation.userName(username);
+
+  bool get validPassword => validation.password(password);
+
+  bool get validEmail => validation.email(email);
+
+  bool get validNickName => validation.nickName(nickName);
+
+  bool get validPhoneNumber => validation.phoneNumber(number);
+
+  /// 비밀번호
+  bool get correctPassword => password == rePassword;
+
+  bool get canId => _canID;
+
+  bool get canNickName => _canNickName;
+
+  bool get canSignUp {
+    // print("canSignUp");
+    // print(validUsername);
+    // print(validPassword);
+    // print(validEmail);
+    // print(validNickName);
+    // print(validPhoneNumber);
+    // print(correctPassword);
+    // print(canId);
+    // print(canNickName);
+
+    return validUsername &&
+        validPassword &&
+        validEmail &&
+        validNickName &&
+        validPhoneNumber &&
+        correctPassword &&
+        canId &&
+        canNickName;
   }
 
-  checkNickName(){
-
+  @override
+  setUsername(String username) {
+    _canID = false;
+    super.setUsername(username);
   }
 
-  bool correctPassword() {
-    return password == rePassword;
+  @override
+  setNickName(String nickName) {
+    _canNickName = false;
+    super.setNickName(nickName);
   }
 
-  bool canSignUp() {
-    return correctPassword();
+  checkID() async {
+    if(!validNickName){
+      showMessage("잘못된 아이디 형식 입니다. 영문 or 숫자 3 ~ 10 자");
+    }
+    try {
+      _canID = await InMatAccount.checkId(id: username);
+    } catch (e) {
+      showMessage("$e");
+    }
+    notifyListeners();
+  }
+
+  checkNickName() async {
+    if(!validNickName){
+      showMessage("잘못된 닉네임 형식 입니다. 한글 2자 ~ 8자");
+    }
+    try {
+      _canNickName = await InMatAccount.checkNickName(nickName: nickName);
+    } catch (e) {
+      showMessage("$e");
+    }
+    notifyListeners();
   }
 
   Future<void> signup() async {
@@ -142,13 +205,47 @@ class SignUpForm with ChangeNotifier {
     } on OverlappingAccount {
       // 아이디 중복 메세지 띄우기
       showMessage('아이디 중복');
+      _canID=false;
     } on OverlappingNickName {
       // 닉네임 중복 메세지 띄우기
+      _canNickName=false;
       showMessage('닉네임 중복');
     } catch (e) {
       // 오류 메세지 띄우기
       print(e);
       showMessage('$e');
+    }finally{
+      notifyListeners();
     }
+  }
+}
+
+class ValidAccount {
+  bool password(String password) {
+    bool match = RegExp(
+            r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$")
+        .hasMatch(password);
+    return match;
+  }
+
+  bool email(String email) {
+    bool match = RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-z]+$").hasMatch(email);
+    return match;
+  }
+
+  bool nickName(String nickName) {
+    bool match = RegExp(r"[가-힣]{2,8}").hasMatch(nickName);
+    return match;
+  }
+
+  bool phoneNumber(String number) {
+    bool match = RegExp(r"^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$")
+        .hasMatch(number);
+    return match;
+  }
+
+  bool userName(String username) {
+    bool match = RegExp(r"[a-zA-Z0-9]{3,10}").hasMatch(username);
+    return match;
   }
 }

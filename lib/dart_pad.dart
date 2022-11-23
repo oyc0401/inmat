@@ -15,22 +15,10 @@ class A extends Alphabet {}
 class B extends Alphabet {}
 
 void main() {
-  A a = A();
-  B b = B();
+  bool match = RegExp(
+      r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$")
+      .hasMatch('oyc0877&');
 
-  print(a.getName());
-  print(b.getName());
-  print('');
-
-  a.setName("111");
-  print(a.getName());
-  print(b.getName());
-  print('');
-
-  b.setName("222");
-  print(a.getName());
-  print(b.getName());
-  print('');
-
+  print(match);
 
 }

@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import 'sign_up_model.dart';
+import 'sign_up_profile_form.dart';
 
 void showMessage(String text) {
   Fluttertoast.showToast(
@@ -14,7 +15,6 @@ void showMessage(String text) {
       textColor: Colors.white,
       fontSize: 16.0);
 }
-
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -27,86 +27,72 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0x00000000),
-          elevation: 0,
-          iconTheme: const IconThemeData(
-            color: Colors.black, //색변경
-          ),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Navigator.pop(context);
-              // 뒤로가기 버튼 누르면 이동하는 곳
-            },
-          ),
+      appBar: AppBar(
+        backgroundColor: const Color(0x00000000),
+        elevation: 0,
+        iconTheme: const IconThemeData(
+          color: Colors.black, //색변경
         ),
-        body: ChangeNotifierProvider<SignUpForm>(
-          create: (context) => SignUpForm(),
-          child: SingleChildScrollView(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+            // 뒤로가기 버튼 누르면 이동하는 곳
+          },
+        ),
+      ),
+      body: SafeArea(
+        child: ChangeNotifierProvider<SignUpModel>(
+          create: (context) => SignUpModel(),
+          child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Flexible(
-                //   flex: 3,
-                //   child: Container(),
-                // ),
-                const SizedBox(
-                  height: 20,
+                Flexible(
+                  flex: 3,
+                  child: Container(),
                 ),
-                const Text(
+                // SizedBox(
+                //   height: 20,
+                // ),
+                Text(
                   '회원가입',
                   style: TextStyle(fontSize: 40),
                 ),
-                // Flexible(
-                //   flex: 1,
-                //   child: Container(),
-                // ),
-                const SizedBox(
-                  height: 20,
+                Flexible(
+                  flex: 1,
+                  child: Container(),
                 ),
-                const Padding(
+                // SizedBox(
+                //   height: 20,
+                // ),
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: SignupFormBox(),
+                  child: SignupBox(),
                 ),
                 // Flexible(
                 //   flex: 3,
                 //   child: Container(),
                 // ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 44,
                 ),
 
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: ProfileFormBox()),
+                // Padding(
+                //     padding: EdgeInsets.symmetric(horizontal: 30),
+                //     child: ProfileFormBox()),
               ],
             ),
           ),
-        )
-
-        // 돌아가기 버튼
-        // 회원가입
-        // 큰 회색 컨테이너
-        // 아이디
-        // 아이디 입력칸
-        // 아이디 중복확인
-        // 비밀번호
-        // 비밀번호 입력칸
-        // 비밀번호 재입력칸
-        // 이메일
-        // 이메일 입력칸 + 이메일 확인 표시
-        // 계정분실시
-        // 본인인증하고 가입하기 버튼
-        // 본인인증이 어려운 경우
-        // 비회원 앱사용 문구
-        );
+        ),
+      ),
+    );
   }
 }
 
-class SignupFormBox extends StatelessWidget {
-  const SignupFormBox({Key? key}) : super(key: key);
+class SignupBox extends StatelessWidget {
+  const SignupBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -120,25 +106,26 @@ class SignupFormBox extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: IdField(
-              onclick: () {},
+            child: IdTextField(
+              onclick: () {
+                Provider.of<SignUpModel>(context, listen: false).checkID();
+              },
             ),
           ),
-          const PassWordField(),
+          const PassWordTextField(),
           const SizedBox(height: 20),
-          const EmailField(),
+          const EmailTextField(),
           const SizedBox(height: 30),
           SignUpButton(
             onclick: () {
-              Provider.of<SignUpForm>(context, listen: false).signup();
+              Provider.of<SignUpModel>(context, listen: false).signup();
             },
-            color: const Color(0xffD9D9D9),
-            textColor: const Color(0xffB2B2B2),
+            on: Provider.of<SignUpModel>(context).canSignUp,
           ),
           const SizedBox(
             height: 14,
           ),
-          GuestLogin(
+          GuestLoginText(
             onclick: () {},
           ),
         ],
@@ -147,133 +134,9 @@ class SignupFormBox extends StatelessWidget {
   }
 }
 
-class ProfileFormBox extends StatelessWidget {
-  const ProfileFormBox({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          child: Text('닉네임', style: TextStyle(fontSize: 20)),
-        ),
-        TextField(
-          onChanged: (text) {
-            Provider.of<SignUpForm>(context, listen: false).setNickName(text);
-          },
-          decoration: const InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-            border: OutlineInputBorder(),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          child: Text('나이', style: TextStyle(fontSize: 20)),
-        ),
-        TextField(
-          onChanged: (text) {
-            Provider.of<SignUpForm>(context, listen: false).setAge(text);
-          },
-          decoration: const InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-            border: OutlineInputBorder(),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CupertinoButton(
-                onPressed: () {
-                  Provider.of<SignUpForm>(context, listen: false)
-                      .setGender("M");
-                },
-                color: Provider.of<SignUpForm>(context).gender == "M"
-                    ? Colors.blue
-                    : Colors.grey,
-                child: const Text("남"),
-              ),
-              CupertinoButton(
-                onPressed: () {
-                  Provider.of<SignUpForm>(context, listen: false)
-                      .setGender("F");
-                },
-                color: Provider.of<SignUpForm>(context).gender == "F"
-                    ? Colors.blue
-                    : Colors.grey,
-                child: const Text("여"),
-              )
-            ],
-          ),
-        ),
-        const Text('전화번호', style: TextStyle(fontSize: 20)),
-        const SizedBox(
-          height: 8,
-        ),
-        Row(
-          children: [
-            Flexible(
-              flex: 3,
-              child: TextField(
-                onChanged: (text) {
-                  Provider.of<SignUpForm>(context, listen: false)
-                      .setPhoneNumber1(text);
-                },
-                decoration: const InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            const SizedBox(width: 4),
-            Flexible(
-              flex: 4,
-              child: TextField(
-                onChanged: (text) {
-                  Provider.of<SignUpForm>(context, listen: false)
-                      .setPhoneNumber2(text);
-                },
-                decoration: const InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            const SizedBox(width: 4),
-            Flexible(
-              flex: 4,
-              child: TextField(
-                onChanged: (text) {
-                  Provider.of<SignUpForm>(context, listen: false)
-                      .setPhoneNumber3(text);
-                },
-                decoration: const InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 50,
-        )
-      ],
-    );
-  }
-}
-
-class IdField extends StatelessWidget {
-  const IdField({Key? key, required this.onclick}) : super(key: key);
+class IdTextField extends StatelessWidget {
+  const IdTextField({Key? key, required this.onclick}) : super(key: key);
 
   final VoidCallback onclick;
 
@@ -286,21 +149,17 @@ class IdField extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        TextField(
+        SignUpTextField(
           onChanged: (text) {
-            Provider.of<SignUpForm>(context, listen: false).setUsername(text);
+            Provider.of<SignUpModel>(context, listen: false).setUsername(text);
           },
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-          ),
         ),
         InkWell(
           onTap: onclick,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 6.0),
             child: Row(
-              children: const [
+              children: [
                 Text(
                   "아이디 중복확인",
                   style: TextStyle(
@@ -313,6 +172,9 @@ class IdField extends StatelessWidget {
                   child: Icon(
                     Icons.done,
                     size: 12,
+                    color: Provider.of<SignUpModel>(context).canId
+                        ? Colors.blueAccent
+                        : Color(0xff5F5F5F),
                   ),
                 ),
               ],
@@ -324,8 +186,8 @@ class IdField extends StatelessWidget {
   }
 }
 
-class PassWordField extends StatelessWidget {
-  const PassWordField({Key? key}) : super(key: key);
+class PassWordTextField extends StatelessWidget {
+  const PassWordTextField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -336,30 +198,26 @@ class PassWordField extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        TextField(
+        SignUpTextField(
           onChanged: (text) {
-            Provider.of<SignUpForm>(context, listen: false).setPassword(text);
+            Provider.of<SignUpModel>(context, listen: false).setPassword(text);
           },
-          decoration: const InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-            border: OutlineInputBorder(),
-          ),
         ),
         const SizedBox(height: 10),
-        const TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: '비밀번호 재입력',
-            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-          ),
+        SignUpTextField(
+          labelHint: "비밀번호 재입력",
+          onChanged: (text) {
+            Provider.of<SignUpModel>(context, listen: false)
+                .setRePassword(text);
+          },
         ),
       ],
     );
   }
 }
 
-class EmailField extends StatelessWidget {
-  const EmailField({Key? key}) : super(key: key);
+class EmailTextField extends StatelessWidget {
+  const EmailTextField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -370,14 +228,10 @@ class EmailField extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        TextField(
+        SignUpTextField(
           onChanged: (text) {
-            Provider.of<SignUpForm>(context, listen: false).setEmail(text);
+            Provider.of<SignUpModel>(context, listen: false).setEmail(text);
           },
-          decoration: const InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-            border: OutlineInputBorder(),
-          ),
         ),
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 6.0),
@@ -394,22 +248,49 @@ class EmailField extends StatelessWidget {
   }
 }
 
+class SignUpTextField extends StatelessWidget {
+  const SignUpTextField({
+    Key? key,
+    required this.onChanged,
+    this.labelHint,
+  }) : super(key: key);
+  final ValueChanged<String> onChanged;
+
+  final String? labelHint;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+        border: OutlineInputBorder(),
+        labelText: labelHint,
+      ),
+    );
+  }
+}
+
+
 class SignUpButton extends StatelessWidget {
   const SignUpButton({
     Key? key,
     required this.onclick,
-    required this.color,
-    required this.textColor,
+    // required this.color,
+    // required this.textColor,
+    required this.on,
   }) : super(key: key);
   final VoidCallback onclick;
-  final Color color;
-  final Color textColor;
+
+  // final Color color;
+  // final Color textColor;
+  final bool on;
 
   @override
   Widget build(BuildContext context) {
     return Ink(
       decoration: BoxDecoration(
-        color: color,
+        color: on ? Color(0xffFF8C66) : Color(0xffD9D9D9),
         borderRadius: BorderRadius.circular(15),
       ),
       child: InkWell(
@@ -421,7 +302,7 @@ class SignUpButton extends StatelessWidget {
             child: Text(
               '본인인증하고 가입하기',
               style: TextStyle(
-                color: textColor,
+                color: on ? Colors.white : Color(0xffB2B2B2),
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
@@ -433,8 +314,8 @@ class SignUpButton extends StatelessWidget {
   }
 }
 
-class GuestLogin extends StatelessWidget {
-  const GuestLogin({
+class GuestLoginText extends StatelessWidget {
+  const GuestLoginText({
     Key? key,
     required this.onclick,
   }) : super(key: key);
