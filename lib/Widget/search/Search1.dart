@@ -17,11 +17,11 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
-  // Widget _buildBody(BuildContext context){
+  // widget _buildBody(BuildContext context){
   //   return StreamBuilder<QuerySnapShot>(stream: Firestore,)
   // } // 데이터를 가져와서 _buildList 호출 , snapshot future Builder 비동기처리
 
-  // Widget _buildList(BuildContext context, List<DocumnetSnapShot>)
+  // widget _buildList(BuildContext context, List<DocumnetSnapShot>)
   // // 검색결과에 따라 가져온 데이터를 처리해 GridView 생성
 
   @override

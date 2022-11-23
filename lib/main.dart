@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/AuthCheck.dart';
+import 'package:restaurant/auth_check.dart';
 import 'package:restaurant/inmat/auth/Inmat_token.dart';
 import 'package:restaurant/inmat/auth/inmat_auth.dart';
 
@@ -14,6 +14,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

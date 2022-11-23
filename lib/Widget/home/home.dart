@@ -11,7 +11,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // List<Widget> list=[ ToDayWidget(), ToDayWidget()];  ************
+  // List<widget> list=[ ToDayWidget(), ToDayWidget()];  ************
 
   // static List<String> RestaurantName = [
   //   'sample1',
