@@ -49,7 +49,7 @@ class SignUpPage extends StatelessWidget {
                 //   child: Container(),
                 // ),
                 SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 const Text(
                   '회원가입',
@@ -290,13 +290,22 @@ class SignUpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Ink(
       decoration: BoxDecoration(
         color: turnOn ? const Color(0xffFF8C66) : const Color(0xffD9D9D9),
         borderRadius: BorderRadius.circular(15),
       ),
       child: InkWell(
-        onTap: onclick,
+        onTap: (){
+          if(turnOn){
+            onclick();
+          }else{
+            showMessage("정보를 정확히 입력해 주세요.");
+          }
+
+        },
         borderRadius: BorderRadius.circular(15),
         child: SizedBox(
           height: 58,
@@ -340,7 +349,9 @@ class GuestLoginText extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
-                onTap: () {},
+                onTap: () {
+                  showMessage("개발 중 입니다.");
+                },
                 child: const Text(
                   '비회원으로 앱을 사용',
                   style: TextStyle(
