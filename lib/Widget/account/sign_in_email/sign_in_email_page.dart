@@ -80,7 +80,7 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
                   Navigator.push(
                     context,
                     CupertinoPageRoute(
-                        builder: (context) => const SignUpPage()),
+                        builder: (context) =>  SignUpPage()),
                   );
                 },
               ),

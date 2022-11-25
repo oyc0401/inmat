@@ -17,29 +17,31 @@ void showMessage(String text) {
 }
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  SignUpPage({Key? key}) : super(key: key);
+
+  SignUpModel signUpModel = SignUpModel();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0x00000000),
-        elevation: 0,
-        iconTheme: const IconThemeData(
-          color: Colors.black, //색변경
+    return ChangeNotifierProvider<SignUpModel>(
+      create: (context) => signUpModel,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0x00000000),
+          elevation: 0,
+          iconTheme: const IconThemeData(
+            color: Colors.black, //색변경
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.pop(context);
+              // 뒤로가기 버튼 누르면 이동하는 곳
+            },
+          ),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-            // 뒤로가기 버튼 누르면 이동하는 곳
-          },
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: ChangeNotifierProvider<SignUpModel>(
-            create: (context) => SignUpModel(),
+        body: SafeArea(
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,7 +51,7 @@ class SignUpPage extends StatelessWidget {
                 //   child: Container(),
                 // ),
                 SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 const Text(
                   '회원가입',
@@ -73,11 +75,27 @@ class SignUpPage extends StatelessWidget {
                 const SizedBox(
                   height: 44,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: ProfileFormBox(),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(30.0),
+                //   child: ProfileFormBox(),
+                // ),
 
+                CupertinoButton(
+                  child: Text("이동"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) {
+                          return ChangeNotifierProvider<SignUpModel>.value(
+                            value: signUpModel,
+                            child: SignUpTestPage(),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
                 // Padding(
                 //     padding: EdgeInsets.symmetric(horizontal: 30),
                 //     child: ProfileFormBox()),
@@ -89,6 +107,17 @@ class SignUpPage extends StatelessWidget {
     );
   }
 }
+
+// class NewWidget extends StatelessWidget {
+//   const NewWidget({
+//     Key? key,
+//   }) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }
 
 class SignupBox extends StatelessWidget {
   const SignupBox({Key? key}) : super(key: key);
@@ -296,7 +325,13 @@ class SignUpButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: InkWell(
-        onTap: onclick,
+        onTap: () {
+          if (turnOn) {
+            onclick();
+          } else {
+            showMessage("정보를 정확히 입력해 주세요.");
+          }
+        },
         borderRadius: BorderRadius.circular(15),
         child: SizedBox(
           height: 58,
@@ -340,7 +375,9 @@ class GuestLoginText extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
-                onTap: () {},
+                onTap: () {
+                  showMessage("개발 중 입니다.");
+                },
                 child: const Text(
                   '비회원으로 앱을 사용',
                   style: TextStyle(
