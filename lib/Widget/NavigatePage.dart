@@ -8,6 +8,7 @@ import 'spinner/RandomFoodSelect.dart';
 import 'search/Search.dart';
 import 'community/Community.dart';
 import 'home/home.dart';
+import 'home/Realhome.dart';
 
 class NavigatePage extends StatefulWidget {
   const NavigatePage({Key? key}) : super(key: key);
@@ -76,7 +77,7 @@ class _NavigatePageState extends State<NavigatePage> {
 
   List _widgetOptions() {
     return [
-      const Home(),
+      const Realhome(),
       const Search(),
       const RandomFoodSelect(),
       const Community(),

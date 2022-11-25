@@ -5,6 +5,8 @@ import 'package:restaurant/inmat/auth/inmat_auth.dart';
 import 'package:restaurant/inmat/auth/user_model.dart';
 import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
 import 'Widget/account/signin_page.dart';
+import 'Widget/home/Realhome.dart';
+import 'Widget/home/home.dart';
 
 class AuthCheck extends StatefulWidget {
   const AuthCheck({Key? key}) : super(key: key);
