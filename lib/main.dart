@@ -4,7 +4,7 @@ import 'package:restaurant/inmat/auth/Inmat_token.dart';
 import 'package:restaurant/inmat/auth/inmat_auth.dart';
 
 void main() async {
-  ////
+  /////
   // DB에서 유저 정보 가져오기
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   InMatToken to = InMatToken();
