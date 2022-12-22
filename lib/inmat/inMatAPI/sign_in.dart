@@ -1,4 +1,4 @@
-import 'inMatHttp.dart';
+import 'inmat_http.dart';
 
 class InMatSignIn extends InMatHttp {
   Future<Map<String,dynamic>> emailSignIn({required Map user}) async {

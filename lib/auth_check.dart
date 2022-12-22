@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/Widget/NavigatePage.dart';
 import 'package:restaurant/inmat/auth/inmat_auth.dart';
 import 'package:restaurant/inmat/auth/user_model.dart';
-import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
+import 'package:restaurant/inmat/inMatAPI/get_restaurant.dart';
+import 'package:restaurant/inmat/inMatAPI/inmat_http.dart';
 
 
 //
@@ -110,6 +111,18 @@ class _AuthCheckState extends State<AuthCheck> {
                         builder: (context) => const NavigatePage(),
                       ),
                     );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CupertinoButton(
+                  color: Colors.blueAccent,
+                  child: const Text("음식점 불러오기"),
+                  onPressed: ()async {
+                    InMatGetRestaurant restaurant=InMatGetRestaurant();
+                   Map map=await restaurant.getRestaurant(token: "Dsad");
+                   print(map);
                   },
                 ),
               ),

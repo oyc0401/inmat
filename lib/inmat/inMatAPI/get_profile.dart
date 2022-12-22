@@ -1,4 +1,4 @@
-import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
+import 'package:restaurant/inmat/inMatAPI/inmat_http.dart';
 
 class InMatGetProfile extends InMatHttp {
   Future<Map<String, dynamic>> getProfile({required String token}) async {

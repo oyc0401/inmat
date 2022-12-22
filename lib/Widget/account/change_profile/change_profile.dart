@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/inmat/auth/inmat_auth.dart';
-import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
+import 'package:restaurant/inmat/inMatAPI/inmat_http.dart';
 import 'package:restaurant/widget/account/change_profile/change_profile_model.dart';
 
 class ChangeProfile extends StatelessWidget {

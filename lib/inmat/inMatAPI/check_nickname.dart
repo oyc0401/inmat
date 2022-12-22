@@ -1,4 +1,4 @@
-import 'inMatHttp.dart';
+import 'inmat_http.dart';
 
 class InMatCheckNickName extends InMatHttp {
   Future<bool> check({required String nickName}) async {

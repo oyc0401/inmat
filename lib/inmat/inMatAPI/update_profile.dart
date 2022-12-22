@@ -1,4 +1,4 @@
-import 'inMatHttp.dart';
+import 'inmat_http.dart';
 
 class InMatUpdate extends InMatHttp {
   update(String token, Map user) async {

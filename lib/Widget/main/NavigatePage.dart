@@ -1,14 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant/Widget/profile/Profile.dart';
 
 
-import 'spinner/RandomFoodSelect.dart';
-import 'search/Search.dart';
-import 'community/Community.dart';
-import 'home/home.dart';
-import 'home/Realhome.dart';
+import '../spinner/RandomFoodSelect.dart';
+import '../search/Search.dart';
+import '../community/Community.dart';
+import '../home/home.dart';
+import '../home/Realhome.dart';
+import 'main_model.dart';
 
 class NavigatePage extends StatefulWidget {
   const NavigatePage({Key? key}) : super(key: key);
@@ -22,10 +24,16 @@ class _NavigatePageState extends State<NavigatePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: bottomNav(),
-      body: Center(
-        child: _widgetOptions().elementAt(_selectedIndex),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (BuildContext context) => HomeModel()),
+      ],
+      child: Scaffold(
+        bottomNavigationBar: bottomNav(),
+        body: Center(
+          child: _widgetOptions().elementAt(_selectedIndex),
+        ),
       ),
     );
   }

@@ -1,14 +1,14 @@
 import 'package:restaurant/inmat/database/token_database.dart';
 
 import 'package:restaurant/inmat/auth/Inmat_token.dart';
-import 'package:restaurant/inmat/inMatAPI/InMatCheckId.dart';
-import 'package:restaurant/inmat/inMatAPI/InMatCheckNickname.dart';
-import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
+import 'package:restaurant/inmat/inMatAPI/check_id.dart';
+import 'package:restaurant/inmat/inMatAPI/check_nickname.dart';
+import 'package:restaurant/inmat/inMatAPI/inmat_http.dart';
 
-import '../inMatAPI/inMatProfile.dart';
-import '../inMatAPI/InMatSignIn.dart';
-import '../inMatAPI/inMatupdate.dart';
-import '../inMatAPI/inmatRegister.dart';
+import '../inMatAPI/get_profile.dart';
+import '../inMatAPI/sign_in.dart';
+import '../inMatAPI/update_profile.dart';
+import '../inMatAPI/register.dart';
 
 import 'user_model.dart';
 
