@@ -1,8 +1,8 @@
 import 'package:restaurant/inmat/database/token_database.dart';
 
-import '../inMatAPI/inmat_http.dart';
-import '../inMatAPI/account/get_profile.dart';
-import 'inmat_auth.dart';
+import '../inmat_api/inmat_http.dart';
+import '../inmat_api/account/get_profile.dart';
+
 
 class InMatToken {
   final Map<String, dynamic> _token = {};
