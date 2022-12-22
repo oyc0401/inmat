@@ -3,11 +3,9 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant/Widget/NavigatePage.dart';
+
 import 'package:restaurant/inmat/auth/inmat_auth.dart';
 import 'package:restaurant/inmat/auth/user_model.dart';
-import 'package:restaurant/inmat/inMatAPI/get_restaurant.dart';
-import 'package:restaurant/inmat/inMatAPI/inmat_http.dart';
 
 
 //
@@ -15,6 +13,7 @@ import 'package:ios_utsname_ext/extension.dart';
 import 'package:restaurant/widget/account/change_profile/change_profile.dart';
 
 import 'Widget/account/sign_in_choose/signin_page.dart';
+import 'widget/main/NavigatePage.dart';
 
 class AuthCheck extends StatefulWidget {
   const AuthCheck({Key? key}) : super(key: key);
@@ -50,6 +49,21 @@ class _AuthCheckState extends State<AuthCheck> {
                 iconSize: 48,
                 icon: const Icon(
                   Icons.refresh,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CupertinoButton(
+                  color: Colors.blueAccent,
+                  child: const Text("메인 페이지 이동"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => const NavigatePage(),
+                      ),
+                    );
+                  },
                 ),
               ),
               Padding(
@@ -99,33 +113,8 @@ class _AuthCheckState extends State<AuthCheck> {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                  color: Colors.blueAccent,
-                  child: const Text("메인 페이지 이동"),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => const NavigatePage(),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                  color: Colors.blueAccent,
-                  child: const Text("음식점 불러오기"),
-                  onPressed: ()async {
-                    InMatGetRestaurant restaurant=InMatGetRestaurant();
-                   Map map=await restaurant.getRestaurant(token: "Dsad");
-                   print(map);
-                  },
-                ),
-              ),
+
+
               SizedBox(
                 height: 10,
               ),

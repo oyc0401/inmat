@@ -1,7 +1,7 @@
 import 'package:restaurant/inmat/database/token_database.dart';
 
 import '../inMatAPI/inmat_http.dart';
-import '../inMatAPI/get_profile.dart';
+import '../inMatAPI/account/get_profile.dart';
 import 'inmat_auth.dart';
 
 class InMatToken {

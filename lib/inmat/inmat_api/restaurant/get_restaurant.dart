@@ -1,12 +1,12 @@
-import 'inmat_http.dart';
+import '../inmat_http.dart';
 
 class InMatGetRestaurant extends InMatHttp {
 
-  Future<Map<String, dynamic>> getRestaurant({required String token}) async {
+  Future<Map<String, dynamic>> getRestaurant() async {
     print("음식점 불러오는 중...");
 
     Map response = await publicGet(
-        url: "http://prod.sogogi.shop:9000/restaurants", token: token);
+        url: "http://prod.sogogi.shop:9000/restaurants");
 
     if (response['isSuccess'] == false) {
       print("음식점 불러오기 실패!");

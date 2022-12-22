@@ -1,6 +1,6 @@
-import '../inMatAPI/check_id.dart';
-import '../inMatAPI/check_nickname.dart';
-import '../inMatAPI/register.dart';
+import '../inMatAPI/account/check_id.dart';
+import '../inMatAPI/account/check_nickname.dart';
+import '../inMatAPI/account/register.dart';
 
 class InMatAccount {
   static registerEmail({

@@ -5,7 +5,12 @@ import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
 class InMatHttp {
-  Future<Map> publicGet({required String url, required String token}) async {
+  Future<Map> publicGet({required String url, String? token}) async {
+
+    token = token ??
+        'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIs'
+            'ImV4cCI6MTY3MTgxOTY1MH0.TtzZf1TkBLek2HNWRJZ27sffryM0dfaSk_Z4GXKgHSSz0'
+            'uoCsm8ib3hz8SOZ_PIUwCOjXDHSJdQMJIdSHP1UmA';
     Uri uri = Uri.parse(url);
 
     final Response response = await http.get(
@@ -19,7 +24,7 @@ class InMatHttp {
 
     // 요청 성공하면 리턴
     if (response.statusCode == 200) {
-      print(json.decode(utf8.decode(response.bodyBytes)));
+      // print(json.decode(utf8.decode(response.bodyBytes)));
       return json.decode(utf8.decode(response.bodyBytes));
     } else {
       throw Exception(
@@ -50,7 +55,8 @@ class InMatHttp {
     }
   }
 
-  Future<Map> publicPatch({required String url, required Map body,required String token}) async {
+  Future<Map> publicPatch(
+      {required String url, required Map body, required String token}) async {
     Uri uri = Uri.parse(url);
 
     var bodyJson = json.encode(body);

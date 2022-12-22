@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/Widget/profile/Profile.dart';
+import 'package:restaurant/widget/home/ServerHome.dart';
 
 
 import '../spinner/RandomFoodSelect.dart';
@@ -85,7 +86,7 @@ class _NavigatePageState extends State<NavigatePage> {
 
   List _widgetOptions() {
     return [
-      const Realhome(),
+      const ServerHome(),
       const Search(),
       const RandomFoodSelect(),
       const Community(),

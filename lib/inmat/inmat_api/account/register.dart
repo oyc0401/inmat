@@ -1,4 +1,4 @@
-import 'inmat_http.dart';
+import '../inmat_http.dart';
 
 class InMatRegister extends InMatHttp{
   Future<void> registerEmail({required Map user}) async {
