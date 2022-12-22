@@ -12,72 +12,44 @@ import '../inMatAPI/inmatRegister.dart';
 
 import 'user_model.dart';
 
-enum AuthStatus {
-  user,
-  guest,
-  reSignIn,
-}
-
 class InMatAuth {
-  /// 싱글톤 패턴
-  InMatAuth._privateConstructor();
+  /// SingleTon Pattern
+  InMatAuth._privateConstructor(this._currentProfile);
 
+  /// Storage of token, profile
+  final InMatProfile _currentProfile;
+
+  /// Initialized InMatAuth
+  static late InMatAuth _instance;
+
+  /// Get InMatAuth
   static InMatAuth get instance => _instance;
 
-  static final InMatAuth _instance = InMatAuth._privateConstructor();
+  /// Start status
+  AuthStatus get status => _currentProfile.currentState;
 
-  /// 저장소
-  static InMatProfile currentProfile = InMatProfile();
-
-  /// [_user]가 null 이거나 토큰이 없으면 [null]을 리턴한다.
-  /// [currentUser]가 [null]이 아니라는것은 현재 토큰이 존재한다는 뜻이다.
+  /// Return current user
+  /// if return null, you haven't token
   User? get currentUser {
-    if (currentProfile.tokenIsEmpty()) {
+    if (_currentProfile.isEmpty) {
       return null;
     }
-    return User(
-        user: currentProfile.getProfile(), token: currentProfile.getToken());
+    return User(user: _currentProfile.profile, token: _currentProfile.token);
   }
 
-
-  /// 앱을 처음 시작할 때 유저 계정이 어떤 상태인지 확인하기 위해 사용한다.
-  static Future<AuthStatus> initialize() async {
-    User? current = InMatAuth.instance.currentUser;
-    if (current == null) {
-      // 비 회원 상태
-      print('비 회원 상태');
-      return AuthStatus.guest;
-    }
-
-    try {
-      Map<String, dynamic> profile =
-          await InMatAuth.instance.getProfile(current.token);
-      currentProfile.saveUser(profile);
-      return AuthStatus.user;
-
-    } on ExpirationAccessToken {
-      // 액세스 토큰 만료
-    } on AccessDenied {
-      // 접근 권한 없음
-    } catch (e) {
-      // 오류 메세지 띄우기
-      print(e);
-    }
-
-    //DB 삭제
-
-    currentProfile.deleteUser();
-
-    return AuthStatus.reSignIn;
+  /// Make [InMatAuth.instance]
+  /// Should execute before use [InMatAuth]
+  static Future<void> initialize() async {
+    InMatProfile profile = InMatProfile();
+    await profile.init();
+    _instance = InMatAuth._privateConstructor(profile);
   }
-
 
   /// 로그아웃
   void signOut() {
-    currentProfile.deleteToken();
-    currentProfile.deleteUser();
+    _currentProfile.deleteToken();
+    _currentProfile.deleteUser();
   }
-
 
   /// 로그인 후 토큰을 받는다.
   /// 토큰을 이용해 개인정보를 받는다.
@@ -89,22 +61,11 @@ class InMatAuth {
       "password": password,
     });
 
-    await currentProfile.saveToken(token);
-    String accessToken = token['token'];
+    await _currentProfile.saveToken(token);
 
     /// [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만 여기선 로그인 직후에 가져오는 것이라 생략한다.
-    Map<String, dynamic> profile = await getProfile(accessToken);
-
-    await currentProfile.saveUser(profile);
+    await _currentProfile.downProfile();
   }
-
-
-  /// 현재 프로필을 가져온다.
-  Future<Map<String, dynamic>> getProfile(String token) async {
-    InMatGetProfile inMatProfile = InMatGetProfile();
-    return await inMatProfile.getProfile(token: token);
-  }
-
 
   /// 프로필 정보를 업데이트 한다. (작업 중)
   Future<void> updateProfile(Map<String, dynamic> user) async {
@@ -120,15 +81,13 @@ class InMatAuth {
 
     Map m = {
       // 'profileImgUrl': 'www.dsads.jjj',
-       'nickName': '하이',
+      'nickName': '하이',
       'age': 20,
       'gender': 'F'
     };
-    await profileUpdate.update(token, m);
+    await profileUpdate.update(token, user);
     // InMatUser.instance.save(current);
   }
-
-
 }
 
 void main() {

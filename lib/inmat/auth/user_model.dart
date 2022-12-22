@@ -20,13 +20,12 @@ class User {
 
   String get token => _user['token'] ?? "null";
 
-  Map<String, dynamic> toUpdateMap() {
-    return {
-      "age": age,
-      "gender": gender,
-      "nickName": nickName,
-      "profileImgUrl": profileImgUrl,
-    };
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> newMap={};
+    newMap.addAll(_user);
+    newMap.remove('token');
+
+    return newMap;
   }
 
   @override

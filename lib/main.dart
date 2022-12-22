@@ -7,8 +7,6 @@ void main() async {
   //////
   // DB에서 유저 정보 가져오기
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  InMatToken to = InMatToken();
-  await to.downLoad();
   await InMatAuth.initialize();
 
   runApp(MyApp());
