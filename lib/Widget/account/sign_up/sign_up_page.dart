@@ -381,14 +381,14 @@ class GuestLoginText extends StatelessWidget {
                 child: const Text(
                   '비회원으로 앱을 사용',
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 12,
                       decoration: TextDecoration.underline,
                       color: Color(0xff191818)),
                 )),
             const Text(
               '해보실 수 있습니다',
               style: TextStyle(
-                fontSize: 15,
+                fontSize: 12,
                 color: Color(0xff848484),
               ),
             ),
