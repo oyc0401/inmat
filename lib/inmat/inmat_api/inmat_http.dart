@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 class InMatHttp {
   Future<Map> publicGet({required String url, String? token}) async {
 
+    /// TODO 나중에 비회원 처리가 잘 되면 이거 없애도 됌
     token = token ??
         'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIs'
             'ImV4cCI6MTY3MTgxOTY1MH0.TtzZf1TkBLek2HNWRJZ27sffryM0dfaSk_Z4GXKgHSSz0'

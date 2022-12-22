@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:restaurant/inmat/auth/inmat_auth.dart';
-import 'package:restaurant/inmat/inMatAPI/inmat_http.dart';
+import 'package:restaurant/inmat/inmat_api/inmat_http.dart';
 
 class ChangeProfileModel with ChangeNotifier {
   ChangeProfileModel() {

@@ -57,8 +57,7 @@ class _AuthCheckState extends State<AuthCheck> {
                   color: Colors.blueAccent,
                   child: const Text("메인 페이지 이동"),
                   onPressed: () {
-                    Navigator.push(
-                      context,
+                    Navigator.of(context).push(
                       CupertinoPageRoute(
                         builder: (context) => const NavigatePage(),
                       ),
