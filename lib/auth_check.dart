@@ -39,6 +39,7 @@ class _AuthCheckState extends State<AuthCheck> {
             children: [
               Row(),
               Text("user information: ${user ?? "null"}"),
+              Text("현재 상태: ${InMatAuth.instance.status}",style: TextStyle(fontSize: 18),),
               IconButton(
                 onPressed: () {
                   print("새로고침");
