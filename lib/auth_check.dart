@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant/inmat/auth/Inmat_token.dart';
 
 import 'package:restaurant/inmat/auth/inmat_auth.dart';
 import 'package:restaurant/inmat/auth/user_model.dart';
-
 
 //
 import 'package:ios_utsname_ext/extension.dart';
@@ -31,139 +31,171 @@ class _AuthCheckState extends State<AuthCheck> {
         title: const Text("회원 체크"),
       ),
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child:  Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(),
-              Text("user information: ${user ?? "null"}"),
-              Text("현재 상태: ${InMatAuth.instance.status}",style: TextStyle(fontSize: 18),),
-              IconButton(
-                onPressed: () {
-                  print("새로고침");
-                  setState(() {});
-                },
-                color: Colors.blue,
-                iconSize: 48,
-                icon: const Icon(
-                  Icons.refresh,
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(),
+                Text("user information: ${user ?? "null"}"),
+                Text(
+                  "현재 상태: ${InMatAuth.instance.status}",
+                  style: const TextStyle(fontSize: 18),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                  color: Colors.blueAccent,
-                  child: const Text("메인 페이지 이동"),
+                IconButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (context) => const NavigatePage(),
-                      ),
-                    );
+                    print("새로고침");
+                    setState(() {});
                   },
+                  color: Colors.blue,
+                  iconSize: 48,
+                  icon: const Icon(
+                    Icons.refresh,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                  color: Colors.green,
-                  child: const Text("로그인 페이지 이동"),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => const SignInPage(),
-                      ),
-                    );
-                  },
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CupertinoButton(
+                    color: Colors.green,
+                    child: const Text("다음 페이지 이동"),
+                    onPressed: () {
+                      switch (InMatAuth.instance.status) {
+                        case AuthStatus.user:
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => const NavigatePage(),
+                            ),
+                          );
+                          break;
+                        case AuthStatus.guest:
+                        case AuthStatus.reSignIn:
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => const SignInPage(),
+                            ),
+                          );
+                          break;
+                      }
+                    },
+                  ),
                 ),
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: CupertinoButton(
-              //     color: Colors.redAccent,
-              //     child: const Text("로그아웃"),
-              //     onPressed: () {
-              //       setState(() {
-              //         InMatAuth.instance.signOut();
-              //       });
-              //     },
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: CupertinoButton(
-              //     color: Colors.yellow,
-              //     child: const Text(
-              //       "회원 정보 수정",
-              //       style: TextStyle(color: Colors.black),
-              //     ),
-              //     onPressed: () async {
-              //       Navigator.push(
-              //         context,
-              //         CupertinoPageRoute(
-              //           builder: (context) => const ChangeProfile(),
-              //         ),
-              //       );
-              //
-              //
-              //     },
-              //   ),
-              // ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CupertinoButton(
+                    color: Colors.blueAccent,
+                    child: const Text("메인 페이지 이동"),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) => const NavigatePage(),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CupertinoButton(
+                    color: const Color(0xffFF8C66),
+                    child: const Text("로그인 페이지 이동"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const SignInPage(),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: CupertinoButton(
+                //     color: Colors.redAccent,
+                //     child: const Text("로그아웃"),
+                //     onPressed: () {
+                //       setState(() {
+                //         InMatAuth.instance.signOut();
+                //       });
+                //     },
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: CupertinoButton(
+                //     color: Colors.yellow,
+                //     child: const Text(
+                //       "회원 정보 수정",
+                //       style: TextStyle(color: Colors.black),
+                //     ),
+                //     onPressed: () async {
+                //       Navigator.push(
+                //         context,
+                //         CupertinoPageRoute(
+                //           builder: (context) => const ChangeProfile(),
+                //         ),
+                //       );
+                //
+                //
+                //     },
+                //   ),
+                // ),
 
-
-              SizedBox(
-                height: 10,
-              ),
-              ScreenInfo(
-                thiscontext: context,
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: CupertinoButton(
-              //       color: Colors.grey,
-              //       child: Text("로그인 페이지 2 이동"),
-              //       onPressed: () {
-              //         Navigator.push(
-              //           context,
-              //           CupertinoPageRoute(
-              //             builder: (context) => const EmailSignInPage(),
-              //           ),
-              //         );
-              //       }),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: CupertinoButton(
-              //     color: Colors.grey,
-              //     child: Text("회원가입 페이지 이동"),
-              //     onPressed: () {
-              //       Navigator.push(
-              //         context,
-              //         CupertinoPageRoute(
-              //           builder: (context) => const SignUpPage(),
-              //         ),
-              //       );
-              //     },
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: CupertinoButton(
-              //       color: Colors.grey,
-              //       child: Text("비밀번호 찾기 페이지 이동"),
-              //       onPressed: () {
-              //         Navigator.push(
-              //           context,
-              //           CupertinoPageRoute(
-              //             builder: (context) => const PasswordFind(),
-              //           ),
-              //         );
-              //       }),
-              // ),
-            ],
+                const SizedBox(
+                  height: 10,
+                ),
+                ScreenInfo(
+                  thiscontext: context,
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: CupertinoButton(
+                //       color: Colors.grey,
+                //       child: Text("로그인 페이지 2 이동"),
+                //       onPressed: () {
+                //         Navigator.push(
+                //           context,
+                //           CupertinoPageRoute(
+                //             builder: (context) => const EmailSignInPage(),
+                //           ),
+                //         );
+                //       }),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: CupertinoButton(
+                //     color: Colors.grey,
+                //     child: Text("회원가입 페이지 이동"),
+                //     onPressed: () {
+                //       Navigator.push(
+                //         context,
+                //         CupertinoPageRoute(
+                //           builder: (context) => const SignUpPage(),
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: CupertinoButton(
+                //       color: Colors.grey,
+                //       child: Text("비밀번호 찾기 페이지 이동"),
+                //       onPressed: () {
+                //         Navigator.push(
+                //           context,
+                //           CupertinoPageRoute(
+                //             builder: (context) => const PasswordFind(),
+                //           ),
+                //         );
+                //       }),
+                // ),
+              ],
+            ),
           ),
         ),
       ),
@@ -234,10 +266,10 @@ class _ScreenInfoState extends State<ScreenInfo> {
 
     double appBarHeight = AppBar().preferredSize.height;
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         // border: BoxBorder(),
-        color: Color(0xffefefef),
+        color: const Color(0xffefefef),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -245,14 +277,14 @@ class _ScreenInfoState extends State<ScreenInfo> {
           Row(),
           Text(osVersion),
           Text(deviceName),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text("viewport: ${width.round()} x ${height.round()}"),
-          SizedBox(height: 8),
-          Text("safe area:"),
+          const SizedBox(height: 8),
+          const Text("safe area:"),
           Text(
               "left: ${safePaddingLeft.round()} top: ${safePaddingTop.round()}, "
               "right: ${safePaddingRight.round()} bottom: ${safePaddingBottom.round()}"),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text("app bar height: $appBarHeight"),
         ],
       ),

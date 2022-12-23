@@ -5,6 +5,7 @@ import 'package:restaurant/inmat/inmat_api/inmat_http.dart';
 class ChangeProfileModel with ChangeNotifier {
   ChangeProfileModel() {
     profile = InMatAuth.instance.currentUser!.toMap();
+    nickname=InMatAuth.instance.currentUser!.nickName;
   }
 
   Map<String, dynamic> profile = {};
