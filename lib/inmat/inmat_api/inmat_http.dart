@@ -6,12 +6,10 @@ import 'package:http/http.dart' as http;
 
 class InMatHttp {
   Future<Map> publicGet({required String url, String? token}) async {
-
     /// TODO 나중에 비회원 처리가 잘 되면 이거 없애도 됌
     token = token ??
-        'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIs'
-            'ImV4cCI6MTY3MTgxOTY1MH0.TtzZf1TkBLek2HNWRJZ27sffryM0dfaSk_Z4GXKgHSSz0'
-            'uoCsm8ib3hz8SOZ_PIUwCOjXDHSJdQMJIdSHP1UmA';
+        'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsI'
+            'mV4cCI6MTY3MTkwNjY3N30.7XA_GACOS7qyWWWV-KACZFmzc8l4On_viA9fQRLOWejB_XPjynZjDmebVfiM09TmYigACI7S1JiD-BV5E4Jnfw';
     Uri uri = Uri.parse(url);
 
     final Response response = await http.get(
@@ -23,17 +21,15 @@ class InMatHttp {
       },
     );
 
-    // 요청 성공하면 리턴
-    if (response.statusCode == 200) {
-      // print(json.decode(utf8.decode(response.bodyBytes)));
-      return json.decode(utf8.decode(response.bodyBytes));
-    } else {
-      throw Exception(
-          'Failed to load get ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
-    }
+    return getMessage(response);
   }
 
-  Future<Map> publicPost({required String url, required Map body}) async {
+  Future<Map> publicPost(
+      {required String url, required Map body, String? token}) async {
+    /// TODO 나중에 비회원 처리가 잘 되면 이거 없애도 됌
+    token = token ??
+        'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsI'
+            'mV4cCI6MTY3MTkwNjY3N30.7XA_GACOS7qyWWWV-KACZFmzc8l4On_viA9fQRLOWejB_XPjynZjDmebVfiM09TmYigACI7S1JiD-BV5E4Jnfw';
     Uri uri = Uri.parse(url);
 
     var bodyJson = json.encode(body);
@@ -42,18 +38,12 @@ class InMatHttp {
       headers: {
         "Content-Type": "application/json",
         'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
       },
       body: bodyJson,
     );
 
-    // 요청 성공하면 리턴
-    if (response.statusCode == 200) {
-      print(json.decode(utf8.decode(response.bodyBytes)));
-      return json.decode(utf8.decode(response.bodyBytes));
-    } else {
-      throw Exception(
-          'Failed to load post ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
-    }
+    return getMessage(response);
   }
 
   Future<Map> publicPatch(
@@ -71,13 +61,21 @@ class InMatHttp {
       body: bodyJson,
     );
 
+    return getMessage(response);
+  }
+
+  Map getMessage(Response response) {
     // 요청 성공하면 리턴
-    if (response.statusCode == 200) {
-      print(json.decode(utf8.decode(response.bodyBytes)));
-      return json.decode(utf8.decode(response.bodyBytes));
-    } else {
-      throw Exception(
-          'Failed to load patch ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
+
+    switch (response.statusCode) {
+      case 200:
+        // print(json.decode(utf8.decode(response.bodyBytes)));
+        return json.decode(utf8.decode(response.bodyBytes));
+      case 401:
+        throw ExpirationAccessToken();
+      default:
+        throw Exception(
+            'Failed to load patch ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
     }
   }
 }

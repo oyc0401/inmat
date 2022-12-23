@@ -44,17 +44,18 @@ class _AuthCheckState extends State<AuthCheck> {
                   "현재 상태: ${InMatAuth.instance.status}",
                   style: const TextStyle(fontSize: 18),
                 ),
-                IconButton(
-                  onPressed: () {
-                    print("새로고침");
-                    setState(() {});
-                  },
-                  color: Colors.blue,
-                  iconSize: 48,
-                  icon: const Icon(
-                    Icons.refresh,
-                  ),
-                ),
+                // IconButton(
+                //   onPressed: () {
+                //     print("새로고침");
+                //     setState(() {});
+                //   },
+                //   color: Colors.blue,
+                //   iconSize: 48,
+                //   icon: const Icon(
+                //     Icons.refresh,
+                //   ),
+                // ),
+                SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CupertinoButton(
