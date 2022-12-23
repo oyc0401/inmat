@@ -18,15 +18,21 @@ class HomeModel extends ChangeNotifier {
 
   init() async {
     InMatGetHome restaurant = InMatGetHome();
-    Map<String, dynamic> map = await restaurant.getHome();
-    // print(map);
-    json = map;
-    complete = true;
+    try{
+      Map<String, dynamic> map = await restaurant.getHome();
+      // print(map);
+      json = map;
+      complete = true;
 
-    banners = json['bannerList'] ;
-    toDayRecommends = json['todayRecommendList'] ;
-    recentReviews = json['recentReviewList'];
-    restaurants = json['restaurantList'] ;
+      banners = json['bannerList'] ;
+      toDayRecommends = json['todayRecommendList'] ;
+      recentReviews = json['recentReviewList'];
+      restaurants = json['restaurantList'] ;
+    }catch(e){
+      print(e);
+    }
+
+
 
     // print(banners);
     // print(toDayRecommends);
