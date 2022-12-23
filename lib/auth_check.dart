@@ -80,38 +80,38 @@ class _AuthCheckState extends State<AuthCheck> {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                  color: Colors.redAccent,
-                  child: const Text("로그아웃"),
-                  onPressed: () {
-                    setState(() {
-                      InMatAuth.instance.signOut();
-                    });
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                  color: Colors.yellow,
-                  child: const Text(
-                    "회원 정보 수정",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onPressed: () async {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => const ChangeProfile(),
-                      ),
-                    );
-
-
-                  },
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: CupertinoButton(
+              //     color: Colors.redAccent,
+              //     child: const Text("로그아웃"),
+              //     onPressed: () {
+              //       setState(() {
+              //         InMatAuth.instance.signOut();
+              //       });
+              //     },
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: CupertinoButton(
+              //     color: Colors.yellow,
+              //     child: const Text(
+              //       "회원 정보 수정",
+              //       style: TextStyle(color: Colors.black),
+              //     ),
+              //     onPressed: () async {
+              //       Navigator.push(
+              //         context,
+              //         CupertinoPageRoute(
+              //           builder: (context) => const ChangeProfile(),
+              //         ),
+              //       );
+              //
+              //
+              //     },
+              //   ),
+              // ),
 
 
               SizedBox(

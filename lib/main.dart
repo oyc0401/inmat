@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:restaurant/auth_check.dart';
 import 'package:restaurant/inmat/auth/Inmat_token.dart';
 import 'package:restaurant/inmat/auth/inmat_auth.dart';
@@ -26,5 +27,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(fontFamily: 'Binggrae2',),
       home: AuthCheck(),
     );
+  }
+}
+
+
+class Useful{
+  static void showMessage(String text) {
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 }

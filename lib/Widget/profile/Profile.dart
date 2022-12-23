@@ -1,7 +1,15 @@
 // import 'dart:html';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant/inmat/auth/inmat_auth.dart';
+import 'package:restaurant/inmat/auth/user_model.dart';
+import 'package:restaurant/main.dart';
+import 'package:restaurant/widget/profile/ProfileModel.dart';
 
+import '../account/change_profile/change_profile.dart';
+import '../account/sign_in_choose/signin_page.dart';
 import 'MyFavorite.dart';
 import 'MyReview.dart';
 import 'MyPost.dart';
@@ -18,209 +26,190 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("마이페이지"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: () {},
-          )
-        ],
-      ),
-      body: Column(
-        children: [
-          Row(
+    User? user = InMatAuth.instance.currentUser;
+
+    return ChangeNotifierProvider(
+      create: (context) => ProfileModel(),
+      child: Consumer(builder: (context, value, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text("마이페이지"),
+            // actions: <Widget>[
+            //   IconButton(
+            //     icon: const Icon(Icons.settings),
+            //     onPressed: () {},
+            //   )
+            // ],
+          ),
+          body: Column(
             children: [
+              Provider.of<ProfileModel>(context).isUser
+                  ? UserForm()
+                  : const LoginButton(),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/profilesample.png'),
-                    fit: BoxFit.cover, ),
-                    shape: BoxShape.circle
-                ),
-                child: Center(child: Text('사진')),
+                height: 1.0,
+                color: Colors.black,
               ),
-              Container(child: Text(' 닉네임'),),
-              Container(width: 100, height: 80,),
-              Container(child: Text(' 프로필 수정하기'),),
+              Provider.of<ProfileModel>(context).isUser
+                  ? MyInformation()
+                  : Container(),
+              Spacer(),
+              Provider.of<ProfileModel>(context).isUser
+                  ? LogOutButton()
+                  : Container(),
+              SizedBox(height: 30,),
             ],
           ),
-          Container(
-            height: 1.0,
-            width: 370.0,
-            color: Colors.black,
-          ),
-          Container(
-            width: double.infinity,
-            height: 80,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-            ),
-            margin: EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InkWell(
-                  onTap: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (_) => MyFavorite()));
-                  },
-                  child: Row(
-                    children: [
-                      // Icon(Icons.favorite),
-                      // Text("내가 좋아요 누른 음식점",textAlign: TextAlign.left,),
-                      OutlinedButton.icon(
-                        onPressed: () {
-                          Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => MyFavorite()));},
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.blueAccent,
-                          fixedSize: const Size(360, 60),
-                          backgroundColor: Colors.white70,
-                          textStyle: const TextStyle(fontSize: 24),
-                        ),
-                        icon: Icon(Icons.favorite),
-                        label: Text(
-                          "내가 좋아요 누른 음식점",
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+        );
+      }),
+    );
+  }
+}
 
-                // Text("내가 좋아요 누른 음식점",textAlign: TextAlign.left,),
-              ],
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 80,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-            ),
-            margin: EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Icon(Icons.list),
-                // ElevatedButton(onPressed: () {}, child: Text("내가 쓴 리뷰",textAlign: TextAlign.left,),),
-                OutlinedButton.icon(
-                  onPressed: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => MyReview()));},
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.blueAccent,
-                    fixedSize: const Size(360, 60),
-                    backgroundColor: Colors.white70,
-                    textStyle: const TextStyle(fontSize: 24),
-                  ),
-                  icon: Icon(Icons.list),
-                  label: Text(
-                    "내가 쓴 리뷰",
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 80,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-            ),
-            margin: EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Icon(Icons.article ),
-                // Text("내가 쓴 게시글",textAlign: TextAlign.left,),
-                OutlinedButton.icon(
-                  onPressed: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => MyPost()));},
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.blueAccent,
-                    fixedSize: const Size(360, 60),
-                    backgroundColor: Colors.white70,
-                    textStyle: const TextStyle(fontSize: 24),
-                  ),
-                  icon: Icon(Icons.article),
-                  label: Text(
-                    "내가 쓴 게시글",
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 80,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-            ),
-            margin: EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Icon(Icons.description),
-                // Text("공지사항",textAlign: TextAlign.left,),
-                OutlinedButton.icon(
-                  onPressed: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => Notice  ()));},
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.blueAccent,
-                    fixedSize: const Size(360, 60),
-                    backgroundColor: Colors.white70,
-                    textStyle: const TextStyle(fontSize: 24),
-                  ),
-                  icon: Icon(Icons.description),
-                  label: Text(
-                    "공지사항",
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+class UserForm extends StatelessWidget {
+  UserForm({
+    Key? key,
+  }) : super(key: key);
+
+  final User user = InMatAuth.instance.currentUser!;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Container(
+        // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        // margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        width: 80,
+        height: 80,
+        decoration: const BoxDecoration(
+            color: Colors.grey,
+            // image: DecorationImage(
+            //   image: AssetImage('assets/images/profilesample.png'),
+            //   fit: BoxFit.cover,
+            // ),
+            shape: BoxShape.circle),
+        child: Center(child: Text(user.profileImgUrl)),
+      ),
+      title: Text(user.email),
+      subtitle: Text(user.nickName),
+      trailing: TextButton(
+        onPressed: () {
+          Navigator.push(context,
+              CupertinoPageRoute(builder: (_) => const ChangeProfile()));
+        },
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.grey,
+        ),
+        child: const Text(
+          '회원 정보 수정',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
     );
   }
 }
 
-class profile extends StatelessWidget {
-  const profile({Key? key}) : super(key: key);
+class MyInformation extends StatelessWidget {
+  const MyInformation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            width: 150,
-            height: 50,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-            ),
+    return Column(
+      children: [
+        ListTile(
+          leading: const Icon(
+            Icons.favorite,
+            color: Colors.blue,
           ),
-          Container(),
-          Container(),
-          Container(),
-        ],
+          onTap: () {
+            Useful.showMessage('개발 중 입니다.');
+            // Navigator.push(context,
+            //     CupertinoPageRoute(builder: (_) => const MyFavorite()));
+          },
+          title: const Text("내가 좋아요 누른 음식점", style: TextStyle(fontSize: 18)),
+        ),
+        ListTile(
+          leading: const Icon(
+            Icons.list,
+            color: Colors.blue,
+          ),
+          onTap: () {
+            Useful.showMessage('개발 중 입니다.');
+            // Navigator.push(
+            //     context, CupertinoPageRoute(builder: (_) => const MyReview()));
+          },
+          title: const Text("내가 쓴 리뷰", style: TextStyle(fontSize: 18)),
+        ),
+        ListTile(
+          leading: const Icon(
+            Icons.article,
+            color: Colors.blue,
+          ),
+          onTap: () {
+            Useful.showMessage('개발 중 입니다.');
+            // Navigator.push(
+            //     context, CupertinoPageRoute(builder: (_) => const MyPost()));
+          },
+          title: const Text("내가 쓴 게시글", style: TextStyle(fontSize: 18)),
+        ),
+        ListTile(
+          leading: const Icon(
+            Icons.description,
+            color: Colors.blue,
+          ),
+          onTap: () {
+            Useful.showMessage('개발 중 입니다.');
+            // Navigator.push(
+            //     context, CupertinoPageRoute(builder: (_) => const Notice()));
+          },
+          title: const Text("공지사항", style: TextStyle(fontSize: 18)),
+        ),
+      ],
+    );
+  }
+}
+
+class LoginButton extends StatelessWidget {
+  const LoginButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        margin: const EdgeInsets.all(12),
+        color: const Color(0xffefefef),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(context,
+                CupertinoPageRoute(builder: (_) => const SignInPage()));
+          },
+          child: Container(
+            height: 48,
+            child: const Center(
+                child: Text(
+                  '로그인',
+                  style: TextStyle(fontSize: 18),
+                )),
+          ),
+        ));
+  }
+}
+
+class LogOutButton extends StatelessWidget {
+  const LogOutButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: CupertinoButton(
+        color: Colors.redAccent,
+        child: const Text("로그아웃"),
+        onPressed: () {
+          InMatAuth.instance.signOut();
+          Provider.of<ProfileModel>(context, listen: false).logout();
+        },
       ),
     );
   }

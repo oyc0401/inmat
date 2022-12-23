@@ -2,20 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant/widget/main/NavigatePage.dart';
 
+import '../../../main.dart';
 import '../sign_up/sign_up_page.dart';
 import 'email_sign_in_model.dart';
-
-void showMessage(String text) {
-  Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      textColor: Colors.white,
-      fontSize: 16.0);
-}
-
 
 class EmailSignInPage extends StatefulWidget {
   const EmailSignInPage({Key? key}) : super(key: key);
@@ -79,8 +70,7 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
                 onclick: () {
                   Navigator.push(
                     context,
-                    CupertinoPageRoute(
-                        builder: (context) =>  SignUpPage()),
+                    CupertinoPageRoute(builder: (context) => SignUpPage()),
                   );
                 },
               ),
@@ -115,7 +105,7 @@ class LoginBox extends StatelessWidget {
             padding: const EdgeInsets.all(14.0),
             child: ForgotButton(
               onclick: () {
-                showMessage('개발 중 입니다.');
+                Useful.showMessage('개발 중 입니다.');
               },
               text: "Forgot your ID?",
             ),
@@ -128,7 +118,7 @@ class LoginBox extends StatelessWidget {
             padding: const EdgeInsets.all(14.0),
             child: ForgotButton(
               onclick: () {
-                showMessage('개발 중 입니다.');
+                Useful.showMessage('개발 중 입니다.');
               },
               text: "Forgot password?",
             ),
@@ -136,7 +126,13 @@ class LoginBox extends StatelessWidget {
           const SizedBox(height: 36),
           LoginButton(
             onclick: () async {
-              Provider.of<EmailSignInModel>(context, listen: false).signIn();
+              await Provider.of<EmailSignInModel>(context, listen: false)
+                  .signIn();
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => NavigatePage()),
+                (route) => false,
+              );
             },
           ),
         ],
@@ -157,7 +153,8 @@ class IDTextForm extends StatelessWidget {
         TextFormField(
           initialValue: "test123",
           onChanged: (text) {
-            Provider.of<EmailSignInModel>(context, listen: false).setUsername(text);
+            Provider.of<EmailSignInModel>(context, listen: false)
+                .setUsername(text);
           },
         )
       ],
@@ -178,7 +175,8 @@ class PasswordTextForm extends StatelessWidget {
           initialValue: "qwe12345&&",
           obscureText: true,
           onChanged: (text) {
-            Provider.of<EmailSignInModel>(context, listen: false).setPassword(text);
+            Provider.of<EmailSignInModel>(context, listen: false)
+                .setPassword(text);
           },
         )
       ],
