@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:restaurant/Widget/account/sign_up/sign_up_model.dart';
 import 'package:restaurant/inmat/auth/inmat_account.dart';
-import 'package:restaurant/inmat/inMatAPI/inMatHttp.dart';
+import 'package:restaurant/inmat/inmat_api/inmat_http.dart';
 
 void showMessage(String text) {
   Fluttertoast.showToast(

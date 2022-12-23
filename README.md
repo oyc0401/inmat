@@ -4,4 +4,6 @@
 
 ## Link
 
-https://play.google.com/apps/internaltest/4701457923345884411
+web: https://oyc0401.github.io/inmat
+
+playstore: https://play.google.com/apps/internaltest/4701457923345884411
