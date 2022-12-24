@@ -64,11 +64,12 @@ class _AuthCheckState extends State<AuthCheck> {
                     onPressed: () {
                       switch (InMatAuth.instance.status) {
                         case AuthStatus.user:
-                          Navigator.push(
+                          Navigator.pushAndRemoveUntil(
                             context,
                             CupertinoPageRoute(
                               builder: (context) => const NavigatePage(),
                             ),
+                            (route) => false,
                           );
                           break;
                         case AuthStatus.guest:
