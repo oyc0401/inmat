@@ -1,7 +1,11 @@
-import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../main/main_model.dart';
+import 'banner.dart';
+import 'recent_review.dart';
+import 'restaurant_list.dart';
+import 'today_food.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,294 +15,95 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // List<widget> list=[ ToDayWidget(), ToDayWidget()];  ************
-
-  // static List<String> RestaurantName = [
-  //   'sample1',
-  //   'sample2',
-  //   'sample3',
-  // ];
-
-  // static List<String> RestaurantImagePath = [
-  //   'images/sample1.jpg',
-  //   'images/sample2.jpg',
-  //   'images/sample3.jpg',
-  // ];
-
-  // final List<infinityRestaurant> RestaurantData = List.generate(
-  //     RestaurantName.length,
-  //         (index) => infinityRestaurant(
-  //         RestaurantName[index], RestaurantImagePath[index]));
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("인맛 InMAt"),
-      ),
-      // drawer: Drawer(
-      //   child: ListView(
-      //     children: [
-      //       SizedBox(
-      //         height: 100 ,
-      //         child: const DrawerHeader(
-      //           decoration: BoxDecoration(
-      //             color: Colors.blue,
-      //           ),
-      //           child: Text('카테고리'),
-      //         ),
-      //       ),
-      //       ListTile(
-      //         title: Text('밥',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-      //         dense: true,
-      //         visualDensity: VisualDensity(vertical: -3),),
-      //       ListTile(
-      //         title: const Text('음식명'),
-      //         onTap: () {},
-      //       ),
-      //       ListTile(
-      //         title: const Text('음식명'),
-      //         onTap: () {
-      //         },
-      //       ),
-      //       ListTile(
-      //         title: const Text('음식명'),
-      //         onTap: () {
-      //         },
-      //       ),
-      //       ListTile(
-      //         title: const Text('음식명'),
-      //         onTap: () {
-      //         },
-      //       ),
-      //
-      //       ListTile(title: Text('술',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-      //         dense: true,
-      //         visualDensity: VisualDensity(vertical: -3),),
-      //       ListTile(
-      //         title: const Text('칵테일 바'),
-      //         onTap: () {
-      //         },
-      //       ),ListTile(
-      //         title: const Text('칵테일 바'),
-      //         onTap: () {
-      //         },
-      //       ),ListTile(
-      //         title: const Text('칵테일 바'),
-      //         onTap: () {
-      //         },
-      //       ),ListTile(
-      //         title: const Text('칵테일 바'),
-      //         onTap: () {
-      //         },
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      // ^ 카테고리 속성
-      drawerEdgeDragWidth: 20,
-      drawerEnableOpenDragGesture: true,
-      body: ListView(children: [
-        FoodForm(title: "오늘 이건 어때요?"),
-        FoodForm(title: "남성이 선호하는 음식"),
-        FoodForm(title: "최근 일주일 인기 음식점"),
-        Column(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(margin: EdgeInsets.all(5),child: Text('최근남겨진 리뷰',style: TextStyle(fontSize: 24 ,)),),
-            Container(padding: EdgeInsets.all(5),
-              height:1.0,
-              width:350.0,
-              color:Colors.black,), // 구분선 긋기
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(),
+            const Text(
+              '지금 보고 있는 지역은',
+              style: TextStyle(color: Colors.black, fontSize: 11.0),
             ),
-            Container(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FoodReviewWidget(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FoodReviewWidget(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FoodReviewWidget(),
-            ),
-            Container(padding: EdgeInsets.all(5),
-              height:1.0,
-              width:350.0,
-              color:Colors.black,), // 구분선 긋기
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: infinityRestaurant(
-              ),
-
-
-            ),Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: infinityRestaurant(),
-            ),Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: infinityRestaurant(),
-            ),Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: infinityRestaurant(),
-            ),Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: infinityRestaurant(),
-            ),Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: infinityRestaurant(),
-            ),Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: infinityRestaurant(),
-            ),
-          ],
-        ),
-      ]),
-    );
-  }
-}
-
-class FoodWidget extends StatelessWidget {
-  const FoodWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            width: 150,
-            height: 100,
-            color: Colors.grey,
-          ),
-          Text("음식 이름"),
-        ],
-      ),
-    );
-  }
-}
-
-class FoodForm extends StatelessWidget {
-  //const
-  FoodForm({Key? key, required this.title}) : super(key: key);
-
-  String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(2),
-      child: Column(
-        children: [
-          Text(
-            title,
-            style: TextStyle(fontSize: 24),
-          ),
-          Container(
-            height: 160,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FoodWidget(),
+            Row(
+              children: const [
+                Text(
+                  '인하대 후문',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FoodWidget(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FoodWidget(),
+                Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.black,
                 ),
               ],
+            )
+          ],
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.search,
+              color: Color(0xff7F7F7F),
             ),
-          )
+            onPressed: () {
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => Search()))
+              print('Search button is clicked');
+            },
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.map_outlined,
+              color: Color(0xff7F7F7F),
+            ),
+            // 검색 아이콘 생성
+            onPressed: () {
+              print('Map button is clicked');
+            },
+          ),
         ],
       ),
-    );
-  }
-}
-
-class FoodReviewWidget extends StatelessWidget {
-  const FoodReviewWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Container(
-            width: 150,
-            height: 100,
-            color: Colors.grey,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("      음식점 이름"),
-              Row(
-                children: [
-                  Text("      별점"),SizedBox(width: 50,),Text(" 평점"),
-                ],
+      body: ListView(
+        children: const [
+          BannerSection(),
+          Padding(
+            padding: EdgeInsets.only(left: 30.0,top: 20,bottom: 7),
+            child: Text(
+              '오늘 이건 어때요?',
+              style: TextStyle(
+                fontSize: 20,
+                color: Color(0xffF25C05),
+                fontWeight: FontWeight.w700,
               ),
-              Text("      리뷰 내용이 들어갈 자리 입니다."),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class infinityRestaurant extends StatefulWidget {
-  const infinityRestaurant({Key? key}) : super(key: key);
-
-  @override
-  State<infinityRestaurant> createState() => _infinityRestaurantState();
-}
-
-class _infinityRestaurantState extends State<infinityRestaurant> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Container(
-            width: 150,
-            height: 100,
-            // color: Colors.grey,
-
-            decoration: BoxDecoration(
-                color: Colors.grey,
-                image: DecorationImage(
-                  image: AssetImage('assets/images/gosu.jpg'),
-                  fit: BoxFit.cover, ),
-
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text("      음식점 이름"), SizedBox(width: 50,), Icon(Icons.favorite), Text('30'),
-                ],
-              ), Row(
-                children: [
-                  Text("      별점"),SizedBox(width: 50,),Text("평균가격: 8000원"),
-                ],
+          TodayFood(),
+          Padding(
+            padding: EdgeInsets.only(left: 30.0,top: 16,bottom: 7),
+            child: Text(
+              '최근 남긴 리뷰',
+              style: TextStyle(
+                fontSize: 20,
+                color: Color(0xffF25C05),
+                fontWeight: FontWeight.w700,
               ),
-
-              Text("      리뷰 내용이 들어갈 자리 입니다."),
-            ],
+            ),
           ),
+          RecentReview(),
+          SizedBox(
+            height: 20,
+          ),
+          RestaurantList(),
         ],
       ),
+      // bottomNavigationBar: Container(),
     );
   }
 }

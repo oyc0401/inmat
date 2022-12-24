@@ -3,14 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/Widget/profile/Profile.dart';
-import 'package:restaurant/widget/home/ServerHome.dart';
 
 
 import '../spinner/RandomFoodSelect.dart';
 import '../search/Search.dart';
 import '../community/Community.dart';
 import '../home/home.dart';
-import '../home/Realhome.dart';
+
 import 'main_model.dart';
 
 class NavigatePage extends StatefulWidget {
@@ -86,7 +85,7 @@ class _NavigatePageState extends State<NavigatePage> {
 
   List _widgetOptions() {
     return [
-      const ServerHome(),
+      const Home(),
       const Search(),
       const RandomFoodSelect(),
       const Community(),
