@@ -28,6 +28,7 @@ class HomeModel extends ChangeNotifier {
       toDayRecommends = json['todayRecommendList'] ;
       recentReviews = json['recentReviewList'];
       restaurants = json['restaurantList'] ;
+      print(toDayRecommends);
     }catch(e){
       print(e);
     }
