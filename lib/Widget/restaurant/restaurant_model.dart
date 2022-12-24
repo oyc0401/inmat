@@ -10,17 +10,18 @@ class RestaurantModel with ChangeNotifier {
 
   bool complete = false;
   int id;
-  String profileUrl = '';
+
+  // String profileUrl = '';
   String name = '';
-  List images = [];
+  List? images = [];
   List menus = [];
   String address = '';
-  bool heartt = false;
+  bool heart = false;
   String contactNumber = '';
   double averageStar = 0.0;
   int reviewCount = 0;
   int heartCont = 0;
-  double averagePrice = 0.0;
+  int averagePrice = 0;
   int complexity = 1;
   String type = '';
   List reviews = [];
@@ -34,6 +35,25 @@ class RestaurantModel with ChangeNotifier {
     map = await getRestaurant.getRestaurant(id);
     complete = true;
     print(map);
+
+    name = map['restaurantName'];
+    images = map['restaurantImgList'];
+    menus = map['menuList'];
+    reviews=map['reviewList'];
+    address = map['address'];
+    heart = map['userHeart'];
+    contactNumber = map['contactNumber'];
+    averageStar = map['averageStar'];
+    reviewCount = map['countReview'];
+    heartCont=map['countHeart'];
+    averagePrice=map['averagePrice'];
+    complexity=map['complexity'];
+    type=map['restaurantType'];
+
+
+
+
+
     notifyListeners();
   }
 }
