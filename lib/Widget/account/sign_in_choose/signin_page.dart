@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:restaurant/Widget/account/sign_in_email/sign_in_email_page.dart';
 
+import 'google_sign_in.dart';
+
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
@@ -78,7 +80,10 @@ class _SignInPageState extends State<SignInPage> {
           child: SocialLoginButton(
             text: 'Google로 계속하기',
             onclick: () {
-              showMessage();
+
+              GoogleLogin google=GoogleLogin();
+              google.login();
+              // showMessage();
             },
             color: const Color(0xff1570FF),
           ),

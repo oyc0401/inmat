@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:restaurant/inmat/auth/inmat_auth.dart';
 
 class InMatHttp {
   Future<Map> publicGet({required String url, String? token}) async {
@@ -10,6 +11,8 @@ class InMatHttp {
     token = token ??
         'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsI'
             'mV4cCI6MTY3MTkwNjY3N30.7XA_GACOS7qyWWWV-KACZFmzc8l4On_viA9fQRLOWejB_XPjynZjDmebVfiM09TmYigACI7S1JiD-BV5E4Jnfw';
+
+    // token=InMatAuth.instance.currentUser!.token;
     Uri uri = Uri.parse(url);
 
     final Response response = await http.get(
@@ -30,6 +33,7 @@ class InMatHttp {
     token = token ??
         'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsI'
             'mV4cCI6MTY3MTkwNjY3N30.7XA_GACOS7qyWWWV-KACZFmzc8l4On_viA9fQRLOWejB_XPjynZjDmebVfiM09TmYigACI7S1JiD-BV5E4Jnfw';
+
     Uri uri = Uri.parse(url);
 
     var bodyJson = json.encode(body);

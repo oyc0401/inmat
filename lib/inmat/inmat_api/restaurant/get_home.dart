@@ -1,3 +1,5 @@
+import 'package:restaurant/inmat/auth/inmat_auth.dart';
+
 import '../inmat_http.dart';
 
 class InMatGetHome extends InMatHttp {
@@ -6,7 +8,8 @@ class InMatGetHome extends InMatHttp {
     print("홈 화면 불러오는 중...");
 
     Map response = await publicGet(
-        url: "http://prod.sogogi.shop:9000/restaurants");
+        url: "http://prod.sogogi.shop:9000/restaurants",
+        token:InMatAuth.instance.currentUser!.token);
 
     if (response['isSuccess'] == false) {
       print("홈 화면 불러오기 실패!");
@@ -20,6 +23,7 @@ class InMatGetHome extends InMatHttp {
       throw Exception(
           'Failed to load home page: ${response['code']}, ${response['message']}');
     }
+
     print("홈 화면 불러오기 성공!");
     return response["result"];
   }

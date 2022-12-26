@@ -50,6 +50,8 @@ dependencies:
 #  change_app_package_name: ^1.1.0
   device_info_plus: ^3.2.4
   ios_utsname_ext: ^2.2.0
+  change_app_package_name: ^1.1.0
+  google_sign_in: ^5.4.2
 
 
 

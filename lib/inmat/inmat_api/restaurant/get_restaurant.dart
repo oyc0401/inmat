@@ -1,3 +1,5 @@
+import 'package:restaurant/inmat/auth/inmat_auth.dart';
+
 import '../inmat_http.dart';
 
 class InMatGetRestaurant extends InMatHttp {
@@ -6,7 +8,8 @@ class InMatGetRestaurant extends InMatHttp {
     print("음식점 불러오는 중...");
 
     Map response = await publicGet(
-        url: "http://prod.sogogi.shop:9000/restaurants/$id");
+        url: "http://prod.sogogi.shop:9000/restaurants/$id",
+        token: InMatAuth.instance.currentUser!.token);
 
     if (response['isSuccess'] == false) {
       print("음식점 불러오기 실패!");
