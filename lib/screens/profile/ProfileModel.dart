@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/inmat/auth/inmat_auth.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 
 class ProfileModel with ChangeNotifier {
   ProfileModel() {

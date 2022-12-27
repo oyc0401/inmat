@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:provider/provider.dart';
-import 'package:restaurant/widget/main/NavigatePage.dart';
 
 import '../../../main.dart';
+import '../../main/NavigatePage.dart';
 import '../sign_up/sign_up_page.dart';
 import 'email_sign_in_model.dart';
 

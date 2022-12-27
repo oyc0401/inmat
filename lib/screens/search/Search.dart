@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/rendering/box.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
-import 'package:restaurant/Widget/search/Search1.dart';
+
+import 'Search1.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);

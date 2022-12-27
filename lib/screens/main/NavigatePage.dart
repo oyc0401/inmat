@@ -1,10 +1,10 @@
-import 'dart:math';
+
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant/Widget/profile/Profile.dart';
 
 
+import '../profile/Profile.dart';
 import '../spinner/RandomFoodSelect.dart';
 import '../search/Search.dart';
 import '../community/Community.dart';

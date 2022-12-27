@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:restaurant/Widget/account/sign_in_email/sign_in_email_page.dart';
 
+import '../sign_in_email/sign_in_email_page.dart';
 import 'google_sign_in.dart';
 
 class SignInPage extends StatefulWidget {

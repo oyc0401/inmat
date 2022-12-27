@@ -3,17 +3,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant/inmat/auth/inmat_auth.dart';
-import 'package:restaurant/inmat/auth/user_model.dart';
-import 'package:restaurant/main.dart';
-import 'package:restaurant/widget/profile/ProfileModel.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
+import 'package:inmat/inmat/auth/user_model.dart';
 
+
+import '../../main.dart';
 import '../account/change_profile/change_profile.dart';
 import '../account/sign_in_choose/signin_page.dart';
-import 'MyFavorite.dart';
-import 'MyReview.dart';
-import 'MyPost.dart';
-import 'Notice.dart';
+
+import 'ProfileModel.dart';
 //화면 이동
 
 class ProfilePage extends StatefulWidget {
@@ -26,15 +24,13 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    User? user = InMatAuth.instance.currentUser;
-
     return ChangeNotifierProvider(
       create: (context) => ProfileModel(),
       child: Consumer(builder: (context, value, child) {
         return Scaffold(
           appBar: AppBar(
             title: const Text("마이페이지"),
-            // actions: <Widget>[
+            // actions: <screens>[
             //   IconButton(
             //     icon: const Icon(Icons.settings),
             //     onPressed: () {},

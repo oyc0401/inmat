@@ -1,5 +1,5 @@
-import 'package:restaurant/inmat/database/token_database.dart';
 
+import '../database/token_database.dart';
 import '../inmat_api/inmat_http.dart';
 import '../inmat_api/account/get_profile.dart';
 

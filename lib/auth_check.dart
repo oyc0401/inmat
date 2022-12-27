@@ -3,17 +3,18 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant/inmat/auth/Inmat_token.dart';
+import 'package:inmat/inmat/auth/Inmat_token.dart';
 
-import 'package:restaurant/inmat/auth/inmat_auth.dart';
-import 'package:restaurant/inmat/auth/user_model.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
+import 'package:inmat/inmat/auth/user_model.dart';
 
 //
 import 'package:ios_utsname_ext/extension.dart';
-import 'package:restaurant/widget/account/change_profile/change_profile.dart';
 
-import 'Widget/account/sign_in_choose/signin_page.dart';
-import 'widget/main/NavigatePage.dart';
+import 'screens/account/sign_in_choose/signin_page.dart';
+import 'screens/main/NavigatePage.dart';
+
+
 
 class AuthCheck extends StatefulWidget {
   const AuthCheck({Key? key}) : super(key: key);

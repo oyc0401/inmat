@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 
-
+    <!-- 소셜 로그인 부분 -->
     <key>CFBundleURLTypes</key>
     <array>
     	<dict>
@@ -18,7 +18,14 @@
     	</dict>
     </array>
 
+     <!-- 위치 정보 부분 -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>지도 마커를 위해 위치정보를 얻습니다.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>This app needs access to location when in the background.</string>
 
+
+    <!-- 원래 ios 설정 -->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -62,7 +69,8 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>지도 마커를 위해 위치정보를 얻습니다.</string>
+
+
+
 </dict>
 </plist>

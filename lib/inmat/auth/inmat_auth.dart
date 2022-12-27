@@ -1,10 +1,9 @@
 
-import 'package:restaurant/inmat/auth/Inmat_token.dart';
-
 import '../inmat_api/account/sign_in.dart';
 import '../inmat_api/account/update_profile.dart';
 
 
+import 'Inmat_token.dart';
 import 'user_model.dart';
 
 class InMatAuth {

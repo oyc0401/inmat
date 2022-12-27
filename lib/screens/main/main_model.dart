@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:restaurant/inmat/auth/inmat_auth.dart';
-import 'package:restaurant/inmat/inmat_api/restaurant/get_home.dart';
+import 'package:inmat/inmat/inmat_api/restaurant/get_home.dart';
 
 class HomeModel extends ChangeNotifier {
   HomeModel() {

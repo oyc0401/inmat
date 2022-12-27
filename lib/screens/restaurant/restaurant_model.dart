@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/inmat/inmat_api/restaurant/get_restaurant.dart';
+import 'package:inmat/inmat/inmat_api/restaurant/get_restaurant.dart';
 
 class RestaurantModel with ChangeNotifier {
   RestaurantModel(this.id) {

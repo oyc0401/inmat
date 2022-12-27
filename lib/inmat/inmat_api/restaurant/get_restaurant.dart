@@ -1,5 +1,5 @@
-import 'package:restaurant/inmat/auth/inmat_auth.dart';
 
+import '../../auth/inmat_auth.dart';
 import '../inmat_http.dart';
 
 class InMatGetRestaurant extends InMatHttp {

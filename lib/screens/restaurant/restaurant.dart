@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant/inmat/inmat_api/restaurant/get_restaurant.dart';
 
 import 'restaurant_model.dart';
 

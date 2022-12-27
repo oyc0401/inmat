@@ -114,7 +114,7 @@ class SignUpPage extends StatelessWidget {
 //   }) : super(key: key);
 //
 //   @override
-//   Widget build(BuildContext context) {
+//   screens build(BuildContext context) {
 //     return
 //   }
 // }

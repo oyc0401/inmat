@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../main/main_model.dart';
 import 'banner.dart';
 import 'recent_review.dart';
 import 'restaurant_list.dart';

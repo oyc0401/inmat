@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:restaurant/auth_check.dart';
-import 'package:restaurant/inmat/auth/Inmat_token.dart';
-import 'package:restaurant/inmat/auth/inmat_auth.dart';
+import 'package:inmat/auth_check.dart';
+
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 
 void main() async {
   //////
