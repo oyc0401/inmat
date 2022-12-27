@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:inmat/inmat/auth/inmat_account.dart';
 import 'package:inmat/inmat/inmat_api/inmat_http.dart';
+import 'package:inmat/utils/toast.dart';
 
-void showMessage(String text) {
-  Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      textColor: Colors.white,
-      fontSize: 16.0);
-}
+
 
 class SignUpObject with ChangeNotifier {
   String _username = "";
@@ -157,24 +149,24 @@ class SignUpModel extends SignUpObject {
 
   checkID() async {
     if(!validNickName){
-      showMessage("잘못된 아이디 형식 입니다. 영문 or 숫자 3 ~ 10 자");
+      Message.showMessage("잘못된 아이디 형식 입니다. 영문 or 숫자 3 ~ 10 자");
     }
     try {
       _canID = await InMatAccount.checkId(id: username);
     } catch (e) {
-      showMessage("$e");
+      Message.showMessage("$e");
     }
     notifyListeners();
   }
 
   checkNickName() async {
     if(!validNickName){
-      showMessage("잘못된 닉네임 형식 입니다. 한글 2자 ~ 8자");
+      Message. showMessage("잘못된 닉네임 형식 입니다. 한글 2자 ~ 8자");
     }
     try {
       _canNickName = await InMatAccount.checkNickName(nickName: nickName);
     } catch (e) {
-      showMessage("$e");
+      Message.showMessage("$e");
     }
     notifyListeners();
   }
@@ -201,19 +193,19 @@ class SignUpModel extends SignUpObject {
             nickName: nickName,
             phoneNumber: "$phoneNumber1-$phoneNumber2-$phoneNumber3"),
       );
-      showMessage('회원가입 성공');
+      Message.showMessage('회원가입 성공');
     } on OverlappingAccount {
       // 아이디 중복 메세지 띄우기
-      showMessage('아이디 중복');
+      Message.showMessage('아이디 중복');
       _canID=false;
     } on OverlappingNickName {
       // 닉네임 중복 메세지 띄우기
       _canNickName=false;
-      showMessage('닉네임 중복');
+      Message.showMessage('닉네임 중복');
     } catch (e) {
       // 오류 메세지 띄우기
       print(e);
-      showMessage('$e');
+      Message.showMessage('$e');
     }finally{
       notifyListeners();
     }

@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_http.dart';
-
-void showMessage(String text) {
-  Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      textColor: Colors.white,
-      fontSize: 16.0);
-}
+import 'package:inmat/utils/toast.dart';
 
 
 class EmailSignInModel with ChangeNotifier {
@@ -39,14 +30,14 @@ class EmailSignInModel with ChangeNotifier {
 
     try {
       await InMatAuth.instance.signInEmail(username, password);
-      showMessage('로그인 성공: $username, $password');
+      Message.showMessage('로그인 성공: $username, $password');
     } on SignInFailed {
       // 로그인 실패 메세지 띄우기
-      showMessage('없는 아이디이거나 비밀번호가 틀렸습니다.\n$username, $password');
+      Message.showMessage('없는 아이디이거나 비밀번호가 틀렸습니다.\n$username, $password');
     } catch (e) {
       // 오류 메세지 띄우기
       print(e);
-      showMessage('$e');
+      Message.showMessage('$e');
     }
   }
 }

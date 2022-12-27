@@ -1,13 +1,10 @@
-// import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/auth/user_model.dart';
 
-
-import '../../main.dart';
 import '../account/change_profile/change_profile.dart';
 import '../account/sign_in_choose/signin_page.dart';
 
@@ -53,7 +50,9 @@ class _ProfilePageState extends State<ProfilePage> {
               Provider.of<ProfileModel>(context).isUser
                   ? LogOutButton()
                   : Container(),
-              SizedBox(height: 30,),
+              SizedBox(
+                height: 30,
+              ),
             ],
           ),
         );
@@ -118,7 +117,7 @@ class MyInformation extends StatelessWidget {
             color: Colors.blue,
           ),
           onTap: () {
-            Useful.showMessage('개발 중 입니다.');
+            Message.showMessage('개발 중 입니다.');
             // Navigator.push(context,
             //     CupertinoPageRoute(builder: (_) => const MyFavorite()));
           },
@@ -130,7 +129,7 @@ class MyInformation extends StatelessWidget {
             color: Colors.blue,
           ),
           onTap: () {
-            Useful.showMessage('개발 중 입니다.');
+            Message.showMessage('개발 중 입니다.');
             // Navigator.push(
             //     context, CupertinoPageRoute(builder: (_) => const MyReview()));
           },
@@ -142,7 +141,7 @@ class MyInformation extends StatelessWidget {
             color: Colors.blue,
           ),
           onTap: () {
-            Useful.showMessage('개발 중 입니다.');
+            Message.showMessage('개발 중 입니다.');
             // Navigator.push(
             //     context, CupertinoPageRoute(builder: (_) => const MyPost()));
           },
@@ -154,7 +153,7 @@ class MyInformation extends StatelessWidget {
             color: Colors.blue,
           ),
           onTap: () {
-            Useful.showMessage('개발 중 입니다.');
+            Message.showMessage('개발 중 입니다.');
             // Navigator.push(
             //     context, CupertinoPageRoute(builder: (_) => const Notice()));
           },
@@ -184,9 +183,9 @@ class LoginButton extends StatelessWidget {
             height: 48,
             child: const Center(
                 child: Text(
-                  '로그인',
-                  style: TextStyle(fontSize: 18),
-                )),
+              '로그인',
+              style: TextStyle(fontSize: 18),
+            )),
           ),
         ));
   }

@@ -1,29 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:provider/provider.dart';
 
 import 'sign_up_model.dart';
-
-void showMessage(String text) {
-  Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      textColor: Colors.white,
-      fontSize: 16.0);
-}
 
 class SignUpTestPage extends StatelessWidget {
   const SignUpTestPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: ProfileFormBox(),),);
+    return Scaffold(
+      body: Center(
+        child: ProfileFormBox(),
+      ),
+    );
   }
 }
-
 
 class ProfileFormBox extends StatelessWidget {
   const ProfileFormBox({Key? key}) : super(key: key);
@@ -47,8 +40,8 @@ class ProfileFormBox extends StatelessWidget {
           ),
         ),
         InkWell(
-          onTap: (){
-            Provider.of<SignUpModel>(context,listen: false).checkNickName();
+          onTap: () {
+            Provider.of<SignUpModel>(context, listen: false).checkNickName();
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 6.0),
@@ -134,7 +127,7 @@ class ProfileFormBox extends StatelessWidget {
                 },
                 decoration: const InputDecoration(
                   contentPadding:
-                  EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                      EdgeInsets.symmetric(vertical: 16, horizontal: 12),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -149,7 +142,7 @@ class ProfileFormBox extends StatelessWidget {
                 },
                 decoration: const InputDecoration(
                   contentPadding:
-                  EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                      EdgeInsets.symmetric(vertical: 16, horizontal: 12),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -164,7 +157,7 @@ class ProfileFormBox extends StatelessWidget {
                 },
                 decoration: const InputDecoration(
                   contentPadding:
-                  EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                      EdgeInsets.symmetric(vertical: 16, horizontal: 12),
                   border: OutlineInputBorder(),
                 ),
               ),

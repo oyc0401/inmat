@@ -1,20 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 
 import 'sign_up_model.dart';
 import 'sign_up_profile_form.dart';
 
-void showMessage(String text) {
-  Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      textColor: Colors.white,
-      fontSize: 16.0);
-}
+
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({Key? key}) : super(key: key);
@@ -329,7 +321,7 @@ class SignUpButton extends StatelessWidget {
           if (turnOn) {
             onclick();
           } else {
-            showMessage("정보를 정확히 입력해 주세요.");
+            Message.showMessage("정보를 정확히 입력해 주세요.");
           }
         },
         borderRadius: BorderRadius.circular(15),
@@ -376,7 +368,7 @@ class GuestLoginText extends StatelessWidget {
           children: [
             InkWell(
                 onTap: () {
-                  showMessage("개발 중 입니다.");
+                  Message.showMessage("개발 중 입니다.");
                 },
                 child: const Text(
                   '비회원으로 앱을 사용',

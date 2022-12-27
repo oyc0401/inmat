@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:inmat/utils/toast.dart';
 
 import '../sign_in_email/sign_in_email_page.dart';
 import 'google_sign_in.dart';
@@ -13,16 +13,6 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  void showMessage() {
-    Fluttertoast.showToast(
-        msg: "개발 중 입니다.",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        textColor: Colors.white,
-        fontSize: 16.0);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,25 +31,23 @@ class _SignInPageState extends State<SignInPage> {
           },
         ),
       ),
-
       body: Column(children: [
         Expanded(
           child: InMatLoginLogo(
             onclick: () {
-              showMessage();
+              Message.showMessage("개발 중 입니다.");
             },
             onclickLocation: () {
-              showMessage();
+              Message.showMessage("개발 중 입니다.");
             },
           ),
         ),
-
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
           child: SocialLoginButton(
             text: '카카오로 계속하기',
             onclick: () {
-              showMessage();
+              Message.showMessage("개발 중 입니다.");
             },
             color: const Color(0xffFFE26A),
             textColor: const Color(0xff2E2E2E),
@@ -70,7 +58,7 @@ class _SignInPageState extends State<SignInPage> {
           child: SocialLoginButton(
             text: 'Apple로 계속하기',
             onclick: () {
-              showMessage();
+              Message.showMessage("개발 중 입니다.");
             },
             color: const Color(0xff343434),
           ),
@@ -80,8 +68,7 @@ class _SignInPageState extends State<SignInPage> {
           child: SocialLoginButton(
             text: 'Google로 계속하기',
             onclick: () {
-
-              GoogleLogin google=GoogleLogin();
+              GoogleLogin google = GoogleLogin();
               google.login();
               // showMessage();
             },
@@ -96,13 +83,12 @@ class _SignInPageState extends State<SignInPage> {
             context,
             CupertinoPageRoute(builder: (context) => const EmailSignInPage()),
           );
-
         }),
         const SizedBox(
           height: 50,
         ),
         GuestButton(onclick: () {
-          showMessage();
+          Message.showMessage("개발 중 입니다.");
         }),
         const SizedBox(
           height: 37,

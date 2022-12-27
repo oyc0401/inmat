@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/toast.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../../main.dart';
+
 import '../../main/NavigatePage.dart';
 import '../sign_up/sign_up_page.dart';
 import 'email_sign_in_model.dart';
@@ -105,7 +106,7 @@ class LoginBox extends StatelessWidget {
             padding: const EdgeInsets.all(14.0),
             child: ForgotButton(
               onclick: () {
-                Useful.showMessage('개발 중 입니다.');
+                Message.showMessage('개발 중 입니다.');
               },
               text: "Forgot your ID?",
             ),
@@ -118,7 +119,7 @@ class LoginBox extends StatelessWidget {
             padding: const EdgeInsets.all(14.0),
             child: ForgotButton(
               onclick: () {
-                Useful.showMessage('개발 중 입니다.');
+                Message.showMessage('개발 중 입니다.');
               },
               text: "Forgot password?",
             ),

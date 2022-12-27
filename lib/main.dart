@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:inmat/auth_check.dart';
 
 import 'package:inmat/inmat/auth/inmat_auth.dart';
@@ -10,7 +9,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await InMatAuth.initialize();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,21 +23,10 @@ class MyApp extends StatelessWidget {
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
         child: child!,
       ),
-      theme: ThemeData(fontFamily: 'Binggrae2',),
-      home: AuthCheck(),
+      theme: ThemeData(
+        fontFamily: 'Binggrae2',
+      ),
+      home: const AuthCheck(),
     );
-  }
-}
-
-
-class Useful{
-  static void showMessage(String text) {
-    Fluttertoast.showToast(
-        msg: text,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        textColor: Colors.white,
-        fontSize: 16.0);
   }
 }
