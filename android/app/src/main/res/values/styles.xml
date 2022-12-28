@@ -15,4 +15,12 @@
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
+    
+    <style name="MyCustomTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#32a852</item>
+        <item name="colorPrimaryDark">#23783a</item>
+        <item name="colorAccent">#0c1fcc</item>
+        <item name="android:windowBackground">@drawable/launch_background</item
+            >
+    </style>
 </resources>
