@@ -35,10 +35,23 @@ class _HomeState extends State<Home> {
               child: Text("이동"),
               onPressed: () {
                 Navigator.push(context,
-                    CupertinoPageRoute(builder: (context) => NaverMapPage()));
+                    CupertinoPageRoute(builder: (context) =>
+                        NaverMapPage(
+                          latitude: 37.45132, longitude: 126.65667,)));
               }),
+
+          //longitude = 126.65667;
+          // latitude = 37.45132;
         ],
       ),
     );
   }
 }
+
+
+Map restaurantPosition = {
+  '투썸플레이스': {
+    'latitude': 37.45132,
+    'longitude': 126.65667,
+  }
+};

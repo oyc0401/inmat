@@ -2,45 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-
-    <!-- 소셜 로그인 부분 -->
-    <key>CFBundleURLTypes</key>
-    <array>
-    	<dict>
-    		<key>CFBundleTypeRole</key>
-    		<string>Editor</string>
-    		<key>CFBundleURLSchemes</key>
-    		<array>
-    			<!-- TODO Replace this value: -->
-    			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
-    			<string>com.googleusercontent.apps.306502001116-o0l9lmaj499hheforetceopntor92dne</string>
-    		</array>
-    	</dict>
-    </array>
-
-     <!-- 위치 정보 부분 -->
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>지도 마커를 위해 위치정보를 얻습니다.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>This app needs access to location when in the background.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Always and When In Use Usage</string>
-
-    <!-- 네이버 맵 -->
-    <key>NMFClientId</key>
-    <string>ydk44hjjcw</string>
-    <key>io.flutter.embedded_views_preview</key>
-    <true/>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
-
-
-
-    <!-- 원래 ios 설정 -->
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Restaurant</string>
+	<string>인맛</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -55,9 +22,32 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.306502001116-o0l9lmaj499hheforetceopntor92dne</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NMFClientId</key>
+	<string>ydk44hjjcw</string>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Always and When In Use Usage</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to location when in the background.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>지도 마커를 위해 위치정보를 얻습니다.</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -78,10 +68,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<key>io.flutter.embedded_views_preview</key>
 	<true/>
-
-
-
 </dict>
 </plist>
