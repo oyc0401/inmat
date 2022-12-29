@@ -1,31 +1,64 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:naver_map_plugin/naver_map_plugin.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class NaverMapPage extends StatefulWidget {
+  const NaverMapPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<NaverMapPage> createState() => _NaverMapPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NaverMapPageState extends State<NaverMapPage> {
+  Completer<NaverMapController> _controller = Completer();
+  MapType _mapType = MapType.Basic;
+
   @override
   Widget build(BuildContext context) {
-    // This is used in the platform side to register the view.
-    const String viewType = '<platform-view-type>';
-    // Pass parameters to the platform side.
-    const Map<String, dynamic> creationParams = <String, dynamic>{};
+    double longitude = 126.65667;
+    double latitude = 37.45132;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("네이버 맵"),
-      ),
-      body: Column(children: [
+      appBar: AppBar(title: const Text('NaverMap Test')),
+      body: Column(
+        children: [
+          // Container(
+          //   height: 400,
+          //   color: Colors.blueGrey,
+          // ),
+          Container(
+            height: 300,
+            child: NaverMap(
+              initialCameraPosition:
+                  CameraPosition(target: LatLng(latitude, longitude), zoom: 17),
+              // scrollGestureEnable:false,
+              // rotationGestureEnable:false,
+              //zoomGestureEnable:false,
+              onMapCreated: onMapCreated,
+              markers: [
+                Marker(markerId: '가게1', position: LatLng(latitude, longitude),width: 30,height: 40),
 
-      ],),
+              ],
+              minZoom: 13,
+              mapType: _mapType,
+            ),
+          ),
+          // Container(
+          //   height: 400,
+          //   color: Colors.blueGrey,
+          // ),
+        ],
+      ),
     );
+  }
+
+  void onMapCreated(NaverMapController controller) {
+    if (_controller.isCompleted) _controller = Completer();
+    _controller.complete(controller);
   }
 }
