@@ -53,6 +53,9 @@ dependencies:
   change_app_package_name: ^1.1.0
   google_sign_in: ^5.4.2
 
+  naver_map_plugin:
+    git: https://github.com/LBSTECH/naver_map_plugin.git
+
 
 
 

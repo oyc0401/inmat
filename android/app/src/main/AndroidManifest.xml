@@ -3,6 +3,8 @@
     <!-- 위치 정보 엑세스 권한 요청 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
    <application
         android:label="restaurant"
         android:name="${applicationName}"
@@ -11,6 +13,11 @@
        <!-- TODO: Add your API key here -->
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyCEbUgXXBs8X1zjUVLlzufNu2eU2KqJbbY"/> <!--// android API Key-->
+
+       <!-- 네이버 맵 id -->
+       <meta-data
+           android:name="com.naver.maps.map.CLIENT_ID"
+           android:value="YOUR_CLIENT_ID_HERE" />
 
        <activity
            android:theme="@style/MyCustomTheme"
