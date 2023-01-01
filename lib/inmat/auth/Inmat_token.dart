@@ -1,13 +1,28 @@
-
 import '../database/token_database.dart';
 import '../inmat_api/inmat_http.dart';
 import '../inmat_api/account/get_profile.dart';
 
+/// 토큰은 저장소에서 꺼내진다.
+/// 로그인을 하면 토큰에 값이 추가된다.
+/// 로그아웃, 회원탈퇴를 하면 토큰이 사라진다.
+/// 액세스토큰이 만료되면 서버에 리프레시토큰과 액세스토큰을 보내 액세스토큰을 재발급 받는다.
+///
+class Token {
+  Map<String, dynamic> _token = {};
 
-class InMatToken {
-  final Map<String, dynamic> _token = {};
+  void set(Map<String, dynamic> token) => _token = token;
 
-  Map<String, dynamic> get token => _token;
+  Map<String, dynamic> get() => _token;
+
+  void clear() => _token.clear();
+
+  bool get isEmpty => _token.isEmpty;
+}
+
+class TokenController {
+  final Token _token = Token();
+
+  Map<String, dynamic> get token => _token.get();
 
   final TokenDataBase _tokenDataBase = TokenDataBase();
 
@@ -17,7 +32,7 @@ class InMatToken {
   }
 
   Future<void> saveToken(Map<String, dynamic> token) async {
-    _token.addAll(token);
+    _token.set(token);
     _tokenDataBase.save(token);
   }
 
@@ -35,7 +50,7 @@ enum AuthStatus {
   reSignIn,
 }
 
-class InMatProfile extends InMatToken {
+class InMatProfile extends TokenController {
   final Map<String, dynamic> _profile = {};
 
   Map<String, dynamic> get profile => _profile;
@@ -92,5 +107,3 @@ class InMatProfile extends InMatToken {
     saveUser(profile);
   }
 }
-
-

@@ -33,3 +33,19 @@ class User {
     return "age: $age, email: $email, gender: $gender, nickName: $nickName, profileImgUrl: $profileImgUrl, token: $token";
   }
 }
+
+
+
+class UUU{
+
+
+
+  int _age;
+  String _email;
+
+  UUU(this._age, this._email);
+
+  String get email => _email;
+
+  int get age => _age;
+}

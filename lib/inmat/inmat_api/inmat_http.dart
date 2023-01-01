@@ -10,7 +10,6 @@ class InMatHttp {
         'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsI'
             'mV4cCI6MTY3MTkwNjY3N30.7XA_GACOS7qyWWWV-KACZFmzc8l4On_viA9fQRLOWejB_XPjynZjDmebVfiM09TmYigACI7S1JiD-BV5E4Jnfw';
 
-    // token=InMatAuth.instance.currentUser!.token;
     Uri uri = Uri.parse(url);
 
     final Response response = await http.get(
@@ -34,7 +33,7 @@ class InMatHttp {
 
     Uri uri = Uri.parse(url);
 
-    var bodyJson = json.encode(body);
+    String bodyJson = json.encode(body);
     final Response response = await http.post(
       uri,
       headers: {
@@ -53,6 +52,7 @@ class InMatHttp {
     Uri uri = Uri.parse(url);
 
     var bodyJson = json.encode(body);
+
     final Response response = await http.patch(
       uri,
       headers: {
