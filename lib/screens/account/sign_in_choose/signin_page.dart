@@ -32,16 +32,16 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
       body: Column(children: [
-        Expanded(
-          child: InMatLoginLogo(
-            onclick: () {
-              Message.showMessage("개발 중 입니다.");
-            },
-            onclickLocation: () {
-              Message.showMessage("개발 중 입니다.");
-            },
-          ),
+        Flexible(child: Container(),flex: 2,),
+        InMatLoginLogo(
+          onclick: () {
+            Message.showMessage("개발 중 입니다.");
+          },
+          onclickLocation: () {
+            Message.showMessage("개발 중 입니다.");
+          },
         ),
+        Flexible(child: Container(),flex: 3,),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
           child: SocialLoginButton(
@@ -54,7 +54,7 @@ class _SignInPageState extends State<SignInPage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
+          padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 45),
           child: SocialLoginButton(
             text: 'Apple로 계속하기',
             onclick: () {
@@ -64,7 +64,7 @@ class _SignInPageState extends State<SignInPage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 45),
+          padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 45),
           child: SocialLoginButton(
             text: 'Google로 계속하기',
             onclick: () {
@@ -76,7 +76,7 @@ class _SignInPageState extends State<SignInPage> {
           ),
         ),
         const SizedBox(
-          height: 13,
+          height: 6,
         ),
         EmailLoginButton(onclick: () {
           Navigator.push(
@@ -85,13 +85,13 @@ class _SignInPageState extends State<SignInPage> {
           );
         }),
         const SizedBox(
-          height: 50,
+          height: 36,
         ),
         GuestButton(onclick: () {
           Message.showMessage("개발 중 입니다.");
         }),
         const SizedBox(
-          height: 37,
+          height: 34,
         ),
       ]),
     );
@@ -114,49 +114,50 @@ class InMatLoginLogo extends StatelessWidget {
         const Text(
           '인맛',
           style: TextStyle(
-            fontSize: 53,
+            fontSize: 42,
             fontWeight: FontWeight.w700,
           ),
         ),
         const SizedBox(height: 4),
         const Text(
           '인하대 맛집 탐색 어플',
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 15),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: InkWell(
-            onTap: onclick,
-            borderRadius: BorderRadius.circular(100),
-            child: Container(
-              height: 45,
-              width: 160,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(color: Colors.black),
-              ),
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: Container(),
-                    ),
-                    const Text(
-                      '인맛을 소개합니다',
-                      style: TextStyle(fontSize: 13),
-                    ),
-                    const Flexible(
-                      flex: 3,
-                      child: Icon(Icons.navigate_next),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(vertical: 16),
+        //   child: InkWell(
+        //     onTap: onclick,
+        //     borderRadius: BorderRadius.circular(100),
+        //     child: Container(
+        //       height: 45,
+        //       width: 160,
+        //       decoration: BoxDecoration(
+        //         borderRadius: BorderRadius.circular(100),
+        //         border: Border.all(color: Colors.black),
+        //       ),
+        //       child: Center(
+        //         child: Row(
+        //           mainAxisAlignment: MainAxisAlignment.center,
+        //           children: [
+        //             Flexible(
+        //               flex: 1,
+        //               child: Container(),
+        //             ),
+        //             const Text(
+        //               '인맛을 소개합니다',
+        //               style: TextStyle(fontSize: 13),
+        //             ),
+        //             const Flexible(
+        //               flex: 3,
+        //               child: Icon(Icons.navigate_next),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        SizedBox(height: 20,),
         Ink(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -173,9 +174,9 @@ class InMatLoginLogo extends StatelessWidget {
             onTap: onclickLocation,
             borderRadius: BorderRadius.circular(100),
             child: const SizedBox(
-              width: 56,
-              height: 56,
-              child: Icon(Icons.pin_drop, size: 34),
+              width: 34,
+              height: 34,
+              child: Icon(Icons.pin_drop, size: 18),
             ),
           ),
         ),
@@ -209,13 +210,13 @@ class SocialLoginButton extends StatelessWidget {
         onTap: onclick,
         borderRadius: BorderRadius.circular(15),
         child: SizedBox(
-          height: 52,
+          height: 39,
           child: Center(
             child: Text(
               text,
               style: TextStyle(
                 color: textColor,
-                fontSize: 21,
+                fontSize: 16,
               ),
             ),
           ),
@@ -238,7 +239,7 @@ class EmailLoginButton extends StatelessWidget {
       onTap: onclick,
       child: const Text(
         '이메일로 로그인/회원가입 >',
-        style: TextStyle(fontSize: 18, color: Color(0xff000000)),
+        style: TextStyle(fontSize: 15, color: Color(0xff000000)),
       ),
     );
   }
@@ -258,7 +259,7 @@ class GuestButton extends StatelessWidget {
       child: const Text(
         '회원가입 없이 둘러보기',
         style: TextStyle(
-            fontSize: 15,
+            fontSize: 13,
             decoration: TextDecoration.underline,
             color: Color(0xff343434)),
       ),
