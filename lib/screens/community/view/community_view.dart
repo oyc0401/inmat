@@ -1,44 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/community/get_community_once.dart';
+import 'package:provider/provider.dart';
 
-class CommunityView extends StatefulWidget {
+import 'community_view_model.dart';
+
+class CommunityView extends StatelessWidget {
   const CommunityView({Key? key, required this.id}) : super(key: key);
 
   final int id;
 
   @override
-  State<CommunityView> createState() => _CommunityViewState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => CommunityViewModel(id),
+      child: Scaffold(
+        appBar: AppBar(title: Text('Post id : $id')),
+        body: ListView(children: [
+          Container(
+            child: View(),
+          ),
+        ]),
+      ),
+    );
+  }
 }
 
-class _CommunityViewState extends State<CommunityView> {
-  Map data = {};
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    init();
-  }
-
-  init() async {
-    InMatGetCommunityOnce inMatGetCommunityOnce = InMatGetCommunityOnce();
-    Map map = await inMatGetCommunityOnce.getPost(widget.id);
-    print(map);
-    data = map;
-    setState(() {
-
-    });
-  }
+class View extends StatelessWidget {
+  const View({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(' Post id : ${widget.id}')),
-      body: ListView(children: [
-        Container(
-          child: Text("$data"),
-        ),
-      ]),
-    );
+    return Text("${Provider.of<CommunityViewModel>(context).data}");
   }
 }
