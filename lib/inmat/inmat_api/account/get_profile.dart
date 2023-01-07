@@ -24,3 +24,8 @@ class InMatGetProfile extends InMatHttp {
     return response["result"];
   }
 }
+
+// void main()async{
+//   InMatHttp inMatProfile = InMatGetProfile();
+//   var result= await inMatProfile.getProfile(token: "sassadsads");
+// }

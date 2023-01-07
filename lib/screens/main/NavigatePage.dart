@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
+import '../community/commu.dart';
 import '../profile/Profile.dart';
 import '../spinner/RandomFoodSelect.dart';
 import '../search/Search.dart';
