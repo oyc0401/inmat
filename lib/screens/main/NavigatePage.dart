@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
-import '../community/community_page.dart';
+import '../community/list/community_model.dart';
+import '../community/list/community_page.dart';
 import '../profile/Profile.dart';
 import '../spinner/RandomFoodSelect.dart';
 import '../search/Search.dart';
@@ -29,6 +30,9 @@ class _NavigatePageState extends State<NavigatePage> {
       providers: [
         ChangeNotifierProvider(
             create: (BuildContext context) => HomeModel()),
+        ChangeNotifierProvider(
+            create: (BuildContext context) => CommunityModel()),
+
       ],
       child: Scaffold(
         bottomNavigationBar: bottomNav(),

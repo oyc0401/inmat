@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'read_page.dart';
+// import 'community_view.dart';
 //
 // class Community extends StatefulWidget {
 //   const Community({Key? key}) : super(key: key);

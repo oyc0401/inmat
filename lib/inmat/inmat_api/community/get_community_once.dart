@@ -1,18 +1,16 @@
-
 import '../../auth/inmat_auth.dart';
 import '../inmat_http.dart';
 
-class InMatGetCommunity extends InMatHttp {
-
-  Future<List<Map>> getHome() async {
-    print("커뮤니티 불러오는 중...");
+class InMatGetCommunityOnce extends InMatHttp {
+  Future<Map<String, dynamic>> getPost(int id) async {
+    print("게시물 불러오는 중...");
 
     Map response = await publicGet(
-        url: "http://prod.sogogi.shop:9000/communities/",
-        token:InMatAuth.instance.currentUser!.token);
+        url: "http://prod.sogogi.shop:9000/communities/$id",
+        token: InMatAuth.instance.currentUser!.token);
 
     if (response['isSuccess'] == false) {
-      print("커뮤니티 불러오기 실패!");
+      print("게시물 불러오기 실패!");
 
       if (response['code'] == 401) {
         throw ExpirationAccessToken();
@@ -24,7 +22,7 @@ class InMatGetCommunity extends InMatHttp {
           'Failed to load home page: ${response['code']}, ${response['message']}');
     }
 
-    print("커뮤니티 불러오기 성공!");
-    return response["result"]?.cast<Map>();
+    print("게시물 불러오기 성공!");
+    return response["result"];
   }
 }
