@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
-import '../community/commu.dart';
+import '../community/community_page.dart';
 import '../profile/Profile.dart';
 import '../spinner/RandomFoodSelect.dart';
 import '../search/Search.dart';
-import '../community/Community.dart';
+import '../community/cooo.dart';
 import '../home/home.dart';
 
 import 'main_model.dart';
