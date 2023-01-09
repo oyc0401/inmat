@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/widgets/shelf.dart';
 
+/// 커뮤니티 화면 메인에 나오는 게시물 위젯
 class PostCard extends StatelessWidget {
+  /// 에브리타임 자유게시판 ui를 가지고있다.
   const PostCard({
     Key? key,
     required this.onclick,
@@ -23,32 +26,24 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Shelf(
+      onclick: onclick,
+      border:  const Border(
+        bottom: BorderSide(
+          width: 0.5,
+          color: Color(0xffa1a1a1),
+        ),
+      ),
+      space: 2,
       children: [
-        InkWell(
-          onTap: onclick,
-          child: Ink(
-            color: Colors.white,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                titleSection(),
-                contextSection(),
-                likeSection(),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          height: 0.5,
-          color: Colors.grey,
-        ),
+        titleSection(),
+        contextSection(),
+       likeSection(),
       ],
     );
   }
 
-  Text titleSection() {
+  Widget titleSection() {
     return Text(
       title,
       overflow: TextOverflow.ellipsis,
@@ -57,7 +52,7 @@ class PostCard extends StatelessWidget {
     );
   }
 
-  Text contextSection() {
+  Widget contextSection() {
     return Text(
       text,
       maxLines: 5,

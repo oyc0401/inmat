@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/community/get_community.dart';
-import 'package:inmat/screens/community/list/community_model.dart';
+import 'package:inmat/screens/community/main/community_model.dart';
 import 'package:provider/provider.dart';
 
 import '../view/community_view.dart';
@@ -23,29 +23,12 @@ class Community extends StatelessWidget {
   }
 
   Widget postsSection(BuildContext context) {
-    // List<Widget> posts = [];
-    //
-    // for (var data in Provider.of<CommunityModel>(context).posts) {
-    //   posts.add(
-    //     Padding(
-    //       padding: const EdgeInsets.all(8.0),
-    //       child: PostWidget(data: data),
-    //     ),
-    //   );
-    // }
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Column(
         children: [
           for (var data in Provider.of<CommunityModel>(context).posts)
             PostCard(
-              title: data.topic ?? "null",
-              text: data.topic ?? "null",
-              date: data.createdAt ?? "null",
-              name: data.nickName,
-              likeCount: data.countPostLike,
-              commentCount: data.countComment,
               onclick: () {
                 Navigator.push(
                   context,
@@ -53,6 +36,13 @@ class Community extends StatelessWidget {
                       builder: (context) => CommunityView(id: data.postId)),
                 );
               },
+              title: data.topic ?? "null",
+              text: data.topic ?? "null",
+              date: data.createdAt ?? "null",
+              name: data.nickName,
+              likeCount: data.countPostLike,
+              commentCount: data.countComment,
+
             )
         ],
       ),
