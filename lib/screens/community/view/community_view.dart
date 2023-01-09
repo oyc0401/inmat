@@ -30,6 +30,11 @@ class View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Text("${Provider.of<CommunityViewModel>(context).data}");
   }
+
+
+
 }
+

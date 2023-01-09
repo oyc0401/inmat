@@ -39,7 +39,7 @@ class _AuthCheckState extends State<AuthCheck> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(height: 40,width: 360,color: Colors.redAccent,),
+                // Container(height: 40,width: 360,color: Colors.redAccent,),
                 Row(),
                 Text("user information: ${user ?? "null"}"),
                 Text(

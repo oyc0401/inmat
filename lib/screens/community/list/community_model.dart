@@ -14,6 +14,7 @@ class CommunityModel with ChangeNotifier {
   init() async {
     InMatGetCommunity inMatGetCommunity = InMatGetCommunity();
     List<Map> maps = await inMatGetCommunity.getHome();
+    // print(maps);
     maps.forEach((map) => _posts.add(PostData(map)));
     success = true;
     notifyListeners();
@@ -37,7 +38,7 @@ class PostData {
 
   int get countComment => _post['countComment'];
 
-  String? get cratedAt => _post['created_at']; //not null
+  String? get createdAt => _post['created_at']; //not null
 
   String? get imgUrl => _post['imgUrl'];
 
