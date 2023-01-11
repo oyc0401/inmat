@@ -37,7 +37,7 @@ class _SignInMainPageState extends State<SignInMainPage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 34),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(children: [
             Flexible(
               flex: 135-(55),

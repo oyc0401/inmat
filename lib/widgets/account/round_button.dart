@@ -25,7 +25,7 @@ class SocialLoginButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         child: SizedBox(
-          height: 44,
+          height: 48,
           child: Center(
             child: Text(
               text,
