@@ -6,7 +6,7 @@ import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/auth/user_model.dart';
 
 import '../account/change_profile/change_profile.dart';
-import '../account/sign_in_choose/signin_page.dart';
+import '../account/sign_in_main//signin_page.dart';
 
 import 'ProfileModel.dart';
 //화면 이동
@@ -177,7 +177,7 @@ class LoginButton extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.push(context,
-                CupertinoPageRoute(builder: (_) => const SignInPage()));
+                CupertinoPageRoute(builder: (_) => const SignInMainPage()));
           },
           child: Container(
             height: 48,

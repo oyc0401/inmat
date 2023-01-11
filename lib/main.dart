@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       theme: ThemeData(
         fontFamily: 'Binggrae2',
+        useMaterial3: true,
       ),
       home: const AuthCheck(),
     );

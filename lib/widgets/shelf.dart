@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 class Shelf extends StatelessWidget {
   const Shelf({
     Key? key,
-    required this.onclick,
+     this.onclick,
     required this.children,
     this.padding,
     this.color,
     this.space = 3,
     this.border,
   }) : super(key: key);
-  final VoidCallback onclick;
+  final VoidCallback? onclick;
   final List<Widget> children;
   final EdgeInsetsGeometry? padding;
   final double? space;

@@ -10,13 +10,47 @@ class CommunityViewModel with ChangeNotifier {
   bool complete = false;
 
   Map data = {};
+  late PostData postData;
 
   init() async {
     InMatGetCommunityOnce inMatGetCommunityOnce = InMatGetCommunityOnce();
     Map map = await inMatGetCommunityOnce.getPost(id);
     print(map);
-    data = map;
+    postData=PostData(map);
     complete = true;
     notifyListeners();
+  }
+}
+
+class PostData {
+  PostData(this._post);
+
+  final Map _post;
+
+  String get userId => _post['userId'];
+
+  int get postId => _post['postId'];
+
+  String? get profileImgUrl => _post['profileImgUrl'];
+
+  String get nickName => _post['nickName'];
+
+  String? get topic => _post['topic']; //not null
+
+  String? get contents => _post['contents']; //not null
+
+  int get countPostLike => _post['countPostLike'];
+
+  int get countComment => _post['countComment'];
+
+  String? get createdAt => _post['created_at']; //not null
+
+  String? get imgUrl => _post['imgUrl'];
+
+  bool get myLike => _post['myLike'];
+
+  @override
+  String toString() {
+    return "postId: $postId, nickName: $nickName";
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/widgets/community/count_icon.dart';
 import 'package:inmat/widgets/shelf.dart';
 
 /// 커뮤니티 화면 메인에 나오는 게시물 위젯
-class PostCard extends StatelessWidget {
+class PostThumb extends StatelessWidget {
   /// 에브리타임 자유게시판 ui를 가지고있다.
-  const PostCard({
+  const PostThumb({
     Key? key,
     required this.onclick,
     required this.title,
@@ -28,17 +29,18 @@ class PostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shelf(
       onclick: onclick,
-      border:  const Border(
+      border: const Border(
         bottom: BorderSide(
           width: 0.5,
           color: Color(0xffa1a1a1),
         ),
       ),
+      color: Colors.white,
       space: 2,
       children: [
         titleSection(),
         contextSection(),
-       likeSection(),
+        likeSection(),
       ],
     );
   }
@@ -65,9 +67,6 @@ class PostCard extends StatelessWidget {
   }
 
   Widget likeSection() {
-    const Color commentColor = Color(0xff82b0d7);
-    const Color likeColor = Color(0xffff5454);
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -89,40 +88,12 @@ class PostCard extends StatelessWidget {
         const Spacer(),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.thumb_up_alt_outlined,
-                size: 15,
-                color: likeColor,
-              ),
-              const SizedBox(width: 2),
-              Text(
-                "$likeCount",
-                style: const TextStyle(
-                  color: likeColor,
-                  fontSize: 12,
-                ),
-              ),
-            ],
+          child: LikeIcon(
+            count: likeCount,
           ),
         ),
-        Row(
-          children: [
-            const Icon(
-              Icons.comment,
-              size: 15,
-              color: commentColor,
-            ),
-            const SizedBox(width: 2),
-            Text(
-              "$commentCount",
-              style: const TextStyle(
-                color: commentColor,
-                fontSize: 12,
-              ),
-            ),
-          ],
+        CommentIcon(
+          count: commentCount,
         ),
       ],
     );

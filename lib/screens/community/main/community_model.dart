@@ -7,22 +7,22 @@ class CommunityModel with ChangeNotifier {
   }
 
   bool success = false;
-  final List<PostData> _posts = [];
+  final List<PostThumbData> _posts = [];
 
-  List<PostData> get posts => _posts;
+  List<PostThumbData> get posts => _posts;
 
   init() async {
     InMatGetCommunity inMatGetCommunity = InMatGetCommunity();
     List<Map> maps = await inMatGetCommunity.getHome();
     // print(maps);
-    maps.forEach((map) => _posts.add(PostData(map)));
+    maps.forEach((map) => _posts.add(PostThumbData(map)));
     success = true;
     notifyListeners();
   }
 }
 
-class PostData {
-  PostData(this._post);
+class PostThumbData {
+  PostThumbData(this._post);
 
   final Map _post;
 

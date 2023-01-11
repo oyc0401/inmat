@@ -11,7 +11,7 @@ import 'package:inmat/inmat/auth/user_model.dart';
 //
 import 'package:ios_utsname_ext/extension.dart';
 
-import 'screens/account/sign_in_choose/signin_page.dart';
+import 'screens/account/sign_in_main/signin_page.dart';
 import 'screens/main/NavigatePage.dart';
 
 
@@ -79,7 +79,7 @@ class _AuthCheckState extends State<AuthCheck> {
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => const SignInPage(),
+                              builder: (context) => const SignInMainPage(),
                             ),
                           );
                           break;
@@ -110,7 +110,7 @@ class _AuthCheckState extends State<AuthCheck> {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => const SignInPage(),
+                          builder: (context) => const SignInMainPage(),
                         ),
                       );
                     },

@@ -5,7 +5,7 @@ import 'package:inmat/screens/community/main/community_model.dart';
 import 'package:provider/provider.dart';
 
 import '../view/community_view.dart';
-import 'package:inmat/widgets/community/post_card.dart';
+import 'package:inmat/widgets/community/post_thumb.dart';
 
 class Community extends StatelessWidget {
   const Community({Key? key}) : super(key: key);
@@ -15,6 +15,7 @@ class Community extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
+
         children: [
           postsSection(context),
         ],
@@ -28,7 +29,7 @@ class Community extends StatelessWidget {
       child: Column(
         children: [
           for (var data in Provider.of<CommunityModel>(context).posts)
-            PostCard(
+            PostThumb(
               onclick: () {
                 Navigator.push(
                   context,
