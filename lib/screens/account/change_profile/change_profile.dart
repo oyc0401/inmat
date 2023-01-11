@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
 import 'package:provider/provider.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_api/inmat_http.dart';
 
 import 'change_profile_model.dart';
 

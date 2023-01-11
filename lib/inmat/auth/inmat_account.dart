@@ -1,6 +1,4 @@
-import '../inmat_api/account/check_id.dart';
-import '../inmat_api/account/check_nickname.dart';
-import '../inmat_api/account/register.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 class InMatAccount {
   static registerEmail({
@@ -8,16 +6,17 @@ class InMatAccount {
     required String password,
     required Profile profile,
   }) async {
-    InMatRegister register = InMatRegister();
-    await register.registerEmail(user: {
-      "username": id,
-      "password": password,
-      "email": profile.email,
-      "age": profile.age,
-      "gender": profile.gender,
-      "nickName": profile.nickName,
-      "phoneNumber": profile.phoneNumber,
-    });
+    await InMatApi.account.registerEmail(
+      user: {
+        "username": id,
+        "password": password,
+        "email": profile.email,
+        "age": profile.age,
+        "gender": profile.gender,
+        "nickName": profile.nickName,
+        "phoneNumber": profile.phoneNumber,
+      },
+    );
 
     // 회원가입을 한다.
     // 로그인을 한다.
@@ -27,15 +26,13 @@ class InMatAccount {
   static Future<bool> checkNickName({
     required String nickName,
   }) async {
-    InMatCheckNickName inMatNickName = InMatCheckNickName();
-    return await inMatNickName.check(nickName: nickName);
+    return await InMatApi.account.checkNickName(nickName: nickName);
   }
 
   static Future<bool> checkId({
     required String id,
   }) async {
-    InMatCheckId inMatCheckId = InMatCheckId();
-    return await inMatCheckId.check(username: id);
+    return await InMatApi.account.checkId(id: id);
   }
 }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:inmat/inmat/inmat_api/restaurant/get_home.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 class HomeModel extends ChangeNotifier {
   HomeModel() {
@@ -16,9 +16,9 @@ class HomeModel extends ChangeNotifier {
   List restaurants = [];
 
   init() async {
-    InMatGetHome restaurant = InMatGetHome();
+
     try{
-      Map<String, dynamic> map = await restaurant.getHome();
+      Map<String, dynamic> map =await InMatApi.restaurant.getHome();
       // print(map);
       json = map;
       complete = true;

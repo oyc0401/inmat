@@ -29,13 +29,13 @@
 // }
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:inmat/inmat/inmat_api/inmat_http.dart';
+import 'package:inmat/inmat/inmat_api/http_module.dart';
 
 void main() {
 
 
   test("http", () {
-    InMatHttp inMatHttp = InMatHttp();
+    HttpModule inMatHttp = HttpModule();
     // inMatHttp.
 
 

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/inmat/inmat_api/community/get_community.dart';
 import 'package:inmat/screens/community/main/community_model.dart';
 import 'package:provider/provider.dart';
 

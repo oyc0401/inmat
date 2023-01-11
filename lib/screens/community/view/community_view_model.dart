@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:inmat/inmat/inmat_api/community/get_community_once.dart';
-import 'package:inmat/inmat/inmat_api/community/write_comment.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
 
 class CommunityViewModel with ChangeNotifier {
   CommunityViewModel(this.id) {
@@ -13,22 +13,29 @@ class CommunityViewModel with ChangeNotifier {
   Map data = {};
   late PostData postData;
 
-  List comments=[];
+  List comments = [];
 
   /// 댓글 적기
-  String writtenComment="";
-  void writeComment(){
-    InMatWriteComment inMatWriteComment=InMatWriteComment();
-    inMatWriteComment.sendComment(id, writtenComment);
+  String writtenComment = "";
 
+  void writeComment() {
+    InMatApi.community.writeComment(id, writtenComment);
   }
+
   init() async {
-    InMatGetCommunityOnce inMatGetCommunityOnce = InMatGetCommunityOnce();
-    Map map = await inMatGetCommunityOnce.getPost(id);
-    print(map);
-    postData=PostData(map);
-    complete = true;
-    notifyListeners();
+    try{
+      Map map = await InMatApi.community.getPost(id);
+      print(map);
+      postData = PostData(map);
+      complete = true;
+      notifyListeners();
+    }on DataBaseFailed{
+      print("없는 게시물 입니다.");
+    }catch(e){
+      print(e);
+    }
+
+
   }
 }
 

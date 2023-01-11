@@ -1,6 +1,8 @@
+import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+
 import '../database/token_database.dart';
-import '../inmat_api/inmat_http.dart';
-import '../inmat_api/account/get_profile.dart';
+
+import '../inmat_api/inmat_exception.dart';
 
 /// 토큰은 저장소에서 꺼내진다.
 /// 로그인을 하면 토큰에 값이 추가된다.
@@ -98,8 +100,7 @@ class InMatProfile extends TokenController {
   static Future<Map<String, dynamic>> getProfile(
       Map<String, dynamic> token) async {
     String accessToken = token['token'];
-    InMatGetProfile inMatProfile = InMatGetProfile();
-    return await inMatProfile.getProfile(token: accessToken);
+    return await InMatApi.account.getProfile(token: accessToken);
   }
 
   Future<void> downProfile() async {

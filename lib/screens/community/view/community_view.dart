@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inmat/inmat/inmat_api/community/get_community_once.dart';
 import 'package:inmat/widgets/community/contents.dart';
 import 'package:inmat/widgets/community/count_icon.dart';
 import 'package:provider/provider.dart';

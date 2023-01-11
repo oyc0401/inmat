@@ -1,7 +1,4 @@
-
-import '../inmat_api/account/sign_in.dart';
-import '../inmat_api/account/update_profile.dart';
-
+import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 import 'Inmat_token.dart';
 import 'user_model.dart';
@@ -49,11 +46,12 @@ class InMatAuth {
   /// 토큰을 이용해 개인정보를 받는다.
   /// 개인정보와 토큰을 DB에 저장한다.
   Future<void> signInEmail(String id, String password) async {
-    InMatSignIn sign = InMatSignIn();
-    Map<String, dynamic> token = await sign.emailSignIn(user: {
-      "username": id,
-      "password": password,
-    });
+    Map<String, dynamic> token = await InMatApi.account.emailSignIn(
+      user: {
+        "username": id,
+        "password": password,
+      },
+    );
 
     await _currentProfile.saveToken(token);
 
@@ -63,9 +61,8 @@ class InMatAuth {
 
   /// 프로필 정보를 업데이트 한다. (작업 중)
   Future<void> updateProfile(Map<String, dynamic> user) async {
-    InMatUpdate profileUpdate = InMatUpdate();
-    String token = InMatAuth.instance.currentUser!.token;
-    await profileUpdate.update(token, user);
+    // String token = InMatAuth.instance.currentUser!.token;
+    await InMatApi.account.updateProfile( user);
     _currentProfile.saveUser(user);
   }
 }

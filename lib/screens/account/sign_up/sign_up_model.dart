@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:inmat/inmat/auth/inmat_account.dart';
-import 'package:inmat/inmat/inmat_api/inmat_http.dart';
+import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
 import 'package:inmat/utils/toast.dart';
-
-
 
 class SignUpObject with ChangeNotifier {
   String _username = "";
@@ -148,26 +146,34 @@ class SignUpModel extends SignUpObject {
   }
 
   checkID() async {
-    if(!validNickName){
+    if (!validUsername) {
       Message.showMessage("잘못된 아이디 형식 입니다. 영문 or 숫자 3 ~ 10 자");
+    }else{
+      try {
+        _canID = await InMatAccount.checkId(id: username);
+      } on OverlappingAccount {
+        Message.showMessage("사용중인 아이디 입니다.");
+      } catch (e) {
+        Message.showMessage("$e");
+      }
     }
-    try {
-      _canID = await InMatAccount.checkId(id: username);
-    } catch (e) {
-      Message.showMessage("$e");
-    }
+
     notifyListeners();
   }
 
   checkNickName() async {
-    if(!validNickName){
-      Message. showMessage("잘못된 닉네임 형식 입니다. 한글 2자 ~ 8자");
+    if (!validNickName) {
+      Message.showMessage("잘못된 닉네임 형식 입니다. 한글 2자 ~ 8자");
+    }else{
+      try {
+        _canNickName = await InMatAccount.checkNickName(nickName: nickName);
+      } on OverlappingNickName {
+        Message.showMessage("사용중인 닉네임 입니다.");
+      } catch (e) {
+        Message.showMessage("$e");
+      }
     }
-    try {
-      _canNickName = await InMatAccount.checkNickName(nickName: nickName);
-    } catch (e) {
-      Message.showMessage("$e");
-    }
+
     notifyListeners();
   }
 
@@ -197,16 +203,16 @@ class SignUpModel extends SignUpObject {
     } on OverlappingAccount {
       // 아이디 중복 메세지 띄우기
       Message.showMessage('아이디 중복');
-      _canID=false;
+      _canID = false;
     } on OverlappingNickName {
       // 닉네임 중복 메세지 띄우기
-      _canNickName=false;
+      _canNickName = false;
       Message.showMessage('닉네임 중복');
     } catch (e) {
       // 오류 메세지 띄우기
       print(e);
       Message.showMessage('$e');
-    }finally{
+    } finally {
       notifyListeners();
     }
   }

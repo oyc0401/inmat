@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:inmat/inmat/inmat_api/community/get_community.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 class CommunityModel with ChangeNotifier {
   CommunityModel() {
@@ -12,8 +12,7 @@ class CommunityModel with ChangeNotifier {
   List<PostThumbData> get posts => _posts;
 
   init() async {
-    InMatGetCommunity inMatGetCommunity = InMatGetCommunity();
-    List<Map> maps = await inMatGetCommunity.getHome();
+    List<Map> maps = await InMatApi.community.getPosts();
     // print(maps);
     maps.forEach((map) => _posts.add(PostThumbData(map)));
     success = true;

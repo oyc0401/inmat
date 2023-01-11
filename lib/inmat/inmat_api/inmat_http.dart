@@ -1,109 +1,71 @@
-import 'dart:convert';
+import 'http_module.dart';
+import 'inmat_exception.dart';
 
-import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
+enum Http { get, post, patch }
 
 class InMatHttp {
+  InMatHttp(
+    this.how, {
+    required this.url,
+    required String? message,
+    this.body,
+    this.token,
+  }) : _message = message ?? "이름없는 http 통신";
 
-  Future<Map> publicGet({required String url, String? token}) async {
-    /// TODO 나중에 비회원 처리가 잘 되면 이거 없애도 됌
-    token = token ??
-        'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsI'
-            'mV4cCI6MTY3MTkwNjY3N30.7XA_GACOS7qyWWWV-KACZFmzc8l4On_viA9fQRLOWejB_XPjynZjDmebVfiM09TmYigACI7S1JiD-BV5E4Jnfw';
+  Http how;
+  String url;
+  Map? body;
+  final String _message;
+  final String? token;
 
-    Uri uri = Uri.parse(url);
+  dynamic execute() async {
+    print("$_message 중...");
+    Map response = {};
 
-    final Response response = await http.get(
-      uri,
-      headers: {
-        "Content-Type": "application/json",
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-    );
+    HttpModule module = HttpModule();
+    switch (how) {
+      case Http.get:
+        response = await module.get(url: url, token: token);
+        break;
+      case Http.post:
+        response = await module.post(url: url, body: body, token: token);
+        break;
+      case Http.patch:
+        response = await module.patch(url: url, body: body, token: token);
+        break;
+    }
 
-    return _throwException(response);
+    _throwException(response);
+
+    // print(response);
+
+    print("$_message 성공!");
+    return response["result"];
   }
 
-  Future<Map> publicPost(
-      {required String url, required Map body, String? token}) async {
-    /// TODO 나중에 비회원 처리가 잘 되면 이거 없애도 됌
-    token = token ??
-        'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsI'
-            'mV4cCI6MTY3MTkwNjY3N30.7XA_GACOS7qyWWWV-KACZFmzc8l4On_viA9fQRLOWejB_XPjynZjDmebVfiM09TmYigACI7S1JiD-BV5E4Jnfw';
-
-    Uri uri = Uri.parse(url);
-
-    String bodyJson = json.encode(body);
-    final Response response = await http.post(
-      uri,
-      headers: {
-        "Content-Type": "application/json",
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-      body: bodyJson,
-    );
-
-    return _throwException(response);
-  }
-
-  Future<Map> publicPatch(
-      {required String url, required Map body, required String token}) async {
-    Uri uri = Uri.parse(url);
-
-    var bodyJson = json.encode(body);
-
-    final Response response = await http.patch(
-      uri,
-      headers: {
-        "Content-Type": "application/json",
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-      body: bodyJson,
-    );
-
-    return _throwException(response);
-  }
-
-
-  Map _throwException(Response response) {
-    switch (response.statusCode) {
-      case 200:
-        return json.decode(utf8.decode(response.bodyBytes));
-      case 401:
-        throw ExpirationAccessToken();
-      default:
-        throw Exception(
-            'Failed to load patch ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
+  _throwException(Map response) {
+    if (response['isSuccess'] == false) {
+      print("$_message 실패!");
+      int code = response['code'];
+      switch (code) {
+        case 401:
+          throw ExpirationAccessToken();
+        case 403:
+          throw AccessDenied();
+        case 2000:
+          throw Invalidate();
+        case 3010:
+          throw SignInFailed();
+        case 3030:
+          throw OverlappingAccount();
+        case 3035:
+          throw OverlappingNickName();
+        case 4000:
+          throw DataBaseFailed();
+        default:
+          throw Exception(
+              'Failed to $_message: ${response['code']}, ${response['message']}');
+      }
     }
   }
-
 }
-
-class ExpirationAccessToken implements Exception {
-  @override
-  String toString() => "액세스 토큰이 만료되었습니다.";
-}
-
-class SignInFailed implements Exception {
-  @override
-  String toString() => "없는 아이디이거나 비밀번호가 틀렸습니다.";
-}
-
-class AccessDenied implements Exception {
-  @override
-  String toString() => "접근에 권한이 없습니다.";
-}
-
-class OverlappingAccount implements Exception {
-  @override
-  String toString() => "중복된 아이디입니다.";
-}
-
-class OverlappingNickName implements Exception {
-  @override
-  String toString() => "중복된 닉네임 입니다.";
-}
-

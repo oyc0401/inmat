@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:inmat/inmat/inmat_api/restaurant/deleteLike.dart';
-import 'package:inmat/inmat/inmat_api/restaurant/get_restaurant.dart';
-import 'package:inmat/inmat/inmat_api/restaurant/post_like.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 class RestaurantModel with ChangeNotifier {
   RestaurantModel(this.id) {
@@ -40,21 +38,17 @@ class RestaurantModel with ChangeNotifier {
     notifyListeners();
   }
 
-  postHeart() {
+  postHeart() async {
     if (heart && clickHeart) {
-      InMatPostLike inMatPostLike = InMatPostLike();
-      inMatPostLike.setLike(id);
+      await InMatApi.restaurant.setHeart(id);
     } else if (!heart && clickHeart) {
-      InMatDeletePostLike inMatDeletePostLike = InMatDeletePostLike();
-      inMatDeletePostLike.deleteLike(id);
+      await InMatApi.restaurant.deleteHeart(id);
     }
   }
 
   init(int id) async {
     print(id);
-    InMatGetRestaurant getRestaurant = InMatGetRestaurant();
-
-    map = await getRestaurant.getRestaurant(id);
+    map = await InMatApi.restaurant.getRestaurant(id);
     complete = true;
     print(map);
 
