@@ -31,8 +31,12 @@ class CommunityView extends StatelessWidget {
               physics: ClampingScrollPhysics(),
               children: [
                 contentsSection(context),
+                commentSection(context),
               ],
             ),
+            floatingActionButton: CommentForm(),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
           );
         },
       ),
@@ -40,10 +44,17 @@ class CommunityView extends StatelessWidget {
   }
 
   Widget contentsSection(BuildContext context) {
-    return Container(
-      child: Provider.of<CommunityViewModel>(context).complete
-          ? const View()
-          : Container(),
+    return Provider.of<CommunityViewModel>(context).complete
+        ? const View()
+        : Container();
+  }
+
+  Widget commentSection(BuildContext context) {
+    return Column(
+      children: [
+        for (dynamic d in Provider.of<CommunityViewModel>(context).comments)
+          Text(d.toString()),
+      ],
     );
   }
 }
@@ -55,14 +66,43 @@ class View extends StatelessWidget {
   Widget build(BuildContext context) {
     PostData data = Provider.of<CommunityViewModel>(context).postData;
     return ContentWidget(
-      onclick: (){},
+      onclick: () {},
       name: data.nickName,
-      date: data.createdAt ?? "null",
-      title: data.topic ?? "null",
-      content: data.contents ?? "null",
+      date: data.createdAt,
+      title: data.topic,
+      content: data.contents,
       likeCount: data.countPostLike,
       commentCount: data.countComment,
     );
   }
 }
 
+class CommentForm extends StatelessWidget {
+  const CommentForm({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(16),
+      color: Color(0xffcecece),
+      child: Row(
+        children: [
+          Expanded(child: TextField(
+            onChanged: (text) {
+              Provider.of<CommunityViewModel>(context, listen: false)
+                  .writtenComment = text;
+            },
+          )),
+          IconButton(
+              onPressed: () {
+                print(Provider.of<CommunityViewModel>(context, listen: false)
+                    .writtenComment);
+                Provider.of<CommunityViewModel>(context, listen: false).writeComment();
+
+              },
+              icon: Icon(Icons.send)),
+        ],
+      ),
+    );
+  }
+}

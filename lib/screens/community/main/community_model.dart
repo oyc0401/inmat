@@ -30,15 +30,15 @@ class PostThumbData {
 
   String get nickName => _post['nickName'];
 
-  String? get topic => _post['topic']; //not null
+  String get topic => _post['topic']; //not null
 
-  String? get contents => _post['contents']; //not null
+  String get contents => _post['contents']; //not null
 
   int get countPostLike => _post['countPostLike'];
 
   int get countComment => _post['countComment'];
 
-  String? get createdAt => _post['created_at']; //not null
+  String get createdAt => _post['created_at']; //not null
 
   String? get imgUrl => _post['imgUrl'];
 

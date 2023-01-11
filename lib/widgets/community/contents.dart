@@ -29,64 +29,75 @@ class ContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shelf(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+    return Column(
       children: [
-        ContentsTile(
-          leading: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(5.0),
-            ),
-            width: 40,
-            height: 40,
-            child: Center(child: Text(profileImage ?? "null")),
-          ),
-          title: Text(
-            name,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          subtitle: Text(
-            date,
-            style: const TextStyle(
-              fontSize: 12,
-              color: Colors.grey,
-            ),
-          ),
-        ),
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(content),
-        Row(
+        Shelf(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          space: 5,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
-              child: LikeIcon(
-                count: likeCount,
+            ContentsTile(
+              leading: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xffd9d9d9),
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                width: 40,
+                height: 40,
+                child: Center(child: Text(profileImage ?? "null")),
+              ),
+              title: Text(
+                name,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(
+                date,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
               ),
             ),
-            CommentIcon(
-              count: commentCount,
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
+            Text(content),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+                  child: LikeIcon(
+                    count: likeCount,
+                  ),
+                ),
+                CommentIcon(
+                  count: commentCount,
+                ),
+              ],
+            ),
+            CupertinoButton(
+                color:  Color(0xffd9d9d9),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                minSize: 0,
+                child: const Text(
+                  "공감",
+                  style: TextStyle(color: Colors.black, fontSize: 14),
+                ),
+                onPressed: onclick),
           ],
         ),
-        CupertinoButton(
-            color: const Color(0xffc2c2c2),
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            minSize: 0,
-            child: const Text(
-              "공감",
-              style: TextStyle(color: Colors.black, fontSize: 14),
-            ),
-            onPressed: onclick),
+        SizedBox(height: 16,),
+        Container(
+          height: 1,
+          width: double.infinity,
+          color: Colors.grey,
+        ),
       ],
     );
   }

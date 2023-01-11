@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/inmat_api/restaurant/deleteLike.dart';
 import 'package:inmat/inmat/inmat_api/restaurant/get_restaurant.dart';
+import 'package:inmat/inmat/inmat_api/restaurant/post_like.dart';
 
 class RestaurantModel with ChangeNotifier {
   RestaurantModel(this.id) {
@@ -11,12 +14,15 @@ class RestaurantModel with ChangeNotifier {
   bool complete = false;
   int id;
 
+  bool heart = false;
+  bool clickHeart = false;
+
   // String profileUrl = '';
   String name = '';
   List? images = [];
   List menus = [];
   String address = '';
-  bool heart = false;
+
   String contactNumber = '';
   double averageStar = 0.0;
   int reviewCount = 0;
@@ -27,6 +33,22 @@ class RestaurantModel with ChangeNotifier {
   List reviews = [];
   double latitude = 0.0;
   double longitude = 0.0;
+
+  like() {
+    clickHeart = true;
+    heart = heart ? false : true;
+    notifyListeners();
+  }
+
+  postHeart() {
+    if (heart && clickHeart) {
+      InMatPostLike inMatPostLike = InMatPostLike();
+      inMatPostLike.setLike(id);
+    } else if (!heart && clickHeart) {
+      InMatDeletePostLike inMatDeletePostLike = InMatDeletePostLike();
+      inMatDeletePostLike.deleteLike(id);
+    }
+  }
 
   init(int id) async {
     print(id);
@@ -39,20 +61,16 @@ class RestaurantModel with ChangeNotifier {
     name = map['restaurantName'];
     images = map['restaurantImgList'];
     menus = map['menuList'];
-    reviews=map['reviewList'];
+    reviews = map['reviewList'];
     address = map['address'];
     heart = map['userHeart'];
     contactNumber = map['contactNumber'];
     averageStar = map['averageStar'];
     reviewCount = map['countReview'];
-    heartCont=map['countHeart'];
-    averagePrice=map['averagePrice'];
-    complexity=map['complexity'];
-    type=map['restaurantType'];
-
-
-
-
+    heartCont = map['countHeart'];
+    averagePrice = map['averagePrice'];
+    complexity = map['complexity'];
+    type = map['restaurantType'];
 
     notifyListeners();
   }

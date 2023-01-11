@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../main/main_model.dart';
 
 import 'banner.dart';
 import 'recent_review.dart';
@@ -69,39 +72,74 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: ListView(
-        children: const [
-          BannerSection(),
-          Padding(
-            padding: EdgeInsets.only(left: 30.0,top: 20,bottom: 7),
-            child: Text(
-              '오늘 이건 어때요?',
-              style: TextStyle(
-                fontSize: 20,
-                color: Color(0xffF25C05),
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          TodayFood(),
-          Padding(
-            padding: EdgeInsets.only(left: 30.0,top: 16,bottom: 7),
-            child: Text(
-              '최근 남긴 리뷰',
-              style: TextStyle(
-                fontSize: 20,
-                color: Color(0xffF25C05),
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          RecentReview(),
-          SizedBox(
-            height: 20,
-          ),
-          RestaurantList(),
+        children: [
+         Column(children: [
+           bannerSection(),
+           todaySection(),
+           recentSection(),
+           SizedBox(
+             height: 20,
+           ),
+           RestaurantList(),
+         ],)
+
         ],
       ),
       // bottomNavigationBar: Container(),
     );
   }
+
+  Widget bannerSection() {
+    return SizedBox(
+      height: 163,
+      child: PageView(
+        children: [
+          for (Map map in Provider.of<HomeModel>(context).banners)
+            RestaurantBanner(imageUrl: map['bannerUrl'])
+        ],
+      ),
+    );
+  }
+
+  Widget todaySection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        Padding(
+          padding: EdgeInsets.only(left: 24, top: 18, bottom: 8),
+          child: Text(
+            '오늘 이건 어때요?',
+            style: TextStyle(
+              fontSize: 19,
+              color: Color(0xffF25C05),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        TodayFoods(),
+      ],
+    );
+  }
+
+  Widget recentSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        Padding(
+          padding: EdgeInsets.only(left: 24, top: 18, bottom: 8),
+          child: Text(
+            '최근 남긴 리뷰',
+            style: TextStyle(
+              fontSize: 19,
+              color: Color(0xffF25C05),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        RecentReview(),
+      ],
+    );
+  }
 }
+
+

@@ -3,15 +3,15 @@ import 'package:provider/provider.dart';
 
 import '../main/main_model.dart';
 
-class TodayFood extends StatelessWidget {
-  const TodayFood({
+class TodayFoods extends StatelessWidget {
+  const TodayFoods({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 192,
+      height: 168,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
@@ -42,10 +42,10 @@ class TodayMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 137,
       margin: const EdgeInsets.only(left: 10),
-      padding: const EdgeInsets.only(left: 14, right: 14, top: 15),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(13),
         border: Border.all(color: const Color(0xffEAEAEA), width: 1),
       ),
       child: Column(
@@ -60,26 +60,28 @@ class TodayMenu extends StatelessWidget {
           //   ),
           // ),
           Container(
-            width: 128,
-            height: 128,
+            margin: const EdgeInsets.only(left: 11, top: 12),
+            width: 113,
+            height: 113,
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: Color(0xffd5d5d5),
               borderRadius: BorderRadius.circular(13),
             ),
             child: Center(child: Text('${imageUrl}')),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 7.0, top: 6),
+            padding: const EdgeInsets.only(left: 18.0, top: 5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
                   'null',
-                  style: TextStyle(fontSize: 11, color: Color(0xffBCBCBC)),
+                  style: TextStyle(fontSize: 9, color: Color(0xffBCBCBC)),
                 ),
                 Text(
                   food,
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                  style: const TextStyle(
+                      fontSize: 12, fontWeight: FontWeight.w700),
                 ),
               ],
             ),

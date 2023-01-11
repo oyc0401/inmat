@@ -38,7 +38,7 @@ class Community extends StatelessWidget {
                 );
               },
               title: data.topic ?? "null",
-              text: data.topic ?? "null",
+              text: data.contents ?? "null",
               date: data.createdAt ?? "null",
               name: data.nickName,
               likeCount: data.countPostLike,

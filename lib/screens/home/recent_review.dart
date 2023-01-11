@@ -11,7 +11,7 @@ class RecentReview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 158,
+      height: 135,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
@@ -47,78 +47,71 @@ class ReviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 14),
-      padding: const EdgeInsets.only(left: 20, right: 17, top: 26, bottom: 23),
-      width: 342,
+      margin: const EdgeInsets.only(left: 12),
+      padding: const EdgeInsets.only(left: 17, right: 15, top: 19),
+      width: 292,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
-        border: Border.all(color: const Color(0xffEAEAEA), width: 1.3),
+        border: Border.all(color: const Color(0xffEAEAEA), width: 1),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: 163,
+            width: 136,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   restaurant,
-                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+                  style: const TextStyle(
+                      fontSize: 11, fontWeight: FontWeight.w700),
                 ),
-                const Text('null',
-                    style: TextStyle(fontSize: 11, color: Color(0xffAFAFAF))),
-                Expanded(
-                  child: Text(
-                    '$review @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                    style: const TextStyle(
-                      fontSize: 12.0,
-                    ),
+                SizedBox(height: 1),
+                const Text('no data',
+                    style: TextStyle(fontSize: 9, color: Color(0xffAFAFAF))),
+                SizedBox(height: 5),
+                Text(
+                  '$review @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
+                  style: const TextStyle(
+                    fontSize: 10.0,
                   ),
                 ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.account_circle_rounded,
-                      color: Color(0xffFF8C66),
-                      size: 15,
-                    ),
-                    Text(
-                      nickname,
-                      style:
-                          const TextStyle(color: Color(0xffAFAFAF), fontSize: 11),
-                    ),
-                  ],
+                SizedBox(height: 7),
+                Container(
+                  height: 13,
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.account_circle_rounded,
+                        color: Color(0xffFF8C66),
+                        size: 13,
+                      ),
+                      Text(
+                        nickname,
+                        style: const TextStyle(
+                            color: Color(0xffAFAFAF), fontSize: 9),
+                      ),
+                    ],
+                  ),
                 ),
+                SizedBox(height: 17),
               ],
             ),
           ),
           const Spacer(),
-
           Container(
-            width: 106,
-            height: 106,
+            width: 90,
+            height: 90,
             decoration: BoxDecoration(
               color: Colors.grey,
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(14),
             ),
             child: Center(child: Text('$imageUrl')),
           ),
-          // Text(key['title']),
-          // ),
-          // Container(
-          //   width: 150,
-          //   height: 150,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(50),
-          //     border: Border.all(color: Colors.grey, width: 3),
-          //   ),
-          //   child: Image.network(
-          //       'https://pup-review-phinf.pstatic.net/MjAyMjA1MDZfMjQ0/MDAxNjUxODI3NjIwNzM0.IVIBlJrJ3WaZO_7BDt0QmtzH1l2yeMLQpiJu6CdM5Hcg.J-ybgwfs3Lvg3GZyFcWtqDLnReL5rMpUKwazK_L8Vzgg.JPEG/upload_0e29ddeb4a1e8137ba5300de9aaea9f1.jpg',
-          //   fit: BoxFit.fill,),),
         ],
       ),
     );

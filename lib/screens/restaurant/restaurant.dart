@@ -20,7 +20,6 @@ class RestaurantPage extends StatelessWidget {
             title: Text(Provider.of<RestaurantModel>(context).name),
           ),
           body: ListView(
-
             children: [
               Banner(),
               Padding(
@@ -30,9 +29,18 @@ class RestaurantPage extends StatelessWidget {
                   children: [
                     Text(Provider.of<RestaurantModel>(context).name),
                     Text('${Provider.of<RestaurantModel>(context).type}'),
-                    Provider.of<RestaurantModel>(context).heart
-                        ? Icon(Icons.favorite,color: Colors.redAccent,)
-                        : Icon(Icons.favorite_border),
+                    IconButton(
+                      onPressed: () {
+                        Provider.of<RestaurantModel>(context,listen: false).like();
+                        Provider.of<RestaurantModel>(context,listen: false).postHeart();
+                      },
+                      icon: Provider.of<RestaurantModel>(context).heart
+                          ? Icon(
+                              Icons.favorite,
+                              color: Colors.redAccent,
+                            )
+                          : Icon(Icons.favorite_border),
+                    ),
                     Text(
                         '별점: ${Provider.of<RestaurantModel>(context).averageStar}'),
                     Text(

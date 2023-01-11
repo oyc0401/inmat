@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inmat/inmat/inmat_api/community/get_community_once.dart';
+import 'package:inmat/inmat/inmat_api/community/write_comment.dart';
 
 class CommunityViewModel with ChangeNotifier {
   CommunityViewModel(this.id) {
@@ -12,6 +13,15 @@ class CommunityViewModel with ChangeNotifier {
   Map data = {};
   late PostData postData;
 
+  List comments=[];
+
+  /// 댓글 적기
+  String writtenComment="";
+  void writeComment(){
+    InMatWriteComment inMatWriteComment=InMatWriteComment();
+    inMatWriteComment.sendComment(id, writtenComment);
+
+  }
   init() async {
     InMatGetCommunityOnce inMatGetCommunityOnce = InMatGetCommunityOnce();
     Map map = await inMatGetCommunityOnce.getPost(id);
@@ -35,15 +45,15 @@ class PostData {
 
   String get nickName => _post['nickName'];
 
-  String? get topic => _post['topic']; //not null
+  String get topic => _post['topic']; //not null
 
-  String? get contents => _post['contents']; //not null
+  String get contents => _post['contents']; //not null
 
   int get countPostLike => _post['countPostLike'];
 
   int get countComment => _post['countComment'];
 
-  String? get createdAt => _post['created_at']; //not null
+  String get createdAt => _post['crated_at']; //not null
 
   String? get imgUrl => _post['imgUrl'];
 
