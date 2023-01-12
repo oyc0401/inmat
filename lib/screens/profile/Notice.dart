@@ -9,7 +9,7 @@ class Notice extends StatelessWidget {
       appBar: AppBar(
         title: Text("공지사항"),
       ),
-      body: Container(),
+      body: Container(child: Text("마지막 업데이트: 2023.01.12"),),
     );
   }
 }

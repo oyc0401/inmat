@@ -35,6 +35,7 @@ class PostThumb extends StatelessWidget {
           color: Color(0xffa1a1a1),
         ),
       ),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       color: Colors.white,
       space: 2,
       children: [

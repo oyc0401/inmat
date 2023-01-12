@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 
 import '../../main/NavigatePage.dart';
-import '../sign_up/sign_up_page.dart';
-import 'email_sign_in_model.dart';
+import '../sign_up_email/sign_up_page.dart';
+import 'sign_in_email_model.dart';
 
 class EmailSignInPage extends StatefulWidget {
   const EmailSignInPage({Key? key}) : super(key: key);

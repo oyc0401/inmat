@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/screens/restaurant/write_review/write_review.dart';
 import 'package:provider/provider.dart';
 
 import 'restaurant_model.dart';
@@ -31,8 +33,10 @@ class RestaurantPage extends StatelessWidget {
                     Text('${Provider.of<RestaurantModel>(context).type}'),
                     IconButton(
                       onPressed: () {
-                        Provider.of<RestaurantModel>(context,listen: false).like();
-                        Provider.of<RestaurantModel>(context,listen: false).postHeart();
+                        Provider.of<RestaurantModel>(context, listen: false)
+                            .like();
+                        Provider.of<RestaurantModel>(context, listen: false)
+                            .postHeart();
                       },
                       icon: Provider.of<RestaurantModel>(context).heart
                           ? Icon(
@@ -59,6 +63,14 @@ class RestaurantPage extends StatelessWidget {
                   ],
                 ),
               ),
+              CupertinoButton(
+                  child: Text("리뷰 작성"),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => WriteReview(id: id,)));
+                  })
             ],
           ),
         ),

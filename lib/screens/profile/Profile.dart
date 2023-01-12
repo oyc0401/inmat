@@ -5,9 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/auth/user_model.dart';
 
-import '../account/change_profile/change_profile.dart';
-import '../account/sign_in_main//signin_page.dart';
+import '../account/update_profile/change_profile.dart';
+import '../account/login_main/signin_page.dart';
 
+import 'MyFavorite.dart';
+import 'MyPost.dart';
+import 'MyReview.dart';
+import 'Notice.dart';
 import 'ProfileModel.dart';
 //화면 이동
 
@@ -117,9 +121,8 @@ class MyInformation extends StatelessWidget {
             color: Colors.blue,
           ),
           onTap: () {
-            Message.showMessage('개발 중 입니다.');
-            // Navigator.push(context,
-            //     CupertinoPageRoute(builder: (_) => const MyFavorite()));
+            Navigator.push(context,
+                CupertinoPageRoute(builder: (_) => const MyFavorite()));
           },
           title: const Text("내가 좋아요 누른 음식점", style: TextStyle(fontSize: 18)),
         ),
@@ -129,9 +132,8 @@ class MyInformation extends StatelessWidget {
             color: Colors.blue,
           ),
           onTap: () {
-            Message.showMessage('개발 중 입니다.');
-            // Navigator.push(
-            //     context, CupertinoPageRoute(builder: (_) => const MyReview()));
+            Navigator.push(
+                context, CupertinoPageRoute(builder: (_) => const MyReview()));
           },
           title: const Text("내가 쓴 리뷰", style: TextStyle(fontSize: 18)),
         ),
@@ -141,9 +143,8 @@ class MyInformation extends StatelessWidget {
             color: Colors.blue,
           ),
           onTap: () {
-            Message.showMessage('개발 중 입니다.');
-            // Navigator.push(
-            //     context, CupertinoPageRoute(builder: (_) => const MyPost()));
+            Navigator.push(
+                context, CupertinoPageRoute(builder: (_) => const MyPost()));
           },
           title: const Text("내가 쓴 게시글", style: TextStyle(fontSize: 18)),
         ),
@@ -153,9 +154,8 @@ class MyInformation extends StatelessWidget {
             color: Colors.blue,
           ),
           onTap: () {
-            Message.showMessage('개발 중 입니다.');
-            // Navigator.push(
-            //     context, CupertinoPageRoute(builder: (_) => const Notice()));
+            Navigator.push(
+                context, CupertinoPageRoute(builder: (_) => const Notice()));
           },
           title: const Text("공지사항", style: TextStyle(fontSize: 18)),
         ),

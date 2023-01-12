@@ -25,7 +25,7 @@ class CommunityViewModel with ChangeNotifier {
   init() async {
     try{
       Map map = await InMatApi.community.getPost(id);
-      print(map);
+      // print(map);
       postData = PostData(map);
       complete = true;
       notifyListeners();

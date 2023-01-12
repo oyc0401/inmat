@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class Shelf extends StatelessWidget {
   const Shelf({
     Key? key,
-     this.onclick,
+    this.onclick,
     required this.children,
     this.padding,
     this.color,
@@ -19,8 +19,7 @@ class Shelf extends StatelessWidget {
   final Color? color;
   final BoxBorder? border;
 
-  EdgeInsetsGeometry get _defaultPadding =>
-      padding ?? const EdgeInsets.symmetric(vertical: 10, horizontal: 20);
+  EdgeInsetsGeometry get _defaultPadding => padding ?? const EdgeInsets.all(0);
 
   List<Widget> get _childrenSpace {
     List<Widget> value = [];

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../main/main_model.dart';
-import '../restaurant/restaurant.dart';
+import '../restaurant/info/restaurant.dart';
 
 class RestaurantList extends StatelessWidget {
   const RestaurantList({Key? key}) : super(key: key);
@@ -137,10 +137,10 @@ class RestaurantCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 180,
-            height: 180,
+            width: 167,
+            height: 167,
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: Color(0xffc7c7c7),
               borderRadius: BorderRadius.circular(18),
             ),
             child: Center(child: Text('$imageUrl')),
