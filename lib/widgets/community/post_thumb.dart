@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inmat/widgets/community/count_icon.dart';
 import 'package:inmat/widgets/shelf.dart';
+import 'package:inmat/widgets/ink_button.dart';
 
 /// 커뮤니티 화면 메인에 나오는 게시물 위젯
 class PostThumb extends StatelessWidget {
@@ -27,22 +28,28 @@ class PostThumb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shelf(
+    return InkButton(
       onclick: onclick,
-      border: const Border(
-        bottom: BorderSide(
-          width: 0.5,
-          color: Color(0xffa1a1a1),
+      color: Colors.white,
+      child: Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              width: 0.5,
+              color: Color(0xffa1a1a1),
+            ),
+          ),
+        ),
+        child: Shelf(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          space: 2,
+          children: [
+            titleSection(),
+            contextSection(),
+            likeSection(),
+          ],
         ),
       ),
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      color: Colors.white,
-      space: 2,
-      children: [
-        titleSection(),
-        contextSection(),
-        likeSection(),
-      ],
     );
   }
 
@@ -50,6 +57,7 @@ class PostThumb extends StatelessWidget {
     return Text(
       title,
       overflow: TextOverflow.ellipsis,
+      maxLines: 1,
       style: const TextStyle(
           fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
     );
@@ -58,7 +66,7 @@ class PostThumb extends StatelessWidget {
   Widget contextSection() {
     return Text(
       text,
-      maxLines: 5,
+      maxLines: 3,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(
         color: Color(0xff565656),

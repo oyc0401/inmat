@@ -5,6 +5,7 @@ import 'package:inmat/utils/toast.dart';
 import 'package:inmat/widgets/account/line_text_button.dart';
 import 'package:inmat/widgets/account/round_button.dart';
 import 'package:inmat/widgets/account/custom_text_button.dart';
+import 'package:inmat/widgets/ink_button.dart';
 
 import 'google_sign_in.dart';
 
@@ -40,7 +41,7 @@ class _SignInMainPageState extends State<SignInMainPage> {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(children: [
             Flexible(
-              flex: 135-(55),
+              flex: 135 - (55),
               child: Container(),
             ),
             logoSection(),
@@ -76,12 +77,13 @@ class _SignInMainPageState extends State<SignInMainPage> {
           const SizedBox(
             height: 25,
           ),
-          InkWell(
-            onTap: () {
-              Message.showMessage("개발 중 입니다.");
-            },
-            borderRadius: BorderRadius.circular(100),
-            child: Ink(
+
+          ElevateInkButton(
+              onclick: () {
+                Message.showMessage("개발 중 입니다.");
+              },
+              width: 48,
+              height: 48,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(100),
@@ -93,17 +95,12 @@ class _SignInMainPageState extends State<SignInMainPage> {
                   ),
                 ],
               ),
-              child: const SizedBox(
-                width: 48,
-                height: 48,
-                child: Icon(
-                  Icons.pin_drop,
-                  size: 25,
-                  color: Color(0xff434343),
-                ),
-              ),
-            ),
-          ),
+              inkBorderRadius: BorderRadius.circular(100),
+              child: Icon(
+                Icons.pin_drop,
+                size: 25,
+                color: Color(0xff434343),
+              )),
         ],
       ),
     );

@@ -3,7 +3,7 @@ import 'package:inmat/utils/test_widget.dart';
 import 'package:inmat/widgets/shelf.dart';
 
 void main() => TestWidget.run(
-  Shelf(
+  ShelfButton(
     onclick: () {},
     color: Colors.white,
     border: const Border(
