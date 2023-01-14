@@ -1,16 +1,17 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../home/home.dart';
 
-import '../community/main/community_model.dart';
-import '../community/main/community_page.dart';
-import '../profile/Profile.dart';
-import '../spinner/RandomFoodSelect.dart';
+import '../search/search_model.dart';
 import '../search/Search.dart';
 
-import '../home/home.dart';
+import '../spinner/RandomFoodSelect.dart';
+
+import '../../models/community/main/community_model.dart';
+import '../community/main/community_main.dart';
+
+import '../profile/Profile.dart';
 
 import 'main_model.dart';
 
@@ -28,11 +29,10 @@ class _NavigatePageState extends State<NavigatePage> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-            create: (BuildContext context) => HomeModel()),
+        ChangeNotifierProvider(create: (BuildContext context) => HomeModel()),
+        ChangeNotifierProvider(create: (BuildContext context) => SearchModel()),
         ChangeNotifierProvider(
             create: (BuildContext context) => CommunityModel()),
-
       ],
       child: Scaffold(
         bottomNavigationBar: bottomNav(),

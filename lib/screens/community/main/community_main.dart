@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/screens/community/main/community_model.dart';
-import 'package:inmat/widgets/ink_button.dart';
+
 import 'package:provider/provider.dart';
 
-import '../view/community_view.dart';
-import 'package:inmat/widgets/community/post_thumb.dart';
+import 'package:inmat/models/community/main/community_model.dart';
+import 'package:inmat/widgets/ink_button.dart';
 
-import '../write/write_post.dart';
+import 'package:inmat/widgets/community/post_thumb.dart';
 
 class Community extends StatelessWidget {
   const Community({Key? key}) : super(key: key);
@@ -23,8 +22,8 @@ class Community extends StatelessWidget {
       ),
       floatingActionButton: WriteButton(
         onclick: () {
-          Navigator.push(
-              context, CupertinoPageRoute(builder: (context) => WritePost()));
+          Provider.of<CommunityModel>(context, listen: false)
+              .pushWrite(context);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -39,11 +38,8 @@ class Community extends StatelessWidget {
           for (var data in Provider.of<CommunityModel>(context).posts)
             PostThumb(
               onclick: () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                      builder: (context) => CommunityView(id: data.postId)),
-                );
+                Provider.of<CommunityModel>(context, listen: false)
+                    .pushView(context, id: data.postId);
               },
               title: data.topic,
               text: data.contents,
@@ -72,8 +68,8 @@ class WriteButton extends StatelessWidget {
         ),
         color: Colors.white,
         child: Container(
-          width: 90 ,
-          height: 48 ,
+          width: 90,
+          height: 48,
           decoration: BoxDecoration(
             border: Border.all(
               width: 1,
@@ -96,6 +92,5 @@ class WriteButton extends StatelessWidget {
             ],
           ),
         ));
-
   }
 }

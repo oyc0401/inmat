@@ -57,6 +57,7 @@ dependencies:
     git: https://github.com/LBSTECH/naver_map_plugin.git
   dartdoc: ^6.1.5
 
+  freezed_annotation:
 
 
 
@@ -64,8 +65,13 @@ dependencies:
 dev_dependencies:
 #  cupertino_icons: ^1.0.5
 
+
   flutter_test:
     sdk: flutter
+
+  build_runner:
+  freezed:
+  json_serializable:
 
   flutter_driver:
     sdk: flutter

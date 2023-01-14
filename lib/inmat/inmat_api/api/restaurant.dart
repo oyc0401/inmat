@@ -8,7 +8,7 @@ class RestaurantApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "홈 화면 불러오기",
-      url: "http://prod.sogogi.shop:9000/restaurants",
+      url: "/restaurants",
       token: InMatAuth.instance.currentUser?.token,
     );
     return await inMatHttp.execute();
@@ -19,7 +19,7 @@ class RestaurantApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "음식점 불러오기",
-      url: "http://prod.sogogi.shop:9000/restaurants/$id",
+      url: "/restaurants/$id",
       token: InMatAuth.instance.currentUser?.token,
     );
     return await inMatHttp.execute();
@@ -30,7 +30,7 @@ class RestaurantApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "하트 설정",
-      url: "http://prod.sogogi.shop:9000/restaurants/$id/like",
+      url: "/restaurants/$id/like",
       token: InMatAuth.instance.currentUser?.token,
     );
     return await inMatHttp.execute();
@@ -41,7 +41,7 @@ class RestaurantApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.patch,
       message: "하트 취소",
-      url: "http://prod.sogogi.shop:9000/restaurants/$id/like",
+      url: "/restaurants/$id/like",
       token: InMatAuth.instance.currentUser?.token,
     );
     return await inMatHttp.execute();
@@ -53,7 +53,7 @@ class RestaurantApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "리뷰 작성",
-      url: "http://prod.sogogi.shop:9000/restaurants/$id/reviews",
+      url: "/restaurants/$id/reviews",
       body: {
         "contents": content,
         // "imgUrl": "www.test.test",
@@ -63,4 +63,17 @@ class RestaurantApi {
     );
     return await inMatHttp.execute();
   }
+
+  ///검색어 랭킹 API
+  Future<List<Map>> getSearchRank() async {
+    InMatHttp inMatHttp = InMatHttp(
+      Http.get,
+      message: "검색창 랭킹 불러오기",
+      url: "/restaurants/search",
+      token: InMatAuth.instance.currentUser?.token,
+    );
+    return (await inMatHttp.execute()).cast<Map>();
+  }
+
+
 }

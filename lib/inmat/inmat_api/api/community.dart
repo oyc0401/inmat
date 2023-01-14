@@ -8,7 +8,7 @@ class CommunityApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "커뮤니티 불러오기",
-      url: "http://prod.sogogi.shop:9000/communities",
+      url: "/communities",
       token: InMatAuth.instance.currentUser?.token,
     );
     return (await inMatHttp.execute()).cast<Map>();
@@ -19,7 +19,7 @@ class CommunityApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "게시물 불러오기",
-      url: "http://prod.sogogi.shop:9000/communities/$id",
+      url: "/communities/$id",
       token: InMatAuth.instance.currentUser?.token,
     );
     return await inMatHttp.execute();
@@ -31,7 +31,7 @@ class CommunityApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "게시글 작성",
-      url: "http://prod.sogogi.shop:9000/communities",
+      url: "/communities",
       body: {
         "contents": content,
         "topic": title,
@@ -46,7 +46,7 @@ class CommunityApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "댓글 쓰기",
-      url: "http://prod.sogogi.shop:9000/communities/$id/details/comment",
+      url: "/communities/$id/details/comment",
       body: {
         "contents": comment,
       },

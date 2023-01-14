@@ -7,7 +7,7 @@ class AccountApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "이메일 로그인",
-      url: "http://prod.sogogi.shop:9000/users/login",
+      url: "/users/login",
       body: user,
       token: InMatAuth.instance.currentUser?.token,
     );
@@ -19,7 +19,7 @@ class AccountApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "프로필 불러오기",
-      url: "http://prod.sogogi.shop:9000/users/profiles",
+      url: "/users/profiles",
       token: token,
     );
     return await inMatHttp.execute();
@@ -30,7 +30,7 @@ class AccountApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "회원가입",
-      url: "http://prod.sogogi.shop:9000/users/signup",
+      url: "/users/signup",
       body: user,
       token: InMatAuth.instance.currentUser?.token,
     );
@@ -42,7 +42,7 @@ class AccountApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.patch,
       message: "프로필 업데이트",
-      url: "http://prod.sogogi.shop:9000/users/profiles",
+      url: "/users/profiles",
       body: user,
       token: InMatAuth.instance.currentUser?.token,
     );
@@ -54,7 +54,7 @@ class AccountApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "아이디 중복 체크",
-      url: "http://prod.sogogi.shop:9000/users/username",
+      url: "/users/username",
       body: {'username': id},
       token: InMatAuth.instance.currentUser?.token,
     );
@@ -67,7 +67,7 @@ class AccountApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "닉네임 중복 체크",
-      url: "http://prod.sogogi.shop:9000/users/nickname",
+      url: "/users/nickname",
       body: {'nickName': nickName},
       token: InMatAuth.instance.currentUser?.token,
     );
@@ -81,7 +81,7 @@ class AccountApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "좋아하는 음식점 가져오기",
-      url: "http://prod.sogogi.shop:9000/users/restaurants",
+      url: "/users/restaurants",
       token: InMatAuth.instance.currentUser?.token,
     );
     return (await inMatHttp.execute()).cast<Map>();
@@ -92,7 +92,7 @@ class AccountApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "내가 쓴 리뷰 가져오기",
-      url: "http://prod.sogogi.shop:9000/users/reviews",
+      url: "/users/reviews",
       token: InMatAuth.instance.currentUser?.token,
     );
     return (await inMatHttp.execute()).cast<Map>();
@@ -103,7 +103,7 @@ class AccountApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "내가 쓴 게시물 가져오기",
-      url: "http://prod.sogogi.shop:9000/users/posts",
+      url: "/users/posts",
       token: InMatAuth.instance.currentUser?.token,
     );
     return (await inMatHttp.execute()).cast<Map>();

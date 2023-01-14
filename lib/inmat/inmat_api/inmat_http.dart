@@ -18,6 +18,10 @@ class InMatHttp {
   final String _message;
   final String? token;
 
+  String get _url{
+    return "http://prod.sogogi.shop:9000$url";
+  }
+
   dynamic execute() async {
     print("$_message 중...");
     Map response = {};
@@ -25,13 +29,13 @@ class InMatHttp {
     HttpModule module = HttpModule();
     switch (how) {
       case Http.get:
-        response = await module.get(url: url, token: token);
+        response = await module.get(url: _url, token: token);
         break;
       case Http.post:
-        response = await module.post(url: url, body: body, token: token);
+        response = await module.post(url: _url, body: body, token: token);
         break;
       case Http.patch:
-        response = await module.patch(url: url, body: body, token: token);
+        response = await module.patch(url: _url, body: body, token: token);
         break;
     }
 
