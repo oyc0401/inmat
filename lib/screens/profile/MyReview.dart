@@ -32,7 +32,7 @@ class _MyReviewState extends State<MyReview> {
       appBar: AppBar(
         title: Text("내가 쓴 리뷰"),
       ),
-      body: Column(
+      body: ListView(
         children: [
           complete ? section() : Container(),
         ],
@@ -45,7 +45,22 @@ class _MyReviewState extends State<MyReview> {
         ? Text("쓴 리뷰가 아직 없습니다.")
         : Shelf(
             children: [
-              for (Map map in reviews) Text("$map"),
+              for (Map map in reviews)
+                ListTile(
+                  title: Text(
+                    "${map['restaurantName']}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    "${map['contents']}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                  ),
+                ),
+
+
             ],
           );
   }

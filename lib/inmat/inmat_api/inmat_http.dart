@@ -38,7 +38,7 @@ class InMatHttp {
     _throwException(response);
 
     ///디버그 할 때 아래 주석을 풀면 모든 통신의 값을 불러온다.
-    /// print(response);
+     print(response);
 
     print("$_message 성공!");
     return response["result"];

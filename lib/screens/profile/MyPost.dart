@@ -32,7 +32,7 @@ class _MyPostState extends State<MyPost> {
       appBar: AppBar(
         title: Text("내가 쓴 게시글"),
       ),
-      body: Column(
+      body: ListView(
         children: [
           complete ? section() : Container(),
         ],
@@ -45,7 +45,20 @@ class _MyPostState extends State<MyPost> {
         ? Text("쓴 게시글이 아직 없습니다.")
         : Shelf(
             children: [
-              for (Map map in posts) Text("$map"),
+              for (Map map in posts)
+                ListTile(
+                  title: Text(
+                    "${map['topic']}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    "${map['contents']}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                  ),
+                ),
             ],
           );
   }

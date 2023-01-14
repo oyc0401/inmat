@@ -45,7 +45,21 @@ class _MyFavoriteState extends State<MyFavorite> {
         ? Text("좋아요 한 음식점이 없습니다.")
         : Shelf(
             children: [
-              for (Map map in likes) Text("$map"),
+              for (Map map in likes)
+                ListTile(
+                  title: Text(
+                    "${map['restaurantName']}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    "${map['address']}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                  ),
+                ),
+
             ],
           );
   }
