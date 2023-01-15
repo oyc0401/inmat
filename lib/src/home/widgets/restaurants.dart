@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/src/home/domain/model/restaurant_model.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../restaurant/info/restaurant.dart';
-import '../providers/home_provider.dart';
+import '../domain/model/restaurant_model.dart';
+import '../providers/home_view_model.dart';
 
 class RestaurantList extends StatelessWidget {
   const RestaurantList({Key? key}) : super(key: key);

@@ -1,8 +1,12 @@
+import '../auth/inmat_auth.dart';
 
+import 'inmat_http.dart';
 
-import 'api/account.dart';
-import 'api/community.dart';
-import 'api/restaurant.dart';
+part 'api/account.dart';
+
+part 'api/community.dart';
+
+part 'api/restaurant.dart';
 
 class InMatApi {
   InMatApi._();

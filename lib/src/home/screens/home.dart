@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:inmat/src/home/domain/model/banner_model.dart';
+
 import 'package:provider/provider.dart';
 
+import '../domain/model/banner_model.dart';
 import '../widgets/banner.dart';
-import '../providers/home_provider.dart';
+import '../providers/home_view_model.dart';
 
 import '../widgets/recent_review.dart';
 import '../widgets/restaurants.dart';

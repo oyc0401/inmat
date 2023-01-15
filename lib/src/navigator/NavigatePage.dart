@@ -14,7 +14,7 @@ import '../community/main/providers/community_model.dart';
 
 import '../profile/Profile.dart';
 
-import '../home/providers/home_provider.dart';
+import '../home/providers/home_view_model.dart';
 
 class NavigatePage extends StatefulWidget {
   const NavigatePage({Key? key}) : super(key: key);

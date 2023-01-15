@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:inmat/src/home/domain/model/today_model.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/home_provider.dart';
+import '../domain/model/today_model.dart';
+import '../providers/home_view_model.dart';
 
 class TodayFoods extends StatelessWidget {
   const TodayFoods({

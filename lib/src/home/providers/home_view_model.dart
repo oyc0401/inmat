@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:inmat/src/home/domain/service/data.dart';
 
 
 import '../domain/model/banner_model.dart';
 import '../domain/model/restaurant_model.dart';
 import '../domain/model/review_model.dart';
 import '../domain/model/today_model.dart';
+import '../domain/service/data.dart';
 
 class HomeViewModel extends ChangeNotifier {
   HomeViewModel() {

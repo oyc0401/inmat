@@ -1,6 +1,4 @@
-import 'package:inmat/inmat/auth/inmat_auth.dart';
-
-import '../inmat_http.dart';
+part of '../inmat_api.dart';
 
 class RestaurantApi {
   ///홈화면 조회 API

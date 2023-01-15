@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inmat/src/home/domain/model/review_model.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/home_provider.dart';
+import '../providers/home_view_model.dart';
 
 class RecentReview extends StatelessWidget {
   const RecentReview({

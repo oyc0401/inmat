@@ -1,5 +1,4 @@
-import '../../auth/inmat_auth.dart';
-import '../inmat_http.dart';
+part of '../inmat_api.dart';
 
 class AccountApi {
   ///로그인 API
