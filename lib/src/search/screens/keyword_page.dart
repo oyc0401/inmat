@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-class SearchedPage extends StatelessWidget {
-  const SearchedPage({
+class KeywordPage extends StatelessWidget {
+  const KeywordPage({
     Key? key,
   }) : super(key: key);
 

@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 
 import '../models/rank.dart';
 
-class RecommendPage extends StatelessWidget {
-  const RecommendPage({Key? key}) : super(key: key);
+class RecentWord extends StatelessWidget {
+  const RecentWord({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

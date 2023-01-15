@@ -7,7 +7,7 @@ import 'package:inmat/src/account/widget/custom_text_button.dart';
 import 'package:inmat/widgets/ink_button.dart';
 
 import '../widget/round_button.dart';
-import '../../../inmat/social/google_sign_in.dart';
+import '../../../cloud/google_sign_in.dart';
 
 class SignInMainPage extends StatefulWidget {
   const SignInMainPage({Key? key}) : super(key: key);

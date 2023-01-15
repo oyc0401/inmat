@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../home/screens/home.dart';
 
 import '../search/providers/search_model.dart';
-import '../search/screens/Search.dart';
+import '../search/screens/search.dart';
 
 import '../spinner/RandomFoodSelect.dart';
 

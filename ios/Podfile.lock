@@ -34,6 +34,8 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.2)
+  - image_picker_ios (0.0.1):
+    - Flutter
   - naver_map_plugin (0.9.4):
     - Flutter
     - NMapsMap
@@ -50,6 +52,7 @@ DEPENDENCIES:
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - naver_map_plugin (from `.symlinks/plugins/naver_map_plugin/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
 
@@ -78,6 +81,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
   google_sign_in_ios:
     :path: ".symlinks/plugins/google_sign_in_ios/ios"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
   naver_map_plugin:
     :path: ".symlinks/plugins/naver_map_plugin/ios"
   shared_preferences_ios:
@@ -96,6 +101,7 @@ SPEC CHECKSUMS:
   GoogleSignIn: 3c68388ac221f379676e8f1cb115df3aaf73b93f
   GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
+  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   naver_map_plugin: d1d67733c56b20b88270d9da51218e18fa916232
   NMapsMap: a2593320fca2bb09e521c05b4dffee4da42e96ed
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad

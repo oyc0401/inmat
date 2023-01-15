@@ -1,49 +1,32 @@
 import 'package:flutter/material.dart';
 
-class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
-  SearchAppBar({Key? key}) : preferredSize = Size.fromHeight(kToolbarHeight), super(key: key);
-
-  @override
-  final Size preferredSize; // default is 56.0
-
-  @override
-  _SearchAppBarState createState() => _SearchAppBarState();
-}
-
-class _SearchAppBarState extends State<SearchAppBar>{
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-
-      title: SearchInput(),);
-  }
-}
-
-
-
 class SearchInput extends StatefulWidget {
-  const SearchInput({super.key});
+  const SearchInput({
+    super.key,
+    required this.onChanged,
+    required this.onSubmitted,
+  });
+
+  final ValueChanged<String> onChanged;
+  final ValueChanged<String> onSubmitted;
 
   @override
-  _SearchInputState createState() => _SearchInputState();
+  State<SearchInput> createState() => _SearchInputState();
 }
 
 class _SearchInputState extends State<SearchInput> {
   final TextEditingController _filter = TextEditingController();
+
   FocusNode focusNode = FocusNode();
   String _searchText = "";
 
-  _SearchInputState() {
-    _filter.addListener(() {
-      setState(() {
-        _searchText = _filter.text;
-      });
-    });
+  bool get onDelete {
+    return _searchText != "" && focusNode.hasFocus;
   }
 
   @override
   Widget build(BuildContext context) {
+    // print("앱바 빌드");
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       child: Row(
@@ -51,17 +34,37 @@ class _SearchInputState extends State<SearchInput> {
           Expanded(
             flex: 6,
             child: TextField(
-
               // // controller: controller.nicknameController,
               // inputFormatters: <TextInputFormatter>[
               //   FilteringTextInputFormatter.allow(RegExp(r'[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|ᆞ|ᆢ]')), // 검색창에 한글만 입력되게 하기
               // ],
+              textInputAction: TextInputAction.go,
+              onSubmitted: (text) {
+                widget.onSubmitted(_searchText);
+                setState(() {
+                  focusNode.unfocus();
+                  _filter.clear();
+                  _searchText = '';
+                });
+              },
+              onChanged: (text) {
+                if ((_searchText == '' && text != '') ||
+                    (_searchText != '' && text == '')) {
+                  setState(() {
+                    _searchText = text;
+                  });
+                } else {
+                  _searchText = text;
+                }
+                widget.onChanged(_searchText);
+              },
+
               focusNode: focusNode,
               style: const TextStyle(fontSize: 15, color: Colors.black),
               autofocus: true,
               controller: _filter,
               decoration: InputDecoration(
-                contentPadding:EdgeInsets.all(8),
+                contentPadding: EdgeInsets.all(8),
                 filled: true,
                 fillColor: Colors.black12,
                 prefixIcon: const Icon(
@@ -69,7 +72,7 @@ class _SearchInputState extends State<SearchInput> {
                   color: Colors.black54,
                   size: 20,
                 ),
-                suffixIcon: focusNode.hasFocus
+                suffixIcon: onDelete
                     ? IconButton(
                         icon: const Icon(
                           Icons.cancel,
@@ -78,14 +81,18 @@ class _SearchInputState extends State<SearchInput> {
                         onPressed: () {
                           setState(() {
                             _filter.clear();
-                            _searchText = "";
+                            _searchText = '';
                           });
+                          widget.onChanged('');
                         },
                       )
-                    : Container(),
+                    : null,
+
+
                 hintText: '검색',
                 hintStyle: const TextStyle(color: Colors.black),
                 labelStyle: const TextStyle(color: Colors.black),
+                // errorBorder: InputBorder.none,
                 focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -98,18 +105,6 @@ class _SearchInputState extends State<SearchInput> {
               ),
             ),
           ),
-          // focusNode.hasFocus
-          //     ? TextButton(
-          //         child: const Text('취소'),
-          //         onPressed: () {
-          //           setState(() {
-          //             _filter.clear();
-          //             _searchText = "";
-          //             focusNode.unfocus();
-          //           });
-          //         },
-          //       )
-          //     : Container(),
         ],
       ),
     );

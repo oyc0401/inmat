@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/_sample/camera/camera_example.dart';
 import 'package:inmat/auth_check.dart';
 import 'package:inmat/inmat/auth/Inmat_token.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Google Maps Demo',
+      title: '인맛',
       builder: (context, child) => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
         child: child!,
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: productMode(),
       home: const AuthCheck(),
+      // home: CameraExample(),
     );
   }
 

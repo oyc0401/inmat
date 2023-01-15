@@ -7,9 +7,16 @@ class Notice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("공지사항"),
+        title: const Text("공지사항"),
       ),
-      body: Container(child: Text("마지막 업데이트: 2023.01.12"),),
+      body: Center(
+        child: Column(
+          children: const [
+            Text("버전: 0.0.1"),
+            Text("마지막 업데이트: 2023.01.12"),
+          ],
+        ),
+      ),
     );
   }
 }
