@@ -45,9 +45,10 @@ class _WritePostState extends State<WritePost> {
               minLines: 1,
               maxLines: null,
               decoration: const InputDecoration(
-                  hintStyle: TextStyle(fontWeight: FontWeight.normal),
-                  hintText: "제목을 입력하세요.",
-                  border: InputBorder.none),
+                hintStyle: TextStyle(fontWeight: FontWeight.normal),
+                hintText: "제목을 입력하세요.",
+                border: InputBorder.none,
+              ),
             ),
             Container(
               height: 1,
@@ -58,11 +59,16 @@ class _WritePostState extends State<WritePost> {
               onChanged: (text) {
                 content = text;
               },
+              autocorrect: false,
+              enableSuggestions: false,
               keyboardType: TextInputType.multiline,
               minLines: 4,
               maxLines: null,
               decoration: const InputDecoration(
-                  hintText: "내용을 입력하세요.", border: InputBorder.none),
+                hintText: "내용을 입력하세요.",
+                focusedBorder: InputBorder.none,
+                border: InputBorder.none,
+              ),
             ),
             Container(
               height: 500,
