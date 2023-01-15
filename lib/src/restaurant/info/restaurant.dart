@@ -15,11 +15,11 @@ class RestaurantPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => RestaurantModel(id),
-      child: Consumer<RestaurantModel>(
+      create: (BuildContext context) => RestaurantProvider(id),
+      child: Consumer<RestaurantProvider>(
         builder: (context, model, child) => Scaffold(
           appBar: AppBar(
-            title: Text(Provider.of<RestaurantModel>(context).name),
+            title: Text(Provider.of<RestaurantProvider>(context).name),
           ),
           body: ListView(
             children: [
@@ -29,16 +29,16 @@ class RestaurantPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(Provider.of<RestaurantModel>(context).name),
-                    Text('${Provider.of<RestaurantModel>(context).type}'),
+                    Text(Provider.of<RestaurantProvider>(context).name),
+                    Text('${Provider.of<RestaurantProvider>(context).type}'),
                     IconButton(
                       onPressed: () {
-                        Provider.of<RestaurantModel>(context, listen: false)
+                        Provider.of<RestaurantProvider>(context, listen: false)
                             .like();
-                        Provider.of<RestaurantModel>(context, listen: false)
+                        Provider.of<RestaurantProvider>(context, listen: false)
                             .postHeart();
                       },
-                      icon: Provider.of<RestaurantModel>(context).heart
+                      icon: Provider.of<RestaurantProvider>(context).heart
                           ? Icon(
                               Icons.favorite,
                               color: Colors.redAccent,
@@ -46,20 +46,20 @@ class RestaurantPage extends StatelessWidget {
                           : Icon(Icons.favorite_border),
                     ),
                     Text(
-                        '별점: ${Provider.of<RestaurantModel>(context).averageStar}'),
+                        '별점: ${Provider.of<RestaurantProvider>(context).averageStar}'),
                     Text(
-                        '평균 가격: ${Provider.of<RestaurantModel>(context).averagePrice}'),
+                        '평균 가격: ${Provider.of<RestaurantProvider>(context).averagePrice}'),
                     Text(
-                        '복잡도: ${Provider.of<RestaurantModel>(context).complexity}'),
-                    Text('${Provider.of<RestaurantModel>(context).heart}'),
-                    Provider.of<RestaurantModel>(context).complete
+                        '복잡도: ${Provider.of<RestaurantProvider>(context).complexity}'),
+                    Text('${Provider.of<RestaurantProvider>(context).heart}'),
+                    Provider.of<RestaurantProvider>(context).complete
                         ? Menus(
-                            menus: Provider.of<RestaurantModel>(context).menus,
+                            menus: Provider.of<RestaurantProvider>(context).menus,
                           )
                         : Container(),
                     RestaurantMap(),
                     Text(
-                        '${Provider.of<RestaurantModel>(context).contactNumber}'),
+                        '${Provider.of<RestaurantProvider>(context).contactNumber}'),
                   ],
                 ),
               ),
@@ -88,7 +88,7 @@ class Banner extends StatelessWidget {
       height: 150,
       color: Colors.grey,
       child: Center(
-          child: Text('사진: ${Provider.of<RestaurantModel>(context).images}')),
+          child: Text('사진: ${Provider.of<RestaurantProvider>(context).images}')),
     );
   }
 }
@@ -134,7 +134,7 @@ class RestaurantMap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(Provider.of<RestaurantModel>(context).address),
+        Text(Provider.of<RestaurantProvider>(context).address),
         Container(
           height: 100,
           decoration: BoxDecoration(
@@ -146,8 +146,8 @@ class RestaurantMap extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                Text('${Provider.of<RestaurantModel>(context).longitude}'),
-                Text('${Provider.of<RestaurantModel>(context).latitude}'),
+                Text('${Provider.of<RestaurantProvider>(context).longitude}'),
+                Text('${Provider.of<RestaurantProvider>(context).latitude}'),
               ],
             ),
           ),

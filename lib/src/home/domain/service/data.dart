@@ -2,31 +2,40 @@ import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 import '../model/banner_model.dart';
 import '../model/restaurant_model.dart';
+import '../model/review_model.dart';
+import '../model/today_model.dart';
 
-class DataRemodel {
-  DataRemodel._(this.json);
+class HomeModel {
+  HomeModel._(this._json);
 
-  Map<String, dynamic> json;
+  Map<String, dynamic> _json;
 
-  static Future<DataRemodel> run() async {
+  static Future<HomeModel> run() async {
     Map<String, dynamic> map = await InMatApi.restaurant.getHome();
-    return DataRemodel._(map);
+    return HomeModel._(map);
   }
 
   List<BannerModel> get banners {
-    List list = json['bannerList'];
-    List<BannerModel> result =
-        list.map((data) => BannerModel.fromJson(data)).toList();
-
-    return result;
+    return [
+      for (dynamic data in _json['bannerList']) BannerModel.fromJson(data)
+    ];
   }
 
-  void running() async {
-    // toDayRecommends = json['todayRecommendList'];
-    // recentReviews = json['recentReviewList'];
-    // restaurants = json['restaurantList'];
-    // print(restaurants);
+  List<TodayModel> get todays {
+    return [
+      for (dynamic data in _json['todayRecommendList']) TodayModel.fromJson(data)
+    ];
+  }
 
-    RestaurantModel restaurantModel = RestaurantModel.fromJson(json);
+  List<ReviewModel> get reviews {
+    return [
+      for (dynamic data in _json['recentReviewList']) ReviewModel.fromJson(data)
+    ];
+  }
+
+  List<RestaurantModel> get restaurants {
+    return [
+      for (dynamic data in _json['restaurantList']) RestaurantModel.fromJson(data)
+    ];
   }
 }

@@ -1,45 +1,37 @@
 import 'package:flutter/cupertino.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:inmat/src/home/domain/service/data.dart';
 
-class HomeModel extends ChangeNotifier {
-  HomeModel() {
+
+import '../domain/model/banner_model.dart';
+import '../domain/model/restaurant_model.dart';
+import '../domain/model/review_model.dart';
+import '../domain/model/today_model.dart';
+
+class HomeViewModel extends ChangeNotifier {
+  HomeViewModel() {
     init();
   }
 
   bool complete = false;
 
-  Map json = {'dsad': "rrfv"};
-
-  List banners = [];
-  List toDayRecommends = [];
-  List recentReviews = [];
-  List restaurants = [];
+  List<BannerModel> banners = [];
+  List<TodayModel> toDayRecommends = [];
+  List<ReviewModel> recentReviews = [];
+  List<RestaurantModel> restaurants = [];
 
   init() async {
     try {
-      DataRemodel dataRemodel = await DataRemodel.run();
-      print(dataRemodel.banners);
+      HomeModel dataRemodel = await HomeModel.run();
+      banners=dataRemodel.banners;
+      toDayRecommends=dataRemodel.todays;
+      recentReviews=dataRemodel.reviews;
+      restaurants=dataRemodel.restaurants;
 
-      Map<String, dynamic> map = await InMatApi.restaurant.getHome();
-      // print(map);
-      json = map;
       complete = true;
 
-      banners = json['bannerList'];
-      toDayRecommends = json['todayRecommendList'];
-      recentReviews = json['recentReviewList'];
-      restaurants = json['restaurantList'];
-      print(restaurants);
     } catch (e) {
       print(e);
     }
-
-    // print(banners);
-    // print(toDayRecommends);
-    // print(recentReviews);
-    // print(restaurants);
-
     notifyListeners();
   }
 }

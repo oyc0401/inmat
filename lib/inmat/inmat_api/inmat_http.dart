@@ -18,7 +18,7 @@ class InMatHttp {
   final String _message;
   final String? token;
 
-  String get _url{
+  String get _url {
     return "http://prod.sogogi.shop:9000$url";
   }
 
@@ -41,8 +41,10 @@ class InMatHttp {
 
     _throwException(response);
 
-    ///디버그 할 때 아래 주석을 풀면 모든 통신의 값을 불러온다.
-     print(response);
+    /// 디버그 할 때 [debug]를 true 로 하면 모든 통신의 값을 출력한다.
+    const bool debug = true;
+    if (debug) print(response);
+
 
     print("$_message 성공!");
     return response["result"];

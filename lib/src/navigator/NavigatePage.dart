@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../home/screens/home.dart';
 
-import '../search/search_model.dart';
-import '../search/Search.dart';
+import '../search/providers/search_model.dart';
+import '../search/screens/Search.dart';
 
 import '../spinner/RandomFoodSelect.dart';
 
@@ -30,7 +30,7 @@ class _NavigatePageState extends State<NavigatePage> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (BuildContext context) => HomeModel()),
+        ChangeNotifierProvider(create: (BuildContext context) => HomeViewModel()),
         ChangeNotifierProvider(create: (BuildContext context) => SearchModel()),
         ChangeNotifierProvider(
             create: (BuildContext context) => CommunityModel()),

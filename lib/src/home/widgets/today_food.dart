@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/src/home/domain/model/today_model.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/home_provider.dart';
@@ -15,11 +16,12 @@ class TodayFoods extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          for (Map map in Provider.of<HomeModel>(context).toDayRecommends)
+          for (TodayModel model
+              in Provider.of<HomeViewModel>(context).toDayRecommends)
             TodayMenu(
-              id: map['recommendId'],
-              imageUrl: map['imgUrl'],
-              food: map['foodName'],
+              id: model.recommendId,
+              imageUrl: model.imgUrl,
+              food: model.foodName,
             )
         ],
       ),

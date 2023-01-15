@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
-class RestaurantModel with ChangeNotifier {
-  RestaurantModel(this.id) {
+class RestaurantProvider with ChangeNotifier {
+  RestaurantProvider(this.id) {
     init(id);
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/src/home/domain/model/banner_model.dart';
 import 'package:provider/provider.dart';
-
 
 import '../widgets/banner.dart';
 import '../providers/home_provider.dart';
@@ -74,16 +74,17 @@ class _HomeState extends State<Home> {
       ),
       body: ListView(
         children: [
-         Column(children: [
-           bannerSection(),
-           todaySection(),
-           recentSection(),
-           SizedBox(
-             height: 20,
-           ),
-           RestaurantList(),
-         ],)
-
+          Column(
+            children: [
+              bannerSection(),
+              todaySection(),
+              recentSection(),
+              SizedBox(
+                height: 20,
+              ),
+              RestaurantList(),
+            ],
+          )
         ],
       ),
       // bottomNavigationBar: Container(),
@@ -95,8 +96,8 @@ class _HomeState extends State<Home> {
       height: 163,
       child: PageView(
         children: [
-          for (Map map in Provider.of<HomeModel>(context).banners)
-            RestaurantBanner(imageUrl: map['bannerUrl'])
+          for (BannerModel model in Provider.of<HomeViewModel>(context).banners)
+            RestaurantBanner(imageUrl: model.bannerUrl)
         ],
       ),
     );
@@ -142,5 +143,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-

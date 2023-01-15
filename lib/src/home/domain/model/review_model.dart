@@ -1,17 +1,22 @@
-class ReviewModel {
-  ReviewModel({
-    required this.id,
-    required this.imageUrl,
-    required this.restaurantName,
-    required this.nickName,
-    required this.ratingStar,
-    required this.review,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  final int id;
-  final String? imageUrl;
-  final String restaurantName;
-  final String nickName;
-  final int ratingStar;
-  final String review;
+part 'review_model.g.dart';
+
+part 'review_model.freezed.dart';
+
+// $ flutter pub run build_runner build
+
+@freezed
+class ReviewModel with _$ReviewModel {
+  factory ReviewModel({
+    required int reviewId,
+    required String? imgUrl,
+    required String restaurantName,
+    required String nickName,
+    required int ratingStar,
+    required String contents,
+  }) = _ReviewModel;
+
+  factory ReviewModel.fromJson(Map<String, dynamic> json) =>
+      _$ReviewModelFromJson(json);
 }

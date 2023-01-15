@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/src/search/providers/search_model.dart';
 import 'package:inmat/widgets/shelf.dart';
+import 'package:provider/provider.dart';
+
+import '../models/rank.dart';
 
 class RecommendPage extends StatelessWidget {
-  const RecommendPage({
-    Key? key,
-    required this.list,
-  }) : super(key: key);
-
-  final List list;
+  const RecommendPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Rank> list = Provider.of<SearchModel>(context).posts;
+
     return ListView(
       // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -39,8 +40,8 @@ class RecommendPage extends StatelessWidget {
                       children: [
                         for (int i = 0; i < 5 && i < list.length; i++)
                           RankCard(
-                            rank: list[i]['ranking'],
-                            word: list[i]['word'],
+                            rank: list[i].rank,
+                            word: list[i].word,
                           )
                       ],
                     ),
@@ -51,8 +52,8 @@ class RecommendPage extends StatelessWidget {
                       children: [
                         for (int i = 5; i < 10 && i < list.length; i++)
                           RankCard(
-                            rank: list[i]['ranking'],
-                            word: list[i]['word'],
+                            rank: list[i].rank,
+                            word: list[i].word,
                           )
                       ],
                     ),
@@ -85,8 +86,8 @@ class RecommendPage extends StatelessWidget {
               // )
               for (int i = 0; i < 5 && i < list.length; i++)
                 RankCard(
-                  rank: list[i]['ranking'],
-                  word: list[i]['word'],
+                  rank: list[i].rank,
+                  word: list[i].word,
                 )
             ],
           ),
@@ -124,7 +125,7 @@ class RankCard extends StatelessWidget {
         children: [
           Text(
             '$rank',
-            style:  TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 12,
               color: _color,

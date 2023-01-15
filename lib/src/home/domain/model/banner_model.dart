@@ -8,7 +8,7 @@ part 'banner_model.freezed.dart';
 @freezed
 class BannerModel with _$BannerModel {
   factory BannerModel({
-    required  String? pageUrl,
+    required  String? bannerUrl,
   }) = _BannerModel;
 
   factory BannerModel.fromJson(Map<String, dynamic> json) =>

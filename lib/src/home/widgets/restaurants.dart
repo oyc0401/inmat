@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/src/home/domain/model/restaurant_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../restaurant/info/restaurant.dart';
 import '../providers/home_provider.dart';
-
-
 
 class RestaurantList extends StatelessWidget {
   const RestaurantList({Key? key}) : super(key: key);
@@ -33,8 +32,8 @@ class RestaurantList extends StatelessWidget {
               style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      )),
+                    borderRadius: BorderRadius.circular(18.0),
+                  )),
                   backgroundColor: MaterialStateProperty.all<Color>(
                     const Color(0xffEFEFEF),
                   )),
@@ -80,18 +79,16 @@ class RestaurantList extends StatelessWidget {
           rowMainAxisAlignment: MainAxisAlignment.spaceEvenly,
           cutLast: true,
           children: [
-            for (Map map in Provider
-                .of<HomeModel>(context)
-                .restaurants)
+            for (RestaurantModel model in Provider.of<HomeViewModel>(context).restaurants)
               RestaurantCard(
-                id: map['restaurantId'],
-                imageUrl: map['profileImgUrl'],
-                restaurant: map['restaurantName'],
-                address: map['address'],
-                averageStar: map['averageStar'],
-                reviewCount: map['countReview'],
-                averagePrice: map['averagePrice'],
-                type: map['restaurantType'],
+                id: model.restaurantId,
+                imageUrl: model.profileImgUrl,
+                restaurant: model.restaurantName,
+                address: model.address,
+                averageStar: model.averageStar,
+                reviewCount: model.countReview,
+                averagePrice: model.averagePrice,
+                type: model.restaurantType,
               )
           ],
         ),
@@ -251,7 +248,6 @@ class DoubleColumn extends StatelessWidget {
   }
 }
 
-
 class DoubleTest extends StatelessWidget {
   const DoubleTest({Key? key}) : super(key: key);
 
@@ -314,4 +310,3 @@ class DoubleTest extends StatelessWidget {
     );
   }
 }
-

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/src/home/domain/model/review_model.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/home_provider.dart';
@@ -15,13 +16,14 @@ class RecentReview extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          for (Map map in Provider.of<HomeModel>(context).recentReviews)
+          for (ReviewModel model
+              in Provider.of<HomeViewModel>(context).recentReviews)
             ReviewCard(
-              id: map['reviewId'],
-              imageUrl: map['imgUrl'],
-              nickname: map['nickName'],
-              restaurant: map['restaurantName'],
-              review: map['contents'],
+              id: model.reviewId,
+              imageUrl: model.imgUrl,
+              nickname: model.nickName,
+              restaurant: model.restaurantName,
+              review: model.contents,
             )
         ],
       ),

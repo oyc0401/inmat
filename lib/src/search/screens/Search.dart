@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:provider/provider.dart';
 
 import 'recommend_page.dart';
-import 'search_input.dart';
+import '../widgets/search_input.dart';
 import 'searched_page.dart';
 
 class Search extends StatefulWidget {
@@ -13,31 +13,13 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    init();
-  }
-
-  init() async {
-    list = await InMatApi.restaurant.getSearchRank();
-    setState(() {});
-  }
-
-  List list = [];
-
   bool isText = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SearchAppBar(),
-      body: isText
-          ? const SearchedPage()
-          : RecommendPage(
-              list: list,
-            ),
+      body: isText ? const SearchedPage() : RecommendPage(),
       floatingActionButton: FloatingActionButton(
         child: const Text("d"),
         onPressed: () {
