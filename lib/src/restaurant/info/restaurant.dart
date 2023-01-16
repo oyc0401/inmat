@@ -54,7 +54,8 @@ class RestaurantPage extends StatelessWidget {
                     Text('${Provider.of<RestaurantProvider>(context).heart}'),
                     Provider.of<RestaurantProvider>(context).complete
                         ? Menus(
-                            menus: Provider.of<RestaurantProvider>(context).menus,
+                            menus:
+                                Provider.of<RestaurantProvider>(context).menus,
                           )
                         : Container(),
                     RestaurantMap(),
@@ -63,13 +64,18 @@ class RestaurantPage extends StatelessWidget {
                   ],
                 ),
               ),
+              for (var map in Provider.of<RestaurantProvider>(context).reviews)
+                ListTile(title: Text('${map}',style: TextStyle(fontSize: 12),),),
+
               CupertinoButton(
                   child: Text("리뷰 작성"),
                   onPressed: () {
                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => WriteReview(id: id,)));
+                            builder: (context) => WriteReview(
+                                  id: id,
+                                )));
                   })
             ],
           ),
@@ -88,7 +94,8 @@ class Banner extends StatelessWidget {
       height: 150,
       color: Colors.grey,
       child: Center(
-          child: Text('사진: ${Provider.of<RestaurantProvider>(context).images}')),
+          child:
+              Text('사진: ${Provider.of<RestaurantProvider>(context).images}')),
     );
   }
 }
