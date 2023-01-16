@@ -10,32 +10,19 @@ import '../screens/search_result.dart';
 import '../widgets/search_input.dart';
 
 class SearchModel with ChangeNotifier {
-  ///
-  ///
-  ///
-  ///
-  ///
-
   InputController inputController = InputController();
 
   String _word = "";
 
-  _setWord(String text) {
-    _word = text;
-  }
+  _setWord(String text) => _word = text;
 
   String get word => _word;
 
   bool get existWord => word != "";
 
   void onChanged(String text) {
-    _setWord(text);
     print('onChanged: $text');
-    if (existWord) {
-      inputController.showDelete();
-    } else {
-      inputController.disposeDelete();
-    }
+    _setWord(text);
     notifyListeners();
   }
 
@@ -45,24 +32,16 @@ class SearchModel with ChangeNotifier {
 
     _addRecents(text);
 
-     Navigator.push(
-         context,
-         CupertinoPageRoute(
-             builder: (context) => SearchResult(word: text)));
+    Navigator.push(context,
+        CupertinoPageRoute(builder: (context) => SearchResult(word: text)));
   }
 
   void delete() {
     print("delete");
     inputController.clear();
-    inputController.disposeDelete();
     _setWord('');
+    notifyListeners();
   }
-
-  ///
-  ///
-  ///
-  ///
-  ///
 
   SearchModel() {
     _setRanks();

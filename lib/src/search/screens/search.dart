@@ -21,8 +21,23 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SearchAppBar(),
-      body: Body(),
+      appBar: AppBar(
+        toolbarHeight: 64,
+        title: SearchInput(
+          showDelete: Provider.of<SearchModel>(context).existWord,
+          inputController: Provider.of<SearchModel>(context).inputController,
+          onChanged: (t) {
+            Provider.of<SearchModel>(context, listen: false).onChanged(t);
+          },
+          onSubmitted: (t) {
+            Provider.of<SearchModel>(context, listen: false).submit(t, context);
+          },
+          onClickDelete: () {
+            Provider.of<SearchModel>(context, listen: false).delete();
+          },
+        ),
+      ),
+      body: const Body(),
     );
   }
 }
@@ -35,37 +50,5 @@ class Body extends StatelessWidget {
     return Provider.of<SearchModel>(context).existWord
         ? const KeywordPage()
         : const SearchWords();
-  }
-}
-
-class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const SearchAppBar({Key? key})
-      : preferredSize = const Size.fromHeight(kToolbarHeight),
-        super(key: key);
-
-  @override
-  final Size preferredSize; // default is 56.0
-
-  @override
-  State<SearchAppBar> createState() => _SearchAppBarState();
-}
-
-class _SearchAppBarState extends State<SearchAppBar> {
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: SearchInput(
-        inputController: Provider.of<SearchModel>(context).inputController,
-        onChanged: (t) {
-          Provider.of<SearchModel>(context, listen: false).onChanged(t);
-        },
-        onSubmitted: (t) {
-          Provider.of<SearchModel>(context,listen: false).submit(t, context);
-        },
-        onClickDelete: () {
-          Provider.of<SearchModel>(context, listen: false).delete();
-        },
-      ),
-    );
   }
 }

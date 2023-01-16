@@ -33,7 +33,7 @@ class RecentCard extends StatelessWidget {
       ),
       trailing: IconButton(
         onPressed: onDelete,
-        icon: Icon(Icons.delete),
+        icon: Icon(Icons.clear),
       ),
     );
   }
