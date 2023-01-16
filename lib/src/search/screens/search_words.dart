@@ -73,6 +73,7 @@ class SearchWords extends StatelessWidget {
 
 class PopularWords extends StatelessWidget {
   const PopularWords({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     List<Rank> posts = Provider.of<SearchModel>(context).posts;
@@ -87,13 +88,7 @@ class PopularWords extends StatelessWidget {
                 RankCard(
                   onclick: () {
                     Provider.of<SearchModel>(context, listen: false)
-                        .addRecents(posts[i].word);
-
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) =>
-                                SearchResult(word: posts[i].word)));
+                        .submit(posts[i].word, context);
                   },
                   rank: posts[i].rank,
                   word: posts[i].word,
@@ -109,13 +104,7 @@ class PopularWords extends StatelessWidget {
                 RankCard(
                   onclick: () {
                     Provider.of<SearchModel>(context, listen: false)
-                        .addRecents(posts[i].word);
-
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) =>
-                                SearchResult(word: posts[i].word)));
+                        .submit(posts[i].word, context);
                   },
                   rank: posts[i].rank,
                   word: posts[i].word,
@@ -130,6 +119,7 @@ class PopularWords extends StatelessWidget {
 
 class RecentWords extends StatelessWidget {
   const RecentWords({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     List<RecentModel> recents = Provider.of<SearchModel>(context).recents;
@@ -139,13 +129,7 @@ class RecentWords extends StatelessWidget {
           RecentCard(
             onclick: () {
               Provider.of<SearchModel>(context, listen: false)
-                  .addRecents(recents[i].word);
-
-              Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                      builder: (context) =>
-                          SearchResult(word: recents[i].word)));
+                  .submit(recents[i].word, context);
             },
             onDelete: () {
               Provider.of<SearchModel>(context, listen: false)

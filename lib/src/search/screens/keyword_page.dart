@@ -15,7 +15,7 @@ class KeywordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String word = Provider.of<SearchBarModel>(context).word;
+    String word = Provider.of<SearchModel>(context).word;
     List keywords = [
       word,
       word + " 자동",
@@ -55,18 +55,14 @@ class KeywordBar extends StatelessWidget {
       color: Color(0xffdedede),
       onclick: () {
         // Provider.of<SearchBarModel>(context, listen: false).setWord('');
-        Provider.of<SearchModel>(context, listen: false).addRecents(keyword);
-
-         Navigator.push(
-            context,
-            CupertinoPageRoute(
-                builder: (context) => SearchResult(word: keyword)));
+        Provider.of<SearchModel>(context, listen: false)
+            .submit(keyword, context);
       },
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.all(12),
         child: Text(
-          "$keyword",
+          keyword,
           style: TextStyle(fontSize: 14),
         ),
       ),

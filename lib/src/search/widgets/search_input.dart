@@ -1,32 +1,55 @@
 import 'package:flutter/material.dart';
 
+class InputController {
+  Function showDelete = () {};
+  Function disposeDelete = () {};
+  Function clear = () {};
+}
+
 class SearchInput extends StatefulWidget {
   const SearchInput({
     super.key,
     required this.onChanged,
     required this.onSubmitted,
+    required this.inputController,
+    required this.onClickDelete,
   });
 
   final ValueChanged<String> onChanged;
   final ValueChanged<String> onSubmitted;
+  final VoidCallback onClickDelete;
+  final InputController inputController;
 
   @override
   State<SearchInput> createState() => _SearchInputState();
 }
 
 class _SearchInputState extends State<SearchInput> {
+
+
   final TextEditingController _filter = TextEditingController();
-
-  FocusNode focusNode = FocusNode();
-  String _searchText = "";
-
-  bool get onDelete {
-    return _searchText != "" && focusNode.hasFocus;
-  }
+  bool showDelete = false;
 
   @override
   Widget build(BuildContext context) {
     // print("앱바 빌드");
+    widget.inputController.showDelete = () {
+      setState(() {
+        showDelete = true;
+      });
+    };
+    widget.inputController.disposeDelete = () {
+      setState(() {
+        showDelete = false;
+      });
+    };
+
+
+    widget.inputController.clear = () {
+      setState(() {
+        _filter.clear();
+      });
+    };
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       child: Row(
@@ -39,32 +62,14 @@ class _SearchInputState extends State<SearchInput> {
               //   FilteringTextInputFormatter.allow(RegExp(r'[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|ᆞ|ᆢ]')), // 검색창에 한글만 입력되게 하기
               // ],
               textInputAction: TextInputAction.go,
-              onSubmitted: (text) {
-                widget.onSubmitted(_searchText);
-                setState(() {
-                  focusNode.unfocus();
-                  _filter.clear();
-                  _searchText = '';
-                });
-              },
-              onChanged: (text) {
-                if ((_searchText == '' && text != '') ||
-                    (_searchText != '' && text == '')) {
-                  setState(() {
-                    _searchText = text;
-                  });
-                } else {
-                  _searchText = text;
-                }
-                widget.onChanged(_searchText);
-              },
-
-              focusNode: focusNode,
+              onSubmitted: widget.onSubmitted,
+              onChanged: widget.onChanged,
               style: const TextStyle(fontSize: 15, color: Colors.black),
               autofocus: true,
               controller: _filter,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(8),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 filled: true,
                 fillColor: Colors.black12,
                 prefixIcon: const Icon(
@@ -72,22 +77,15 @@ class _SearchInputState extends State<SearchInput> {
                   color: Colors.black54,
                   size: 20,
                 ),
-                suffixIcon: onDelete
+                suffixIcon: showDelete
                     ? IconButton(
                         icon: const Icon(
                           Icons.cancel,
                           size: 20,
                         ),
-                        onPressed: () {
-                          setState(() {
-                            _filter.clear();
-                            _searchText = '';
-                          });
-                          widget.onChanged('');
-                        },
+                        onPressed: widget.onClickDelete,
                       )
                     : null,
-
 
                 hintText: '검색',
                 hintStyle: const TextStyle(color: Colors.black),

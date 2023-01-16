@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:inmat/src/search/domain/database/recent_search_database.dart';
@@ -5,10 +6,67 @@ import 'package:inmat/src/search/domain/database/recent_search_database.dart';
 import '../domain/models/rank.dart';
 import '../domain/models/recent_model.dart';
 
+import '../screens/search_result.dart';
+import '../widgets/search_input.dart';
+
 class SearchModel with ChangeNotifier {
+  ///
+  ///
+  ///
+  ///
+  ///
+
+  InputController inputController = InputController();
+
+  String _word = "";
+
+  _setWord(String text) {
+    _word = text;
+  }
+
+  String get word => _word;
+
+  bool get existWord => word != "";
+
+  void onChanged(String text) {
+    _setWord(text);
+    print('onChanged: $text');
+    if (existWord) {
+      inputController.showDelete();
+    } else {
+      inputController.disposeDelete();
+    }
+    notifyListeners();
+  }
+
+  void submit(String text, BuildContext context) {
+    print("submit: $text");
+    delete();
+
+    _addRecents(text);
+
+     Navigator.push(
+         context,
+         CupertinoPageRoute(
+             builder: (context) => SearchResult(word: text)));
+  }
+
+  void delete() {
+    print("delete");
+    inputController.clear();
+    inputController.disposeDelete();
+    _setWord('');
+  }
+
+  ///
+  ///
+  ///
+  ///
+  ///
+
   SearchModel() {
-    setRanks();
-    setRecents();
+    _setRanks();
+    _setRecents();
   }
 
   bool successRank = false;
@@ -22,7 +80,7 @@ class SearchModel with ChangeNotifier {
 
   List<RecentModel> get recents => _recents;
 
-  Future<void> setRanks() async {
+  Future<void> _setRanks() async {
     List<Map> maps = await InMatApi.restaurant.getSearchRank();
 
     for (var map in maps) {
@@ -32,7 +90,7 @@ class SearchModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setRecents() async {
+  Future<void> _setRecents() async {
     RecentDataBase dataBase = await RecentDataBase.instance;
     _recents = await dataBase.recents();
 
@@ -40,7 +98,7 @@ class SearchModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addRecents(String word) async {
+  Future<void> _addRecents(String word) async {
     DateTime now = DateTime.now();
     RecentModel model = RecentModel(id: word, word: word, date: now.toString());
 

@@ -20,12 +20,9 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<SearchBarModel>(
-      create: (context) => SearchBarModel(),
-      child: Scaffold(
-        appBar: SearchAppBar(),
-        body: Body(),
-      ),
+    return Scaffold(
+      appBar: SearchAppBar(),
+      body: Body(),
     );
   }
 }
@@ -35,7 +32,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider.of<SearchBarModel>(context).isText
+    return Provider.of<SearchModel>(context).existWord
         ? const KeywordPage()
         : const SearchWords();
   }
@@ -58,21 +55,15 @@ class _SearchAppBarState extends State<SearchAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       title: SearchInput(
+        inputController: Provider.of<SearchModel>(context).inputController,
         onChanged: (t) {
-          Provider.of<SearchBarModel>(context, listen: false).setWord(t);
-          print(t);
+          Provider.of<SearchModel>(context, listen: false).onChanged(t);
         },
-        onSubmitted: (t) async{
-          String word =
-              Provider.of<SearchBarModel>(context, listen: false).word;
-          Provider.of<SearchBarModel>(context, listen: false).setWord('');
-
-          Provider.of<SearchModel>(context, listen: false).addRecents(word);
-
-           Navigator.push(
-              context,
-              CupertinoPageRoute(
-                  builder: (context) => SearchResult(word: word)));
+        onSubmitted: (t) {
+          Provider.of<SearchModel>(context,listen: false).submit(t, context);
+        },
+        onClickDelete: () {
+          Provider.of<SearchModel>(context, listen: false).delete();
         },
       ),
     );

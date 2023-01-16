@@ -1,13 +1,11 @@
-import 'package:flutter/cupertino.dart';
-
-class SearchBarModel with ChangeNotifier {
-  String word = "";
-
-  bool get isText => word != "";
-
-  setWord(String text) {
-    word = text;
-    notifyListeners();
-  }
-
-}
+// import 'package:flutter/cupertino.dart';
+//
+// import '../widgets/search_input.dart';
+//
+// class SearchBarModel with ChangeNotifier {
+//   SearchBarModel(){
+//
+//   }
+//
+//
+// }
