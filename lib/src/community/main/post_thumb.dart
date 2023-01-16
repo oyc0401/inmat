@@ -28,7 +28,7 @@ class PostThumb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkButton(
+    return InkButtonMaterial(
       onclick: onclick,
       color: Colors.white,
       child: Container(

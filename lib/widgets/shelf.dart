@@ -12,12 +12,14 @@ class Shelf extends StatelessWidget {
     this.padding,
     this.crossAxisAlignment,
     this.mainAxisAlignment,
+    this.divideColor,
   }) : super(key: key);
   final List<Widget> children;
   final double? space;
   final EdgeInsetsGeometry? padding;
   final CrossAxisAlignment? crossAxisAlignment;
   final MainAxisAlignment? mainAxisAlignment;
+  final Color? divideColor;
 
   List<Widget> get _childrenSpace {
     List<Widget> value = [];
@@ -26,7 +28,7 @@ class Shelf extends StatelessWidget {
       value.add(child);
       // 마지막이면 공백 추가 x
       if (children.last != child) {
-        value.add(SizedBox(height: space));
+        value.add(Container(color: divideColor, height: space));
       }
     }
     return value;

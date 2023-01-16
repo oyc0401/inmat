@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/src/search/domain/database/recent_search_database.dart';
 
-import '../models/rank.dart';
+import '../domain/models/rank.dart';
+import '../domain/models/recent_model.dart';
 
 class SearchModel with ChangeNotifier {
   SearchModel() {
@@ -9,18 +11,60 @@ class SearchModel with ChangeNotifier {
   }
 
   bool success = false;
+
   final List<Rank> _rank = [];
-  bool isText = false;
+
+  List<RecentModel> _recents = [];
 
   List<Rank> get posts => _rank;
 
+  List<RecentModel> get recents => _recents;
+
   init() async {
+    await setRanks();
+    await setRecents();
+
+    // 마무리
+    success = true;
+    notifyListeners();
+  }
+
+  Future<void> setRanks() async {
     List<Map> maps = await InMatApi.restaurant.getSearchRank();
 
     for (var map in maps) {
       _rank.add(Rank(map['ranking'], map['word']));
     }
-    success = true;
+  }
+
+  Future<void> setRecents() async {
+    RecentDataBase dataBase = await RecentDataBase.instance;
+    _recents = await dataBase.recents();
+    print(recents);
+  }
+
+  Future<void> addRecents(String word) async {
+    DateTime now = DateTime.now();
+    RecentModel model = RecentModel(id: word, word: word, date: now.toString());
+
+    //DB 접근
+    RecentDataBase dataBase = await RecentDataBase.instance;
+    dataBase.insertRecent(model);
+
+    // 배열에 추가
+    recents.removeWhere((element) => element.id == word);
+    recents.insert(0, model);
+
+    notifyListeners();
+  }
+
+  Future<void> deleteRecents(String word) async {
+    //DB 접근
+    RecentDataBase dataBase = await RecentDataBase.instance;
+    dataBase.deleteDog(word);
+
+    // 배열에서 삭제
+    recents.removeWhere((element) => element.id == word);
     notifyListeners();
   }
 }

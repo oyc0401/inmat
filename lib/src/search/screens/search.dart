@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/src/search/models/search_bar_model.dart';
+import 'package:inmat/src/search/providers/search_bar_model.dart';
+import 'package:inmat/src/search/providers/search_model.dart';
 import 'package:inmat/src/search/screens/search_result.dart';
 import 'package:provider/provider.dart';
 
-import 'recent_word.dart';
+import '../domain/database/recent_search_database.dart';
+import 'search_words.dart';
 import '../widgets/search_input.dart';
 import 'keyword_page.dart';
 
@@ -35,7 +37,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider.of<SearchBarModel>(context).isText
         ? const KeywordPage()
-        : const RecentWord();
+        : const SearchWords();
   }
 }
 
@@ -60,11 +62,14 @@ class _SearchAppBarState extends State<SearchAppBar> {
           Provider.of<SearchBarModel>(context, listen: false).setWord(t);
           print(t);
         },
-        onSubmitted: (t) async {
+        onSubmitted: (t) async{
           String word =
               Provider.of<SearchBarModel>(context, listen: false).word;
           Provider.of<SearchBarModel>(context, listen: false).setWord('');
-          await Navigator.push(
+
+          Provider.of<SearchModel>(context, listen: false).addRecents(word);
+
+           Navigator.push(
               context,
               CupertinoPageRoute(
                   builder: (context) => SearchResult(word: word)));

@@ -62,6 +62,8 @@ dependencies:
 
   freezed_annotation:
   image_picker: ^0.8.6
+  sqflite: ^2.2.3
+  path: ^1.8.3
 
 
 

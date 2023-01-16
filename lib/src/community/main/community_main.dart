@@ -60,7 +60,7 @@ class WriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkButton(
+    return InkButtonMaterial(
       onclick: onclick,
       inkBorderRadius: BorderRadius.all(
         Radius.circular(100),

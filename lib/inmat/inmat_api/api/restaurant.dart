@@ -73,5 +73,22 @@ class RestaurantApi {
     return (await inMatHttp.execute()).cast<Map>();
   }
 
+  ///검색 결과 API
+  Future<List<Map>> getSearchResult(String word) async {
+    InMatHttp inMatHttp = InMatHttp(
+      Http.get,
+      message: "검색 결과 불러오기",
+      url: "/restaurants/search/?search=$word",
+      // body: {
+      //   "search": word,
+      // },
+      token: InMatAuth.instance.currentUser?.token,
+    );
+    return (await inMatHttp.execute()).cast<Map>();
+  }
+
+
+
+
 
 }
