@@ -42,7 +42,7 @@ class SearchWords extends StatelessWidget {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        Provider.of<SearchModel>(context).success
+        Provider.of<SearchModel>(context).successRank
             ? const SizedBox(height: 165, child: PopularWords())
             : Container(
                 height: 165,
@@ -73,7 +73,6 @@ class SearchWords extends StatelessWidget {
 
 class PopularWords extends StatelessWidget {
   const PopularWords({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     List<Rank> posts = Provider.of<SearchModel>(context).posts;
@@ -131,7 +130,6 @@ class PopularWords extends StatelessWidget {
 
 class RecentWords extends StatelessWidget {
   const RecentWords({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     List<RecentModel> recents = Provider.of<SearchModel>(context).recents;

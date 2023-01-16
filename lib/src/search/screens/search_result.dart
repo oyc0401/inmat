@@ -48,7 +48,7 @@ class _SearchResultState extends State<SearchResult> {
               for (var map in list)
                 RestaurantSearchCard(
                   onclick: () {
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
                     Navigator.of(context).push(
                       MaterialPageRoute(
                           builder: (builder) =>

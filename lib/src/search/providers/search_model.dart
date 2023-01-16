@@ -7,10 +7,12 @@ import '../domain/models/recent_model.dart';
 
 class SearchModel with ChangeNotifier {
   SearchModel() {
-    init();
+    setRanks();
+    setRecents();
   }
 
-  bool success = false;
+  bool successRank = false;
+  bool successRecent = false;
 
   final List<Rank> _rank = [];
 
@@ -20,27 +22,22 @@ class SearchModel with ChangeNotifier {
 
   List<RecentModel> get recents => _recents;
 
-  init() async {
-    await setRanks();
-    await setRecents();
-
-    // 마무리
-    success = true;
-    notifyListeners();
-  }
-
   Future<void> setRanks() async {
     List<Map> maps = await InMatApi.restaurant.getSearchRank();
 
     for (var map in maps) {
       _rank.add(Rank(map['ranking'], map['word']));
     }
+    successRank = true;
+    notifyListeners();
   }
 
   Future<void> setRecents() async {
     RecentDataBase dataBase = await RecentDataBase.instance;
     _recents = await dataBase.recents();
-    print(recents);
+
+    successRecent = true;
+    notifyListeners();
   }
 
   Future<void> addRecents(String word) async {

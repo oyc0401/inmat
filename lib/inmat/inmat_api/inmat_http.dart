@@ -42,7 +42,7 @@ class InMatHttp {
     _throwException(response);
 
     /// 디버그 할 때 [debug]를 true 로 하면 모든 통신의 값을 출력한다.
-    const bool debug = false;
+    const bool debug = true;
     if (debug) print(response);
 
 
