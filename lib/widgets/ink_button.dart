@@ -6,12 +6,12 @@ class InkButton extends StatelessWidget {
     Key? key,
     required this.onclick,
     required this.child,
-    this.inkBorderRadius,
+    this.borderRadius,
     this.color,
   }) : super(key: key);
 
   final VoidCallback onclick;
-  final BorderRadius? inkBorderRadius;
+  final BorderRadius? borderRadius;
   final Color? color;
   final Widget child;
 
@@ -19,7 +19,7 @@ class InkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onclick,
-      borderRadius: inkBorderRadius,
+      borderRadius: borderRadius,
       child: Ink(
         color: color,
         child: child,
@@ -27,7 +27,6 @@ class InkButton extends StatelessWidget {
     );
   }
 }
-
 
 /// Material, InkWell과 Ink만 있는 위젯
 class InkButtonMaterial extends StatelessWidget {
@@ -48,18 +47,19 @@ class InkButtonMaterial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
+      borderRadius: inkBorderRadius,
       child: InkWell(
         onTap: onclick,
         borderRadius: inkBorderRadius,
         child: Ink(
-          color: color,
+          decoration:
+              BoxDecoration(color: color, borderRadius: inkBorderRadius),
           child: child,
         ),
       ),
     );
   }
 }
-
 
 /// decoration을 바꿀 수 있는 InkButtonMaterial 위젯
 class InkAllButton extends StatelessWidget {

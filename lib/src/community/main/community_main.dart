@@ -62,7 +62,7 @@ class WriteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkButtonMaterial(
       onclick: onclick,
-      inkBorderRadius: BorderRadius.all(
+      inkBorderRadius: const BorderRadius.all(
         Radius.circular(100),
       ),
       color: Colors.white,
