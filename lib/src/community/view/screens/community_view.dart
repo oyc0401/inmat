@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:inmat/src/community/view/widgets/contents.dart';
-import 'package:inmat/src/community/widget/count_icon.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/community_view_model.dart';

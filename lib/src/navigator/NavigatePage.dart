@@ -9,10 +9,10 @@ import '../search/screens/search.dart';
 
 import '../spinner/RandomFoodSelect.dart';
 
-import '../community/main/community_main.dart';
-import '../community/main/providers/community_model.dart';
+import '../community/main/screens/community_main.dart';
+import '../community/main/providers/community_view_model.dart';
 
-import '../profile/Profile.dart';
+import '../profile/profile.dart';
 
 import '../home/providers/home_view_model.dart';
 
@@ -33,7 +33,7 @@ class _NavigatePageState extends State<NavigatePage> {
         ChangeNotifierProvider(create: (BuildContext context) => HomeViewModel()),
         ChangeNotifierProvider(create: (BuildContext context) => SearchModel()),
         ChangeNotifierProvider(
-            create: (BuildContext context) => CommunityModel()),
+            create: (BuildContext context) => CommunityViewModel()),
       ],
       child: Scaffold(
         bottomNavigationBar: bottomNav(),

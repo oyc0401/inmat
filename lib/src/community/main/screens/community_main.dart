@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import 'package:inmat/widgets/ink_button.dart';
 
-import 'providers/community_model.dart';
-import 'post_thumb.dart';
+import '../providers/community_view_model.dart';
+import '../widgets/post_thumb.dart';
 
 class Community extends StatelessWidget {
   const Community({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class Community extends StatelessWidget {
       ),
       floatingActionButton: WriteButton(
         onclick: () {
-          Provider.of<CommunityModel>(context, listen: false)
+          Provider.of<CommunityViewModel>(context, listen: false)
               .pushWrite(context);
         },
       ),
@@ -34,10 +34,10 @@ class Community extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Column(
         children: [
-          for (var data in Provider.of<CommunityModel>(context).posts)
+          for (var data in Provider.of<CommunityViewModel>(context).posts)
             PostThumb(
               onclick: () {
-                Provider.of<CommunityModel>(context, listen: false)
+                Provider.of<CommunityViewModel>(context, listen: false)
                     .pushView(context, id: data.postId);
               },
               title: data.topic,

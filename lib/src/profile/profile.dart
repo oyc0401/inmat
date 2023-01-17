@@ -8,11 +8,12 @@ import 'package:inmat/inmat/auth/user_model.dart';
 import '../account/update_profile/change_profile.dart';
 import '../account/login_main/signin_page.dart';
 
-import 'MyFavorite.dart';
-import 'MyPost.dart';
-import 'MyReview.dart';
-import 'Notice.dart';
-import 'ProfileModel.dart';
+import 'my_favorite.dart';
+import 'my_post.dart';
+import 'my_review.dart';
+import 'notice.dart';
+import 'providers/profile_view_model.dart';
+import 'widgets/user_form.dart';
 //화면 이동
 
 class ProfilePage extends StatefulWidget {
@@ -41,7 +42,15 @@ class _ProfilePageState extends State<ProfilePage> {
           body: Column(
             children: [
               Provider.of<ProfileModel>(context).isUser
-                  ? UserForm()
+                  ? UserForm(
+                onclick: (){
+                  Navigator.push(context,
+                      CupertinoPageRoute(builder: (_) => const ChangeProfile()));
+                },
+                      nickName: InMatAuth.instance.currentUser!.nickName,
+                      profileImgUrl:
+                          InMatAuth.instance.currentUser!.profileImgUrl,
+                    )
                   : const LoginButton(),
               Container(
                 height: 1.0,
@@ -65,48 +74,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-class UserForm extends StatelessWidget {
-  UserForm({
-    Key? key,
-  }) : super(key: key);
-
-  final User user = InMatAuth.instance.currentUser!;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Container(
-        // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        // margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        width: 80,
-        height: 80,
-        decoration: const BoxDecoration(
-            color: Colors.grey,
-            // image: DecorationImage(
-            //   image: AssetImage('assets/images/profilesample.png'),
-            //   fit: BoxFit.cover,
-            // ),
-            shape: BoxShape.circle),
-        child: Center(child: Text('${user.profileImgUrl}')),
-      ),
-      title: Text('user.email'),
-      subtitle: Text(user.nickName),
-      trailing: TextButton(
-        onPressed: () {
-          Navigator.push(context,
-              CupertinoPageRoute(builder: (_) => const ChangeProfile()));
-        },
-        style: TextButton.styleFrom(
-          foregroundColor: Colors.grey,
-        ),
-        child: const Text(
-          '회원 정보 수정',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-    );
-  }
-}
 
 class MyInformation extends StatelessWidget {
   const MyInformation({Key? key}) : super(key: key);

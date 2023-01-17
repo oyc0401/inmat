@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inmat/src/community/widget/count_icon.dart';
+import 'package:inmat/src/community/widgets/count_icon.dart';
 import 'package:inmat/widgets/shelf.dart';
 import 'package:inmat/widgets/ink_button.dart';
 
