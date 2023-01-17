@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/src/restaurant/write_review/write_review.dart';
+import 'package:inmat/src/restaurant/screens/review_all.dart';
+import 'package:inmat/src/restaurant/widgets/review_card.dart';
+import 'package:inmat/src/restaurant/screens/write_review.dart';
 import 'package:provider/provider.dart';
 
-import 'restaurant_model.dart';
+import '../providers/restaurant_model.dart';
+import 'review_view.dart';
 
 class RestaurantPage extends StatelessWidget {
   const RestaurantPage({
@@ -64,19 +67,36 @@ class RestaurantPage extends StatelessWidget {
                   ],
                 ),
               ),
+              CupertinoButton(
+                  child: Text("리뷰 더보기"),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => ReviewAll(id: id)));
+                  }),
               for (var map in Provider.of<RestaurantProvider>(context).reviews)
-                ListTile(title: Text('${map}',style: TextStyle(fontSize: 12),),),
-
+                ReviewCard(
+                    onclick: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => ReviewView(
+                            restaurantId: id,
+                            reviewId: map['reviewId'],
+                          ),
+                        ),
+                      );
+                    },
+                    map: map),
               CupertinoButton(
                   child: Text("리뷰 작성"),
                   onPressed: () {
                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => WriteReview(
-                                  id: id,
-                                )));
-                  })
+                            builder: (context) => WriteReview(id: id)));
+                  }),
             ],
           ),
         ),

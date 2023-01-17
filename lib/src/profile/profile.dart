@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
@@ -43,10 +44,12 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
               Provider.of<ProfileModel>(context).isUser
                   ? UserForm(
-                onclick: (){
-                  Navigator.push(context,
-                      CupertinoPageRoute(builder: (_) => const ChangeProfile()));
-                },
+                      onclick: () {
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (_) => const ChangeProfile()));
+                      },
                       nickName: InMatAuth.instance.currentUser!.nickName,
                       profileImgUrl:
                           InMatAuth.instance.currentUser!.profileImgUrl,
@@ -74,7 +77,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-
 class MyInformation extends StatelessWidget {
   const MyInformation({Key? key}) : super(key: key);
 
@@ -85,7 +87,7 @@ class MyInformation extends StatelessWidget {
         ListTile(
           leading: const Icon(
             Icons.favorite,
-            color: Colors.blue,
+            color: Colorss.primaryColor,
           ),
           onTap: () {
             Navigator.push(context,
@@ -96,7 +98,7 @@ class MyInformation extends StatelessWidget {
         ListTile(
           leading: const Icon(
             Icons.list,
-            color: Colors.blue,
+            color: Colorss.primaryColor,
           ),
           onTap: () {
             Navigator.push(
@@ -107,7 +109,7 @@ class MyInformation extends StatelessWidget {
         ListTile(
           leading: const Icon(
             Icons.article,
-            color: Colors.blue,
+            color: Colorss.primaryColor,
           ),
           onTap: () {
             Navigator.push(
@@ -118,7 +120,7 @@ class MyInformation extends StatelessWidget {
         ListTile(
           leading: const Icon(
             Icons.description,
-            color: Colors.blue,
+            color: Colorss.primaryColor,
           ),
           onTap: () {
             Navigator.push(

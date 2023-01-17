@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:inmat/widgets/shelf.dart';
+
+import '../restaurant/screens/restaurant.dart';
 
 class MyFavorite extends StatefulWidget {
   const MyFavorite({Key? key}) : super(key: key);
@@ -47,6 +50,13 @@ class _MyFavoriteState extends State<MyFavorite> {
             children: [
               for (Map map in likes)
                 ListTile(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) =>
+                                RestaurantPage(id: map['restaurantId'])));
+                  },
                   title: Text(
                     "${map['restaurantName']}",
                     overflow: TextOverflow.ellipsis,
@@ -59,9 +69,7 @@ class _MyFavoriteState extends State<MyFavorite> {
                     maxLines: 3,
                   ),
                 ),
-
             ],
           );
   }
 }
-

@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:inmat/widgets/shelf.dart';
+
+import '../community/view/screens/post_view.dart';
 
 class MyPost extends StatefulWidget {
   const MyPost({Key? key}) : super(key: key);
@@ -47,6 +50,12 @@ class _MyPostState extends State<MyPost> {
             children: [
               for (Map map in posts)
                 ListTile(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => PostView(id: map['postId'])));
+                  },
                   title: Text(
                     "${map['topic']}",
                     overflow: TextOverflow.ellipsis,

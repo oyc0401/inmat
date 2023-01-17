@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/src/restaurant/screens/review_view.dart';
 import 'package:inmat/widgets/shelf.dart';
 
 class MyReview extends StatefulWidget {
@@ -47,6 +49,14 @@ class _MyReviewState extends State<MyReview> {
             children: [
               for (Map map in reviews)
                 ListTile(
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => ReviewView(reviewId: map['reviewId'],
+                            restaurantId: map['restaurantId'],
+                            )));
+                  },
                   title: Text(
                     "${map['restaurantName']}",
                     overflow: TextOverflow.ellipsis,

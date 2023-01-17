@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
-import 'package:inmat/src/restaurant/info/restaurant.dart';
+import 'package:inmat/src/restaurant/screens/restaurant.dart';
 
 class SearchResult extends StatefulWidget {
   const SearchResult({Key? key, required this.word}) : super(key: key);

@@ -62,6 +62,31 @@ class RestaurantApi {
     return await inMatHttp.execute();
   }
 
+  ///리뷰 상세 조회 API
+  Future<Map<String, dynamic>> getReview({
+    required int restaurantId,
+    required int reviewId,
+  }) async {
+    InMatHttp inMatHttp = InMatHttp(
+      Http.get,
+      message: "리뷰 상세 조회",
+      url: "/restaurants/$restaurantId/reviews/$reviewId",
+      token: InMatAuth.instance.currentUser?.token,
+    );
+    return await inMatHttp.execute();
+  }
+
+  ///리뷰 리스트 조회 API
+  Future<List<Map>> getReviewAll(int restaurantId) async {
+    InMatHttp inMatHttp = InMatHttp(
+      Http.get,
+      message: "리뷰 리스트 조회",
+      url: "/restaurants/$restaurantId/reviews",
+      token: InMatAuth.instance.currentUser?.token,
+    );
+    return (await inMatHttp.execute()).cast<Map>();
+  }
+
   ///검색어 랭킹 API
   Future<List<Map>> getSearchRank() async {
     InMatHttp inMatHttp = InMatHttp(
@@ -78,7 +103,7 @@ class RestaurantApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "검색 결과 불러오기",
-      url: "/restaurants/search/?search=$word",
+      url: "/restaurants/search/result/?query=$word",
       // body: {
       //   "search": word,
       // },
@@ -86,9 +111,4 @@ class RestaurantApi {
     );
     return (await inMatHttp.execute()).cast<Map>();
   }
-
-
-
-
-
 }
