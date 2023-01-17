@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'post_model.dart';
+part of 'content_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PostModel _$PostModelFromJson(Map<String, dynamic> json) {
-  return _PostModel.fromJson(json);
+ContentModel _$ContentModelFromJson(Map<String, dynamic> json) {
+  return _ContentModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PostModel {
+mixin _$ContentModel {
   int get userId => throw _privateConstructorUsedError;
   int get postId => throw _privateConstructorUsedError;
   String? get profileImgUrl => throw _privateConstructorUsedError;
@@ -36,14 +36,15 @@ mixin _$PostModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PostModelCopyWith<PostModel> get copyWith =>
+  $ContentModelCopyWith<ContentModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PostModelCopyWith<$Res> {
-  factory $PostModelCopyWith(PostModel value, $Res Function(PostModel) then) =
-      _$PostModelCopyWithImpl<$Res, PostModel>;
+abstract class $ContentModelCopyWith<$Res> {
+  factory $ContentModelCopyWith(
+          ContentModel value, $Res Function(ContentModel) then) =
+      _$ContentModelCopyWithImpl<$Res, ContentModel>;
   @useResult
   $Res call(
       {int userId,
@@ -61,9 +62,9 @@ abstract class $PostModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
-    implements $PostModelCopyWith<$Res> {
-  _$PostModelCopyWithImpl(this._value, this._then);
+class _$ContentModelCopyWithImpl<$Res, $Val extends ContentModel>
+    implements $ContentModelCopyWith<$Res> {
+  _$ContentModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -140,10 +141,11 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
 }
 
 /// @nodoc
-abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
-  factory _$$_PostModelCopyWith(
-          _$_PostModel value, $Res Function(_$_PostModel) then) =
-      __$$_PostModelCopyWithImpl<$Res>;
+abstract class _$$_ContentModelCopyWith<$Res>
+    implements $ContentModelCopyWith<$Res> {
+  factory _$$_ContentModelCopyWith(
+          _$_ContentModel value, $Res Function(_$_ContentModel) then) =
+      __$$_ContentModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -162,11 +164,11 @@ abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PostModelCopyWithImpl<$Res>
-    extends _$PostModelCopyWithImpl<$Res, _$_PostModel>
-    implements _$$_PostModelCopyWith<$Res> {
-  __$$_PostModelCopyWithImpl(
-      _$_PostModel _value, $Res Function(_$_PostModel) _then)
+class __$$_ContentModelCopyWithImpl<$Res>
+    extends _$ContentModelCopyWithImpl<$Res, _$_ContentModel>
+    implements _$$_ContentModelCopyWith<$Res> {
+  __$$_ContentModelCopyWithImpl(
+      _$_ContentModel _value, $Res Function(_$_ContentModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -185,7 +187,7 @@ class __$$_PostModelCopyWithImpl<$Res>
     Object? myLike = null,
     Object? commentInfoDtoList = null,
   }) {
-    return _then(_$_PostModel(
+    return _then(_$_ContentModel(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -240,8 +242,8 @@ class __$$_PostModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PostModel implements _PostModel {
-  _$_PostModel(
+class _$_ContentModel implements _ContentModel {
+  _$_ContentModel(
       {required this.userId,
       required this.postId,
       required this.profileImgUrl,
@@ -256,8 +258,8 @@ class _$_PostModel implements _PostModel {
       required final List<Map<String, dynamic>> commentInfoDtoList})
       : _commentInfoDtoList = commentInfoDtoList;
 
-  factory _$_PostModel.fromJson(Map<String, dynamic> json) =>
-      _$$_PostModelFromJson(json);
+  factory _$_ContentModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ContentModelFromJson(json);
 
   @override
   final int userId;
@@ -292,14 +294,14 @@ class _$_PostModel implements _PostModel {
 
   @override
   String toString() {
-    return 'PostModel(userId: $userId, postId: $postId, profileImgUrl: $profileImgUrl, nickName: $nickName, topic: $topic, contents: $contents, countPostLike: $countPostLike, countComment: $countComment, createdAt: $createdAt, imgUrl: $imgUrl, myLike: $myLike, commentInfoDtoList: $commentInfoDtoList)';
+    return 'ContentModel(userId: $userId, postId: $postId, profileImgUrl: $profileImgUrl, nickName: $nickName, topic: $topic, contents: $contents, countPostLike: $countPostLike, countComment: $countComment, createdAt: $createdAt, imgUrl: $imgUrl, myLike: $myLike, commentInfoDtoList: $commentInfoDtoList)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PostModel &&
+            other is _$_ContentModel &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.profileImgUrl, profileImgUrl) ||
@@ -341,19 +343,19 @@ class _$_PostModel implements _PostModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PostModelCopyWith<_$_PostModel> get copyWith =>
-      __$$_PostModelCopyWithImpl<_$_PostModel>(this, _$identity);
+  _$$_ContentModelCopyWith<_$_ContentModel> get copyWith =>
+      __$$_ContentModelCopyWithImpl<_$_ContentModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PostModelToJson(
+    return _$$_ContentModelToJson(
       this,
     );
   }
 }
 
-abstract class _PostModel implements PostModel {
-  factory _PostModel(
+abstract class _ContentModel implements ContentModel {
+  factory _ContentModel(
           {required final int userId,
           required final int postId,
           required final String? profileImgUrl,
@@ -366,10 +368,10 @@ abstract class _PostModel implements PostModel {
           required final String? imgUrl,
           required final bool myLike,
           required final List<Map<String, dynamic>> commentInfoDtoList}) =
-      _$_PostModel;
+      _$_ContentModel;
 
-  factory _PostModel.fromJson(Map<String, dynamic> json) =
-      _$_PostModel.fromJson;
+  factory _ContentModel.fromJson(Map<String, dynamic> json) =
+      _$_ContentModel.fromJson;
 
   @override
   int get userId;
@@ -397,6 +399,6 @@ abstract class _PostModel implements PostModel {
   List<Map<String, dynamic>> get commentInfoDtoList;
   @override
   @JsonKey(ignore: true)
-  _$$_PostModelCopyWith<_$_PostModel> get copyWith =>
+  _$$_ContentModelCopyWith<_$_ContentModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

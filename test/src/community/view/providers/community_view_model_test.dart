@@ -1,7 +1,7 @@
 //
 // import 'package:flutter_test/flutter_test.dart';
 //
-// import 'package:inmat/src/community/view/providers/community_view_model.dart';
+// import 'package:inmat/src/community/view/providers/post_view_model.dart';
 //
 // void main(){
 //   group("Token", () {

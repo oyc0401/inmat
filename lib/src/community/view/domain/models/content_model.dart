@@ -1,14 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'post_model.g.dart';
+part 'content_model.g.dart';
 
-part 'post_model.freezed.dart';
+part 'content_model.freezed.dart';
 
 // $ flutter pub run build_runner build
 
 @freezed
-class PostModel with _$PostModel {
-  factory PostModel({
+class ContentModel with _$ContentModel {
+  factory ContentModel({
     required int userId,
     required int postId,
     required String? profileImgUrl,
@@ -20,9 +20,9 @@ class PostModel with _$PostModel {
     required String createdAt,
     required String? imgUrl,
     required bool myLike,
-    required List<Map<String,dynamic>> commentInfoDtoList,
-  }) = _PostModel;
+    required List<Map<String, dynamic>> commentInfoDtoList,
+  }) = _ContentModel;
 
-  factory PostModel.fromJson(Map<String, dynamic> json) =>
-      _$PostModelFromJson(json);
+  factory ContentModel.fromJson(Map<String, dynamic> json) =>
+      _$ContentModelFromJson(json);
 }

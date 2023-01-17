@@ -10,7 +10,6 @@ import 'src/account/login_main/signin_page.dart';
 import 'src/navigator/NavigatePage.dart';
 
 void main() async {
-  //////
   // DB에서 유저 정보 가져오기
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await InMatAuth.initialize();

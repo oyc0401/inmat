@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'post_model.dart';
+part of 'content_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PostModel _$$_PostModelFromJson(Map<String, dynamic> json) => _$_PostModel(
+_$_ContentModel _$$_ContentModelFromJson(Map<String, dynamic> json) =>
+    _$_ContentModel(
       userId: json['userId'] as int,
       postId: json['postId'] as int,
       profileImgUrl: json['profileImgUrl'] as String?,
@@ -23,7 +24,7 @@ _$_PostModel _$$_PostModelFromJson(Map<String, dynamic> json) => _$_PostModel(
           .toList(),
     );
 
-Map<String, dynamic> _$$_PostModelToJson(_$_PostModel instance) =>
+Map<String, dynamic> _$$_ContentModelToJson(_$_ContentModel instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'postId': instance.postId,

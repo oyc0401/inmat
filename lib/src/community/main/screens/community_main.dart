@@ -16,7 +16,9 @@ class Community extends StatelessWidget {
       appBar: AppBar(),
       body: ListView(
         children: [
-          postsSection(context),
+          Provider.of<CommunityViewModel>(context).success
+              ? postsSection(context)
+              : Container(),
         ],
       ),
       floatingActionButton: WriteButton(
