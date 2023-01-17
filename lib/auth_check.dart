@@ -7,6 +7,7 @@ import 'package:inmat/inmat/auth/Inmat_token.dart';
 
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/auth/user_model.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 
 //
 import 'package:ios_utsname_ext/extension.dart';
@@ -105,7 +106,7 @@ class _AuthCheckState extends State<AuthCheck> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CupertinoButton(
-                    color: const Color(0xffFF8C66),
+                    color: Colorss.primaryColor,
                     child: const Text("로그인 페이지 이동"),
                     onPressed: () {
                       Navigator.push(

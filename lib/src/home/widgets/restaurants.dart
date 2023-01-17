@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 
 import 'package:provider/provider.dart';
 
@@ -43,12 +44,12 @@ class RestaurantList extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.refresh,
-                color: Color(0xffFF8C66),
+                color: Colorss.primaryColor,
               ),
               //icon data for elevated button
               label: const Text(
                 "새로고침",
-                style: TextStyle(color: Color(0xffFF8C66)),
+                style: TextStyle(color: Colorss.primaryColor),
               ), //label text
             ),
             const SizedBox(
@@ -140,7 +141,7 @@ class RestaurantCard extends StatelessWidget {
             width: 167,
             height: 167,
             decoration: BoxDecoration(
-              color: Color(0xffc7c7c7),
+              color: Colorss.skeleton,
               borderRadius: BorderRadius.circular(18),
             ),
             child: Center(child: Text('$imageUrl')),
@@ -175,7 +176,7 @@ class RestaurantCard extends StatelessWidget {
               Text(
                 '$averageStar',
                 style: const TextStyle(
-                    color: Color(0xffF25C05),
+                    color: Colorss.accentColor,
                     fontWeight: FontWeight.w700,
                     fontSize: 16),
               ),

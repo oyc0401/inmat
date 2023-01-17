@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/src/account/sign_in_email/sign_in_email_page.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/utils/toast.dart';
 
 import 'package:inmat/src/account/widget/custom_text_button.dart';
@@ -20,7 +21,7 @@ class _SignInMainPageState extends State<SignInMainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffFF8C66),
+      backgroundColor: Colorss.primaryColor,
       appBar: AppBar(
         // toolbarHeight: 55,
         backgroundColor: const Color(0x00000000),

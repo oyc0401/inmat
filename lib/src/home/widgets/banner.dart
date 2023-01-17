@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 
 class RestaurantBanner extends StatelessWidget {
   const RestaurantBanner({Key? key, required this.imageUrl}) : super(key: key);
@@ -8,7 +9,7 @@ class RestaurantBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      color: Color(0xffFF8C66),
+      color: Colorss.primaryColor,
       child: Center(
           child: Text(
             'imageUrl',

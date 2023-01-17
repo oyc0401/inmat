@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:inmat/_sample/camera/camera_example.dart';
-import 'package:inmat/auth_check.dart';
+
 import 'package:inmat/inmat/auth/Inmat_token.dart';
 
 import 'package:inmat/inmat/auth/inmat_auth.dart';
@@ -39,8 +38,8 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Binggrae2',
           useMaterial3: true,
         ),
-        // home: productMode(),
-        home: const AuthCheck(),
+        home: productMode(),
+        // home: const AuthCheck(),
         // home: CameraExample(),
       ),
     );

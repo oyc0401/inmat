@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/widgets/shelf.dart';
 
 import '../../widgets/count_icon.dart';
@@ -40,7 +41,7 @@ class ContentWidget extends StatelessWidget {
             ContentsTile(
               leading: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xffd9d9d9),
+                  color: Colorss.skeleton,
                   borderRadius: BorderRadius.circular(5.0),
                 ),
                 width: 40,

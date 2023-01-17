@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inmat/src/home/domain/model/review_model.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/home_view_model.dart';
@@ -89,7 +90,7 @@ class ReviewCard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.account_circle_rounded,
-                        color: Color(0xffFF8C66),
+                        color: Colorss.primaryColor,
                         size: 13,
                       ),
                       Text(
@@ -109,7 +110,7 @@ class ReviewCard extends StatelessWidget {
             width: 90,
             height: 90,
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: Colorss.skeleton,
               borderRadius: BorderRadius.circular(14),
             ),
             child: Center(child: Text('$imageUrl')),

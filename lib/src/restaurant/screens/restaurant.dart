@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:inmat/src/restaurant/screens/review_all.dart';
 import 'package:inmat/src/restaurant/widgets/review_card.dart';
 import 'package:inmat/src/restaurant/screens/write_review.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/restaurant_model.dart';
@@ -112,7 +113,7 @@ class Banner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 150,
-      color: Colors.grey,
+      color: Colorss.skeleton,
       child: Center(
           child:
               Text('사진: ${Provider.of<RestaurantProvider>(context).images}')),

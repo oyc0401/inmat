@@ -11,9 +11,10 @@ class Notice extends StatelessWidget {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text("버전: 0.0.1"),
-            Text("마지막 업데이트: 2023.01.12"),
+            Text("마지막 업데이트: 2023.01.18"),
           ],
         ),
       ),

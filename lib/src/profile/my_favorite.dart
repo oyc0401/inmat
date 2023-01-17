@@ -35,7 +35,7 @@ class _MyFavoriteState extends State<MyFavorite> {
       appBar: AppBar(
         title: Text("내가 좋아요 누른 음식점"),
       ),
-      body: Column(
+      body: ListView(
         children: [
           complete ? section() : Container(),
         ],

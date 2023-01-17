@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/utils/toast.dart';
 
 import 'package:provider/provider.dart';
@@ -228,9 +229,9 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Ink(
       decoration: BoxDecoration(
-        color: outlined ? Colors.white : const Color(0xffff8c66),
+        color: outlined ? Colors.white :  Colorss.primaryColor,
         borderRadius: BorderRadius.circular(19),
-        border: Border.all(color: const Color(0xffff8c66), width: 1.5),
+        border: Border.all(color: Colorss.primaryColor, width: 1.5),
       ),
       child: InkWell(
         onTap: onclick,
@@ -241,7 +242,7 @@ class LoginButton extends StatelessWidget {
             child: Text(
               outlined ? "회원가입" : "Log In",
               style: TextStyle(
-                color: outlined ? const Color(0xffff8c66) : Colors.white,
+                color: outlined ?  Colorss.primaryColor : Colors.white,
                 fontSize: 28,
               ),
             ),
@@ -266,7 +267,7 @@ class RegisterButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(19),
-        border: Border.all(color: const Color(0xffff8c66), width: 1.5),
+        border: Border.all(color:  Colorss.primaryColor, width: 1.5),
       ),
       child: InkWell(
         onTap: onclick,
@@ -277,7 +278,7 @@ class RegisterButton extends StatelessWidget {
             child: Text(
               "회원가입",
               style: TextStyle(
-                color: Color(0xffff8c66),
+                color: Colorss.primaryColor,
                 fontSize: 23,
               ),
             ),

@@ -24,151 +24,154 @@ class ProfileFormBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          child: Text('닉네임', style: TextStyle(fontSize: 20)),
-        ),
-        TextField(
-          onChanged: (text) {
-            Provider.of<SignUpModel>(context, listen: false).setNickName(text);
-          },
-          decoration: const InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-            border: OutlineInputBorder(),
+    return Padding(
+      padding: const EdgeInsets.all(22.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Text('닉네임', style: TextStyle(fontSize: 20)),
           ),
-        ),
-        InkWell(
-          onTap: () {
-            Provider.of<SignUpModel>(context, listen: false).checkNickName();
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6.0),
+          TextField(
+            onChanged: (text) {
+              Provider.of<SignUpModel>(context, listen: false).setNickName(text);
+            },
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+              border: OutlineInputBorder(),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Provider.of<SignUpModel>(context, listen: false).checkNickName();
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6.0),
+              child: Row(
+                children: [
+                  Text(
+                    "닉네임 중복확인",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xff5F5F5F),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(2.0),
+                    child: Icon(
+                      Icons.done,
+                      size: 12,
+                      color: Provider.of<SignUpModel>(context).canNickName
+                          ? Colors.blueAccent
+                          : Color(0xff5F5F5F),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Text('나이', style: TextStyle(fontSize: 20)),
+          ),
+          TextField(
+            onChanged: (text) {
+              Provider.of<SignUpModel>(context, listen: false).setAge(text);
+            },
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+              border: OutlineInputBorder(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  "닉네임 중복확인",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color(0xff5F5F5F),
-                  ),
+                CupertinoButton(
+                  onPressed: () {
+                    Provider.of<SignUpModel>(context, listen: false)
+                        .setGender("M");
+                  },
+                  color: Provider.of<SignUpModel>(context).gender == "M"
+                      ? Colors.blue
+                      : Colors.grey,
+                  child: const Text("남"),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(2.0),
-                  child: Icon(
-                    Icons.done,
-                    size: 12,
-                    color: Provider.of<SignUpModel>(context).canNickName
-                        ? Colors.blueAccent
-                        : Color(0xff5F5F5F),
-                  ),
-                ),
+                CupertinoButton(
+                  onPressed: () {
+                    Provider.of<SignUpModel>(context, listen: false)
+                        .setGender("F");
+                  },
+                  color: Provider.of<SignUpModel>(context).gender == "F"
+                      ? Colors.blue
+                      : Colors.grey,
+                  child: const Text("여"),
+                )
               ],
             ),
           ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          child: Text('나이', style: TextStyle(fontSize: 20)),
-        ),
-        TextField(
-          onChanged: (text) {
-            Provider.of<SignUpModel>(context, listen: false).setAge(text);
-          },
-          decoration: const InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-            border: OutlineInputBorder(),
+          const Text('전화번호', style: TextStyle(fontSize: 20)),
+          const SizedBox(
+            height: 8,
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Row(
             children: [
-              CupertinoButton(
-                onPressed: () {
-                  Provider.of<SignUpModel>(context, listen: false)
-                      .setGender("M");
-                },
-                color: Provider.of<SignUpModel>(context).gender == "M"
-                    ? Colors.blue
-                    : Colors.grey,
-                child: const Text("남"),
+              Flexible(
+                flex: 3,
+                child: TextField(
+                  onChanged: (text) {
+                    Provider.of<SignUpModel>(context, listen: false)
+                        .setPhoneNumber1(text);
+                  },
+                  decoration: const InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
               ),
-              CupertinoButton(
-                onPressed: () {
-                  Provider.of<SignUpModel>(context, listen: false)
-                      .setGender("F");
-                },
-                color: Provider.of<SignUpModel>(context).gender == "F"
-                    ? Colors.blue
-                    : Colors.grey,
-                child: const Text("여"),
-              )
+              const SizedBox(width: 4),
+              Flexible(
+                flex: 4,
+                child: TextField(
+                  onChanged: (text) {
+                    Provider.of<SignUpModel>(context, listen: false)
+                        .setPhoneNumber2(text);
+                  },
+                  decoration: const InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 4),
+              Flexible(
+                flex: 4,
+                child: TextField(
+                  onChanged: (text) {
+                    Provider.of<SignUpModel>(context, listen: false)
+                        .setPhoneNumber3(text);
+                  },
+                  decoration: const InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
             ],
           ),
-        ),
-        const Text('전화번호', style: TextStyle(fontSize: 20)),
-        const SizedBox(
-          height: 8,
-        ),
-        Row(
-          children: [
-            Flexible(
-              flex: 3,
-              child: TextField(
-                onChanged: (text) {
-                  Provider.of<SignUpModel>(context, listen: false)
-                      .setPhoneNumber1(text);
-                },
-                decoration: const InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            const SizedBox(width: 4),
-            Flexible(
-              flex: 4,
-              child: TextField(
-                onChanged: (text) {
-                  Provider.of<SignUpModel>(context, listen: false)
-                      .setPhoneNumber2(text);
-                },
-                decoration: const InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            const SizedBox(width: 4),
-            Flexible(
-              flex: 4,
-              child: TextField(
-                onChanged: (text) {
-                  Provider.of<SignUpModel>(context, listen: false)
-                      .setPhoneNumber3(text);
-                },
-                decoration: const InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 50,
-        )
-      ],
+          SizedBox(
+            height: 50,
+          )
+        ],
+      ),
     );
   }
 }

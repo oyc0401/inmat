@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 
 class UserForm extends StatelessWidget {
   const UserForm({
@@ -23,7 +24,7 @@ class UserForm extends StatelessWidget {
         width: 80,
         height: 80,
         decoration: const BoxDecoration(
-            color: Colors.grey,
+            color: Colorss.skeleton,
             // image: DecorationImage(
             //   image: AssetImage('assets/images/profilesample.png'),
             //   fit: BoxFit.cover,

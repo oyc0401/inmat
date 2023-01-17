@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/widgets/shelf.dart';
 
 class Comment extends StatelessWidget {
@@ -24,7 +25,7 @@ class Comment extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                  color: Color(0xffe1e1e1),
+                  color: Colorss.skeleton,
                   borderRadius: BorderRadius.circular(5)),
               width: 30,
               height: 30,

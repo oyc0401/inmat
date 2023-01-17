@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 
 import 'package:provider/provider.dart';
 
@@ -114,7 +115,7 @@ class _HomeState extends State<Home> {
             '오늘 이건 어때요?',
             style: TextStyle(
               fontSize: 19,
-              color: Color(0xffF25C05),
+              color: Colorss.accentColor,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -134,7 +135,7 @@ class _HomeState extends State<Home> {
             '최근 남긴 리뷰',
             style: TextStyle(
               fontSize: 19,
-              color: Color(0xffF25C05),
+              color: Colorss.accentColor,
               fontWeight: FontWeight.w700,
             ),
           ),

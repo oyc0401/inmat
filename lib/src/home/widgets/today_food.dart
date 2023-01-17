@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/src/search/screens/search_result.dart';
+import 'package:inmat/utils/inmat_colors.dart';
 import 'package:provider/provider.dart';
 
 import '../domain/model/today_model.dart';
@@ -79,7 +80,7 @@ class TodayMenu extends StatelessWidget {
               width: 113,
               height: 113,
               decoration: BoxDecoration(
-                color: Color(0xffd5d5d5),
+                color: Colorss.skeleton,
                 borderRadius: BorderRadius.circular(13),
               ),
               child: Center(child: Text('${imageUrl}')),
