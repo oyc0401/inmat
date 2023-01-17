@@ -13,7 +13,17 @@ class Community extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("자유 게시판"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<CommunityViewModel>(context,listen: false).init();
+            },
+            icon: Icon(Icons.refresh),
+          )
+        ],
+      ),
       body: ListView(
         children: [
           Provider.of<CommunityViewModel>(context).success

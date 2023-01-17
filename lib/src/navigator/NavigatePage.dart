@@ -32,8 +32,8 @@ class _NavigatePageState extends State<NavigatePage> {
       providers: [
         ChangeNotifierProvider(create: (BuildContext context) => HomeViewModel()),
         ChangeNotifierProvider(create: (BuildContext context) => SearchModel()),
-        ChangeNotifierProvider(
-            create: (BuildContext context) => CommunityViewModel()),
+        // ChangeNotifierProvider(
+        //     create: (BuildContext context) => CommunityViewModel()),
       ],
       child: Scaffold(
         bottomNavigationBar: bottomNav(),

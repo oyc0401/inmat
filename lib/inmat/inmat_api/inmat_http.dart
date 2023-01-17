@@ -45,7 +45,6 @@ class InMatHttp {
     const bool debug = true;
     if (debug) print(response);
 
-
     print("$_message 성공!");
     return response["result"];
   }
@@ -72,6 +71,8 @@ class InMatHttp {
         default:
           throw Exception(
               'Failed to $_message: ${response['code']}, ${response['message']}');
+
+        // Failed to 게시글 삭제: 3200, 게시글 삭제에 실패하였습니다.
       }
     }
   }

@@ -15,6 +15,7 @@ class ContentWidget extends StatelessWidget {
     required this.likeCount,
     required this.commentCount,
     this.profileImage,
+    required this.isHeart,
   }) : super(key: key);
 
   final VoidCallback onclick;
@@ -26,6 +27,7 @@ class ContentWidget extends StatelessWidget {
   final int likeCount;
   final int commentCount;
   final String? profileImage;
+  final bool isHeart;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +73,8 @@ class ContentWidget extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
                   child: LikeIcon(
                     count: likeCount,
                   ),
@@ -82,17 +85,20 @@ class ContentWidget extends StatelessWidget {
               ],
             ),
             CupertinoButton(
-                color:  Color(0xffd9d9d9),
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                color: isHeart ? Color(0xffffb0b0) : Color(0xffd9d9d9),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 minSize: 0,
-                child: const Text(
-                  "공감",
-                  style: TextStyle(color: Colors.black, fontSize: 14),
-                ),
-                onPressed: onclick),
+                onPressed: onclick,
+                child: Text(
+                  isHeart ? "공감 취소" : "공감",
+                  style: const TextStyle(color: Colors.black, fontSize: 14),
+                )),
           ],
         ),
-        SizedBox(height: 16,),
+        SizedBox(
+          height: 16,
+        ),
         Container(
           height: 1,
           width: double.infinity,

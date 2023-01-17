@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
 import 'package:inmat/src/community/view/domain/models/comment_model.dart';
 import 'package:inmat/src/community/view/widgets/contents.dart';
+import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 
+import '../../main/providers/community_view_model.dart';
 import '../domain/models/content_model.dart';
 import '../providers/post_view_model.dart';
+import '../widgets/Comment.dart';
 import '../widgets/comment_text_form.dart';
 
 class MyBehavior extends ScrollBehavior {
@@ -27,7 +33,27 @@ class PostView extends StatelessWidget {
       child: Consumer<PostViewModel>(
         builder: (context, model, child) {
           return Scaffold(
-            appBar: AppBar(title: Text('Post id : $id')),
+            appBar: AppBar(
+              title: Text('Post id : $id'),
+              actions: [
+                IconButton(
+                  onPressed: () async {
+                    /// ToDo 본인만 지우는 버튼이 보이게 변경해야함.
+                    try {
+                      await InMatApi.community.deletePost(id);
+                      Provider.of<CommunityViewModel>(context, listen: false).init();
+                      Navigator.pop(context);
+                    } on AccessDenied {
+                      print('접근 권한이 없습니다.');
+                      Message.showMessage('접근 권한이 없습니다.');
+                    } catch (e) {
+                      print('PostView: $e');
+                    }
+                  },
+                  icon: Icon(Icons.delete),
+                )
+              ],
+            ),
             body: SafeArea(
               child: Column(
                 children: [
@@ -81,13 +107,16 @@ class ContentsView extends StatelessWidget {
   Widget build(BuildContext context) {
     ContentModel data = Provider.of<PostViewModel>(context).content;
     return ContentWidget(
-      onclick: () {},
+      onclick: () {
+        Provider.of<PostViewModel>(context, listen: false).clickHeart();
+      },
       name: data.nickName,
       date: data.createdAt,
       title: data.topic,
       content: data.contents,
-      likeCount: data.countPostLike,
-      commentCount: data.countComment,
+      likeCount: Provider.of<PostViewModel>(context).heartCount,
+      commentCount: Provider.of<PostViewModel>(context).commentCount,
+      isHeart: Provider.of<PostViewModel>(context).isHeart,
     );
   }
 }
@@ -101,11 +130,11 @@ class CommentView extends StatelessWidget {
       children: [
         for (CommentModel comment
             in Provider.of<PostViewModel>(context).comments)
-          ListTile(
-            leading:  Text('${comment.commentId}'),
-            title: Text(comment.contents),
-            trailing: Text(comment.nickName),
-            subtitle: Text(comment.createdAt),
+          Comment(
+            nickName: comment.nickName,
+            content: comment.contents,
+            date: comment.createdAt,
+            profileImgUrl: comment.profileImgUrl,
           ),
       ],
     );

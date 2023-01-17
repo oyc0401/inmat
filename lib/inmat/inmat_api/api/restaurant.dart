@@ -27,7 +27,7 @@ class RestaurantApi {
   Future<void> setHeart(int id) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
-      message: "하트 설정",
+      message: "음식점 하트 설정",
       url: "/restaurants/$id/like",
       token: InMatAuth.instance.currentUser?.token,
     );
@@ -38,7 +38,7 @@ class RestaurantApi {
   Future<void> deleteHeart(int id) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.patch,
-      message: "하트 취소",
+      message: "음식점 하트 취소",
       url: "/restaurants/$id/like",
       token: InMatAuth.instance.currentUser?.token,
     );
