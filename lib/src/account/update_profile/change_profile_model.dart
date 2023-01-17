@@ -8,6 +8,7 @@ class ChangeProfileModel with ChangeNotifier {
     nickName = InMatAuth.instance.currentUser!.nickName;
     gender = InMatAuth.instance.currentUser!.gender;
     profileImgUrl = InMatAuth.instance.currentUser!.profileImgUrl;
+    print(InMatAuth.instance.currentUser);
   }
 
   late int age;

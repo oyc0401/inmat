@@ -1,5 +1,6 @@
-import 'package:inmat/inmat/auth/model/profile_model.dart';
-import 'package:inmat/inmat/auth/model/token_model.dart';
+
+import 'domain/model/profile_model.dart';
+import 'domain/model/token_model.dart';
 
 class User {
   User({
@@ -7,18 +8,17 @@ class User {
     required this.tokenModel,
   });
 
-  final ProfileModel? profileModel;
-  final TokenModel? tokenModel;
+  final ProfileModel profileModel;
+  final TokenModel tokenModel;
 
-  int get age => profileModel?.age ?? 0;
+  int get age => profileModel.age;
 
-  String get gender => profileModel?.gender??'null';
+  String get gender => profileModel.gender;
+  String get nickName => profileModel.nickName;
 
-  String get nickName => profileModel?.nickName??'null';
+  String? get profileImgUrl => profileModel.profileImgUrl??'null';
 
-  String? get profileImgUrl => profileModel?.profileImgUrl??'null';
-
-  String get token => tokenModel?.token ?? "null token";
+  String get token => tokenModel.token ;
 
   // Map<String, dynamic> toMap() {
   //   Map<String, dynamic> newMap={};
