@@ -1,13 +1,15 @@
-// import 'package:flutter_test/flutter_test.dart';
-// import 'package:inmat/inmat/auth/Inmat_token.dart';
 //
-// void main() {
+// import 'package:flutter_test/flutter_test.dart';
+//
+// import 'package:inmat/src/community/view/providers/community_view_model.dart';
+//
+// void main(){
 //   group("Token", () {
 //     test('토큰에 값 저장하기', () {
 //       // given
-//       final Map<String, dynamic> DBToken = {
-//         'token': 'SFSA324BD235AB324FS#@TEA',
-//       };
+//       CommunityViewModel viewModel=CommunityViewModel(1);
+//       viewModel.
+//
 //       final token = Token();
 //       // when
 //       token.set(DBToken);
@@ -19,12 +21,3 @@
 //
 //   });
 // }
-//
-// // test('테스트 내용 적는 곳', () {
-// // // given
-// //
-// // // when
-// //
-// // // then
-// //
-// // });

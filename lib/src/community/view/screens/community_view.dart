@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:inmat/src/community/view/contents.dart';
+import 'package:inmat/src/community/view/widgets/contents.dart';
 import 'package:inmat/src/community/widget/count_icon.dart';
 import 'package:provider/provider.dart';
 
-import 'community_view_model.dart';
+import '../providers/community_view_model.dart';
+import '../models/post_model.dart';
 
 class MyBehavior extends ScrollBehavior {
   @override
@@ -63,7 +64,7 @@ class View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PostData data = Provider.of<CommunityViewModel>(context).postData;
+    PostModel data = Provider.of<CommunityViewModel>(context).postModel;
     return ContentWidget(
       onclick: () {},
       name: data.nickName,

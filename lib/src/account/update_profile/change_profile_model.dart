@@ -1,27 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
+
 class ChangeProfileModel with ChangeNotifier {
   ChangeProfileModel() {
-    profile = InMatAuth.instance.currentUser!.toMap();
-    nickname=InMatAuth.instance.currentUser!.nickName;
+    age = InMatAuth.instance.currentUser!.age;
+    nickName = InMatAuth.instance.currentUser!.nickName;
+    gender = InMatAuth.instance.currentUser!.gender;
+    profileImgUrl = InMatAuth.instance.currentUser!.profileImgUrl;
   }
 
-  Map<String, dynamic> profile = {};
-
-  String nickname ='';
+  late int age;
+  late String nickName;
+  late String gender;
+  late String? profileImgUrl;
 
   void setNickname(name) {
-    nickname = name;
+    nickName = name;
     notifyListeners();
   }
 
   Future<void> change() async {
-    profile['nickName'] = nickname;
-    print(profile);
-
     try {
-      await InMatAuth.instance.updateProfile(profile);
+      await InMatAuth.instance.updateProfile(
+        age: age,
+        gender: gender,
+        nickName: nickName,
+        profileImgUrl: profileImgUrl,
+      );
     } on ExpirationAccessToken {
       // 액세스 토큰 만료: 로그아웃 후 다시 로그인
     } on AccessDenied {

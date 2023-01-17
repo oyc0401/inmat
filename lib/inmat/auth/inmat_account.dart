@@ -7,32 +7,28 @@ class InMatAccount {
     required Profile profile,
   }) async {
     await InMatApi.account.registerEmail(
-      user: {
-        "username": id,
-        "password": password,
-        "email": profile.email,
-        "age": profile.age,
-        "gender": profile.gender,
-        "nickName": profile.nickName,
-        "phoneNumber": profile.phoneNumber,
-      },
+      id: id,
+      password: password,
+      email: profile.email,
+      age: profile.age,
+      gender: profile.gender,
+      nickName: profile.nickName,
+      phoneNumber: profile.phoneNumber,
     );
-
-    // 회원가입을 한다.
-    // 로그인을 한다.
-    // 개인정보와 토큰을 DB에 저장한다.
   }
 
   static Future<bool> checkNickName({
     required String nickName,
   }) async {
-    return await InMatApi.account.checkNickName(nickName: nickName);
+    String message = await InMatApi.account.checkNickName(nickName: nickName);
+    return message == "닉네임 사용가능!";
   }
 
   static Future<bool> checkId({
     required String id,
   }) async {
-    return await InMatApi.account.checkId(id: id);
+    String message = await InMatApi.account.checkId(id: id);
+    return message == "아이디 사용가능!";
   }
 }
 

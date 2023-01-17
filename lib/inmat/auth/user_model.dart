@@ -1,45 +1,40 @@
+import 'package:inmat/inmat/auth/model/profile_model.dart';
+import 'package:inmat/inmat/auth/model/token_model.dart';
+
 class User {
   User({
-    required Map<String, dynamic> user,
-    required Map<String, dynamic> token,
-  }) : _user = user {
-    _user.addAll(token);
-  }
+    required this.profileModel,
+    required this.tokenModel,
+  });
 
-  final Map<String, dynamic> _user;
+  final ProfileModel? profileModel;
+  final TokenModel? tokenModel;
 
-  int get age => _user['age'] ?? 0;
+  int get age => profileModel?.age ?? 0;
 
-  String get email => _user['email'] ?? "null";
+  String get gender => profileModel?.gender??'null';
 
-  String get gender => _user['gender'] ?? "null";
+  String get nickName => profileModel?.nickName??'null';
 
-  String get nickName => _user['nickName'] ?? "null";
+  String? get profileImgUrl => profileModel?.profileImgUrl??'null';
 
-  String get profileImgUrl => _user['profileImgUrl'] ?? "null";
+  String get token => tokenModel?.token ?? "null token";
 
-  String get token => _user['token'] ?? "null";
-
-  Map<String, dynamic> toMap() {
-    Map<String, dynamic> newMap={};
-    newMap.addAll(_user);
-    newMap.remove('token');
-
-    return newMap;
-  }
+  // Map<String, dynamic> toMap() {
+  //   Map<String, dynamic> newMap={};
+  //   newMap.addAll(_user);
+  //   newMap.remove('token');
+  //
+  //   return newMap;
+  // }
 
   @override
   String toString() {
-    return "age: $age, email: $email, gender: $gender, nickName: $nickName, profileImgUrl: $profileImgUrl, token: $token";
+    return "age: $age, gender: $gender, nickName: $nickName, profileImgUrl: $profileImgUrl, token: $token";
   }
 }
 
-
-
-class UUU{
-
-
-
+class UUU {
   int _age;
   String _email;
 

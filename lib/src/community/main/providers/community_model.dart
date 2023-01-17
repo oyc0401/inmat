@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
-import 'package:inmat/src/community/view/community_view.dart';
+import 'package:inmat/src/community/view/screens/community_view.dart';
 import 'package:inmat/src/community/write/write_post.dart';
 
 import '../model/post_thumb_data.dart';
@@ -27,7 +27,7 @@ class CommunityModel with ChangeNotifier {
           contents: map['contents'],
           countPostLike: map['countPostLike'],
           countComment: map['countComment'],
-          createdAt: map['created_at'],
+          createdAt: map['createdAt'],
           imgUrl: map['imgUrl'],
         ),
       );

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/widgets/shelf.dart';
 
-import '../widget/count_icon.dart';
+import '../../widget/count_icon.dart';
 
 class ContentWidget extends StatelessWidget {
   const ContentWidget({

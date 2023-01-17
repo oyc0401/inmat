@@ -2,12 +2,16 @@ part of '../inmat_api.dart';
 
 class AccountApi {
   ///로그인 API
-  Future<Map<String, dynamic>> emailSignIn({required Map user}) async {
+  Future<Map<String, dynamic>> emailSignIn(
+      {required String id, required String password}) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "이메일 로그인",
       url: "/users/login",
-      body: user,
+      body: {
+        "username": id,
+        "password": password,
+      },
       token: InMatAuth.instance.currentUser?.token,
     );
     return await inMatHttp.execute();
@@ -25,31 +29,57 @@ class AccountApi {
   }
 
   ///회원 가입 API
-  Future<void> registerEmail({required Map user}) async {
+  Future<void> registerEmail({
+    required String id,
+    required String password,
+    required String email,
+    required int age,
+    required String gender,
+    required String nickName,
+    required String phoneNumber,
+  }) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "회원가입",
       url: "/users/signup",
-      body: user,
+      body: {
+        "username": id,
+        "password": password,
+        "email": email,
+        "age": age,
+        "gender": gender,
+        "nickName": nickName,
+        "phoneNumber": phoneNumber,
+      },
       token: InMatAuth.instance.currentUser?.token,
     );
     return await inMatHttp.execute();
   }
 
   ///프로필 수정 API
-  Future<void> updateProfile(Map user) async {
+  Future<void> updateProfile({
+    required int age,
+    required String gender,
+    required String nickName,
+    required String? profileImgUrl,
+  }) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.patch,
       message: "프로필 업데이트",
       url: "/users/profiles",
-      body: user,
+      body: {
+        "age": age,
+        "gender": gender,
+        "nickName": nickName,
+        "profileImgUrl": profileImgUrl,
+      },
       token: InMatAuth.instance.currentUser?.token,
     );
     return await inMatHttp.execute();
   }
 
   ///아이디 중복 체크 API
-  Future<bool> checkId({required String id}) async {
+  Future<String> checkId({required String id}) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "아이디 중복 체크",
@@ -57,12 +87,11 @@ class AccountApi {
       body: {'username': id},
       token: InMatAuth.instance.currentUser?.token,
     );
-    String message = await inMatHttp.execute();
-    return message == "아이디 사용가능!";
+    return await inMatHttp.execute();
   }
 
   ///닉네임 중복 체크 API
-  Future<bool> checkNickName({required String nickName}) async {
+  Future<String> checkNickName({required String nickName}) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "닉네임 중복 체크",
@@ -70,9 +99,7 @@ class AccountApi {
       body: {'nickName': nickName},
       token: InMatAuth.instance.currentUser?.token,
     );
-    String message = await inMatHttp.execute();
-    // print(message);
-    return message == "닉네임 사용가능!";
+    return await inMatHttp.execute();
   }
 
   ///내가 하트찜한 음식점 조회 API

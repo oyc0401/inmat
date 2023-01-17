@@ -87,9 +87,9 @@ class UserForm extends StatelessWidget {
             //   fit: BoxFit.cover,
             // ),
             shape: BoxShape.circle),
-        child: Center(child: Text(user.profileImgUrl)),
+        child: Center(child: Text('${user.profileImgUrl}')),
       ),
-      title: Text(user.email),
+      title: Text('user.email'),
       subtitle: Text(user.nickName),
       trailing: TextButton(
         onPressed: () {
