@@ -7,6 +7,7 @@ import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/src/community/main/providers/community_view_model.dart';
 import 'package:provider/provider.dart';
 
+import 'auth_check.dart';
 import 'src/account/login_main/signin_page.dart';
 import 'src/navigator/NavigatePage.dart';
 
@@ -38,8 +39,8 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Binggrae2',
           useMaterial3: true,
         ),
-        home: productMode(),
-        // home: const AuthCheck(),
+        // home: productMode(),
+        home: const AuthCheck(),
         // home: CameraExample(),
       ),
     );

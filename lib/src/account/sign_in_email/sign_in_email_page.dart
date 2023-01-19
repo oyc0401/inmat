@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../navigator/NavigatePage.dart';
 import '../sign_up_email/sign_up_page.dart';
+import '../widget/round_button.dart';
 import 'sign_in_email_model.dart';
 
 class EmailSignInPage extends StatefulWidget {
@@ -19,68 +20,91 @@ class EmailSignInPage extends StatefulWidget {
 class _EmailSignInPageState extends State<EmailSignInPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0x00000000),
-        elevation: 0,
-        iconTheme: const IconThemeData(
-          color: Colors.black, //색변경
+    return ChangeNotifierProvider<EmailSignInModel>(
+      create: (context) => EmailSignInModel(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            '로그인',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: const Color(0x00000000),
+          elevation: 0,
+          iconTheme: const IconThemeData(
+            color: Colors.black, //색변경
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.pop(context);
+              // 뒤로가기 버튼 누르면 이동하는 곳
+            },
+          ),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-            // 뒤로가기 버튼 누르면 이동하는 곳
-          },
-        ),
-      ),
-      body: ChangeNotifierProvider<EmailSignInModel>(
-        create: (context) => EmailSignInModel(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Flexible(
-              flex: 1,
-              child: Container(),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 40),
+                const Text('아이디', style: TextStyle(fontSize: 16)),
+                SizedBox(height: 10),
+                const IDForm(),
+                SizedBox(height: 8),
+                ForgotButton(
+                  onclick: () {
+                    Message.showMessage('개발 중 입니다.');
+                  },
+                  text: "Forgot your ID?",
+                ),
+                SizedBox(height: 16),
+                const Text('비밀번호', style: TextStyle(fontSize: 20)),
+                SizedBox(height: 10),
+                const PasswordTextForm(),
+                SizedBox(height: 8),
+                ForgotButton(
+                  onclick: () {
+                    Message.showMessage('개발 중 입니다.');
+                  },
+                  text: "Forgot password?",
+                ),
+                const SizedBox(height: 30),
+                LoginButton(
+                  onclick: () async {
+                    await Provider.of<EmailSignInModel>(context, listen: false)
+                        .signIn();
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => NavigatePage()),
+                      (route) => false,
+                    );
+                  },
+                ),
+                Spacer(),
+                Container(
+                  width: double.infinity,
+                  child: Text(
+                    '회원이 아니세요?',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 9),
+                RegisterButton(
+                  onclick: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => SignUpPage()),
+                    );
+                  },
+                ),
+                SizedBox(height: 15),
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.all(19.0),
-              child: Text(
-                'LOG IN',
-                style: TextStyle(fontSize: 40),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: LoginBox(),
-            ),
-            Flexible(
-              flex: 3,
-              child: Container(),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(6.0),
-              child: Text(
-                '회원이 아니세요?',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 64),
-              child: RegisterButton(
-                onclick: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(builder: (context) => SignUpPage()),
-                  );
-                },
-              ),
-            ),
-            Flexible(
-              flex: 6,
-              child: Container(),
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -100,65 +124,30 @@ class LoginBox extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const IDTextForm(),
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: ForgotButton(
-              onclick: () {
-                Message.showMessage('개발 중 입니다.');
-              },
-              text: "Forgot your ID?",
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          const PasswordTextForm(),
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: ForgotButton(
-              onclick: () {
-                Message.showMessage('개발 중 입니다.');
-              },
-              text: "Forgot password?",
-            ),
-          ),
-          const SizedBox(height: 36),
-          LoginButton(
-            onclick: () async {
-              await Provider.of<EmailSignInModel>(context, listen: false)
-                  .signIn();
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => NavigatePage()),
-                (route) => false,
-              );
-            },
-          ),
-        ],
+        children: [],
       ),
     );
   }
 }
 
-class IDTextForm extends StatelessWidget {
-  const IDTextForm({Key? key}) : super(key: key);
+class IDForm extends StatelessWidget {
+  const IDForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('아이디', style: TextStyle(fontSize: 20)),
-        TextFormField(
-          initialValue: "test123",
-          onChanged: (text) {
-            Provider.of<EmailSignInModel>(context, listen: false)
-                .setUsername(text);
-          },
-        )
-      ],
+    return TextFormField(
+      initialValue: "test123",
+
+      decoration: const InputDecoration(
+
+
+        border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.all(Radius.circular(13))),
+      ),
+      onChanged: (text) {
+        Provider.of<EmailSignInModel>(context, listen: false).setUsername(text);
+      },
     );
   }
 }
@@ -168,19 +157,12 @@ class PasswordTextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('비밀번호', style: TextStyle(fontSize: 20)),
-        TextFormField(
-          initialValue: "qwe12345&&",
-          obscureText: true,
-          onChanged: (text) {
-            Provider.of<EmailSignInModel>(context, listen: false)
-                .setPassword(text);
-          },
-        )
-      ],
+    return TextFormField(
+      initialValue: "qwe12345&&",
+      obscureText: true,
+      onChanged: (text) {
+        Provider.of<EmailSignInModel>(context, listen: false).setPassword(text);
+      },
     );
   }
 }
@@ -197,91 +179,16 @@ class ForgotButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        InkWell(
-          onTap: onclick,
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: 16,
-              color: Color(0xff272727),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class LoginButton extends StatelessWidget {
-  const LoginButton({
-    Key? key,
-    required this.onclick,
-    this.outlined = false,
-  }) : super(key: key);
-
-  final VoidCallback onclick;
-  final bool outlined;
-
-  @override
-  Widget build(BuildContext context) {
-    return Ink(
-      decoration: BoxDecoration(
-        color: outlined ? Colors.white :  Colorss.primaryColor,
-        borderRadius: BorderRadius.circular(19),
-        border: Border.all(color: Colorss.primaryColor, width: 1.5),
-      ),
-      child: InkWell(
-        onTap: onclick,
-        borderRadius: BorderRadius.circular(19),
-        child: SizedBox(
-          height: 60,
-          child: Center(
-            child: Text(
-              outlined ? "회원가입" : "Log In",
-              style: TextStyle(
-                color: outlined ?  Colorss.primaryColor : Colors.white,
-                fontSize: 28,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class RegisterButton extends StatelessWidget {
-  const RegisterButton({
-    Key? key,
-    required this.onclick,
-  }) : super(key: key);
-
-  final VoidCallback onclick;
-
-  @override
-  Widget build(BuildContext context) {
-    return Ink(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(19),
-        border: Border.all(color:  Colorss.primaryColor, width: 1.5),
-      ),
-      child: InkWell(
-        onTap: onclick,
-        borderRadius: BorderRadius.circular(19),
-        child: const SizedBox(
-          height: 60,
-          child: Center(
-            child: Text(
-              "회원가입",
-              style: TextStyle(
-                color: Colorss.primaryColor,
-                fontSize: 23,
-              ),
-            ),
+    return InkWell(
+      onTap: onclick,
+      child: Container(
+        width: double.infinity,
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 16,
+            color: Color(0xff272727),
           ),
         ),
       ),
