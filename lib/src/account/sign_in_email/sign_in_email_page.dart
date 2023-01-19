@@ -87,7 +87,7 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
                   child: Text(
                     '회원이 아니세요?',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 13,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -136,14 +136,15 @@ class IDForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyle(fontSize: 15),
       initialValue: "test123",
-
+      scrollPadding: EdgeInsets.all(0),
       decoration: const InputDecoration(
-
-
+        isDense: true,
         border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(13))),
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.all(Radius.circular(13)),
+        ),
       ),
       onChanged: (text) {
         Provider.of<EmailSignInModel>(context, listen: false).setUsername(text);
@@ -158,7 +159,16 @@ class PasswordTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyle(fontSize: 15),
       initialValue: "qwe12345&&",
+      scrollPadding: EdgeInsets.all(0),
+      decoration: const InputDecoration(
+        isDense: true,
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.all(Radius.circular(13)),
+        ),
+      ),
       obscureText: true,
       onChanged: (text) {
         Provider.of<EmailSignInModel>(context, listen: false).setPassword(text);
@@ -187,7 +197,8 @@ class ForgotButton extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 12,
+            decoration: TextDecoration.underline,
             color: Color(0xff272727),
           ),
         ),
