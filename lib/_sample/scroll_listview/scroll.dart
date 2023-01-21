@@ -40,69 +40,30 @@ class ScrollModel with ChangeNotifier {
     ]
   };
 
-  addComment(int id) {
+  Future<int> addComment(int id) async {
     post['comments'].add(
       {
         'id': id,
         'context': '댓글 $id',
       },
     );
+
+    Future.delayed(Duration(microseconds: 500));
     notifyListeners();
+    return id;
   }
 }
 
-class ScrollPage extends StatefulWidget {
+int lastId = 3;
+
+class ScrollPage extends StatelessWidget {
   ScrollPage({Key? key}) : super(key: key);
 
-  @override
-  State<ScrollPage> createState() => _ScrollPageState();
-}
-
-class _ScrollPageState extends State<ScrollPage> {
-  List<Widget> widgets = [
-    const SizedBox(
-      height: 160.0,
-      width: double.infinity,
-      child: Card(
-        color: Colors.red,
-      ),
-    ),
-    const SizedBox(
-      height: 160.0,
-      width: double.infinity,
-      child: Card(
-        color: Colors.orange,
-      ),
-    ),
-    const SizedBox(
-      height: 160.0,
-      width: double.infinity,
-      child: Card(
-        color: Colors.yellow,
-      ),
-    ),
-    const SizedBox(
-      height: 160.0,
-      width: double.infinity,
-      child: Card(
-        color: Colors.green,
-      ),
-    ),
-    const SizedBox(
-      height: 160.0,
-      width: double.infinity,
-      child: Card(
-        color: Colors.blue,
-      ),
-    ),
-  ];
-
-  GlobalKey dataKey = GlobalKey();
-
-  Map<int, GlobalKey> keys = {};
+  final Map<int, GlobalKey> keys = {};
 
   @override
   Widget build(BuildContext context) {
+    print('ui 빌드');
     return Scaffold(
       primary: true,
       appBar: AppBar(
@@ -110,33 +71,19 @@ class _ScrollPageState extends State<ScrollPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [...cards()],
+          children: cards(context),
         ),
-      ),
-      floatingActionButton: CupertinoButton(
-        onPressed: () {
-          Scrollable.ensureVisible(dataKey.currentContext!);
-        },
-        child: const Text("Scroll to data"),
       ),
       bottomNavigationBar: CupertinoButton(
         onPressed: () {
-          // dataKey = GlobalKey();
-          Provider.of<ScrollModel>(context, listen: false).addComment(4);
-          keys[4]=GlobalKey();
-
-          SchedulerBinding.instance.addPostFrameCallback((_) {
-            GlobalKey thisKey=keys[4]!;
-            print('a');
-            Scrollable.ensureVisible(thisKey.currentContext!);
-          });
+          onclick(context);
         },
         child: const Text("Scroll to data"),
       ),
     );
   }
 
-  List<Widget> cards() {
+  List<Widget> cards(BuildContext context) {
     List<Widget> list = [];
 
     for (Map map in Provider.of<ScrollModel>(context).post['comments']) {
@@ -149,8 +96,8 @@ class _ScrollPageState extends State<ScrollPage> {
           width: double.infinity,
           child: Card(
             key: key,
-            child: Text('${map['context']}'),
             color: Colors.green,
+            child: Text('${map['context']}'),
           ),
         ),
       );
@@ -158,42 +105,20 @@ class _ScrollPageState extends State<ScrollPage> {
 
     return list;
   }
-}
 
-List<Widget> widgets = [
-  const SizedBox(
-    height: 160.0,
-    width: double.infinity,
-    child: Card(
-      color: Colors.red,
-    ),
-  ),
-  const SizedBox(
-    height: 160.0,
-    width: double.infinity,
-    child: Card(
-      color: Colors.orange,
-    ),
-  ),
-  const SizedBox(
-    height: 160.0,
-    width: double.infinity,
-    child: Card(
-      color: Colors.yellow,
-    ),
-  ),
-  const SizedBox(
-    height: 160.0,
-    width: double.infinity,
-    child: Card(
-      color: Colors.green,
-    ),
-  ),
-  const SizedBox(
-    height: 160.0,
-    width: double.infinity,
-    child: Card(
-      color: Colors.blue,
-    ),
-  ),
-];
+  void onclick(BuildContext context) async {
+    lastId++;
+
+    int id = await Provider.of<ScrollModel>(context, listen: false)
+        .addComment(lastId);
+    print('key 추가');
+    keys[id] = GlobalKey();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      print('스크롤 이동');
+      GlobalKey thisKey = keys[id]!;
+      Scrollable.ensureVisible(thisKey.currentContext!);
+    });
+    print('click 마무리');
+  }
+}
