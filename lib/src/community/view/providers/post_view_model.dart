@@ -29,6 +29,8 @@ class PostViewModel with ChangeNotifier {
   List<CommentModel> get comments => _postModel.comments;
 
   void writeComment() {
+
+
     User user = InMatAuth.instance.currentUser!;
     comments.add(CommentModel(
         commentId: 00,
@@ -45,6 +47,7 @@ class PostViewModel with ChangeNotifier {
 
     try {
       InMatApi.community.writeComment(_id, _writtenComment);
+      _writtenComment='';
     } on DataBaseFailed {
       Message.showMessage('게시물이 삭제 되었습니다.');
       print("없는 게시물 입니다.");

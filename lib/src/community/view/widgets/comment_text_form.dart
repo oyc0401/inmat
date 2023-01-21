@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CommentForm extends StatelessWidget {
-  const CommentForm({
+   CommentForm({
     Key? key,
     required this.onSubmitted,
     required this.onChanged,
@@ -9,6 +9,8 @@ class CommentForm extends StatelessWidget {
 
   final VoidCallback onSubmitted;
   final ValueChanged<String> onChanged;
+
+  final TextEditingController _filter = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +21,17 @@ class CommentForm extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
-              onChanged: onChanged,
+              controller: _filter,
+              onChanged: (text) {
+                onChanged(text);
+
+              },
             ),
           ),
-          IconButton(onPressed: onSubmitted, icon: const Icon(Icons.send)),
+          IconButton(onPressed: (){
+            onSubmitted();
+            _filter.clear();
+          }, icon: const Icon(Icons.send)),
         ],
       ),
     );

@@ -41,7 +41,8 @@ class PostView extends StatelessWidget {
                     /// ToDo 본인만 지우는 버튼이 보이게 변경해야함.
                     try {
                       await InMatApi.community.deletePost(id);
-                      Provider.of<CommunityViewModel>(context, listen: false).init();
+                      Provider.of<CommunityViewModel>(context, listen: false)
+                          .init();
                       Navigator.pop(context);
                     } on AccessDenied {
                       print('접근 권한이 없습니다.');
@@ -88,25 +89,9 @@ class PostView extends StatelessWidget {
   }
 
   Widget contentsSection(BuildContext context) {
-    return Provider.of<PostViewModel>(context).complete
-        ? const ContentsView()
-        : Container();
-  }
-
-  Widget commentSection(BuildContext context) {
-    return Provider.of<PostViewModel>(context).complete
-        ? const CommentView()
-        : Container();
-  }
-}
-
-class ContentsView extends StatelessWidget {
-  const ContentsView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     ContentModel data = Provider.of<PostViewModel>(context).content;
-    return ContentWidget(
+
+    Widget wid = ContentWidget(
       onclick: () {
         Provider.of<PostViewModel>(context, listen: false).clickHeart();
       },
@@ -118,25 +103,22 @@ class ContentsView extends StatelessWidget {
       commentCount: Provider.of<PostViewModel>(context).commentCount,
       isHeart: Provider.of<PostViewModel>(context).isHeart,
     );
+    return Provider.of<PostViewModel>(context).complete ? wid : Container();
   }
-}
 
-class CommentView extends StatelessWidget {
-  const CommentView({Key? key}) : super(key: key);
+  Widget commentSection(BuildContext context) {
+    List<Widget> list = [
+      for (CommentModel comment in Provider.of<PostViewModel>(context).comments)
+        Comment(
+          nickName: comment.nickName,
+          content: comment.contents,
+          date: comment.createdAt,
+          profileImgUrl: comment.profileImgUrl,
+        ),
+    ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        for (CommentModel comment
-            in Provider.of<PostViewModel>(context).comments)
-          Comment(
-            nickName: comment.nickName,
-            content: comment.contents,
-            date: comment.createdAt,
-            profileImgUrl: comment.profileImgUrl,
-          ),
-      ],
-    );
+    return Provider.of<PostViewModel>(context).complete
+        ? Column(children: list)
+        : Container();
   }
 }
