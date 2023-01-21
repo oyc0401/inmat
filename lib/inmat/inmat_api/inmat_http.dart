@@ -38,7 +38,7 @@ class InMatHttp {
         response = await module.patch(url: _url, body: body, token: token);
         break;
     }
-
+// print(response);
     _throwException(response);
 
     /// 디버그 할 때 [debug]를 true 로 하면 모든 통신의 값을 출력한다.
@@ -46,6 +46,7 @@ class InMatHttp {
     if (debug) print(response);
 
     print("$_message 성공!");
+
     return response["result"];
   }
 

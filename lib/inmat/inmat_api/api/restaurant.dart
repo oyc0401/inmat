@@ -111,4 +111,33 @@ class RestaurantApi {
     );
     return (await inMatHttp.execute()).cast<Map>();
   }
+
+  /// 관리자 페이지
+
+  ///음식점 추가 API
+  Future<void> addRestaurant(Map body) async {
+    InMatHttp inMatHttp = InMatHttp(
+      Http.post,
+      message: "음식점 추가하기",
+      url: "/restaurants",
+      body: body,
+      token: InMatAuth.instance.currentUser?.token,
+    );
+    return await inMatHttp.execute();
+  }
+}
+
+void main() async {
+  await InMatApi.restaurant.addRestaurant({
+    "address": "미추홀구 1번길 1",
+    "contactNumber": "010-1234-5678",
+    "imgUrl": "www.test.test",
+    "latitude": 36,
+    "longitude": 36,
+    "restaurantMenuList": [
+      {"categoryId": 1, "menuName": "탕수육", "price": 10000}
+    ],
+    "restaurantName": "테스트 음식점",
+    "restaurantType": "FOOD"
+  });
 }
