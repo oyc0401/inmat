@@ -33,6 +33,7 @@ class InMatAuth {
     }
     assert(
         _profileController.profile != null && _tokenController.token != null);
+
     return User(
       profileModel: _profileController.profile!,
       tokenModel: _tokenController.token!,
@@ -91,26 +92,24 @@ class InMatAuth {
 
   static Future<InMatAuth> _init() async {
     // DB 에서 토큰 가져옴.
-    TokenController tokenController = TokenController();
     TokenModel? DBToken = await GetToken.getTokenInDB();
-    tokenController.set(DBToken);
 
-    if (!tokenController.tokenIsEmpty) {
+    if (DBToken != null) {
       try {
-        ProfileModel profile =
-            await GetToken.getProfile(tokenController.token!.token);
+        ProfileModel profile = await GetToken.getProfile(DBToken.token);
 
-        return InMatAuth._(
-            tokenController, ProfileController(profile), AuthStatus.user);
+        return InMatAuth._(TokenController(DBToken), ProfileController(profile),
+            AuthStatus.user);
       } on ExpirationAccessToken {
         // 액세스 토큰 만료
         print("InMatAuth: 토큰이 만료되었습니다.");
         // 토큰이 만료되었으면
         // DB 삭제
         DataBaseHandler.delete();
+
         print("InMatAuth: 다시 로그인 해주세요.");
         return InMatAuth._(
-            tokenController, ProfileController(), AuthStatus.reSignIn);
+            TokenController(), ProfileController(), AuthStatus.reSignIn);
       } on AccessDenied {
         // 접근 권한 없음
         print("InMatAuth: 접근 권한이 없습니다.");
@@ -121,6 +120,7 @@ class InMatAuth {
     }
 
     print('InMatAuth: 비 회원 상태');
-    return InMatAuth._(tokenController, ProfileController(), AuthStatus.guest);
+    return InMatAuth._(
+        TokenController(), ProfileController(), AuthStatus.guest);
   }
 }

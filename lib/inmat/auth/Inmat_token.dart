@@ -8,6 +8,9 @@ import 'domain/model/token_model.dart';
 ///
 
 class TokenController {
+  TokenController([this._tokenModel]);
+
+
   TokenModel? _tokenModel;
 
   TokenModel? get token => _tokenModel;

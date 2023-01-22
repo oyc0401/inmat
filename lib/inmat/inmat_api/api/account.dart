@@ -71,7 +71,7 @@ class AccountApi {
         "age": age,
         "gender": gender,
         "nickName": nickName,
-        // "profileImgUrl": profileImgUrl,
+        "profileImgUrl": profileImgUrl,
       },
       token: InMatAuth.instance.currentUser?.token,
     );

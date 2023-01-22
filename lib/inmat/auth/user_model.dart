@@ -16,7 +16,7 @@ class User {
 
   String get nickName => profileModel.nickName;
 
-  String? get profileImgUrl => profileModel.profileImgUrl ?? 'null';
+  String? get profileImgUrl => profileModel.profileImgUrl;
 
   String get token => tokenModel.token;
 
