@@ -4,9 +4,11 @@ import 'package:inmat/src/restaurant/screens/review_all.dart';
 import 'package:inmat/src/restaurant/widgets/review_card.dart';
 import 'package:inmat/src/restaurant/screens/write_review.dart';
 import 'package:inmat/utils/inmat_colors.dart';
+import 'package:inmat/widgets/shelf.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/restaurant_model.dart';
+import '../widgets/restaurant_title.dart';
 import 'review_view.dart';
 
 class RestaurantPage extends StatelessWidget {
@@ -23,53 +25,29 @@ class RestaurantPage extends StatelessWidget {
       child: Consumer<RestaurantProvider>(
         builder: (context, model, child) => Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.transparent,
             title: Text(Provider.of<RestaurantProvider>(context).name),
           ),
           body: ListView(
             children: [
-              Banner(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(Provider.of<RestaurantProvider>(context).name),
-                    Text('${Provider.of<RestaurantProvider>(context).type}'),
-                    IconButton(
-                      onPressed: () {
-                        Provider.of<RestaurantProvider>(context, listen: false)
-                            .like();
-                        Provider.of<RestaurantProvider>(context, listen: false)
-                            .postHeart();
-                      },
-                      icon: Provider.of<RestaurantProvider>(context).heart
-                          ? Icon(
-                              Icons.favorite,
-                              color: Colors.redAccent,
-                            )
-                          : Icon(Icons.favorite_border),
-                    ),
-                    Text(
-                        '별점: ${Provider.of<RestaurantProvider>(context).averageStar}'),
-                    Text(
-                        '평균 가격: ${Provider.of<RestaurantProvider>(context).averagePrice}'),
-                    Text(
-                        '복잡도: ${Provider.of<RestaurantProvider>(context).complexity}'),
-                    Text('${Provider.of<RestaurantProvider>(context).heart}'),
-                    Provider.of<RestaurantProvider>(context).complete
-                        ? Menus(
-                            menus:
-                                Provider.of<RestaurantProvider>(context).menus,
-                          )
-                        : Container(),
-                    RestaurantMap(),
-                    Text(
-                        '${Provider.of<RestaurantProvider>(context).contactNumber}'),
-                  ],
-                ),
+              const Banner(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  titleSection(),
+                  Container(
+                    height: 9,
+                    color: const Color(0xffEBEBEB),
+                  ),
+                  menuSection(context),
+                  timeSection(),
+                  const RestaurantMap(),
+                  Text(
+                      '${Provider.of<RestaurantProvider>(context).contactNumber}'),
+                ],
               ),
               CupertinoButton(
-                  child: Text("리뷰 더보기"),
+                  child: const Text("리뷰 더보기"),
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -91,7 +69,7 @@ class RestaurantPage extends StatelessWidget {
                     },
                     map: map),
               CupertinoButton(
-                  child: Text("리뷰 작성"),
+                  child: const Text("리뷰 작성"),
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -104,6 +82,78 @@ class RestaurantPage extends StatelessWidget {
       ),
     );
   }
+
+  Widget titleSection() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.0),
+      child: RestaurantTitle(),
+    );
+  }
+
+  Widget menuSection(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(height: 19),
+        Provider.of<RestaurantProvider>(context).complete
+            ? Menus(
+                menus: Provider.of<RestaurantProvider>(context).menus,
+              )
+            : Container(),
+        const SizedBox(height: 13),
+        Container(
+          height: 1.5,
+          color: const Color(0xffEAEAEA),
+        ),
+      ],
+    );
+  }
+
+  Widget timeSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 14),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                '영업 시간',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Text('오전 11시 - 22시'),
+              Text.rich(
+                TextSpan(
+                  text: '정기휴무일 ',
+                  children: [
+                    TextSpan(
+                      text: '없음',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colorss.primaryColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 13),
+        Container(
+          height: 1.5,
+          color: const Color(0xffEAEAEA),
+        ),
+      ],
+    );
+  }
 }
 
 class Banner extends StatelessWidget {
@@ -112,7 +162,7 @@ class Banner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 175 - 56,
       color: Colorss.skeleton,
       child: Center(
           child:
@@ -131,13 +181,30 @@ class Menus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        for (Map menu in menus)
-          Menu(
-            menu: menu,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            '메뉴',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-      ]),
+          const SizedBox(height: 12),
+          Shelf(
+            space: 5,
+            children: [
+              for (Map menu in menus)
+                Menu(
+                  menu: menu,
+                ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -148,9 +215,22 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text('${menu['menuName']}'),
-      subtitle: Text('${menu['price']}'),
+    return Row(
+      children: [
+        Text(
+          '${menu['menuName']}',
+          style: const TextStyle(
+            fontSize: 14,
+          ),
+        ),
+        const Spacer(),
+        Text(
+          '${menu['price']}',
+          style: const TextStyle(
+            fontSize: 14,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -165,7 +245,7 @@ class RestaurantMap extends StatelessWidget {
         Text(Provider.of<RestaurantProvider>(context).address),
         Container(
           height: 100,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xffeeeeee),
             borderRadius: BorderRadius.all(
               Radius.circular(8.0),
