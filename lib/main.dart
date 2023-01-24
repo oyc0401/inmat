@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:inmat/_sample/s3/s3.dart';
 
 import 'package:inmat/inmat/auth/Inmat_token.dart';
 
@@ -41,9 +42,10 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // home: productMode(),
-        home: const AuthCheck(),
+        // home: const AuthCheck(),
         // home: CameraExample(),
         // home :const AddRestaurant(),
+        home: S3Example(),
       ),
     );
   }
