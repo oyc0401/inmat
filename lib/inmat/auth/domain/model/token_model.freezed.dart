@@ -20,7 +20,7 @@ TokenModel _$TokenModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TokenModel {
-  String get token => throw _privateConstructorUsedError;
+  String get accessToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $TokenModelCopyWith<$Res> {
           TokenModel value, $Res Function(TokenModel) then) =
       _$TokenModelCopyWithImpl<$Res, TokenModel>;
   @useResult
-  $Res call({String token});
+  $Res call({String accessToken});
 }
 
 /// @nodoc
@@ -50,12 +50,12 @@ class _$TokenModelCopyWithImpl<$Res, $Val extends TokenModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
+    Object? accessToken = null,
   }) {
     return _then(_value.copyWith(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -69,7 +69,7 @@ abstract class _$$_TokenModelCopyWith<$Res>
       __$$_TokenModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token});
+  $Res call({String accessToken});
 }
 
 /// @nodoc
@@ -83,12 +83,12 @@ class __$$_TokenModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
+    Object? accessToken = null,
   }) {
     return _then(_$_TokenModel(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -97,17 +97,17 @@ class __$$_TokenModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TokenModel implements _TokenModel {
-  _$_TokenModel({required this.token});
+  _$_TokenModel({required this.accessToken});
 
   factory _$_TokenModel.fromJson(Map<String, dynamic> json) =>
       _$$_TokenModelFromJson(json);
 
   @override
-  final String token;
+  final String accessToken;
 
   @override
   String toString() {
-    return 'TokenModel(token: $token)';
+    return 'TokenModel(accessToken: $accessToken)';
   }
 
   @override
@@ -115,12 +115,13 @@ class _$_TokenModel implements _TokenModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TokenModel &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, token);
+  int get hashCode => Object.hash(runtimeType, accessToken);
 
   @JsonKey(ignore: true)
   @override
@@ -137,13 +138,13 @@ class _$_TokenModel implements _TokenModel {
 }
 
 abstract class _TokenModel implements TokenModel {
-  factory _TokenModel({required final String token}) = _$_TokenModel;
+  factory _TokenModel({required final String accessToken}) = _$_TokenModel;
 
   factory _TokenModel.fromJson(Map<String, dynamic> json) =
       _$_TokenModel.fromJson;
 
   @override
-  String get token;
+  String get accessToken;
   @override
   @JsonKey(ignore: true)
   _$$_TokenModelCopyWith<_$_TokenModel> get copyWith =>

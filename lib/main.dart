@@ -42,10 +42,10 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // home: productMode(),
-        // home: const AuthCheck(),
+        home: const AuthCheck(),
         // home: CameraExample(),
         // home :const AddRestaurant(),
-        home: S3Example(),
+        // home: S3Example(),
       ),
     );
   }

@@ -7,6 +7,40 @@ PODS:
     - AppAuth/Core
   - device_info_plus (0.0.1):
     - Flutter
+  - DKImagePickerController/Core (4.3.4):
+    - DKImagePickerController/ImageDataManager
+    - DKImagePickerController/Resource
+  - DKImagePickerController/ImageDataManager (4.3.4)
+  - DKImagePickerController/PhotoGallery (4.3.4):
+    - DKImagePickerController/Core
+    - DKPhotoGallery
+  - DKImagePickerController/Resource (4.3.4)
+  - DKPhotoGallery (0.0.17):
+    - DKPhotoGallery/Core (= 0.0.17)
+    - DKPhotoGallery/Model (= 0.0.17)
+    - DKPhotoGallery/Preview (= 0.0.17)
+    - DKPhotoGallery/Resource (= 0.0.17)
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Core (0.0.17):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Preview
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Model (0.0.17):
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Preview (0.0.17):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Resource
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Resource (0.0.17):
+    - SDWebImage
+    - SwiftyGif
+  - file_picker (0.0.1):
+    - DKImagePickerController/PhotoGallery
+    - Flutter
   - Flutter (1.0.0)
   - flutter_compass (0.0.1):
     - Flutter
@@ -43,15 +77,20 @@ PODS:
     - Flutter
     - NMapsMap
   - NMapsMap (3.16.0)
+  - SDWebImage (5.15.0):
+    - SDWebImage/Core (= 5.15.0)
+  - SDWebImage/Core (5.15.0)
   - shared_preferences_ios (0.0.1):
     - Flutter
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
+  - SwiftyGif (5.4.4)
   - Toast (4.0.0)
 
 DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
+  - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
   - flutter_compass (from `.symlinks/plugins/flutter_compass/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -66,17 +105,23 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - DKImagePickerController
+    - DKPhotoGallery
     - FMDB
     - GoogleMaps
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
     - NMapsMap
+    - SDWebImage
+    - SwiftyGif
     - Toast
 
 EXTERNAL SOURCES:
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
+  file_picker:
+    :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
     :path: Flutter
   flutter_compass:
@@ -101,6 +146,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
+  DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
+  DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
+  file_picker: ce3938a0df3cc1ef404671531facef740d03f920
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_compass: cbbd285cea1584c7ac9c4e0c3e1f17cbea55e855
   fluttertoast: eb263d302cc92e04176c053d2385237e9f43fad0
@@ -115,8 +163,10 @@ SPEC CHECKSUMS:
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   naver_map_plugin: d1d67733c56b20b88270d9da51218e18fa916232
   NMapsMap: a2593320fca2bb09e521c05b4dffee4da42e96ed
+  SDWebImage: 9bec4c5cdd9579e1f57104735ee0c37df274d593
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
+  SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b

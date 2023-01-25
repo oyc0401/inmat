@@ -18,7 +18,7 @@ class User {
 
   String? get profileImgUrl => profileModel.profileImgUrl;
 
-  String get token => tokenModel.token;
+  String get token => tokenModel.accessToken;
 
   @override
   String toString() {

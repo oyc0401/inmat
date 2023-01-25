@@ -63,7 +63,7 @@ class InMatAuth {
 
     // [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만
     // 여기선 로그인 직후에 가져오는 것이라 생략한다.
-    ProfileModel profile = await GetToken.getProfile(tokenModel.token);
+    ProfileModel profile = await GetToken.getProfile(tokenModel.accessToken);
     _profileController.set(profile);
   }
 
@@ -96,7 +96,7 @@ class InMatAuth {
 
     if (DBToken != null) {
       try {
-        ProfileModel profile = await GetToken.getProfile(DBToken.token);
+        ProfileModel profile = await GetToken.getProfile(DBToken.accessToken);
 
         return InMatAuth._(TokenController(DBToken), ProfileController(profile),
             AuthStatus.user);
