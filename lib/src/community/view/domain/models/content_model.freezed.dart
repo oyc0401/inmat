@@ -20,7 +20,9 @@ ContentModel _$ContentModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ContentModel {
-  int get userId => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
+
+  /// TODO
   int get postId => throw _privateConstructorUsedError;
   String? get profileImgUrl => throw _privateConstructorUsedError;
   String get nickName => throw _privateConstructorUsedError;
@@ -31,8 +33,7 @@ mixin _$ContentModel {
   String get createdAt => throw _privateConstructorUsedError;
   String? get imgUrl => throw _privateConstructorUsedError;
   bool get myLike => throw _privateConstructorUsedError;
-  List<Map<String, dynamic>> get commentInfoDtoList =>
-      throw _privateConstructorUsedError;
+  List<dynamic> get commentInfoDtoList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +48,7 @@ abstract class $ContentModelCopyWith<$Res> {
       _$ContentModelCopyWithImpl<$Res, ContentModel>;
   @useResult
   $Res call(
-      {int userId,
+      {int? userId,
       int postId,
       String? profileImgUrl,
       String nickName,
@@ -58,7 +59,7 @@ abstract class $ContentModelCopyWith<$Res> {
       String createdAt,
       String? imgUrl,
       bool myLike,
-      List<Map<String, dynamic>> commentInfoDtoList});
+      List<dynamic> commentInfoDtoList});
 }
 
 /// @nodoc
@@ -74,7 +75,7 @@ class _$ContentModelCopyWithImpl<$Res, $Val extends ContentModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? userId = freezed,
     Object? postId = null,
     Object? profileImgUrl = freezed,
     Object? nickName = null,
@@ -88,10 +89,10 @@ class _$ContentModelCopyWithImpl<$Res, $Val extends ContentModel>
     Object? commentInfoDtoList = null,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
@@ -135,7 +136,7 @@ class _$ContentModelCopyWithImpl<$Res, $Val extends ContentModel>
       commentInfoDtoList: null == commentInfoDtoList
           ? _value.commentInfoDtoList
           : commentInfoDtoList // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as List<dynamic>,
     ) as $Val);
   }
 }
@@ -149,7 +150,7 @@ abstract class _$$_ContentModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int userId,
+      {int? userId,
       int postId,
       String? profileImgUrl,
       String nickName,
@@ -160,7 +161,7 @@ abstract class _$$_ContentModelCopyWith<$Res>
       String createdAt,
       String? imgUrl,
       bool myLike,
-      List<Map<String, dynamic>> commentInfoDtoList});
+      List<dynamic> commentInfoDtoList});
 }
 
 /// @nodoc
@@ -174,7 +175,7 @@ class __$$_ContentModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? userId = freezed,
     Object? postId = null,
     Object? profileImgUrl = freezed,
     Object? nickName = null,
@@ -188,10 +189,10 @@ class __$$_ContentModelCopyWithImpl<$Res>
     Object? commentInfoDtoList = null,
   }) {
     return _then(_$_ContentModel(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
@@ -235,7 +236,7 @@ class __$$_ContentModelCopyWithImpl<$Res>
       commentInfoDtoList: null == commentInfoDtoList
           ? _value._commentInfoDtoList
           : commentInfoDtoList // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as List<dynamic>,
     ));
   }
 }
@@ -255,14 +256,16 @@ class _$_ContentModel implements _ContentModel {
       required this.createdAt,
       required this.imgUrl,
       required this.myLike,
-      required final List<Map<String, dynamic>> commentInfoDtoList})
+      required final List<dynamic> commentInfoDtoList})
       : _commentInfoDtoList = commentInfoDtoList;
 
   factory _$_ContentModel.fromJson(Map<String, dynamic> json) =>
       _$$_ContentModelFromJson(json);
 
   @override
-  final int userId;
+  final int? userId;
+
+  /// TODO
   @override
   final int postId;
   @override
@@ -283,9 +286,9 @@ class _$_ContentModel implements _ContentModel {
   final String? imgUrl;
   @override
   final bool myLike;
-  final List<Map<String, dynamic>> _commentInfoDtoList;
+  final List<dynamic> _commentInfoDtoList;
   @override
-  List<Map<String, dynamic>> get commentInfoDtoList {
+  List<dynamic> get commentInfoDtoList {
     if (_commentInfoDtoList is EqualUnmodifiableListView)
       return _commentInfoDtoList;
     // ignore: implicit_dynamic_type
@@ -356,26 +359,27 @@ class _$_ContentModel implements _ContentModel {
 
 abstract class _ContentModel implements ContentModel {
   factory _ContentModel(
-          {required final int userId,
-          required final int postId,
-          required final String? profileImgUrl,
-          required final String nickName,
-          required final String topic,
-          required final String contents,
-          required final int countPostLike,
-          required final int countComment,
-          required final String createdAt,
-          required final String? imgUrl,
-          required final bool myLike,
-          required final List<Map<String, dynamic>> commentInfoDtoList}) =
-      _$_ContentModel;
+      {required final int? userId,
+      required final int postId,
+      required final String? profileImgUrl,
+      required final String nickName,
+      required final String topic,
+      required final String contents,
+      required final int countPostLike,
+      required final int countComment,
+      required final String createdAt,
+      required final String? imgUrl,
+      required final bool myLike,
+      required final List<dynamic> commentInfoDtoList}) = _$_ContentModel;
 
   factory _ContentModel.fromJson(Map<String, dynamic> json) =
       _$_ContentModel.fromJson;
 
   @override
-  int get userId;
+  int? get userId;
   @override
+
+  /// TODO
   int get postId;
   @override
   String? get profileImgUrl;
@@ -396,7 +400,7 @@ abstract class _ContentModel implements ContentModel {
   @override
   bool get myLike;
   @override
-  List<Map<String, dynamic>> get commentInfoDtoList;
+  List<dynamic> get commentInfoDtoList;
   @override
   @JsonKey(ignore: true)
   _$$_ContentModelCopyWith<_$_ContentModel> get copyWith =>

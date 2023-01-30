@@ -77,7 +77,7 @@ class PostViewModel with ChangeNotifier {
     try {
       _postModel = await PostModel.getPost(_id);
       isHeart = _postModel.post.myLike;
-      commentCount = _postModel.post.countComment;
+      commentCount = _postModel.post.countPostLike;
       heartCount = _postModel.post.countPostLike;
       complete = true;
       notifyListeners();

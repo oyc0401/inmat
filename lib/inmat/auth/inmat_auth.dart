@@ -1,4 +1,5 @@
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 
 import '../inmat_api/inmat_exception.dart';
 import 'Inmat_token.dart';
@@ -60,6 +61,11 @@ class InMatAuth {
 
     _tokenController.set(tokenModel);
     await DataBaseHandler.saveDBToken(tokenModel);
+
+    // jwt decode
+    String token = tokenModel.accessToken;
+    Map<String, dynamic> payload = Jwt.parseJwt(token);
+    print(payload);
 
     // [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만
     // 여기선 로그인 직후에 가져오는 것이라 생략한다.

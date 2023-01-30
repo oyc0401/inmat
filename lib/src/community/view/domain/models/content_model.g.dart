@@ -8,7 +8,7 @@ part of 'content_model.dart';
 
 _$_ContentModel _$$_ContentModelFromJson(Map<String, dynamic> json) =>
     _$_ContentModel(
-      userId: json['userId'] as int,
+      userId: json['userId'] as int?,
       postId: json['postId'] as int,
       profileImgUrl: json['profileImgUrl'] as String?,
       nickName: json['nickName'] as String,
@@ -19,9 +19,7 @@ _$_ContentModel _$$_ContentModelFromJson(Map<String, dynamic> json) =>
       createdAt: json['createdAt'] as String,
       imgUrl: json['imgUrl'] as String?,
       myLike: json['myLike'] as bool,
-      commentInfoDtoList: (json['commentInfoDtoList'] as List<dynamic>)
-          .map((e) => e as Map<String, dynamic>)
-          .toList(),
+      commentInfoDtoList: json['commentInfoDtoList'] as List<dynamic>,
     );
 
 Map<String, dynamic> _$$_ContentModelToJson(_$_ContentModel instance) =>

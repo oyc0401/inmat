@@ -9,7 +9,7 @@ part 'content_model.freezed.dart';
 @freezed
 class ContentModel with _$ContentModel {
   factory ContentModel({
-    required int userId,
+    required int? userId, /// TODO
     required int postId,
     required String? profileImgUrl,
     required String nickName,
@@ -20,7 +20,7 @@ class ContentModel with _$ContentModel {
     required String createdAt,
     required String? imgUrl,
     required bool myLike,
-    required List<Map<String, dynamic>> commentInfoDtoList,
+    required List<List> commentInfoDtoList,
   }) = _ContentModel;
 
   factory ContentModel.fromJson(Map<String, dynamic> json) =>

@@ -114,6 +114,7 @@ class PostView extends StatelessWidget {
           content: comment.contents,
           date: comment.createdAt,
           profileImgUrl: comment.profileImgUrl,
+          isDadatgle: comment.parentId!=0,
         ),
     ];
 

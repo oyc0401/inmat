@@ -49,10 +49,15 @@ class RestaurantPage extends StatelessWidget {
               CupertinoButton(
                   child: const Text("리뷰 더보기"),
                   onPressed: () {
-                    Navigator.push(
+                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => ReviewAll(id: id)));
+                            builder: (context) =>  RestaurantPage(id: id)));
+
+                    // Navigator.push(
+                    //     context,
+                    //     CupertinoPageRoute(
+                    //         builder: (context) => ReviewAll(id: id)));
                   }),
               for (var map in Provider.of<RestaurantProvider>(context).reviews)
                 ReviewCard(

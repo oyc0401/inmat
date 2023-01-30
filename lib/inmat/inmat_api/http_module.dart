@@ -16,6 +16,7 @@ class HttpModule {
         "Content-Type": "application/json",
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
+        // "Device-Identifier":
       },
     );
     _throwHttpException(response);
