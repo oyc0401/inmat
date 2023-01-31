@@ -24,7 +24,7 @@ class GetToken {
   }
 
   static Future<TokenModel> getTokenEmail(String id, String password) async {
-    Map<String, dynamic> json = await InMatApi.account.emailSignIn(
+    Map<String, dynamic> json = await InMatApi.auth.login(
       id: id,
       password: password,
     );

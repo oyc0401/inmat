@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:http/http.dart';
+import 'package:inmat/utils/mobile_id.dart';
+
 import 'http_module.dart';
 import 'inmat_exception.dart';
 
@@ -7,7 +12,7 @@ class InMatHttp {
   InMatHttp(
     this.how, {
     required this.url,
-    required String? message,
+    String? message,
     this.body,
     this.token,
   }) : _message = message ?? "이름없는 http 통신";
@@ -24,33 +29,47 @@ class InMatHttp {
 
   dynamic execute() async {
     print("$_message 중...");
-    Map response = {};
 
-    HttpModule module = HttpModule();
+    String deviceIdentifier = await MobileId.getMobileId();
+    Map<String, String> header = {
+      "Content-Type": "application/json",
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+      "Device-Identifier": deviceIdentifier,
+      // "User-Agent": deviceIdentifier,
+    };
+
+    Map request = {};
+
     switch (how) {
       case Http.get:
-        response = await module.get(url: _url, token: token);
+        request = await HttpModule.get(url: _url, headers: header);
         break;
       case Http.post:
-        response = await module.post(url: _url, body: body, token: token);
+        request = await HttpModule.post(
+          url: _url,
+          body: body,
+          headers: header,
+        );
         break;
       case Http.patch:
-        response = await module.patch(url: _url, body: body, token: token);
+        request =
+            await HttpModule.patch(url: _url, body: body, headers: header);
         break;
     }
-// print(response);
-    _throwException(response);
+    print(request);
+    _throwException(request);
 
     /// 디버그 할 때 [debug]를 true 로 하면 모든 통신의 값을 출력한다.
     const bool debug = true;
-    if (debug) print(response);
+    if (debug) print(request);
 
     print("$_message 성공!");
 
-    return response["result"];
+    return request["result"];
   }
 
-  _throwException(Map response) {
+  void _throwException(Map response) {
     if (response['isSuccess'] == false) {
       print("$_message 실패!");
       int code = response['code'];
@@ -76,5 +95,17 @@ class InMatHttp {
         // Failed to 게시글 삭제: 3200, 게시글 삭제에 실패하였습니다.
       }
     }
+  }
+}
+
+void _throwHttpException(Response response) {
+  switch (response.statusCode) {
+    case 200:
+      return;
+    case 401:
+    // throw ExpirationAccessToken();
+    default:
+      throw Exception(
+          'unexpected status code: ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
   }
 }

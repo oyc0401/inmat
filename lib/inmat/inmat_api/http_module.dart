@@ -2,73 +2,63 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:inmat/utils/mobile_id.dart';
 
 import 'inmat_exception.dart';
 
 class HttpModule {
-  Future<Map> get({
+  static Future<Map> get({
     required String url,
-    String? token,
+    required Map<String, String> headers,
   }) async {
-    final Response response = await http.get(
-      Uri.parse(url),
-      headers: {
-        "Content-Type": "application/json",
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
-        // "Device-Identifier":
-      },
-    );
+    final Response response = await http.get(Uri.parse(url), headers: headers);
     _throwHttpException(response);
 
     return json.decode(utf8.decode(response.bodyBytes));
   }
 
-  Future<Map> post({
+  static Future<Map> post({
     required String url,
+    required Map<String, String> headers,
     required Map? body,
-    String? token,
   }) async {
     final Response response = await http.post(
       Uri.parse(url),
-      headers: {
-        "Content-Type": "application/json",
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
+      headers: headers,
       body: json.encode(body),
     );
+
+    print('url: $url');
+    print('headers: $headers');
+    print('body: $body');
+
+    print(response.statusCode);
+    print(response.bodyBytes);
 
     _throwHttpException(response);
 
     return json.decode(utf8.decode(response.bodyBytes));
   }
 
-  Future<Map> patch({
+  static Future<Map> patch({
     required String url,
     required Map? body,
-    required String? token,
+    required Map<String, String> headers,
   }) async {
-    final Response response = await http.patch(
-      Uri.parse(url),
-      headers: {
-        "Content-Type": "application/json",
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-      body: json.encode(body),
-    );
+    final Response response =
+        await http.patch(Uri.parse(url), headers: headers, body: json.encode(body));
+
     _throwHttpException(response);
 
     return json.decode(utf8.decode(response.bodyBytes));
   }
 
-  void _throwHttpException(Response response) {
+  static void _throwHttpException(Response response) {
     switch (response.statusCode) {
       case 200:
         return;
       case 401:
-        throw ExpirationAccessToken();
+      // throw ExpirationAccessToken();
       default:
         throw Exception(
             'unexpected status code: ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
