@@ -5,7 +5,7 @@ import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 void main() {
-  group("account auth test", () {
+  group("account api 테스트", () {
     late TokenModel testToken;
 
     const String testId = "flutter1";
