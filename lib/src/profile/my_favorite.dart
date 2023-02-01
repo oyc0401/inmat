@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:inmat/widgets/shelf.dart';
 
@@ -21,7 +22,7 @@ class _MyFavoriteState extends State<MyFavorite> {
   }
 
   init() async {
-    likes = await InMatApi.account.getLikeRestaurants();
+    likes = await InMatApi.account.getLikeRestaurants(InMatAuth.instance.currentUser!.token);
     complete = true;
     setState(() {});
   }

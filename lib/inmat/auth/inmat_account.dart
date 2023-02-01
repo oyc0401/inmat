@@ -1,5 +1,7 @@
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
+import '../../utils/mobile_id.dart';
+
 class InMatAccount {
   static registerEmail({
     required String id,
@@ -20,14 +22,14 @@ class InMatAccount {
   static Future<bool> checkNickName({
     required String nickName,
   }) async {
-    String message = await InMatApi.auth.checkNickName(nickName: nickName);
+    String message = await InMatApi.auth.checkNickName(nickName);
     return message == "닉네임 사용가능!";
   }
 
   static Future<bool> checkId({
     required String id,
   }) async {
-    String message = await InMatApi.auth.checkId(id: id);
+    String message = await InMatApi.auth.checkId(id);
     return message == "아이디 사용가능!";
   }
 }

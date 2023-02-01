@@ -85,6 +85,7 @@ class InMatAuth {
       gender: gender,
       nickName: nickName,
       profileImgUrl: profileImgUrl,
+      token: InMatAuth.instance.currentUser!.token,
     );
     _profileController.set(
       ProfileModel(
@@ -92,6 +93,10 @@ class InMatAuth {
         gender: gender,
         nickName: nickName,
         profileImgUrl: profileImgUrl,
+        phoneNumber: _profileController.profile!.phoneNumber,
+        email: _profileController.profile!.email,
+        userId: _profileController.profile!.userId,
+        username: _profileController.profile!.username,
       ),
     );
   }

@@ -33,7 +33,7 @@ mixin _$ContentModel {
   String get createdAt => throw _privateConstructorUsedError;
   String? get imgUrl => throw _privateConstructorUsedError;
   bool get myLike => throw _privateConstructorUsedError;
-  List<dynamic> get commentInfoDtoList => throw _privateConstructorUsedError;
+  List<List> get commentInfoDtoList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,7 +59,7 @@ abstract class $ContentModelCopyWith<$Res> {
       String createdAt,
       String? imgUrl,
       bool myLike,
-      List<dynamic> commentInfoDtoList});
+      List<List> commentInfoDtoList});
 }
 
 /// @nodoc
@@ -136,7 +136,7 @@ class _$ContentModelCopyWithImpl<$Res, $Val extends ContentModel>
       commentInfoDtoList: null == commentInfoDtoList
           ? _value.commentInfoDtoList
           : commentInfoDtoList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<List>,
     ) as $Val);
   }
 }
@@ -161,7 +161,7 @@ abstract class _$$_ContentModelCopyWith<$Res>
       String createdAt,
       String? imgUrl,
       bool myLike,
-      List<dynamic> commentInfoDtoList});
+      List<List> commentInfoDtoList});
 }
 
 /// @nodoc
@@ -236,7 +236,7 @@ class __$$_ContentModelCopyWithImpl<$Res>
       commentInfoDtoList: null == commentInfoDtoList
           ? _value._commentInfoDtoList
           : commentInfoDtoList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<List>,
     ));
   }
 }
@@ -256,7 +256,7 @@ class _$_ContentModel implements _ContentModel {
       required this.createdAt,
       required this.imgUrl,
       required this.myLike,
-      required final List<dynamic> commentInfoDtoList})
+      required final List<List> commentInfoDtoList})
       : _commentInfoDtoList = commentInfoDtoList;
 
   factory _$_ContentModel.fromJson(Map<String, dynamic> json) =>
@@ -286,9 +286,9 @@ class _$_ContentModel implements _ContentModel {
   final String? imgUrl;
   @override
   final bool myLike;
-  final List<dynamic> _commentInfoDtoList;
+  final List<List> _commentInfoDtoList;
   @override
-  List<dynamic> get commentInfoDtoList {
+  List<List> get commentInfoDtoList {
     if (_commentInfoDtoList is EqualUnmodifiableListView)
       return _commentInfoDtoList;
     // ignore: implicit_dynamic_type
@@ -370,7 +370,7 @@ abstract class _ContentModel implements ContentModel {
       required final String createdAt,
       required final String? imgUrl,
       required final bool myLike,
-      required final List<dynamic> commentInfoDtoList}) = _$_ContentModel;
+      required final List<List> commentInfoDtoList}) = _$_ContentModel;
 
   factory _ContentModel.fromJson(Map<String, dynamic> json) =
       _$_ContentModel.fromJson;
@@ -400,7 +400,7 @@ abstract class _ContentModel implements ContentModel {
   @override
   bool get myLike;
   @override
-  List<dynamic> get commentInfoDtoList;
+  List<List> get commentInfoDtoList;
   @override
   @JsonKey(ignore: true)
   _$$_ContentModelCopyWith<_$_ContentModel> get copyWith =>

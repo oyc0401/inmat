@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/utils/mobile_id.dart';
 
 import 'http_module.dart';
@@ -15,6 +16,8 @@ class InMatHttp {
     String? message,
     this.body,
     this.token,
+    this.refreshToken,
+    this.deviceIdentifier,
   }) : _message = message ?? "이름없는 http 통신";
 
   Http how;
@@ -22,20 +25,22 @@ class InMatHttp {
   Map? body;
   final String _message;
   final String? token;
+  final String? refreshToken;
+  final String? deviceIdentifier;
 
   String get _url {
     return "http://prod.sogogi.shop:9000$url";
   }
 
   dynamic execute() async {
-    print("$_message 중...");
+    print("InMatHttp: $_message 중...");
 
-    String deviceIdentifier = await MobileId.getMobileId();
     Map<String, String> header = {
       "Content-Type": "application/json",
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
-      "Device-Identifier": deviceIdentifier,
+      "Device-Identifier": '$deviceIdentifier',
+      "REFRESH-TOKEN": '$refreshToken',
       // "User-Agent": deviceIdentifier,
     };
 
@@ -57,21 +62,21 @@ class InMatHttp {
             await HttpModule.patch(url: _url, body: body, headers: header);
         break;
     }
-    print(request);
-    _throwException(request);
 
     /// 디버그 할 때 [debug]를 true 로 하면 모든 통신의 값을 출력한다.
     const bool debug = true;
-    if (debug) print(request);
+    if (debug) print('InMatHttp: $request');
 
-    print("$_message 성공!");
+    _throwException(request);
+
+    print("InMatHttp: $_message 성공!");
 
     return request["result"];
   }
 
   void _throwException(Map response) {
     if (response['isSuccess'] == false) {
-      print("$_message 실패!");
+      print("InMatHttp: $_message 실패!");
       int code = response['code'];
       switch (code) {
         case 401:

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:inmat/src/restaurant/screens/review_view.dart';
 import 'package:inmat/widgets/shelf.dart';
@@ -20,7 +21,7 @@ class _MyReviewState extends State<MyReview> {
   }
 
   init() async {
-    reviews = await InMatApi.account.getReviews();
+    reviews = await InMatApi.account.getReviews(InMatAuth.instance.currentUser!.token);
     complete = true;
     setState(() {});
   }

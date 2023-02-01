@@ -2,12 +2,13 @@ part of '../inmat_api.dart';
 
 class AccountApi {
   /// 마이페이지 조회 API
-  Future<Map<String, dynamic>> getProfile({required String token}) async {
+  Future<Map<String, dynamic>> getProfile(String token) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "프로필 불러오기",
       url: "/users/profiles",
       token: token,
+      // deviceIdentifier: "dart_pad",
     );
     return await inMatHttp.execute();
   }
@@ -17,7 +18,8 @@ class AccountApi {
     required int age,
     required String gender,
     required String nickName,
-    required String? profileImgUrl,
+     String? profileImgUrl,
+    required String token,
   }) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.patch,
@@ -29,40 +31,40 @@ class AccountApi {
         "nickName": nickName,
         "profileImgUrl": profileImgUrl,
       },
-      token: InMatAuth.instance.currentUser?.token,
+      token: token,
     );
     return await inMatHttp.execute();
   }
 
   ///내가 하트찜한 음식점 조회 API
-  Future<List<Map>> getLikeRestaurants() async {
+  Future<List<Map>> getLikeRestaurants(String token) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "좋아하는 음식점 가져오기",
       url: "/users/restaurants",
-      token: InMatAuth.instance.currentUser?.token,
+      token: token,
     );
     return (await inMatHttp.execute()).cast<Map>();
   }
 
   ///내가 쓴 리뷰 조회 API
-  Future<List<Map>> getReviews() async {
+  Future<List<Map>> getReviews(String token) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "내가 쓴 리뷰 가져오기",
       url: "/users/reviews",
-      token: InMatAuth.instance.currentUser?.token,
+      token: token,
     );
     return (await inMatHttp.execute()).cast<Map>();
   }
 
   ///내가 쓴 게시글 조회 API
-  Future<List<Map>> getPosts() async {
+  Future<List<Map>> getPosts(String token) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "내가 쓴 게시물 가져오기",
       url: "/users/posts",
-      token: InMatAuth.instance.currentUser?.token,
+      token: token,
     );
     return (await inMatHttp.execute()).cast<Map>();
   }

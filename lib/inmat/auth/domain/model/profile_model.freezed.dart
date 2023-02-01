@@ -20,9 +20,13 @@ ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProfileModel {
+  int get userId => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
+  String get nickName => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
-  String get nickName => throw _privateConstructorUsedError;
   String? get profileImgUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +41,15 @@ abstract class $ProfileModelCopyWith<$Res> {
           ProfileModel value, $Res Function(ProfileModel) then) =
       _$ProfileModelCopyWithImpl<$Res, ProfileModel>;
   @useResult
-  $Res call({int age, String gender, String nickName, String? profileImgUrl});
+  $Res call(
+      {int userId,
+      String username,
+      String email,
+      String phoneNumber,
+      String nickName,
+      int age,
+      String gender,
+      String? profileImgUrl});
 }
 
 /// @nodoc
@@ -53,12 +65,36 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? userId = null,
+    Object? username = null,
+    Object? email = null,
+    Object? phoneNumber = null,
+    Object? nickName = null,
     Object? age = null,
     Object? gender = null,
-    Object? nickName = null,
     Object? profileImgUrl = freezed,
   }) {
     return _then(_value.copyWith(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      nickName: null == nickName
+          ? _value.nickName
+          : nickName // ignore: cast_nullable_to_non_nullable
+              as String,
       age: null == age
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
@@ -66,10 +102,6 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
-      nickName: null == nickName
-          ? _value.nickName
-          : nickName // ignore: cast_nullable_to_non_nullable
               as String,
       profileImgUrl: freezed == profileImgUrl
           ? _value.profileImgUrl
@@ -87,7 +119,15 @@ abstract class _$$_ProfileModelCopyWith<$Res>
       __$$_ProfileModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int age, String gender, String nickName, String? profileImgUrl});
+  $Res call(
+      {int userId,
+      String username,
+      String email,
+      String phoneNumber,
+      String nickName,
+      int age,
+      String gender,
+      String? profileImgUrl});
 }
 
 /// @nodoc
@@ -101,12 +141,36 @@ class __$$_ProfileModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? userId = null,
+    Object? username = null,
+    Object? email = null,
+    Object? phoneNumber = null,
+    Object? nickName = null,
     Object? age = null,
     Object? gender = null,
-    Object? nickName = null,
     Object? profileImgUrl = freezed,
   }) {
     return _then(_$_ProfileModel(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      nickName: null == nickName
+          ? _value.nickName
+          : nickName // ignore: cast_nullable_to_non_nullable
+              as String,
       age: null == age
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
@@ -114,10 +178,6 @@ class __$$_ProfileModelCopyWithImpl<$Res>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
-      nickName: null == nickName
-          ? _value.nickName
-          : nickName // ignore: cast_nullable_to_non_nullable
               as String,
       profileImgUrl: freezed == profileImgUrl
           ? _value.profileImgUrl
@@ -131,26 +191,38 @@ class __$$_ProfileModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ProfileModel implements _ProfileModel {
   _$_ProfileModel(
-      {required this.age,
-      required this.gender,
+      {required this.userId,
+      required this.username,
+      required this.email,
+      required this.phoneNumber,
       required this.nickName,
+      required this.age,
+      required this.gender,
       required this.profileImgUrl});
 
   factory _$_ProfileModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileModelFromJson(json);
 
   @override
+  final int userId;
+  @override
+  final String username;
+  @override
+  final String email;
+  @override
+  final String phoneNumber;
+  @override
+  final String nickName;
+  @override
   final int age;
   @override
   final String gender;
-  @override
-  final String nickName;
   @override
   final String? profileImgUrl;
 
   @override
   String toString() {
-    return 'ProfileModel(age: $age, gender: $gender, nickName: $nickName, profileImgUrl: $profileImgUrl)';
+    return 'ProfileModel(userId: $userId, username: $username, email: $email, phoneNumber: $phoneNumber, nickName: $nickName, age: $age, gender: $gender, profileImgUrl: $profileImgUrl)';
   }
 
   @override
@@ -158,18 +230,24 @@ class _$_ProfileModel implements _ProfileModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProfileModel &&
-            (identical(other.age, age) || other.age == age) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
             (identical(other.nickName, nickName) ||
                 other.nickName == nickName) &&
+            (identical(other.age, age) || other.age == age) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.profileImgUrl, profileImgUrl) ||
                 other.profileImgUrl == profileImgUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, age, gender, nickName, profileImgUrl);
+  int get hashCode => Object.hash(runtimeType, userId, username, email,
+      phoneNumber, nickName, age, gender, profileImgUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -187,20 +265,32 @@ class _$_ProfileModel implements _ProfileModel {
 
 abstract class _ProfileModel implements ProfileModel {
   factory _ProfileModel(
-      {required final int age,
-      required final String gender,
+      {required final int userId,
+      required final String username,
+      required final String email,
+      required final String phoneNumber,
       required final String nickName,
+      required final int age,
+      required final String gender,
       required final String? profileImgUrl}) = _$_ProfileModel;
 
   factory _ProfileModel.fromJson(Map<String, dynamic> json) =
       _$_ProfileModel.fromJson;
 
   @override
+  int get userId;
+  @override
+  String get username;
+  @override
+  String get email;
+  @override
+  String get phoneNumber;
+  @override
+  String get nickName;
+  @override
   int get age;
   @override
   String get gender;
-  @override
-  String get nickName;
   @override
   String? get profileImgUrl;
   @override

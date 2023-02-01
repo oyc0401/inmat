@@ -11,6 +11,9 @@ class HttpModule {
     required String url,
     required Map<String, String> headers,
   }) async {
+    print('headers: $headers');
+
+
     final Response response = await http.get(Uri.parse(url), headers: headers);
     _throwHttpException(response);
 
@@ -28,12 +31,14 @@ class HttpModule {
       body: json.encode(body),
     );
 
-    print('url: $url');
-    print('headers: $headers');
-    print('body: $body');
+    // print("헤더: ${response.headers}");
 
-    print(response.statusCode);
-    print(response.bodyBytes);
+    // print('url: $url');
+    // print('headers: $headers');
+    // print('body: $body');
+    //
+    // print('statusCode: ${response.statusCode}');
+    // print('bodyBytes: ${utf8.decode(response.bodyBytes)}');
 
     _throwHttpException(response);
 

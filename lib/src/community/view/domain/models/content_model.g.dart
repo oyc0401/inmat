@@ -19,7 +19,9 @@ _$_ContentModel _$$_ContentModelFromJson(Map<String, dynamic> json) =>
       createdAt: json['createdAt'] as String,
       imgUrl: json['imgUrl'] as String?,
       myLike: json['myLike'] as bool,
-      commentInfoDtoList: json['commentInfoDtoList'] as List<dynamic>,
+      commentInfoDtoList: (json['commentInfoDtoList'] as List<dynamic>)
+          .map((e) => e as List<dynamic>)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ContentModelToJson(_$_ContentModel instance) =>

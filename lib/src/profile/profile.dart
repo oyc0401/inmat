@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ProfileModel(),
+      create: (context) => ProfileViewModel(),
       child: Consumer(builder: (context, value, child) {
         return Scaffold(
           appBar: AppBar(
@@ -42,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           body: Column(
             children: [
-              Provider.of<ProfileModel>(context).isUser
+              Provider.of<ProfileViewModel>(context).isUser
                   ? UserForm(
                       onclick: () {
                         Navigator.push(
@@ -59,11 +59,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 1.0,
                 color: Colors.black,
               ),
-              Provider.of<ProfileModel>(context).isUser
+              Provider.of<ProfileViewModel>(context).isUser
                   ? MyInformation()
                   : Container(),
               Spacer(),
-              Provider.of<ProfileModel>(context).isUser
+              Provider.of<ProfileViewModel>(context).isUser
                   ? LogOutButton()
                   : Container(),
               SizedBox(
@@ -172,7 +172,7 @@ class LogOutButton extends StatelessWidget {
         child: const Text("로그아웃"),
         onPressed: () {
           InMatAuth.instance.signOut();
-          Provider.of<ProfileModel>(context, listen: false).logout();
+          Provider.of<ProfileViewModel>(context, listen: false).logout();
         },
       ),
     );
