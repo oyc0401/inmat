@@ -13,6 +13,8 @@ part 'api/restaurant.dart';
 
 part 'api/auth.dart';
 
+part 'api/utils.dart';
+
 class InMatApi {
   InMatApi._();
 
@@ -23,4 +25,6 @@ class InMatApi {
   static RestaurantApi get restaurant => RestaurantApi();
 
   static AuthApi get auth => AuthApi();
+
+  static UtilsApi get utils => UtilsApi();
 }
