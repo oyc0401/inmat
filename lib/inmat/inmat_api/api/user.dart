@@ -1,6 +1,6 @@
 part of '../inmat_api.dart';
 
-class AccountApi {
+class UserApi {
   /// 마이페이지 조회 API
   Future<Map<String, dynamic>> getProfile(String token) async {
     InMatHttp inMatHttp = InMatHttp(
@@ -37,35 +37,35 @@ class AccountApi {
   }
 
   ///내가 하트찜한 음식점 조회 API
-  Future<List<Map>> getLikeRestaurants(String token) async {
+  Future<List<Map<String,dynamic>>> getLikeRestaurants(String token) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "좋아하는 음식점 가져오기",
       url: "/users/restaurants",
       token: token,
     );
-    return (await inMatHttp.execute()).cast<Map>();
+    return (await inMatHttp.execute()).cast<Map<String,dynamic>>();
   }
 
   ///내가 쓴 리뷰 조회 API
-  Future<List<Map>> getReviews(String token) async {
+  Future<List<Map<String,dynamic>>> getReviews(String token) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "내가 쓴 리뷰 가져오기",
       url: "/users/reviews",
       token: token,
     );
-    return (await inMatHttp.execute()).cast<Map>();
+    return (await inMatHttp.execute()).cast<Map<String,dynamic>>();
   }
 
   ///내가 쓴 게시글 조회 API
-  Future<List<Map>> getPosts(String token) async {
+  Future<List<Map<String,dynamic>>> getPosts(String token) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.get,
       message: "내가 쓴 게시물 가져오기",
       url: "/users/posts",
       token: token,
     );
-    return (await inMatHttp.execute()).cast<Map>();
+    return (await inMatHttp.execute()).cast<Map<String,dynamic>>();
   }
 }

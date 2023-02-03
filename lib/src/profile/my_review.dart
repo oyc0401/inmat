@@ -21,7 +21,7 @@ class _MyReviewState extends State<MyReview> {
   }
 
   init() async {
-    reviews = await InMatApi.account.getReviews(InMatAuth.instance.currentUser!.token);
+    reviews = await InMatApi.user.getReviews(InMatAuth.instance.currentUser!.token);
     complete = true;
     setState(() {});
   }

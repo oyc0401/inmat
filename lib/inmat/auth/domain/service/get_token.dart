@@ -19,7 +19,7 @@ class GetToken {
 
   static Future<ProfileModel> getProfile(String accessToken) async {
     Map<String, dynamic> map =
-        await InMatApi.account.getProfile(accessToken);
+        await InMatApi.user.getProfile(accessToken);
 
     ProfileModel model = ProfileModel.fromJson(map);
     return model;

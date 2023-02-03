@@ -6,8 +6,8 @@ part of 'post_thumb_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PostThumbData _$$_PostThumbDataFromJson(Map<String, dynamic> json) =>
-    _$_PostThumbData(
+_$_PostThumbModel _$$_PostThumbModelFromJson(Map<String, dynamic> json) =>
+    _$_PostThumbModel(
       postId: json['postId'] as int,
       nickName: json['nickName'] as String,
       topic: json['topic'] as String,
@@ -18,7 +18,7 @@ _$_PostThumbData _$$_PostThumbDataFromJson(Map<String, dynamic> json) =>
       imgUrl: json['imgUrl'] as String?,
     );
 
-Map<String, dynamic> _$$_PostThumbDataToJson(_$_PostThumbData instance) =>
+Map<String, dynamic> _$$_PostThumbModelToJson(_$_PostThumbModel instance) =>
     <String, dynamic>{
       'postId': instance.postId,
       'nickName': instance.nickName,

@@ -1,16 +1,16 @@
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
-import '../model/post_thumb_data.dart';
+import '../../models/post_thumb_data.dart';
 
 class CommunityModel {
 
 
-  static Future<List<PostThumbData>> getPosts() async {
-    List<PostThumbData> posts = [];
+  static Future<List<PostThumbModel>> getPosts() async {
+    List<PostThumbModel> posts = [];
     List<Map> list = await InMatApi.community.getPosts();
     for (var map in list) {
       posts.add(
-        PostThumbData(
+        PostThumbModel(
           postId: map['postId'],
           nickName: map['nickName'],
           topic: map['topic'],

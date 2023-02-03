@@ -1,20 +1,21 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:inmat/src/community/main/domain/service/post_api.dart';
+
 import 'package:inmat/src/community/view/screens/post_view.dart';
 import 'package:inmat/src/community/write/write_post.dart';
 
-import '../domain/model/post_thumb_data.dart';
+import '../../models/post_thumb_data.dart';
+import '../service/post_api.dart';
 
 class CommunityViewModel with ChangeNotifier {
   CommunityViewModel() {
     init();
   }
 
-  late List<PostThumbData> _posts;
+  late List<PostThumbModel> _posts;
   bool success = false;
 
-  List<PostThumbData> get posts => _posts;
+  List<PostThumbModel> get posts => _posts;
 
   init() async {
     _posts = await CommunityModel.getPosts();

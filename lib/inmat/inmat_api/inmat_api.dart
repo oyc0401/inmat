@@ -5,7 +5,7 @@ import '../auth/inmat_auth.dart';
 
 import 'inmat_http.dart';
 
-part 'api/account.dart';
+part 'api/user.dart';
 
 part 'api/community.dart';
 
@@ -18,7 +18,7 @@ part 'api/utils.dart';
 class InMatApi {
   InMatApi._();
 
-  static AccountApi get account => AccountApi();
+  static UserApi get user => UserApi();
 
   static CommunityApi get community => CommunityApi();
 
