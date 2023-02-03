@@ -19,18 +19,21 @@ class _AddRestaurantState extends State<AddRestaurant> {
 
   init() async {
     print(InMatAuth.instance.currentUser);
-    await InMatApi.restaurant.addRestaurant({
-      "address": "미추홀구 1번길 1",
-      "contactNumber": "010-1234-5678",
-      "imgUrl": "www.test.test",
-      "latitude": 36,
-      "longitude": 36,
-      "restaurantMenuList": [
-        {"categoryId": 1, "menuName": "탕수육", "price": 10000}
-      ],
-      "restaurantName": "테스트음식점",
-      "restaurantType": "FOOD"
-    });
+    await InMatApi.restaurant.addRestaurant(
+      {
+        "address": "미추홀구 1번길 1",
+        "contactNumber": "010-1234-5678",
+        "imgUrl": "www.test.test",
+        "latitude": 36,
+        "longitude": 36,
+        "restaurantMenuList": [
+          {"categoryId": 1, "menuName": "탕수육", "price": 10000}
+        ],
+        "restaurantName": "테스트음식점",
+        "restaurantType": "FOOD"
+      },
+      InMatAuth.instance.currentUser!.token,
+    );
   }
 
   @override

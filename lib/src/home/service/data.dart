@@ -1,3 +1,4 @@
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 import '../model/banner_model.dart';
@@ -5,14 +6,14 @@ import '../model/restaurant_model.dart';
 import '../model/review_model.dart';
 import '../model/today_model.dart';
 
-class HomeModel {
-  HomeModel._(this._json);
+class HomeModelClas {
+  HomeModelClas._(this._json);
 
   Map<String, dynamic> _json;
 
-  static Future<HomeModel> run() async {
-    Map<String, dynamic> map = await InMatApi.restaurant.getHome();
-    return HomeModel._(map);
+  static Future<HomeModelClas> run() async {
+    Map<String, dynamic> map = await InMatApi.restaurant.getHome(InMatAuth.instance.currentUser!.token);
+    return HomeModelClas._(map);
   }
 
   List<BannerModel> get banners {

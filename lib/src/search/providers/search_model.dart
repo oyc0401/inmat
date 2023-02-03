@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:inmat/src/search/domain/database/recent_search_database.dart';
 
@@ -60,7 +61,7 @@ class SearchModel with ChangeNotifier {
   List<RecentModel> get recents => _recents;
 
   Future<void> _setRanks() async {
-    List<Map> maps = await InMatApi.restaurant.getSearchRank();
+    List<Map> maps = await InMatApi.restaurant.getSearchRank(InMatAuth.instance.currentUser!.token);
 
     for (var map in maps) {
       _rank.add(Rank(map['ranking'], map['word']));

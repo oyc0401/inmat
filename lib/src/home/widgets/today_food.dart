@@ -4,7 +4,7 @@ import 'package:inmat/src/search/screens/search_result.dart';
 import 'package:inmat/utils/inmat_colors.dart';
 import 'package:provider/provider.dart';
 
-import '../domain/model/today_model.dart';
+import '../model/today_model.dart';
 import '../providers/home_view_model.dart';
 
 class TodayFoods extends StatelessWidget {

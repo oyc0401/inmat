@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 class RestaurantProvider with ChangeNotifier {
@@ -40,15 +41,15 @@ class RestaurantProvider with ChangeNotifier {
 
   postHeart() async {
     if (heart && clickHeart) {
-      await InMatApi.restaurant.setHeart(id);
+      await InMatApi.restaurant.setHeart(id,InMatAuth.instance.currentUser!.token);
     } else if (!heart && clickHeart) {
-      await InMatApi.restaurant.deleteHeart(id);
+      await InMatApi.restaurant.deleteHeart(id,InMatAuth.instance.currentUser!.token);
     }
   }
 
   init(int id) async {
     print(id);
-    map = await InMatApi.restaurant.getRestaurant(id);
+    map = await InMatApi.restaurant.getRestaurant(id,InMatAuth.instance.currentUser!.token);
     complete = true;
     print(map);
 

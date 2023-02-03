@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:inmat/src/home/domain/model/review_model.dart';
+
 import 'package:inmat/utils/inmat_colors.dart';
 import 'package:provider/provider.dart';
 
+import '../model/review_model.dart';
 import '../providers/home_view_model.dart';
 
 class RecentReview extends StatelessWidget {

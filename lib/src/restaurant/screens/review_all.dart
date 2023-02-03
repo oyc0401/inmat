@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
+import '../../../inmat/auth/inmat_auth.dart';
+
 class ReviewAll extends StatefulWidget {
   const ReviewAll({Key? key, required this.id}) : super(key: key);
 
@@ -19,7 +21,7 @@ class _ReviewAllState extends State<ReviewAll> {
   }
 
   init() async {
-    reviews = await InMatApi.restaurant.getReviewAll(widget.id);
+    reviews = await InMatApi.restaurant.getReviewAll(widget.id,InMatAuth.instance.currentUser!.token);
     setState(() {});
   }
 

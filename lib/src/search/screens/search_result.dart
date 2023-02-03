@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:inmat/src/restaurant/screens/restaurant.dart';
 
@@ -25,7 +26,7 @@ class _SearchResultState extends State<SearchResult> {
 
   init() async {
     print(widget.word);
-    list = await InMatApi.restaurant.getSearchResult(widget.word);
+    list = await InMatApi.restaurant.getSearchResult(widget.word,InMatAuth.instance.currentUser!.token);
     complete = true;
     setState(() {});
     // print(list);

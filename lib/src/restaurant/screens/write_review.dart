@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:inmat/utils/toast.dart';
 
@@ -40,7 +41,7 @@ class _WriteReviewState extends State<WriteReview> {
               onPressed: () {
                 if (1 <= star && star <= 5) {
                   InMatApi.restaurant
-                      .writeReview(id: widget.id, content: review, star: star);
+                      .writeReview(id: widget.id, content: review, star: star,token: InMatAuth.instance.currentUser!.token);
                 } else {
                   Message.showMessage("별점을 입력해주세요");
                 }

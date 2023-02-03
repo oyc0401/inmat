@@ -3,7 +3,7 @@ import 'package:inmat/utils/inmat_colors.dart';
 
 import 'package:provider/provider.dart';
 
-import '../domain/model/banner_model.dart';
+import '../model/banner_model.dart';
 import '../widgets/banner.dart';
 import '../providers/home_view_model.dart';
 
