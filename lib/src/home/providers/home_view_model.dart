@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-
 import '../model/banner_model.dart';
 import '../model/restaurant_model.dart';
 import '../model/review_model.dart';
@@ -21,14 +20,13 @@ class HomeViewModel extends ChangeNotifier {
 
   init() async {
     try {
-      HomeModelClas dataRemodel = await HomeModelClas.run();
-      banners=dataRemodel.banners;
-      toDayRecommends=dataRemodel.todays;
-      recentReviews=dataRemodel.reviews;
-      restaurants=dataRemodel.restaurants;
+      HomeData dataRemodel = await HomeData.get();
+      banners = dataRemodel.banners;
+      toDayRecommends = dataRemodel.todays;
+      recentReviews = dataRemodel.reviews;
+      restaurants = dataRemodel.restaurants;
 
       complete = true;
-
     } catch (e) {
       print(e);
     }

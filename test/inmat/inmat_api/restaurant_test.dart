@@ -54,12 +54,6 @@ void main() {
           .map((e) => RestaurantModel.fromJson(e))
           .toList();
 
-      HomeModel model = HomeModel(
-        banners: banners,
-        todays: todays,
-        reviews: reviews,
-        restaurants: restaurants,
-      );
     });
 
 // Registers a function to be run before tests

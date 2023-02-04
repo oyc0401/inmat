@@ -2,41 +2,48 @@ import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 import '../model/banner_model.dart';
+import '../model/home_model_json.dart';
 import '../model/restaurant_model.dart';
 import '../model/review_model.dart';
 import '../model/today_model.dart';
 
-class HomeModelClas {
-  HomeModelClas._(this._json);
+class HomeData {
+  HomeData._({
+    required this.banners,
+    required this.reviews,
+    required this.restaurants,
+    required this.todays,
+  });
 
-  Map<String, dynamic> _json;
+  List<BannerModel> banners;
+  List<TodayModel> todays;
+  List<ReviewModel> reviews;
+  List<RestaurantModel> restaurants;
 
-  static Future<HomeModelClas> run() async {
-    Map<String, dynamic> map = await InMatApi.restaurant.getHome(InMatAuth.instance.currentUser!.token);
-    return HomeModelClas._(map);
-  }
+  static Future<HomeData> get() async {
+    Map<String, dynamic> json = await InMatApi.restaurant
+        .getHome(InMatAuth.instance.currentUser!.token);
 
-  List<BannerModel> get banners {
-    return [
-      for (dynamic data in _json['bannerList']) BannerModel.fromJson(data)
-    ];
-  }
+    HomeModelJson jsonModel = HomeModelJson.fromJson(json);
 
-  List<TodayModel> get todays {
-    return [
-      for (dynamic data in _json['todayRecommendList']) TodayModel.fromJson(data)
-    ];
-  }
+    List<BannerModel> banners =
+        jsonModel.bannerList.map((e) => BannerModel.fromJson(e)).toList();
 
-  List<ReviewModel> get reviews {
-    return [
-      for (dynamic data in _json['recentReviewList']) ReviewModel.fromJson(data)
-    ];
-  }
+    List<TodayModel> todays = jsonModel.todayRecommendList
+        .map((e) => TodayModel.fromJson(e))
+        .toList();
 
-  List<RestaurantModel> get restaurants {
-    return [
-      for (dynamic data in _json['restaurantList']) RestaurantModel.fromJson(data)
-    ];
+    List<ReviewModel> reviews =
+        jsonModel.recentReviewList.map((e) => ReviewModel.fromJson(e)).toList();
+
+    List<RestaurantModel> restaurants = jsonModel.restaurantList
+        .map((e) => RestaurantModel.fromJson(e))
+        .toList();
+
+    return HomeData._(
+        banners: banners,
+        todays: todays,
+        reviews: reviews,
+        restaurants: restaurants);
   }
 }
