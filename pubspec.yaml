@@ -63,7 +63,7 @@ dependencies:
   freezed_annotation:
   image_picker: ^0.8.6
   sqflite: ^2.2.3
-  path: ^1.8.3
+  path: ^1.8.2
 
   file_picker: ^5.2.5
   jwt_decode: ^0.3.1
