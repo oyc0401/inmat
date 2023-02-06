@@ -24,7 +24,7 @@ class InMatHttp {
   String url;
   Map? body;
   final String _message;
-  final String? token;
+   String? token;
   final String? refreshToken;
   final String? deviceIdentifier;
 

@@ -61,7 +61,7 @@ class SearchModel with ChangeNotifier {
   List<RecentModel> get recents => _recents;
 
   Future<void> _setRanks() async {
-    List<Map> maps = await InMatApi.restaurant.getSearchRank(InMatAuth.instance.currentUser!.token);
+    List<Map> maps = await InMatApi.restaurant.getSearchRank(InMatAuth.instance.currentUser!.accessToken);
 
     for (var map in maps) {
       _rank.add(Rank(map['ranking'], map['word']));

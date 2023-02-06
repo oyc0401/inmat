@@ -1,5 +1,7 @@
 import 'package:inmat/auth_check.dart';
+import 'package:inmat/inmat/auth/user_model.dart';
 import 'package:inmat/utils/mobile_id.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 
 import '../auth/inmat_auth.dart';
 
@@ -27,4 +29,43 @@ class InMatApi {
   static AuthApi get auth => AuthApi();
 
   static UtilsApi get utils => UtilsApi();
+}
+
+class InMatTokenApi extends InMatHttp {
+  InMatTokenApi(
+    super.how, {
+    required super.url,
+    String? message,
+    super.body,
+    super.refreshToken,
+    super.deviceIdentifier,
+  }) {
+    // super.token=InMatAuth.instance.currentUser?.token;
+    //
+  }
+
+  validateToken() async {
+    User? current = InMatAuth.instance.currentUser;
+    if (current == null) return;
+
+    String accessToken = current.accessToken;
+
+    DateTime? expiryDate = Jwt.getExpiryDate(accessToken);
+
+    print(expiryDate);
+
+    DateTime now = DateTime.now();
+
+    if (expiryDate == null) return;
+
+    Duration difference = expiryDate.difference(now);
+
+    print(difference);
+
+    if (difference.isNegative) {
+
+
+
+    } else {}
+  }
 }

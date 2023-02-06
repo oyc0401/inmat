@@ -7,7 +7,7 @@ class CommunityApi {
       Http.get,
       message: "커뮤니티 불러오기",
       url: "/communities",
-      token: InMatAuth.instance.currentUser?.token,
+      token: InMatAuth.instance.currentUser?.accessToken,
     );
     return (await inMatHttp.execute()).cast<Map>();
   }
@@ -18,7 +18,7 @@ class CommunityApi {
       Http.get,
       message: "게시물 불러오기",
       url: "/communities/$id",
-      token: InMatAuth.instance.currentUser?.token,
+      token: InMatAuth.instance.currentUser?.accessToken,
     );
     return await inMatHttp.execute();
   }
@@ -34,7 +34,7 @@ class CommunityApi {
         "contents": content,
         "topic": title,
       },
-      token: InMatAuth.instance.currentUser?.token,
+      token: InMatAuth.instance.currentUser?.accessToken,
     );
     return await inMatHttp.execute();
   }
@@ -45,7 +45,7 @@ class CommunityApi {
       Http.patch,
       message: "게시글 삭제",
       url: "/communities/$postId/delete",
-      token: InMatAuth.instance.currentUser?.token,
+      token: InMatAuth.instance.currentUser?.accessToken,
     );
     return await inMatHttp.execute();
   }
@@ -59,7 +59,7 @@ class CommunityApi {
       body: {
         "contents": comment,
       },
-      token: InMatAuth.instance.currentUser?.token,
+      token: InMatAuth.instance.currentUser?.accessToken,
     );
     var v = await inMatHttp.execute();
     print(v);
@@ -75,7 +75,7 @@ class CommunityApi {
       Http.post,
       message: "게시글 하트 설정",
       url: "/communities/$postId/details/like",
-      token: InMatAuth.instance.currentUser?.token,
+      token: InMatAuth.instance.currentUser?.accessToken,
     );
     return await inMatHttp.execute();
   }
@@ -86,7 +86,7 @@ class CommunityApi {
       Http.patch,
       message: "게시글 하트 취소",
       url: "/communities/$postId/details/like/delete",
-      token: InMatAuth.instance.currentUser?.token,
+      token: InMatAuth.instance.currentUser?.accessToken,
     );
     return await inMatHttp.execute();
   }

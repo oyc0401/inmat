@@ -1,4 +1,5 @@
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/utils/mobile_id.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
 import '../inmat_api/inmat_exception.dart';
@@ -57,7 +58,9 @@ class InMatAuth {
   /// 토큰을 이용해 개인정보를 받는다.
   /// 개인정보와 토큰을 DB에 저장한다.
   Future<void> signInEmail(String id, String password) async {
-    TokenModel tokenModel = await GetToken.getTokenEmail(id, password);
+    String deviceIdentifier = await MobileId.getMobileId();
+    TokenModel tokenModel =
+        await GetToken.getTokenEmail(id, password, deviceIdentifier);
 
     _tokenController.set(tokenModel);
     await DataBaseHandler.saveDBToken(tokenModel);
@@ -73,6 +76,24 @@ class InMatAuth {
     _profileController.set(profile);
   }
 
+  Future<void> regenerateToken() async {
+    TokenModel? token = _tokenController.token;
+    if (token == null) {
+      throw Exception("토큰을 재발급 하려는데 현재 토큰이 없습니다.");
+    }
+
+    String deviceIdentifier = await MobileId.getMobileId();
+    Map<String, dynamic> json = await InMatApi.auth.issue(
+      accessToken: token.accessToken,
+      refreshToken: token.refreshToken,
+      deviceIdentifier: deviceIdentifier,
+    );
+
+    TokenModel newToken = TokenModel.fromJson(json);
+
+    _tokenController.set(newToken);
+  }
+
   /// 프로필 정보를 업데이트 한다. (프로필 사진은 아직 수정 불가능)
   Future<void> updateProfile({
     required int age,
@@ -85,7 +106,7 @@ class InMatAuth {
       gender: gender,
       nickName: nickName,
       profileImgUrl: profileImgUrl,
-      token: InMatAuth.instance.currentUser!.token,
+      token: InMatAuth.instance.currentUser!.accessToken,
     );
     _profileController.set(
       ProfileModel(

@@ -22,7 +22,7 @@ class HomeData {
 
   static Future<HomeData> get() async {
     Map<String, dynamic> json = await InMatApi.restaurant
-        .getHome(InMatAuth.instance.currentUser!.token);
+        .getHome(InMatAuth.instance.currentUser!.accessToken);
 
     HomeModelJson jsonModel = HomeModelJson.fromJson(json);
 

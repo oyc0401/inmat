@@ -18,10 +18,14 @@ class User {
 
   String? get profileImgUrl => profileModel.profileImgUrl;
 
-  String get token => tokenModel.accessToken;
+  String get accessToken => tokenModel.accessToken;
+
+  String get refreshToken => tokenModel.refreshToken;
+
+
 
   @override
   String toString() {
-    return "User (age: $age, gender: $gender, nickName: $nickName, profileImgUrl: $profileImgUrl, token: $token)";
+    return "User (age: $age, gender: $gender, nickName: $nickName, profileImgUrl: $profileImgUrl, accessToken: $accessToken, refreshToken: $refreshToken)";
   }
 }

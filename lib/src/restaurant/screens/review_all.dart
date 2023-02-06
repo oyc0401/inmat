@@ -21,7 +21,7 @@ class _ReviewAllState extends State<ReviewAll> {
   }
 
   init() async {
-    reviews = await InMatApi.restaurant.getReviewAll(widget.id,InMatAuth.instance.currentUser!.token);
+    reviews = await InMatApi.restaurant.getReviewAll(widget.id,InMatAuth.instance.currentUser!.accessToken);
     setState(() {});
   }
 

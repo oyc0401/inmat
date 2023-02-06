@@ -32,7 +32,7 @@ class _AddRestaurantState extends State<AddRestaurant> {
         "restaurantName": "테스트음식점",
         "restaurantType": "FOOD"
       },
-      InMatAuth.instance.currentUser!.token,
+      InMatAuth.instance.currentUser!.accessToken,
     );
   }
 
