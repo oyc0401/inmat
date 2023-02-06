@@ -4,11 +4,11 @@ import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
 
 class ChangeProfileModel with ChangeNotifier {
   ChangeProfileModel() {
-    age = InMatAuth.instance.currentUser!.age;
-    nickName = InMatAuth.instance.currentUser!.nickName;
-    gender = InMatAuth.instance.currentUser!.gender;
-    profileImgUrl = InMatAuth.instance.currentUser!.profileImgUrl;
-    print(InMatAuth.instance.currentUser);
+    age = InmatAuth.instance.currentUser!.age;
+    nickName = InmatAuth.instance.currentUser!.nickName;
+    gender = InmatAuth.instance.currentUser!.gender;
+    profileImgUrl = InmatAuth.instance.currentUser!.profileImgUrl;
+    print(InmatAuth.instance.currentUser);
   }
 
   late int age;
@@ -26,7 +26,7 @@ class ChangeProfileModel with ChangeNotifier {
 
 
     try {
-      await InMatAuth.instance.updateProfile(
+      await InmatAuth.instance.updateProfile(
         age: age,
         gender: gender,
         nickName: nickName,

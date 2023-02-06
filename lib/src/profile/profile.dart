@@ -50,9 +50,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             CupertinoPageRoute(
                                 builder: (_) => const ChangeProfile()));
                       },
-                      nickName: InMatAuth.instance.currentUser!.nickName,
+                      nickName: InmatAuth.instance.currentUser!.nickName,
                       profileImgUrl:
-                          InMatAuth.instance.currentUser!.profileImgUrl,
+                          InmatAuth.instance.currentUser!.profileImgUrl,
                     )
                   : const LoginButton(),
               Container(
@@ -171,7 +171,7 @@ class LogOutButton extends StatelessWidget {
         color: Colors.redAccent,
         child: const Text("로그아웃"),
         onPressed: () {
-          InMatAuth.instance.signOut();
+          InmatAuth.instance.signOut();
           Provider.of<ProfileViewModel>(context, listen: false).logout();
         },
       ),

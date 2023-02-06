@@ -41,7 +41,7 @@ class _WriteReviewState extends State<WriteReview> {
               onPressed: () {
                 if (1 <= star && star <= 5) {
                   InMatApi.restaurant
-                      .writeReview(id: widget.id, content: review, star: star,token: InMatAuth.instance.currentUser!.accessToken);
+                      .writeReview(id: widget.id, content: review, star: star,token: InmatAuth.instance.currentUser!.accessToken);
                 } else {
                   Message.showMessage("별점을 입력해주세요");
                 }

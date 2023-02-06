@@ -20,7 +20,7 @@ import 'src/navigator/NavigatePage.dart';
 void main() async {
   // DB에서 유저 정보 가져오기
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  await InMatAuth.initialize();
+  await InmatAuth.initialize();
 
   runApp(const MyApp());
 }
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
   Widget productMode() {
 
 
-    switch (InMatAuth.instance.status) {
+    switch (InmatAuth.instance.status) {
       case AuthStatus.user:
         return const NavigatePage();
       case AuthStatus.guest:

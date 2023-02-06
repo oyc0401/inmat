@@ -12,6 +12,8 @@ import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:path/path.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
+import '../inmat_auth.dart';
+
 class ImageToUrl {
   Future<String> getUrl() async {
     FilePickerResult? upload = await FilePicker.platform.pickFiles(
@@ -27,7 +29,7 @@ class ImageToUrl {
     print(file);
 
     String url = await InMatApi.utils
-        .getImageUrl(fileName, InMatAuth.instance.currentUser!.accessToken);
+        .getImageUrl(fileName, InmatAuth.instance.currentUser!.accessToken);
 
     print(url);
 
@@ -49,7 +51,7 @@ class ImageToUrl {
     print(name);
 
     String url = await InMatApi.utils
-        .getImageUrl(name, InMatAuth.instance.currentUser!.accessToken);
+        .getImageUrl(name, InmatAuth.instance.currentUser!.accessToken);
 
     Uint8List? byte;
 

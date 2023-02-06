@@ -22,7 +22,7 @@ class _MyFavoriteState extends State<MyFavorite> {
   }
 
   init() async {
-    likes = await InMatApi.user.getLikeRestaurants(InMatAuth.instance.currentUser!.accessToken);
+    likes = await InMatApi.user.getLikeRestaurants(InmatAuth.instance.currentUser!.accessToken);
     complete = true;
     setState(() {});
   }

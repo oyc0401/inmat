@@ -26,7 +26,7 @@ class _ReviewViewState extends State<ReviewView> {
 
   init() async {
     map = await InMatApi.restaurant.getReview(
-        restaurantId: widget.restaurantId, reviewId: widget.reviewId,token: InMatAuth.instance.currentUser!.accessToken);
+        restaurantId: widget.restaurantId, reviewId: widget.reviewId,token: InmatAuth.instance.currentUser!.accessToken);
     setState(() {
 
     });

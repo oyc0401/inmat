@@ -9,10 +9,9 @@ import 'inmat_exception.dart';
 class HttpModule {
   static Future<Map> get({
     required String url,
-    required Map<String, String> headers,
+    required Map<String, String>? headers,
   }) async {
     print('headers: $headers');
-
 
     final Response response = await http.get(Uri.parse(url), headers: headers);
     _throwHttpException(response);
@@ -22,7 +21,7 @@ class HttpModule {
 
   static Future<Map> post({
     required String url,
-    required Map<String, String> headers,
+    required Map<String, String>? headers,
     required Map? body,
   }) async {
     final Response response = await http.post(
@@ -30,15 +29,6 @@ class HttpModule {
       headers: headers,
       body: json.encode(body),
     );
-
-    // print("헤더: ${response.headers}");
-
-    // print('url: $url');
-    // print('headers: $headers');
-    // print('body: $body');
-    //
-    // print('statusCode: ${response.statusCode}');
-    // print('bodyBytes: ${utf8.decode(response.bodyBytes)}');
 
     _throwHttpException(response);
 
@@ -48,10 +38,10 @@ class HttpModule {
   static Future<Map> patch({
     required String url,
     required Map? body,
-    required Map<String, String> headers,
+    required Map<String, String>? headers,
   }) async {
-    final Response response =
-        await http.patch(Uri.parse(url), headers: headers, body: json.encode(body));
+    final Response response = await http.patch(Uri.parse(url),
+        headers: headers, body: json.encode(body));
 
     _throwHttpException(response);
 
@@ -68,5 +58,17 @@ class HttpModule {
         throw Exception(
             'unexpected status code: ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
     }
+  }
+
+  static Future<Map> delete({
+    required String url,
+    required Map<String, String>? headers,
+  }) async {
+
+    final Response response =
+        await http.delete(Uri.parse(url), headers: headers);
+    _throwHttpException(response);
+
+    return json.decode(utf8.decode(response.bodyBytes));
   }
 }

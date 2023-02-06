@@ -26,7 +26,7 @@ class _SearchResultState extends State<SearchResult> {
 
   init() async {
     print(widget.word);
-    list = await InMatApi.restaurant.getSearchResult(widget.word,InMatAuth.instance.currentUser!.accessToken);
+    list = await InMatApi.restaurant.getSearchResult(widget.word,InmatAuth.instance.currentUser!.accessToken);
     complete = true;
     setState(() {});
     // print(list);

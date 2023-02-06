@@ -77,7 +77,7 @@ class _nicknameFieldState extends State<nicknameField> {
         ),
         TextField(
           decoration: InputDecoration(
-            hintText: InMatAuth.instance.currentUser!.nickName,
+            hintText: InmatAuth.instance.currentUser!.nickName,
           ),
           onChanged: (text) {
             Provider.of<ChangeProfileModel>(context, listen: false)

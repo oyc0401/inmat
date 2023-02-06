@@ -22,7 +22,7 @@ class _MyPostState extends State<MyPost> {
   }
 
   init() async {
-    posts = await InMatApi.user.getPosts(InMatAuth.instance.currentUser!.accessToken);
+    posts = await InMatApi.user.getPosts(InmatAuth.instance.currentUser!.accessToken);
     complete = true;
     setState(() {});
   }

@@ -67,6 +67,7 @@ dependencies:
 
   file_picker: ^5.2.5
   jwt_decode: ^0.3.1
+  plugin_platform_interface: ^2.1.3
 
 
 

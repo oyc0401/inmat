@@ -28,7 +28,7 @@ class AuthCheck extends StatefulWidget {
 class _AuthCheckState extends State<AuthCheck> {
   @override
   Widget build(BuildContext context) {
-    User? user = InMatAuth.instance.currentUser;
+    User? user = InmatAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(
         title: const Text("회원 체크"),
@@ -45,7 +45,7 @@ class _AuthCheckState extends State<AuthCheck> {
                 Row(),
                 Text("user information: ${user ?? "null"}"),
                 Text(
-                  "현재 상태: ${InMatAuth.instance.status}",
+                  "현재 상태: ${InmatAuth.instance.status}",
                   style: const TextStyle(fontSize: 18),
                 ),
                 // IconButton(
@@ -66,7 +66,7 @@ class _AuthCheckState extends State<AuthCheck> {
                     color: Colors.green,
                     child: const Text("다음 페이지 이동"),
                     onPressed: () {
-                      switch (InMatAuth.instance.status) {
+                      switch (InmatAuth.instance.status) {
                         case AuthStatus.user:
                           Navigator.pushAndRemoveUntil(
                             context,

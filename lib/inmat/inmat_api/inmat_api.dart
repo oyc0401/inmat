@@ -5,6 +5,7 @@ import 'package:jwt_decode/jwt_decode.dart';
 
 import '../auth/inmat_auth.dart';
 
+import '../inmat_auth.dart';
 import 'inmat_http.dart';
 
 part 'api/user.dart';
@@ -45,7 +46,7 @@ class InMatTokenApi extends InMatHttp {
   }
 
   validateToken() async {
-    User? current = InMatAuth.instance.currentUser;
+    User? current = InmatAuth.instance.currentUser;
     if (current == null) return;
 
     String accessToken = current.accessToken;

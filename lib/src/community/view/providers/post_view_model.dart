@@ -31,7 +31,7 @@ class PostViewModel with ChangeNotifier {
   void writeComment() {
 
 
-    User user = InMatAuth.instance.currentUser!;
+    User user = InmatAuth.instance.currentUser!;
     comments.add(CommentModel(
         commentId: 00,
         nickName: user.nickName,

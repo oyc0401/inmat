@@ -3,7 +3,7 @@ import 'package:inmat/inmat/auth/inmat_auth.dart';
 
 class ProfileViewModel with ChangeNotifier {
   ProfileViewModel() {
-    isUser = InMatAuth.instance.currentUser != null ? true : false;
+    isUser = InmatAuth.instance.currentUser != null ? true : false;
     notifyListeners();
   }
 

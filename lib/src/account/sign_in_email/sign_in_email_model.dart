@@ -29,7 +29,7 @@ class EmailSignInModel with ChangeNotifier {
     //"test123", "qwe12345&&");
 
     try {
-      await InMatAuth.instance.signInEmail(username, password);
+      await InmatAuth.instance.signInEmail(username, password);
       Message.showMessage('로그인 성공: $username, $password');
     } on SignInFailed {
       // 로그인 실패 메세지 띄우기
