@@ -15,6 +15,8 @@ import 'package:inmat/src/profile/models/posts_model.dart';
 import 'package:inmat/src/search/domain/models/recent_model.dart';
 
 void main() {
+
+
   group("restaurant api 테스트", () {
     late TokenModel testToken;
 
