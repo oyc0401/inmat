@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/inmat/auth/Inmat_token.dart';
+
 
 import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/auth/user_model.dart';
+import 'package:inmat/inmat/auth/user.dart';
+import 'package:inmat/inmat/inmat_data.dart';
 import 'package:inmat/utils/inmat_colors.dart';
 
-//
 import 'package:ios_utsname_ext/extension.dart';
 
 

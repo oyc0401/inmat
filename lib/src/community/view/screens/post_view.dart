@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
-import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
+import 'package:inmat/inmat/exception/inmat_exception.dart';
 import 'package:inmat/src/community/view/domain/models/comment_model.dart';
 import 'package:inmat/src/community/view/widgets/contents.dart';
 import 'package:inmat/utils/toast.dart';

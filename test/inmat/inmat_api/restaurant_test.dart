@@ -3,7 +3,7 @@ import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/models/profile_model.dart';
 import 'package:inmat/inmat/models/token_model.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 import 'package:inmat/src/home/model/banner_model.dart';
 import 'package:inmat/src/home/model/home_model.dart';
 import 'package:inmat/src/home/model/home_model_json.dart';

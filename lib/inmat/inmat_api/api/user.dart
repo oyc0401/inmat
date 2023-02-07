@@ -1,4 +1,4 @@
-part of '../inmat_api.dart';
+part of '../inmat_api_library.dart';
 
 class InmatUserApi {
   /// 마이페이지 조회 API

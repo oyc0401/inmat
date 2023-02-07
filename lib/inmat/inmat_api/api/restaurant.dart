@@ -1,4 +1,4 @@
-part of '../inmat_api.dart';
+part of '../inmat_api_library.dart';
 
 class InmatRestaurantApi {
   ///홈화면 조회 API

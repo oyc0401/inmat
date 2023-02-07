@@ -1,6 +1,6 @@
 
 import 'models/token_model.dart';
-import 'inmat_api/inmat_api.dart';
+import 'inmat_api/inmat_api_library.dart';
 
 class InmatCoreApi {
   static Future<Token> issueToken(Token token, String deviceIdentifier) async {

@@ -2,15 +2,15 @@
 import '../inmat.dart';
 import '../inmat_data.dart';
 import '../inmat_local.dart';
-import 'user_model.dart';
+import 'user.dart';
 
 import 'package:jwt_decode/jwt_decode.dart';
 
 import '../models/profile_model.dart';
 import '../models/token_model.dart';
-import 'domain/service/get_token.dart';
+import '../service/get_token.dart';
 
-import '../inmat_api/inmat_api.dart';
+import '../inmat_api/inmat_api_library.dart';
 
 class InmatAuth {
   InmatAuth(this.data,this.local);
@@ -24,11 +24,11 @@ class InmatAuth {
     if (local.tokenIsEmpty()) {
       return null;
     }
-    assert(data.profileController.profile != null &&
+    assert(data.profile != null &&
         local.currentToken != null);
 
     return User(
-      profileModel: data.profileController.profile!,
+      profileModel: data.profile!,
       tokenModel: local.currentToken!,
     );
   }
@@ -36,7 +36,7 @@ class InmatAuth {
   void signOut() {
     local.dataBase.delete();
     local.clearToken();
-    data.profileController.clear();
+    data.clearProfile();
   }
 
   Future<void> signInEmail(String id, String password) async {
@@ -54,7 +54,7 @@ class InmatAuth {
     // [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만
     // 여기선 로그인 직후에 가져오는 것이라 생략한다.
     Profile profile = await GetToken.getProfile(tokenModel.accessToken);
-    data.profileController.set(profile);
+    data.setProfile(profile);
   }
 
   // Future<void> regenerateToken() async {
@@ -86,16 +86,16 @@ class InmatAuth {
       nickName: nickName,
       profileImgUrl: profileImgUrl,
     );
-    data.profileController.set(
+    data.setProfile(
       Profile(
         age: age,
         gender: gender,
         nickName: nickName,
         profileImgUrl: profileImgUrl,
-        phoneNumber: data.profileController.profile!.phoneNumber,
-        email: data.profileController.profile!.email,
-        userId: data.profileController.profile!.userId,
-        username: data.profileController.profile!.username,
+        phoneNumber: data.profile!.phoneNumber,
+        email: data.profile!.email,
+        userId: data.profile!.userId,
+        username: data.profile!.username,
       ),
     );
   }

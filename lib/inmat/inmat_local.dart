@@ -1,7 +1,7 @@
 import 'package:jwt_decode/jwt_decode.dart';
 
 import '../utils/mobile_id.dart';
-import 'auth/domain/service/database_handler.dart';
+import 'service/database_handler.dart';
 
 import 'inmat_api_core.dart';
 import 'inmat_local_interface.dart';

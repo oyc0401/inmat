@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 import 'package:provider/provider.dart';
 
 import '../main/providers/community_view_model.dart';

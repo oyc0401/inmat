@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 
-import 'package:inmat/inmat/auth/inmat_account.dart';
-import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
+import 'package:inmat/inmat/service/inmat_account.dart';
+import 'package:inmat/inmat/exception/inmat_exception.dart';
 import 'package:inmat/utils/toast.dart';
 
 class SignUpObject with ChangeNotifier {
@@ -189,7 +190,7 @@ class SignUpModel extends SignUpObject {
     print(phoneNumber3);
 
     try {
-      await InMatAccount.registerEmail(
+      await InmatApi.auth.registerEmail(
         id: username,
         password: password,
         email: email,
@@ -198,6 +199,8 @@ class SignUpModel extends SignUpObject {
         nickName: nickName,
         phoneNumber: "$phoneNumber1-$phoneNumber2-$phoneNumber3",
       );
+
+
       Message.showMessage('회원가입 성공');
     } on OverlappingAccount {
       // 아이디 중복 메세지 띄우기

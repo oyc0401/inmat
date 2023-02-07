@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 
 class ReviewView extends StatefulWidget {
   const ReviewView(
@@ -27,16 +26,15 @@ class _ReviewViewState extends State<ReviewView> {
   init() async {
     map = await InmatApi.restaurant.getReview(
         restaurantId: widget.restaurantId, reviewId: widget.reviewId);
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('rest id: ${widget.restaurantId}, review id: ${widget.reviewId}'),
+        title: Text(
+            'rest id: ${widget.restaurantId}, review id: ${widget.reviewId}'),
       ),
       body: Container(
         child: Center(

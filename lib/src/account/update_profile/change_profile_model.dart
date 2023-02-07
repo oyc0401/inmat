@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
+import 'package:inmat/inmat/exception/inmat_exception.dart';
 
 class ChangeProfileModel with ChangeNotifier {
   ChangeProfileModel() {

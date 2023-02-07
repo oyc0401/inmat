@@ -1,4 +1,4 @@
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 import 'package:inmat/src/community/view/domain/models/comment_model.dart';
 
 import '../models/content_model.dart';

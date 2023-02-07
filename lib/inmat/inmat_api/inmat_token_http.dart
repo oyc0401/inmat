@@ -1,7 +1,7 @@
 import '../inmat.dart';
 import '../inmat_local.dart';
 import '../models/token_model.dart';
-import 'inmat_exception.dart';
+import '../exception/inmat_exception.dart';
 import 'inmat_http.dart';
 
 class InmatTokenHttp extends InMatHttp {

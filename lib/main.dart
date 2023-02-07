@@ -1,15 +1,12 @@
 
-import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:inmat/_sample/s3/s3.dart';
 
-import 'package:inmat/inmat/auth/Inmat_token.dart';
 
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat.dart';
+import 'package:inmat/inmat/inmat_data.dart';
 
 import 'package:inmat/manager/add_restaurant.dart';
 import 'package:inmat/src/community/main/providers/community_view_model.dart';

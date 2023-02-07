@@ -4,7 +4,7 @@ import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/auth/user_model.dart';
+import 'package:inmat/inmat/auth/user.dart';
 
 import '../account/update_profile/change_profile.dart';
 import '../account/login_main/signin_page.dart';

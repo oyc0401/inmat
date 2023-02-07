@@ -1,7 +1,7 @@
 import 'dart:developer' as developer;
 
 import 'http_module.dart';
-import 'inmat_exception.dart';
+import '../exception/inmat_exception.dart';
 
 enum Http { get, post, patch, delete }
 

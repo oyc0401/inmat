@@ -1,4 +1,4 @@
-part of '../inmat_api.dart';
+part of '../inmat_api_library.dart';
 
 class InmatCommunityApi {
   ///커뮤니티 조회 API

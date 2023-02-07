@@ -1,12 +1,18 @@
 // part of 'inmat_library.dart';
 
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 
-import 'auth/Inmat_token.dart';
-import 'inmat_api/inmat_exception.dart';
-import 'inmat_api_core.dart';
+import 'exception/inmat_exception.dart';
+
 import 'inmat_local_interface.dart';
 import 'models/profile_model.dart';
+
+enum AuthStatus {
+  user,
+  guest,
+  reSignIn,
+}
+
 
 class InmatData {
   InmatData(this.local);
@@ -14,7 +20,12 @@ class InmatData {
   InmatLocalInterface local;
 
   // default: guest
-  ProfileController profileController = ProfileController();
+  Profile? _profileModel;
+  Profile? get profile => _profileModel;
+  void setProfile(Profile model) => _profileModel = model;
+  void clearProfile() => _profileModel = null;
+
+
   AuthStatus authStatus = AuthStatus.guest;
 
   Future<void> initialize() async {
@@ -27,7 +38,7 @@ class InmatData {
         Map<String, dynamic> json = await InmatApi.user.getProfile();
         Profile profile = Profile.fromJson(json);
 
-        profileController = ProfileController(profile);
+        setProfile(profile);
         authStatus = AuthStatus.user;
         return;
       } on ExpirationAccessToken {
@@ -38,7 +49,7 @@ class InmatData {
         print("InmatData: 다시 로그인 해주세요.");
         // DB 삭제
         local.clearToken();
-        profileController = ProfileController();
+        clearProfile();
         authStatus = AuthStatus.reSignIn;
         return;
       } on AccessDenied {
@@ -52,7 +63,7 @@ class InmatData {
 
     print('InmatData: 비 회원 상태');
     local.clearToken();
-    profileController = ProfileController();
+    clearProfile();
     authStatus = AuthStatus.guest;
     return;
   }

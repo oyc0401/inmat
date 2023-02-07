@@ -1,4 +1,4 @@
-part of '../inmat_api.dart';
+part of '../inmat_api_library.dart';
 
 class AuthApi {
   ///로그인 API

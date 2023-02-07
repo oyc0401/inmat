@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/auth/user_model.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
-import 'package:inmat/inmat/inmat_api/inmat_exception.dart';
+import 'package:inmat/inmat/auth/user.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
+import 'package:inmat/inmat/exception/inmat_exception.dart';
 import 'package:inmat/utils/toast.dart';
 
 import '../domain/models/comment_model.dart';

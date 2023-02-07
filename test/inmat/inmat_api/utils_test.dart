@@ -1,9 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:inmat/inmat/inmat.dart';
-import 'package:inmat/inmat/models/profile_model.dart';
 import 'package:inmat/inmat/models/token_model.dart';
-import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 
 void main() {
   group("account api 테스트", () {
@@ -26,8 +24,7 @@ void main() {
     });
 
     test("서명된 url 얻기", () async {
-      String url =
-          await InmatApi.utils.getImageUrl("image.jpg");
+      String url = await InmatApi.utils.getImageUrl("image.jpg");
       print(url);
     });
   });

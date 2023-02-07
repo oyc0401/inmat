@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 
 class RestaurantProvider with ChangeNotifier {
   RestaurantProvider(this.id) {

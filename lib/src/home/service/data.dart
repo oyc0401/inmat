@@ -1,5 +1,4 @@
-import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 
 import '../model/banner_model.dart';
 import '../model/home_model_json.dart';
@@ -21,8 +20,7 @@ class HomeData {
   List<RestaurantModel> restaurants;
 
   static Future<HomeData> get() async {
-    Map<String, dynamic> json = await InmatApi.restaurant
-        .getHome();
+    Map<String, dynamic> json = await InmatApi.restaurant.getHome();
 
     HomeModelJson jsonModel = HomeModelJson.fromJson(json);
 

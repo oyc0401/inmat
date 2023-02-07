@@ -2,8 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/models/profile_model.dart';
 import 'package:inmat/inmat/models/token_model.dart';
-import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+
+import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 import 'package:inmat/src/profile/models/my_favorite_model.dart';
 import 'package:inmat/src/profile/models/my_review_model.dart';
 import 'package:inmat/src/profile/models/posts_model.dart';

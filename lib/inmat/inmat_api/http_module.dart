@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
-import 'inmat_exception.dart';
+import '../exception/inmat_exception.dart';
 
 class HttpModule {
   static Future<Map> get({
