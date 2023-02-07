@@ -9,6 +9,7 @@ import 'package:inmat/_sample/s3/s3.dart';
 import 'package:inmat/inmat/auth/Inmat_token.dart';
 
 import 'package:inmat/inmat/auth/inmat_auth.dart';
+import 'package:inmat/inmat/inmat_library.dart';
 import 'package:inmat/manager/add_restaurant.dart';
 import 'package:inmat/src/community/main/providers/community_view_model.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ import 'src/navigator/NavigatePage.dart';
 void main() async {
   // DB에서 유저 정보 가져오기
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  await InmatAuth.initialize();
+  await Inmat.initializeApp();
 
   runApp(const MyApp());
 }
@@ -30,8 +31,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    getMobileId();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -59,7 +58,7 @@ class MyApp extends StatelessWidget {
   Widget productMode() {
 
 
-    switch (InmatAuth.instance.status) {
+    switch (Inmat.user.authStatus) {
       case AuthStatus.user:
         return const NavigatePage();
       case AuthStatus.guest:
@@ -68,35 +67,6 @@ class MyApp extends StatelessWidget {
     }
   }
 
-  Future<String?> getMobileId() async {
-    // DeviceInfoPlugin 클래스 생성
-    final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
-    // id 저장할 변수
-    String? id = '';
-    try {
-      // 플랫폼 확인
-      if (Platform.isAndroid) {
-        // 안드로이드의 경우 androidInfo를 이용
-        // 이때 await으로 데이터 받을때까지 대기를 해야함
-        final AndroidDeviceInfo androidData = await deviceInfoPlugin.androidInfo;
-        // 전달 받은 변수의 멤버 변수인 androidId가 고유 id이다.
-        id = androidData.id;
-      } else if (Platform.isIOS) {
-        // iOS의 경우 iosInfo를 이용
-        // 이때 await으로 데이터 받을때까지 대기를 해야함
-        final IosDeviceInfo iosData = await deviceInfoPlugin.iosInfo;
-        // 전달 받은 변수의 멤버 변수인 identifierForVendor가 고유 id이다.
-        id = iosData.identifierForVendor;
-      }
-    } on PlatformException {
-      // 어떠한 원인으로 실패할 경우
-      id = '';
-    }
-    // id 한번 출력해보고
-    print('id: $id');
-    // 값 리턴
-    return id;
-  }
 
 
 

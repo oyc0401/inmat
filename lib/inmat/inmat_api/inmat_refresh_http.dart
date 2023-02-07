@@ -3,15 +3,16 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:inmat/inmat/auth/domain/model/token_model.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_library.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
-import '../inmat.dart';
+
 import 'http_module.dart';
 import 'inmat_exception.dart';
-import '../inmat_auth.dart';
-import '../inmat_data.dart';
+import '../auth/inmat_auth.dart';
 
-enum Http { get, post, patch }
+
+// enum Http { get, post, patch }
 
 class InMatRefreshHttp {
   InMatRefreshHttp(
@@ -19,15 +20,12 @@ class InMatRefreshHttp {
     required this.url,
     String? message,
     this.body,
-    this.deviceIdentifier,
   }) : _message = message ?? "이름없는 http 통신";
 
   Http how;
   String url;
   Map? body;
   final String _message;
-
-  final String? deviceIdentifier;
 
   String get _url {
     return "http://prod.sogogi.shop:9000$url";
@@ -37,7 +35,7 @@ class InMatRefreshHttp {
     InmatData data = Inmat.user;
     TokenModel? token = data.tokenController.token;
     if (token == null) {
-      throw Exception("토큰이 없어요!");
+      throw Exception("unhandled http error: 토큰이 없어요!");
     }
 
     DateTime? expiryDate = Jwt.getExpiryDate(token.accessToken);
@@ -58,7 +56,7 @@ class InMatRefreshHttp {
       await InmatAuth.instance.regenerateToken();
     }
 
-    return InmatAuth.instance.currentUser!.tokenModel;
+    return Inmat.user.tokenController.token!;
   }
 
   dynamic execute() async {
@@ -70,7 +68,7 @@ class InMatRefreshHttp {
       "Content-Type": "application/json",
       'Accept': 'application/json',
       'Authorization': 'Bearer ${model.accessToken}',
-      "Device-Identifier": '$deviceIdentifier',
+      "Device-Identifier": '${Inmat.user.deviceIdentifier}',
       "REFRESH-TOKEN": model.refreshToken,
       // "User-Agent": deviceIdentifier,
     };

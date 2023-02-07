@@ -1,11 +1,13 @@
 import 'package:inmat/auth_check.dart';
 import 'package:inmat/inmat/auth/user_model.dart';
+import 'package:inmat/inmat/inmat_api/inmat_refresh_http.dart';
 import 'package:inmat/utils/mobile_id.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
 import '../auth/inmat_auth.dart';
 
-import '../inmat_auth.dart';
+import '../auth/inmat_auth.dart';
+import 'http_module.dart';
 import 'inmat_http.dart';
 
 part 'api/user.dart';

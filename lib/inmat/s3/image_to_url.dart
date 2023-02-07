@@ -12,7 +12,7 @@ import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 import 'package:path/path.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-import '../inmat_auth.dart';
+import '../auth/inmat_auth.dart';
 
 class ImageToUrl {
   Future<String> getUrl() async {

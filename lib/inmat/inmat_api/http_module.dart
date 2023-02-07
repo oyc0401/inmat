@@ -6,6 +6,9 @@ import 'package:inmat/utils/mobile_id.dart';
 
 import 'inmat_exception.dart';
 
+enum Http { get, post, patch }
+
+
 class HttpModule {
   static Future<Map> get({
     required String url,

@@ -1,5 +1,4 @@
-
-import 'inmat_data.dart';
+part of 'inmat_library.dart';
 
 class Inmat {
   Inmat._();
