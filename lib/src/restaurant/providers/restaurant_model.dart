@@ -41,17 +41,17 @@ class RestaurantProvider with ChangeNotifier {
 
   postHeart() async {
     if (heart && clickHeart) {
-      await InMatPureApi.restaurant.setHeart(id,InmatAuth.instance.currentUser!.accessToken);
+      await InmatApi.restaurant.setHeart(id);
     } else if (!heart && clickHeart) {
-      await InMatPureApi.restaurant.deleteHeart(id,InmatAuth.instance.currentUser!.accessToken);
+      await InmatApi.restaurant.deleteHeart(id);
     }
   }
 
   init(int id) async {
-    print(id);
-    map = await InMatPureApi.restaurant.getRestaurant(id,InmatAuth.instance.currentUser!.accessToken);
+    print("id: $id");
+    map = await InmatApi.restaurant.getRestaurant(id);
     complete = true;
-    print(map);
+    // print(map);
 
     name = map['restaurantName'];
     images = map['restaurantImgList'];

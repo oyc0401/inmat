@@ -1,7 +1,6 @@
 // part of 'inmat_library.dart';
 
 import 'package:inmat/inmat/inmat_api/inmat_api.dart';
-import 'package:inmat/inmat/inmat_api_token.dart';
 
 import 'auth/Inmat_token.dart';
 import 'inmat_api/inmat_exception.dart';

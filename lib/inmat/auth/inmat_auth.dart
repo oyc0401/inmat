@@ -80,12 +80,11 @@ class InmatAuth {
     required String nickName,
     required String? profileImgUrl,
   }) async {
-    await InMatPureApi.user.updateProfile(
+    await InmatApi.user.updateProfile(
       age: age,
       gender: gender,
       nickName: nickName,
       profileImgUrl: profileImgUrl,
-      token: local.currentToken!.accessToken,
     );
     data.profileController.set(
       Profile(

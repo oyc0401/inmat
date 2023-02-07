@@ -46,7 +46,7 @@ class PostViewModel with ChangeNotifier {
     notifyListeners();
 
     try {
-      InMatPureApi.community.writeComment(_id, _writtenComment);
+      InmatApi.community.writeComment(_id, _writtenComment);
       _writtenComment='';
     } on DataBaseFailed {
       Message.showMessage('게시물이 삭제 되었습니다.');
@@ -62,11 +62,11 @@ class PostViewModel with ChangeNotifier {
     if (isHeart) {
       isHeart = false;
       heartCount--;
-      InMatPureApi.community.deleteHeart(_id);
+      InmatApi.community.deleteHeart(_id);
     } else {
       isHeart = true;
       heartCount++;
-      InMatPureApi.community.setHeart(_id);
+      InmatApi.community.setHeart(_id);
     }
     notifyListeners();
   }

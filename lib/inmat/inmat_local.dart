@@ -57,8 +57,7 @@ class InmatLocal implements InmatLocalInterface {
 
     Duration difference = expiryDate.difference(now);
 
-    print(difference);
-    return true;
+    // print('토큰 남은시간: $difference');
 
     return !difference.isNegative;
   }
@@ -73,7 +72,6 @@ class InmatLocal implements InmatLocalInterface {
     return _token!;
   }
 
-  @override
   Future<void> initialize() async {
     return await _init();
   }

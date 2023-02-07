@@ -7,7 +7,7 @@ import 'inmat_http.dart';
 class InmatTokenHttp extends InMatHttp {
   InmatTokenHttp(
     super.how, {
-    required super.url,
+    required super.path,
     required super.message,
     super.body,
   });

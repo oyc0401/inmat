@@ -7,7 +7,7 @@ class CommunityModel {
 
   static Future<List<PostThumbModel>> getPosts() async {
     List<PostThumbModel> posts = [];
-    List<Map> list = await InMatPureApi.community.getPosts();
+    List<Map> list = await InmatApi.community.getPosts();
     for (var map in list) {
       posts.add(
         PostThumbModel(

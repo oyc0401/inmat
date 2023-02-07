@@ -5,18 +5,13 @@ import 'package:http/http.dart' as http;
 
 import 'inmat_exception.dart';
 
-
-
 class HttpModule {
   static Future<Map> get({
     required String url,
     required Map<String, String>? headers,
   }) async {
-    // print('headers: $headers');
-
     final Response response = await http.get(Uri.parse(url), headers: headers);
     _throwHttpException(response);
-
     return json.decode(utf8.decode(response.bodyBytes));
   }
 
@@ -30,9 +25,7 @@ class HttpModule {
       headers: headers,
       body: json.encode(body),
     );
-
     _throwHttpException(response);
-
     return json.decode(utf8.decode(response.bodyBytes));
   }
 
@@ -43,25 +36,23 @@ class HttpModule {
   }) async {
     final Response response = await http.patch(Uri.parse(url),
         headers: headers, body: json.encode(body));
-
     _throwHttpException(response);
-
     return json.decode(utf8.decode(response.bodyBytes));
   }
 
   static void _throwHttpException(Response response) {
-
-    print("status code: ${response.statusCode}");
+    if (response.statusCode != 200){
+      print("status code: ${response.statusCode}");
+    }
     switch (response.statusCode) {
       case 200:
         return;
       case 401:
-      throw ExpirationAccessToken();
+        throw ExpirationAccessToken();
 
       default:
         throw Exception(
             'unexpected status code: ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
-
     }
   }
 
@@ -69,7 +60,6 @@ class HttpModule {
     required String url,
     required Map<String, String>? headers,
   }) async {
-
     final Response response =
         await http.delete(Uri.parse(url), headers: headers);
     _throwHttpException(response);

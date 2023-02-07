@@ -9,14 +9,14 @@ class GetToken {
 
   static Future<Profile> getProfile(String accessToken) async {
     Map<String, dynamic> map =
-        await InMatPureApi.user.getProfile(accessToken);
+        await InmatApi.user.getProfile();
 
     Profile model = Profile.fromJson(map);
     return model;
   }
 
   static Future<Token> getTokenEmail(String id, String password, String deviceIdentifier) async {
-    Map<String, dynamic> json = await InMatPureApi.auth.login(
+    Map<String, dynamic> json = await InmatApi.auth.login(
       id: id,
       password: password,
       deviceIdentifier: deviceIdentifier

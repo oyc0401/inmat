@@ -10,7 +10,7 @@ class AuthApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "이메일 로그인",
-      url: "/auth/login",
+      path: "/auth/login",
       body: {
         "username": id,
         "password": password,
@@ -27,7 +27,7 @@ class AuthApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "익명 로그인",
-      url: "/auth/login-anonymous",
+      path: "/auth/login-anonymous",
       deviceIdentifier: deviceIdentifier,
     );
     return await inMatHttp.execute();
@@ -39,20 +39,16 @@ class AuthApi {
     required String refreshToken,
     required String deviceIdentifier,
   }) async {
-    print("accessToken: $accessToken, refreshToken: $refreshToken");
-
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "토큰 재발급",
-      url: "/auth/issue",
+      path: "/auth/issue",
       token: accessToken,
       refreshToken: refreshToken,
       deviceIdentifier: deviceIdentifier,
     );
     return await inMatHttp.execute();
   }
-
-  // String deviceIdentifier = await MobileId.getMobileId();
 
   ///회원 가입 API
   Future<void> registerEmail({
@@ -67,7 +63,7 @@ class AuthApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "회원가입",
-      url: "/auth/signup",
+      path: "/auth/signup",
       body: {
         "username": id,
         "password": password,
@@ -86,7 +82,7 @@ class AuthApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "아이디 중복 체크",
-      url: "/auth/username",
+      path: "/auth/username",
       body: {'username': id},
     );
     return await inMatHttp.execute();
@@ -97,7 +93,7 @@ class AuthApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "닉네임 중복 체크",
-      url: "/auth/nickname",
+      path: "/auth/nickname",
       body: {'nickName': nickName},
     );
     return await inMatHttp.execute();

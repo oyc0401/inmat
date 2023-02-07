@@ -27,7 +27,7 @@ class _WritePostState extends State<WritePost> {
             onPressed: () async {
               if (title != '' && content != '') {
                 /// ToDo 게시글 새로고침이 여기에도 있네여
-                await InMatPureApi.community
+                await InmatApi.community
                     .writePost(title: title, content: content);
                 Provider.of<CommunityViewModel>(context, listen: false).init();
                 Navigator.pop(context);

@@ -19,7 +19,7 @@ class _AddRestaurantState extends State<AddRestaurant> {
 
   init() async {
     print(InmatAuth.instance.currentUser);
-    await InMatPureApi.restaurant.addRestaurant(
+    await InmatApi.restaurant.addRestaurant(
       {
         "address": "미추홀구 1번길 1",
         "contactNumber": "010-1234-5678",
@@ -32,7 +32,6 @@ class _AddRestaurantState extends State<AddRestaurant> {
         "restaurantName": "테스트음식점",
         "restaurantType": "FOOD"
       },
-      InmatAuth.instance.currentUser!.accessToken,
     );
   }
 

@@ -1,12 +1,14 @@
+import 'dart:developer' as developer;
+
 import 'http_module.dart';
 import 'inmat_exception.dart';
 
-enum Http { get, post, patch }
+enum Http { get, post, patch, delete }
 
 class InMatHttp {
   InMatHttp(
     this.how, {
-    required this.url,
+    required this.path,
     required this.message,
     this.body,
     this.token,
@@ -15,19 +17,17 @@ class InMatHttp {
   });
 
   Http how;
-  String url;
+  String path;
+  String message;
   Map? body;
-  final String message;
   String? token;
-   String? refreshToken;
-   String? deviceIdentifier;
+  String? refreshToken;
+  String? deviceIdentifier;
 
-  String get _url {
-    return "http://prod.sogogi.shop:9000$url";
-  }
+  String get url => "http://prod.sogogi.shop:9000$path";
 
   dynamic execute() async {
-    print("InMatHttp: $message 중...");
+    developer.log("🌐 $message 중...", name: "http");
 
     Map<String, String> header = {
       "Content-Type": "application/json",
@@ -42,35 +42,33 @@ class InMatHttp {
 
     switch (how) {
       case Http.get:
-        request = await HttpModule.get(url: _url, headers: header);
+        request = await HttpModule.get(url: url, headers: header);
         break;
       case Http.post:
-        request = await HttpModule.post(
-          url: _url,
-          body: body,
-          headers: header,
-        );
+        request = await HttpModule.post(url: url, body: body, headers: header);
         break;
       case Http.patch:
-        request =
-            await HttpModule.patch(url: _url, body: body, headers: header);
+        request = await HttpModule.patch(url: url, body: body, headers: header);
+        break;
+      case Http.delete:
+        request = await HttpModule.delete(url: url, headers: header);
         break;
     }
 
     /// 디버그 할 때 [debug]를 true 로 하면 모든 통신의 값을 출력한다.
     const bool debug = true;
-    if (debug) print('InMatHttp: $request');
+    if (debug) developer.log("✉️ $request", name: "http");
 
     _throwException(request);
 
-    print("InMatHttp: $message 성공!");
+    developer.log("✅ $message 성공!", name: "http");
 
     return request["result"];
   }
 
   void _throwException(Map response) {
     if (response['isSuccess'] == false) {
-      print("InMatHttp: $message 실패!");
+      developer.log("❌ $message 실패!", name: "http");
       int code = response['code'];
       switch (code) {
         case 401:
