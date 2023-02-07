@@ -1,8 +1,11 @@
 // part of 'inmat_library.dart';
 
+import 'package:inmat/inmat/inmat_api/inmat_api.dart';
+import 'package:inmat/inmat/inmat_api_token.dart';
+
 import 'auth/Inmat_token.dart';
 import 'inmat_api/inmat_exception.dart';
-import 'inmat_core_api.dart';
+import 'inmat_api_core.dart';
 import 'inmat_local_interface.dart';
 import 'models/profile_model.dart';
 
@@ -22,7 +25,9 @@ class InmatData {
   Future<void> _init() async {
     if (!local.tokenIsEmpty()) {
       try {
-        Profile profile = await InmatCoreApi.getProfile();
+        Map<String, dynamic> json = await InmatApi.user.getProfile();
+        Profile profile = Profile.fromJson(json);
+
         profileController = ProfileController(profile);
         authStatus = AuthStatus.user;
         return;

@@ -1,10 +1,9 @@
-// part of 'inmat_library.dart';
-
 import 'package:jwt_decode/jwt_decode.dart';
 
 import '../utils/mobile_id.dart';
 import 'auth/domain/service/database_handler.dart';
-import 'inmat_core_api.dart';
+
+import 'inmat_api_core.dart';
 import 'inmat_local_interface.dart';
 import 'models/token_model.dart';
 
@@ -40,6 +39,7 @@ class InmatLocal implements InmatLocalInterface {
     assert(_token != null);
     Token newToken = await InmatCoreApi.issueToken(_token!, _deviceIdentifier);
     setToken(newToken);
+    dataBase.saveLocalToken(newToken);
   }
 
   bool _isValid() {
@@ -48,7 +48,7 @@ class InmatLocal implements InmatLocalInterface {
     }
     DateTime? expiryDate = Jwt.getExpiryDate(_token!.accessToken);
 
-    print(expiryDate);
+    // print(expiryDate);
     if (expiryDate == null) {
       throw Exception("토큰이 이상해요!");
     }
@@ -58,6 +58,7 @@ class InmatLocal implements InmatLocalInterface {
     Duration difference = expiryDate.difference(now);
 
     print(difference);
+    return true;
 
     return !difference.isNegative;
   }
@@ -72,6 +73,7 @@ class InmatLocal implements InmatLocalInterface {
     return _token!;
   }
 
+  @override
   Future<void> initialize() async {
     return await _init();
   }

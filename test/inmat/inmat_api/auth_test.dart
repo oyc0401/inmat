@@ -12,7 +12,7 @@ void main() {
     test("로그인", () async {
       // String deviceIdentifier = await MobileId.getMobileId();
 
-      Map<String, dynamic> json = await InMatApi.auth.login(
+      Map<String, dynamic> json = await InMatPureApi.auth.login(
         id: testId,
         password: testPassword,
         deviceIdentifier: testDeviceIdentifier,
@@ -23,7 +23,7 @@ void main() {
 
     test("익명 로그인", () async {
       Map<String, dynamic> json =
-          await InMatApi.auth.loginAnonymous(testDeviceIdentifier);
+          await InMatPureApi.auth.loginAnonymous(testDeviceIdentifier);
 
       Token tokenModel = Token.fromJson(json);
     });
@@ -31,7 +31,7 @@ void main() {
     test(
       "토큰 재발급",
       () async {
-        Map<String, dynamic> map = await InMatApi.auth.login(
+        Map<String, dynamic> map = await InMatPureApi.auth.login(
           id: testId,
           password: testPassword,
           deviceIdentifier: testDeviceIdentifier,
@@ -42,7 +42,7 @@ void main() {
 
         await Future.delayed(Duration(seconds: 61));
 
-        Map<String, dynamic> json = await InMatApi.auth.issue(
+        Map<String, dynamic> json = await InMatPureApi.auth.issue(
           accessToken: token.accessToken,
           refreshToken: token.refreshToken,
           deviceIdentifier: testDeviceIdentifier,
@@ -57,12 +57,12 @@ void main() {
     );
 
     test("닉네임 중복체크", () async {
-      String message = await InMatApi.auth.checkNickName("한글임");
+      String message = await InMatPureApi.auth.checkNickName("한글임");
       expect(message, "닉네임 사용가능!");
     });
 
     test("아이디 중복체크", () async {
-      String message = await InMatApi.auth.checkId("m9zil2d");
+      String message = await InMatPureApi.auth.checkId("m9zil2d");
       expect(message, "아이디 사용가능!");
     });
 
@@ -71,7 +71,7 @@ void main() {
     test(
       "회원가입",
       () async {
-        await InMatApi.auth.registerEmail(
+        await InMatPureApi.auth.registerEmail(
           id: "flutter1",
           password: "qwe12345&&",
           nickName: "플러터하나",

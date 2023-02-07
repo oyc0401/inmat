@@ -1,5 +1,5 @@
 import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/inmat/inmat_core_api.dart';
+import 'package:inmat/inmat/inmat_api_core.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
 import '../utils/mobile_id.dart';

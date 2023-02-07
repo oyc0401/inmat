@@ -10,7 +10,7 @@ class PostModel {
   final List<CommentModel> comments;
 
   static Future<PostModel> getPost(int id) async {
-    Map<String, dynamic> json = await InMatApi.community.getPost(id);
+    Map<String, dynamic> json = await InMatPureApi.community.getPost(id);
 
     ContentModel contentModel = ContentModel.fromJson(json);
     print('ContentModel.fromJson(json)');

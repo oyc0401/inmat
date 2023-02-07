@@ -15,7 +15,7 @@ void main() {
 
     setUpAll(() async {
       // 로그인
-      Map<String, dynamic> json = await InMatApi.auth.login(
+      Map<String, dynamic> json = await InMatPureApi.auth.login(
         id: testId,
         password: testPassword,
         deviceIdentifier: testDeviceIdentifier,

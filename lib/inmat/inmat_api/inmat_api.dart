@@ -1,5 +1,10 @@
 
+import '../inmat.dart';
+import '../inmat_api_token.dart';
+import '../models/profile_model.dart';
+import '../models/token_model.dart';
 import 'inmat_http.dart';
+import 'inmat_token_http.dart';
 
 part 'api/user.dart';
 
@@ -11,8 +16,17 @@ part 'api/auth.dart';
 
 part 'api/utils.dart';
 
-class InMatApi {
-  InMatApi._();
+
+part 'model_api/user.dart';
+
+part 'model_api/community.dart';
+
+part 'model_api/restaurant.dart';
+
+part 'model_api/utils.dart';
+
+class InMatPureApi {
+  InMatPureApi._();
 
   static UserApi get user => UserApi();
 
@@ -25,41 +39,16 @@ class InMatApi {
   static UtilsApi get utils => UtilsApi();
 }
 
-// class InMatTokenApi extends InMatHttp {
-//   InMatTokenApi(
-//     super.how, {
-//     required super.url,
-//     String? message,
-//     super.body,
-//     super.refreshToken,
-//     super.deviceIdentifier,
-//   }) {
-//     // super.token=InMatAuth.instance.currentUser?.token;
-//     //
-//   }
-//
-//   validateToken() async {
-//     User? current = InmatAuth.instance.currentUser;
-//     if (current == null) return;
-//
-//     String accessToken = current.accessToken;
-//
-//     DateTime? expiryDate = Jwt.getExpiryDate(accessToken);
-//
-//     print(expiryDate);
-//
-//     DateTime now = DateTime.now();
-//
-//     if (expiryDate == null) return;
-//
-//     Duration difference = expiryDate.difference(now);
-//
-//     print(difference);
-//
-//     if (difference.isNegative) {
-//
-//
-//
-//     } else {}
-//   }
-// }
+
+class InmatApi {
+  InmatApi._();
+
+  static InmatUserApi get user => InmatUserApi();
+
+  static InmatCommunityApi get community => InmatCommunityApi();
+
+  static InmatRestaurantApi get restaurant => InmatRestaurantApi();
+
+  static InmatUtilsApi get utils => InmatUtilsApi();
+}
+

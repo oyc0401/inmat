@@ -1,35 +1,33 @@
-
 import 'http_module.dart';
 import 'inmat_exception.dart';
 
 enum Http { get, post, patch }
 
-
 class InMatHttp {
   InMatHttp(
     this.how, {
     required this.url,
-    String? message,
+    required this.message,
     this.body,
     this.token,
     this.refreshToken,
     this.deviceIdentifier,
-  }) : _message = message ?? "이름없는 http 통신";
+  });
 
   Http how;
   String url;
   Map? body;
-  final String _message;
-   String? token;
-  final String? refreshToken;
-  final String? deviceIdentifier;
+  final String message;
+  String? token;
+   String? refreshToken;
+   String? deviceIdentifier;
 
   String get _url {
     return "http://prod.sogogi.shop:9000$url";
   }
 
   dynamic execute() async {
-    print("InMatHttp: $_message 중...");
+    print("InMatHttp: $message 중...");
 
     Map<String, String> header = {
       "Content-Type": "application/json",
@@ -65,14 +63,14 @@ class InMatHttp {
 
     _throwException(request);
 
-    print("InMatHttp: $_message 성공!");
+    print("InMatHttp: $message 성공!");
 
     return request["result"];
   }
 
   void _throwException(Map response) {
     if (response['isSuccess'] == false) {
-      print("InMatHttp: $_message 실패!");
+      print("InMatHttp: $message 실패!");
       int code = response['code'];
       switch (code) {
         case 401:
@@ -81,6 +79,8 @@ class InMatHttp {
           throw AccessDenied();
         case 2000:
           throw Invalidate();
+        case 2004:
+          throw ExpirationRefreshToken();
         case 3010:
           throw SignInFailed();
         case 3030:
@@ -91,12 +91,10 @@ class InMatHttp {
           throw DataBaseFailed();
         default:
           throw Exception(
-              'Failed to $_message: ${response['code']}, ${response['message']}');
+              'Failed to $message: ${response['code']}, ${response['message']}');
 
         // Failed to 게시글 삭제: 3200, 게시글 삭제에 실패하였습니다.
       }
     }
   }
 }
-
-

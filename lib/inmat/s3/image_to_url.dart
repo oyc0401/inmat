@@ -28,7 +28,7 @@ class ImageToUrl {
     String fileName = file.name;
     print(file);
 
-    String url = await InMatApi.utils
+    String url = await InMatPureApi.utils
         .getImageUrl(fileName, InmatAuth.instance.currentUser!.accessToken);
 
     print(url);
@@ -50,7 +50,7 @@ class ImageToUrl {
     print(file);
     print(name);
 
-    String url = await InMatApi.utils
+    String url = await InMatPureApi.utils
         .getImageUrl(name, InmatAuth.instance.currentUser!.accessToken);
 
     Uint8List? byte;

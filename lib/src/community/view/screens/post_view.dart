@@ -40,7 +40,7 @@ class PostView extends StatelessWidget {
                   onPressed: () async {
                     /// ToDo 본인만 지우는 버튼이 보이게 변경해야함.
                     try {
-                      await InMatApi.community.deletePost(id);
+                      await InMatPureApi.community.deletePost(id);
                       Provider.of<CommunityViewModel>(context, listen: false)
                           .init();
                       Navigator.pop(context);

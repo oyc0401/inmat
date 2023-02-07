@@ -2,6 +2,7 @@
 
 import 'inmat_data.dart';
 import 'inmat_local.dart';
+import 'inmat_local_interface.dart';
 
 class Inmat {
   Inmat._();

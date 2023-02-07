@@ -12,7 +12,7 @@ class HttpModule {
     required String url,
     required Map<String, String>? headers,
   }) async {
-    print('headers: $headers');
+    // print('headers: $headers');
 
     final Response response = await http.get(Uri.parse(url), headers: headers);
     _throwHttpException(response);
@@ -50,14 +50,18 @@ class HttpModule {
   }
 
   static void _throwHttpException(Response response) {
+
+    print("status code: ${response.statusCode}");
     switch (response.statusCode) {
       case 200:
         return;
       case 401:
       throw ExpirationAccessToken();
+
       default:
         throw Exception(
             'unexpected status code: ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
+
     }
   }
 

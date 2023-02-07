@@ -12,7 +12,7 @@ class InMatAccount {
     required nickName,
     required phoneNumber,
   }) async {
-    await InMatApi.auth.registerEmail(
+    await InMatPureApi.auth.registerEmail(
       id: id,
       password: password,
       email: email,
@@ -26,14 +26,14 @@ class InMatAccount {
   static Future<bool> checkNickName({
     required String nickName,
   }) async {
-    String message = await InMatApi.auth.checkNickName(nickName);
+    String message = await InMatPureApi.auth.checkNickName(nickName);
     return message == "닉네임 사용가능!";
   }
 
   static Future<bool> checkId({
     required String id,
   }) async {
-    String message = await InMatApi.auth.checkId(id);
+    String message = await InMatPureApi.auth.checkId(id);
     return message == "아이디 사용가능!";
   }
 }

@@ -3,6 +3,12 @@ class ExpirationAccessToken implements Exception {
   String toString() => "액세스 토큰이 만료되었습니다.";
 }
 
+class ExpirationRefreshToken implements Exception {
+  @override
+  String toString() => "리프레시 토큰이 만료되었습니다.";
+}
+
+
 class SignInFailed implements Exception {
   @override
   String toString() => "없는 아이디이거나 비밀번호가 틀렸습니다.";

@@ -14,7 +14,7 @@ void main() {
 
     setUpAll(() async {
       // 로그인
-      Map<String, dynamic> json = await InMatApi.auth.login(
+      Map<String, dynamic> json = await InMatPureApi.auth.login(
         id: testId,
         password: testPassword,
         deviceIdentifier: testDeviceIdentifier,
@@ -25,7 +25,7 @@ void main() {
 
     test("서명된 url 얻기", () async {
       String url =
-          await InMatApi.utils.getImageUrl("image.jpg", testToken.accessToken);
+          await InMatPureApi.utils.getImageUrl("image.jpg", testToken.accessToken);
       print(url);
     });
   });
