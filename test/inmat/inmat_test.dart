@@ -1,6 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:inmat/inmat/inmat_api_token.dart';
-import 'package:inmat/inmat/inmat_library.dart';
 
 void main() {
   group("inmat 테스트", () {

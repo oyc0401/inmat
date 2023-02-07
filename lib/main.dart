@@ -10,12 +10,13 @@ import 'package:inmat/inmat/auth/Inmat_token.dart';
 
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat.dart';
-import 'package:inmat/inmat/inmat_library.dart';
+
 import 'package:inmat/manager/add_restaurant.dart';
 import 'package:inmat/src/community/main/providers/community_view_model.dart';
 import 'package:provider/provider.dart';
 
 import 'auth_check.dart';
+import 'inmat/models/token_model.dart';
 import 'src/account/login_main/signin_page.dart';
 import 'src/navigator/NavigatePage.dart';
 

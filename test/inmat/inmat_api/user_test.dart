@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/models/profile_model.dart';
 import 'package:inmat/inmat/models/token_model.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
@@ -21,17 +22,18 @@ void main() {
 
     setUpAll(() async {
       // 로그인
-      Map<String, dynamic> json = await InMatPureApi.auth.login(
+      Map<String, dynamic> json = await InmatApi.auth.login(
         id: testId,
         password: testPassword,
         deviceIdentifier: testDeviceIdentifier,
       );
 
       testToken = Token.fromJson(json);
+      Inmat.initialTest(testToken);
     });
 
     test("로그인", () async {
-      Map<String, dynamic> loginData = await InMatPureApi.auth.login(
+      Map<String, dynamic> loginData = await InmatApi.auth.login(
         id: testId,
         password: testPassword,
         deviceIdentifier: testDeviceIdentifier,
@@ -42,7 +44,7 @@ void main() {
 
     test("프로필 불러오기", () async {
       Map<String, dynamic> json =
-          await InMatPureApi.user.getProfile(testToken.accessToken);
+          await InmatApi.user.getProfile();
 
       Profile model = Profile.fromJson(json);
     });
@@ -57,12 +59,11 @@ void main() {
             "https://inmat.s3.ap-northeast-1.amazonaws.com/everytime-1664774769329.jpg";
 
         // 프로필 업데이트
-        await InMatPureApi.user.updateProfile(
+        await InmatApi.user.updateProfile(
           age: age,
           gender: gender,
           nickName: nickName,
           profileImgUrl: profileImgUrl,
-          token: testToken.accessToken,
         );
       },
       skip: "이미 있는 계정이라 프로필 업데이트는 스킵",
@@ -70,7 +71,7 @@ void main() {
 
     test("내가 쓴 게시글 조회", () async {
       List<Map<String, dynamic>> list =
-          await InMatPureApi.user.getPosts(testToken.accessToken);
+          await InmatApi.user.getPosts();
       // List<PostThumbModel> posts = [];
       //
       // for (Map<String, dynamic> json in list) {
@@ -83,7 +84,7 @@ void main() {
 
     test("내가 하트찜한 음식점 조회", () async {
       List<Map<String, dynamic>> list =
-          await InMatPureApi.user.getLikeRestaurants(testToken.accessToken);
+          await InmatApi.user.getLikeRestaurants();
 
       List<MyFavoriteModel> likes =
           list.map((e) => MyFavoriteModel.fromJson(e)).toList();
@@ -93,7 +94,7 @@ void main() {
       "내가 쓴 리뷰 조회",
       () async {
         List<Map<String, dynamic>> list =
-            await InMatPureApi.user.getReviews(testToken.accessToken);
+            await InmatApi.user.getReviews();
 
         List<MyReviewModel> reviews =
             list.map((e) => MyReviewModel.fromJson(e)).toList();
@@ -110,7 +111,7 @@ void main() {
 
         //기존 프로필 가져오기
         Map<String, dynamic> data =
-            await InMatPureApi.user.getProfile(testToken.accessToken);
+            await InmatApi.user.getProfile();
         Profile model = Profile.fromJson(data);
 
         Profile previous = Profile(
@@ -125,17 +126,16 @@ void main() {
         );
 
         // 프로필 업데이트
-        await InMatPureApi.user.updateProfile(
+        await InmatApi.user.updateProfile(
           age: age,
           gender: gender,
           nickName: nickName,
           profileImgUrl: profileImgUrl,
-          token: testToken.accessToken,
         );
 
         //새 프로필 가져오기
         Map<String, dynamic> updatedData =
-            await InMatPureApi.user.getProfile(testToken.accessToken);
+            await InmatApi.user.getProfile();
         Profile updated = Profile.fromJson(updatedData);
 
         expect(previous, updated);

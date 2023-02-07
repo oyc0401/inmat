@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/models/profile_model.dart';
 import 'package:inmat/inmat/models/token_model.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
@@ -15,8 +16,6 @@ import 'package:inmat/src/profile/models/posts_model.dart';
 import 'package:inmat/src/search/domain/models/recent_model.dart';
 
 void main() {
-
-
   group("restaurant api 테스트", () {
     late Token testToken;
 
@@ -26,18 +25,18 @@ void main() {
 
     setUpAll(() async {
       // 로그인
-      Map<String, dynamic> json = await InMatPureApi.auth.login(
+      Map<String, dynamic> json = await InmatApi.auth.login(
         id: testId,
         password: testPassword,
         deviceIdentifier: testDeviceIdentifier,
       );
 
       testToken = Token.fromJson(json);
+      Inmat.initialTest(testToken);
     });
 
     test("홈화면 불러오기", () async {
-      Map<String, dynamic> json =
-          await InMatPureApi.restaurant.getHome(testToken.accessToken);
+      Map<String, dynamic> json = await InmatApi.restaurant.getHome();
 
       HomeModelJson jsonModel = HomeModelJson.fromJson(json);
 
@@ -55,7 +54,6 @@ void main() {
       List<RestaurantModel> restaurants = jsonModel.restaurantList
           .map((e) => RestaurantModel.fromJson(e))
           .toList();
-
     });
 
 // Registers a function to be run before tests

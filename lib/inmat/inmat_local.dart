@@ -16,7 +16,7 @@ class InmatLocal implements InmatLocalInterface {
 
   Token? get currentToken => _token;
 
-  late String _deviceIdentifier;
+  String _deviceIdentifier = "";
 
   String get deviceIdentifier => _deviceIdentifier;
 

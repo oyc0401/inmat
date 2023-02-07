@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/models/profile_model.dart';
 import 'package:inmat/inmat/models/token_model.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
@@ -14,18 +15,19 @@ void main() {
 
     setUpAll(() async {
       // 로그인
-      Map<String, dynamic> json = await InMatPureApi.auth.login(
+      Map<String, dynamic> json = await InmatApi.auth.login(
         id: testId,
         password: testPassword,
         deviceIdentifier: testDeviceIdentifier,
       );
 
       testToken = Token.fromJson(json);
+      Inmat.initialTest(testToken);
     });
 
     test("서명된 url 얻기", () async {
       String url =
-          await InMatPureApi.utils.getImageUrl("image.jpg", testToken.accessToken);
+          await InmatApi.utils.getImageUrl("image.jpg");
       print(url);
     });
   });
