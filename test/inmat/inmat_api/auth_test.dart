@@ -18,14 +18,14 @@ void main() {
         deviceIdentifier: testDeviceIdentifier,
       );
 
-      TokenModel tokenModel = TokenModel.fromJson(json);
+      Token tokenModel = Token.fromJson(json);
     });
 
     test("익명 로그인", () async {
       Map<String, dynamic> json =
           await InMatApi.auth.loginAnonymous(testDeviceIdentifier);
 
-      TokenModel tokenModel = TokenModel.fromJson(json);
+      Token tokenModel = Token.fromJson(json);
     });
 
     test(
@@ -37,7 +37,7 @@ void main() {
           deviceIdentifier: testDeviceIdentifier,
         );
 
-        TokenModel token = TokenModel.fromJson(map);
+        Token token = Token.fromJson(map);
         print(token);
 
         await Future.delayed(Duration(seconds: 61));
@@ -48,7 +48,7 @@ void main() {
           deviceIdentifier: testDeviceIdentifier,
         );
 
-        TokenModel tokenModel = TokenModel.fromJson(json);
+        Token tokenModel = Token.fromJson(json);
 
         print(tokenModel);
       },

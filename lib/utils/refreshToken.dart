@@ -4,8 +4,8 @@ import '../inmat/auth/domain/model/token_model.dart';
 import '../inmat/inmat_api/inmat_api.dart';
 
 class RefreshTokenIssue {
-  static Future<TokenModel> getValidToken(
-      TokenModel token, String deviceIdentifier) async {
+  static Future<Token> getValidToken(
+      Token token, String deviceIdentifier) async {
     DateTime? expiryDate = Jwt.getExpiryDate(token.accessToken);
 
     print(expiryDate);
@@ -28,7 +28,7 @@ class RefreshTokenIssue {
         deviceIdentifier: deviceIdentifier,
       );
 
-      TokenModel newToken = TokenModel.fromJson(json);
+      Token newToken = Token.fromJson(json);
       return newToken;
     }
 

@@ -7,8 +7,8 @@ class User {
     required this.tokenModel,
   });
 
-  final ProfileModel profileModel;
-  final TokenModel tokenModel;
+  final Profile profileModel;
+  final Token tokenModel;
 
   int get age => profileModel.age;
 

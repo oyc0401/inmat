@@ -6,7 +6,7 @@ import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 
 void main() {
   group("account api 테스트", () {
-    late TokenModel testToken;
+    late Token testToken;
 
     const String testId = "flutter1";
     const String testPassword = "qwe12345&&";
@@ -20,7 +20,7 @@ void main() {
         deviceIdentifier: testDeviceIdentifier,
       );
 
-      testToken = TokenModel.fromJson(json);
+      testToken = Token.fromJson(json);
     });
 
     test("서명된 url 얻기", () async {

@@ -3,7 +3,7 @@ part of '../inmat_api.dart';
 class CommunityApi {
   ///커뮤니티 조회 API
   Future<List<Map>> getPosts() async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+    InMatHttp http = InMatHttp(
       Http.get,
       message: "커뮤니티 불러오기",
       url: "/communities",
@@ -13,7 +13,7 @@ class CommunityApi {
 
   ///특정 게시물 조회 API
   Future<Map<String, dynamic>> getPost(int id) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+    InMatHttp http = InMatHttp(
       Http.get,
       message: "게시물 불러오기",
       url: "/communities/$id",
@@ -24,7 +24,7 @@ class CommunityApi {
   ///게시글 작성 API
   Future<void> writePost(
       {required String title, required String content}) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+    InMatHttp http = InMatHttp(
       Http.post,
       message: "게시글 작성",
       url: "/communities",
@@ -38,7 +38,7 @@ class CommunityApi {
 
   ///게시글 삭제 API
   Future<void> deletePost(int postId) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+    InMatHttp http = InMatHttp(
       Http.patch,
       message: "게시글 삭제",
       url: "/communities/$postId/delete",
@@ -48,7 +48,7 @@ class CommunityApi {
 
   ///댓글 작성 API
   Future<void> writeComment(int id, String comment) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+    InMatHttp http = InMatHttp(
       Http.post,
       message: "댓글 쓰기",
       url: "/communities/$id/details/comment",
@@ -66,7 +66,7 @@ class CommunityApi {
 
   ///게시글 좋아요 API
   Future<void> setHeart(int postId) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+    InMatHttp http = InMatHttp(
       Http.post,
       message: "게시글 하트 설정",
       url: "/communities/$postId/details/like",
@@ -76,7 +76,7 @@ class CommunityApi {
 
   ///게시글 좋아요 API
   Future<void> deleteHeart(int postId) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+    InMatHttp http = InMatHttp(
       Http.patch,
       message: "게시글 하트 취소",
       url: "/communities/$postId/details/like/delete",

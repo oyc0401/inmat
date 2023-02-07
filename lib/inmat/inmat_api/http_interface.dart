@@ -1,29 +1,24 @@
 // import 'dart:convert';
 //
 // import 'package:http/http.dart';
-// import 'package:inmat/inmat/auth/domain/model/token_model.dart';
-// import 'package:inmat/inmat/inmat_api/inmat_api.dart';
-// import 'package:inmat/inmat/inmat_library.dart';
-// import 'package:jwt_decode/jwt_decode.dart';
 //
+// import '../http_module.dart';
+// import '../inmat_exception.dart';
 //
-// import 'http_module.dart';
-// import 'inmat_exception.dart';
-// import '../auth/inmat_auth.dart';
+// enum Http { get, post, patch,delete }
 //
-//
-// // enum Http { get, post, patch }
-//
-// class InMatRefreshHttp {
-//   InMatRefreshHttp(
+// class HttpInterface {
+//   HttpInterface(
 //     this.how, {
 //     required this.url,
-//     String? message,
 //     this.body,
+//     this.headers,
+//     String? message,
 //   }) : _message = message ?? "이름없는 http 통신";
 //
 //   Http how;
 //   String url;
+//   Map<String, String>? headers;
 //   Map? body;
 //   final String _message;
 //
@@ -31,64 +26,27 @@
 //     return "http://prod.sogogi.shop:9000$url";
 //   }
 //
-//   Future<Token> getValidToken() async {
-//     InmatData data = Inmat.user;
-//     Token? token = data.token;
-//     if (token == null) {
-//       throw Exception("unhandled http error: 토큰이 없어요!");
-//     }
-//
-//     DateTime? expiryDate = Jwt.getExpiryDate(token.accessToken);
-//
-//     print(expiryDate);
-//     if (expiryDate == null) {
-//       throw Exception("토큰이 이상해요!");
-//     }
-//
-//     DateTime now = DateTime.now();
-//
-//     Duration difference = expiryDate.difference(now);
-//
-//     print(difference);
-//
-//     if (difference.isNegative) {
-//       //리프레시 토큰 재발급
-//       await InmatAuth.instance.regenerateToken();
-//     }
-//
-//     return Inmat.user.token!;
-//   }
-//
 //   dynamic execute() async {
-//     print("InMatHttp: $_message 중...");
-//
-//     Token model = await getValidToken();
-//
-//     Map<String, String> header = {
-//       "Content-Type": "application/json",
-//       'Accept': 'application/json',
-//       'Authorization': 'Bearer ${model.accessToken}',
-//       "Device-Identifier": '${Inmat.user.deviceIdentifier}',
-//       "REFRESH-TOKEN": model.refreshToken,
-//       // "User-Agent": deviceIdentifier,
-//     };
-//
 //     Map request = {};
 //
 //     switch (how) {
 //       case Http.get:
-//         request = await HttpModule.get(url: _url, headers: header);
+//         request = await HttpModule.get(url: _url, headers: headers);
 //         break;
 //       case Http.post:
 //         request = await HttpModule.post(
 //           url: _url,
 //           body: body,
-//           headers: header,
+//           headers: headers,
 //         );
 //         break;
 //       case Http.patch:
 //         request =
-//             await HttpModule.patch(url: _url, body: body, headers: header);
+//             await HttpModule.patch(url: _url, body: body, headers: headers);
+//         break;
+//       case Http.delete:
+//         request =
+//         await HttpModule.delete(url: _url, headers: headers);
 //         break;
 //     }
 //

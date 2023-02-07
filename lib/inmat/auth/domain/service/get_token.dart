@@ -7,21 +7,21 @@ import '../model/token_model.dart';
 
 class GetToken {
 
-  static Future<ProfileModel> getProfile(String accessToken) async {
+  static Future<Profile> getProfile(String accessToken) async {
     Map<String, dynamic> map =
         await InMatApi.user.getProfile(accessToken);
 
-    ProfileModel model = ProfileModel.fromJson(map);
+    Profile model = Profile.fromJson(map);
     return model;
   }
 
-  static Future<TokenModel> getTokenEmail(String id, String password, String deviceIdentifier) async {
+  static Future<Token> getTokenEmail(String id, String password, String deviceIdentifier) async {
     Map<String, dynamic> json = await InMatApi.auth.login(
       id: id,
       password: password,
       deviceIdentifier: deviceIdentifier
     );
-    TokenModel tokenModel = TokenModel.fromJson(json);
+    Token tokenModel = Token.fromJson(json);
     return tokenModel;
   }
 }

@@ -7,7 +7,7 @@ import 'package:jwt_decode/jwt_decode.dart';
 void main() {
   group("inmap api class 테스트", () {
 
-    late TokenModel testToken;
+    late Token testToken;
 
     const String testId = "flutter1";
     const String testPassword = "qwe12345&&";
@@ -21,7 +21,7 @@ void main() {
         deviceIdentifier: testDeviceIdentifier,
       );
 
-      testToken = TokenModel.fromJson(json);
+      testToken = Token.fromJson(json);
     });
 
     test("토큰 유효기간 체크", () async {

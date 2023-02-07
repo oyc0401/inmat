@@ -9,7 +9,7 @@ class UserApi {
       url: "/users/profiles",
 
       // deviceIdentifier: "dart_pad",
-      token: token
+      token: token,
     );
     return await http.execute();
   }
@@ -19,10 +19,10 @@ class UserApi {
     required int age,
     required String gender,
     required String nickName,
-     String? profileImgUrl,
+    String? profileImgUrl,
     required String token,
   }) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+    InMatHttp http = InMatHttp(
       Http.patch,
       message: "프로필 업데이트",
       url: "/users/profiles",
@@ -32,41 +32,41 @@ class UserApi {
         "nickName": nickName,
         "profileImgUrl": profileImgUrl,
       },
-
+      token: token,
     );
     return await http.execute();
   }
 
   ///내가 하트찜한 음식점 조회 API
-  Future<List<Map<String,dynamic>>> getLikeRestaurants(String token) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+  Future<List<Map<String, dynamic>>> getLikeRestaurants(String token) async {
+    InMatHttp http = InMatHttp(
       Http.get,
       message: "좋아하는 음식점 가져오기",
       url: "/users/restaurants",
-
+      token: token,
     );
-    return (await http.execute()).cast<Map<String,dynamic>>();
+    return (await http.execute()).cast<Map<String, dynamic>>();
   }
 
   ///내가 쓴 리뷰 조회 API
-  Future<List<Map<String,dynamic>>> getReviews(String token) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+  Future<List<Map<String, dynamic>>> getReviews(String token) async {
+    InMatHttp http = InMatHttp(
       Http.get,
       message: "내가 쓴 리뷰 가져오기",
       url: "/users/reviews",
-
+      token: token,
     );
-    return (await http.execute()).cast<Map<String,dynamic>>();
+    return (await http.execute()).cast<Map<String, dynamic>>();
   }
 
   ///내가 쓴 게시글 조회 API
-  Future<List<Map<String,dynamic>>> getPosts(String token) async {
-    InMatRefreshHttp http = InMatRefreshHttp(
+  Future<List<Map<String, dynamic>>> getPosts(String token) async {
+    InMatHttp http = InMatHttp(
       Http.get,
       message: "내가 쓴 게시물 가져오기",
       url: "/users/posts",
-
+      token: token,
     );
-    return (await http.execute()).cast<Map<String,dynamic>>();
+    return (await http.execute()).cast<Map<String, dynamic>>();
   }
 }

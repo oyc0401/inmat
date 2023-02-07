@@ -102,14 +102,4 @@ class InMatHttp {
   }
 }
 
-void _throwHttpException(Response response) {
-  switch (response.statusCode) {
-    case 200:
-      return;
-    case 401:
-    // throw ExpirationAccessToken();
-    default:
-      throw Exception(
-          'unexpected status code: ${response.statusCode}, ${utf8.decode(response.bodyBytes)}');
-  }
-}
+

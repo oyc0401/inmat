@@ -11,11 +11,11 @@ class TokenController {
   TokenController([this._tokenModel]);
 
 
-  TokenModel? _tokenModel;
+  Token? _tokenModel;
 
-  TokenModel? get token => _tokenModel;
+  Token? get token => _tokenModel;
 
-  void set(TokenModel? model) => _tokenModel = model;
+  void set(Token? model) => _tokenModel = model;
 
   void clear() => _tokenModel = null;
 
@@ -31,11 +31,11 @@ enum AuthStatus {
 class ProfileController {
   ProfileController([this._profileModel]);
 
-  ProfileModel? _profileModel;
+  Profile? _profileModel;
 
-  ProfileModel? get profile => _profileModel;
+  Profile? get profile => _profileModel;
 
-  void set(ProfileModel model) => _profileModel = model;
+  void set(Profile model) => _profileModel = model;
 
   void clear() => _profileModel = null;
 }

@@ -9,7 +9,7 @@ import 'package:inmat/src/profile/models/posts_model.dart';
 
 void main() {
   group("user api 테스트", () {
-    late TokenModel testToken;
+    late Token testToken;
 
     // const String testId = "flutter1";
     // const String testPassword = "qwe12345&&";
@@ -27,7 +27,7 @@ void main() {
         deviceIdentifier: testDeviceIdentifier,
       );
 
-      testToken = TokenModel.fromJson(json);
+      testToken = Token.fromJson(json);
     });
 
     test("로그인", () async {
@@ -37,14 +37,14 @@ void main() {
         deviceIdentifier: testDeviceIdentifier,
       );
 
-      testToken = TokenModel.fromJson(loginData);
+      testToken = Token.fromJson(loginData);
     });
 
     test("프로필 불러오기", () async {
       Map<String, dynamic> json =
           await InMatApi.user.getProfile(testToken.accessToken);
 
-      ProfileModel model = ProfileModel.fromJson(json);
+      Profile model = Profile.fromJson(json);
     });
 
     test(
@@ -111,9 +111,9 @@ void main() {
         //기존 프로필 가져오기
         Map<String, dynamic> data =
             await InMatApi.user.getProfile(testToken.accessToken);
-        ProfileModel model = ProfileModel.fromJson(data);
+        Profile model = Profile.fromJson(data);
 
-        ProfileModel previous = ProfileModel(
+        Profile previous = Profile(
           userId: model.userId,
           username: model.username,
           email: model.email,
@@ -136,7 +136,7 @@ void main() {
         //새 프로필 가져오기
         Map<String, dynamic> updatedData =
             await InMatApi.user.getProfile(testToken.accessToken);
-        ProfileModel updated = ProfileModel.fromJson(updatedData);
+        Profile updated = Profile.fromJson(updatedData);
 
         expect(previous, updated);
       },

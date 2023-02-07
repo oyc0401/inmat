@@ -18,7 +18,7 @@ void main() {
 
 
   group("restaurant api 테스트", () {
-    late TokenModel testToken;
+    late Token testToken;
 
     const String testId = "test123";
     const String testPassword = "qwe12345&&";
@@ -32,7 +32,7 @@ void main() {
         deviceIdentifier: testDeviceIdentifier,
       );
 
-      testToken = TokenModel.fromJson(json);
+      testToken = Token.fromJson(json);
     });
 
     test("홈화면 불러오기", () async {

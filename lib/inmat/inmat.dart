@@ -3,18 +3,17 @@ part of 'inmat_library.dart';
 class Inmat {
   Inmat._();
 
-  static InmatData? _delegatePackingProperty;
+  static InmatData? _delegateData;
+
+  static InmatLocal local = InmatLocal();
 
   static InmatData get user {
-    return _delegatePackingProperty ??= InmatData();
+    return _delegateData ??= InmatData(local);
   }
 
-  static set user(InmatData platform) {
-    _delegatePackingProperty = platform;
-  }
 
   static Future<void> initializeApp() async {
-    await user.tokenInitial();
+    await local.initialize();
     await user.initialize();
   }
 }
