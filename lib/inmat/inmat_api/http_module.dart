@@ -2,11 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
-import 'package:inmat/utils/mobile_id.dart';
 
 import 'inmat_exception.dart';
 
-enum Http { get, post, patch }
 
 
 class HttpModule {

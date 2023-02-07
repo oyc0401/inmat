@@ -1,5 +1,5 @@
-import 'domain/model/profile_model.dart';
-import 'domain/model/token_model.dart';
+import '../models/profile_model.dart';
+import '../models/token_model.dart';
 
 class User {
   User({

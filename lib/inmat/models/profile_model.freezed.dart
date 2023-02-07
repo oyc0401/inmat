@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) {
-  return _ProfileModel.fromJson(json);
+Profile _$ProfileFromJson(Map<String, dynamic> json) {
+  return _Profile.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProfileModel {
+mixin _$Profile {
   int get userId => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
@@ -31,15 +31,13 @@ mixin _$ProfileModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileModelCopyWith<ProfileModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileModelCopyWith<$Res> {
-  factory $ProfileModelCopyWith(
-          ProfileModel value, $Res Function(ProfileModel) then) =
-      _$ProfileModelCopyWithImpl<$Res, ProfileModel>;
+abstract class $ProfileCopyWith<$Res> {
+  factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
+      _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
   $Res call(
       {int userId,
@@ -53,9 +51,9 @@ abstract class $ProfileModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
-    implements $ProfileModelCopyWith<$Res> {
-  _$ProfileModelCopyWithImpl(this._value, this._then);
+class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
+    implements $ProfileCopyWith<$Res> {
+  _$ProfileCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -112,11 +110,10 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
 }
 
 /// @nodoc
-abstract class _$$_ProfileModelCopyWith<$Res>
-    implements $ProfileModelCopyWith<$Res> {
-  factory _$$_ProfileModelCopyWith(
-          _$_ProfileModel value, $Res Function(_$_ProfileModel) then) =
-      __$$_ProfileModelCopyWithImpl<$Res>;
+abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
+  factory _$$_ProfileCopyWith(
+          _$_Profile value, $Res Function(_$_Profile) then) =
+      __$$_ProfileCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -131,11 +128,10 @@ abstract class _$$_ProfileModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProfileModelCopyWithImpl<$Res>
-    extends _$ProfileModelCopyWithImpl<$Res, _$_ProfileModel>
-    implements _$$_ProfileModelCopyWith<$Res> {
-  __$$_ProfileModelCopyWithImpl(
-      _$_ProfileModel _value, $Res Function(_$_ProfileModel) _then)
+class __$$_ProfileCopyWithImpl<$Res>
+    extends _$ProfileCopyWithImpl<$Res, _$_Profile>
+    implements _$$_ProfileCopyWith<$Res> {
+  __$$_ProfileCopyWithImpl(_$_Profile _value, $Res Function(_$_Profile) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,7 +146,7 @@ class __$$_ProfileModelCopyWithImpl<$Res>
     Object? gender = null,
     Object? profileImgUrl = freezed,
   }) {
-    return _then(_$_ProfileModel(
+    return _then(_$_Profile(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -189,8 +185,8 @@ class __$$_ProfileModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProfileModel implements _ProfileModel {
-  _$_ProfileModel(
+class _$_Profile implements _Profile {
+  _$_Profile(
       {required this.userId,
       required this.username,
       required this.email,
@@ -200,8 +196,8 @@ class _$_ProfileModel implements _ProfileModel {
       required this.gender,
       required this.profileImgUrl});
 
-  factory _$_ProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ProfileModelFromJson(json);
+  factory _$_Profile.fromJson(Map<String, dynamic> json) =>
+      _$$_ProfileFromJson(json);
 
   @override
   final int userId;
@@ -222,14 +218,14 @@ class _$_ProfileModel implements _ProfileModel {
 
   @override
   String toString() {
-    return 'ProfileModel(userId: $userId, username: $username, email: $email, phoneNumber: $phoneNumber, nickName: $nickName, age: $age, gender: $gender, profileImgUrl: $profileImgUrl)';
+    return 'Profile(userId: $userId, username: $username, email: $email, phoneNumber: $phoneNumber, nickName: $nickName, age: $age, gender: $gender, profileImgUrl: $profileImgUrl)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProfileModel &&
+            other is _$_Profile &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.username, username) ||
                 other.username == username) &&
@@ -252,19 +248,19 @@ class _$_ProfileModel implements _ProfileModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProfileModelCopyWith<_$_ProfileModel> get copyWith =>
-      __$$_ProfileModelCopyWithImpl<_$_ProfileModel>(this, _$identity);
+  _$$_ProfileCopyWith<_$_Profile> get copyWith =>
+      __$$_ProfileCopyWithImpl<_$_Profile>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProfileModelToJson(
+    return _$$_ProfileToJson(
       this,
     );
   }
 }
 
-abstract class _ProfileModel implements ProfileModel {
-  factory _ProfileModel(
+abstract class _Profile implements Profile {
+  factory _Profile(
       {required final int userId,
       required final String username,
       required final String email,
@@ -272,10 +268,9 @@ abstract class _ProfileModel implements ProfileModel {
       required final String nickName,
       required final int age,
       required final String gender,
-      required final String? profileImgUrl}) = _$_ProfileModel;
+      required final String? profileImgUrl}) = _$_Profile;
 
-  factory _ProfileModel.fromJson(Map<String, dynamic> json) =
-      _$_ProfileModel.fromJson;
+  factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
 
   @override
   int get userId;
@@ -295,6 +290,6 @@ abstract class _ProfileModel implements ProfileModel {
   String? get profileImgUrl;
   @override
   @JsonKey(ignore: true)
-  _$$_ProfileModelCopyWith<_$_ProfileModel> get copyWith =>
+  _$$_ProfileCopyWith<_$_Profile> get copyWith =>
       throw _privateConstructorUsedError;
 }

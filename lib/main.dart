@@ -9,6 +9,7 @@ import 'package:inmat/_sample/s3/s3.dart';
 import 'package:inmat/inmat/auth/Inmat_token.dart';
 
 import 'package:inmat/inmat/auth/inmat_auth.dart';
+import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/inmat_library.dart';
 import 'package:inmat/manager/add_restaurant.dart';
 import 'package:inmat/src/community/main/providers/community_view_model.dart';

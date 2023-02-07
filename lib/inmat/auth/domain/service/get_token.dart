@@ -2,8 +2,8 @@ import 'package:inmat/utils/mobile_id.dart';
 
 import '../../../database/token_database.dart';
 import '../../../inmat_api/inmat_api.dart';
-import '../model/profile_model.dart';
-import '../model/token_model.dart';
+import '../../../models/profile_model.dart';
+import '../../../models/token_model.dart';
 
 class GetToken {
 

@@ -7,12 +7,12 @@ part 'token_model.freezed.dart';
 // $ flutter pub run build_runner build
 
 @freezed
-class TokenModel with _$TokenModel {
-  factory TokenModel({
+class Token with _$Token {
+  factory Token({
     required String accessToken,
     required String refreshToken,
-  }) = _TokenModel;
+  }) = _Token;
 
-  factory TokenModel.fromJson(Map<String, dynamic> json) =>
-      _$TokenModelFromJson(json);
+  factory Token.fromJson(Map<String, dynamic> json) =>
+      _$TokenFromJson(json);
 }

@@ -1,6 +1,6 @@
 import 'package:jwt_decode/jwt_decode.dart';
 
-import '../inmat/auth/domain/model/token_model.dart';
+import '../inmat/models/token_model.dart';
 import '../inmat/inmat_api/inmat_api.dart';
 
 class RefreshTokenIssue {

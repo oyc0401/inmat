@@ -1,13 +1,4 @@
-import 'package:inmat/auth_check.dart';
-import 'package:inmat/inmat/auth/user_model.dart';
-import 'package:inmat/inmat/inmat_api/inmat_refresh_http.dart';
-import 'package:inmat/utils/mobile_id.dart';
-import 'package:jwt_decode/jwt_decode.dart';
 
-import '../auth/inmat_auth.dart';
-
-import '../auth/inmat_auth.dart';
-import 'http_module.dart';
 import 'inmat_http.dart';
 
 part 'api/user.dart';
@@ -34,41 +25,41 @@ class InMatApi {
   static UtilsApi get utils => UtilsApi();
 }
 
-class InMatTokenApi extends InMatHttp {
-  InMatTokenApi(
-    super.how, {
-    required super.url,
-    String? message,
-    super.body,
-    super.refreshToken,
-    super.deviceIdentifier,
-  }) {
-    // super.token=InMatAuth.instance.currentUser?.token;
-    //
-  }
-
-  validateToken() async {
-    User? current = InmatAuth.instance.currentUser;
-    if (current == null) return;
-
-    String accessToken = current.accessToken;
-
-    DateTime? expiryDate = Jwt.getExpiryDate(accessToken);
-
-    print(expiryDate);
-
-    DateTime now = DateTime.now();
-
-    if (expiryDate == null) return;
-
-    Duration difference = expiryDate.difference(now);
-
-    print(difference);
-
-    if (difference.isNegative) {
-
-
-
-    } else {}
-  }
-}
+// class InMatTokenApi extends InMatHttp {
+//   InMatTokenApi(
+//     super.how, {
+//     required super.url,
+//     String? message,
+//     super.body,
+//     super.refreshToken,
+//     super.deviceIdentifier,
+//   }) {
+//     // super.token=InMatAuth.instance.currentUser?.token;
+//     //
+//   }
+//
+//   validateToken() async {
+//     User? current = InmatAuth.instance.currentUser;
+//     if (current == null) return;
+//
+//     String accessToken = current.accessToken;
+//
+//     DateTime? expiryDate = Jwt.getExpiryDate(accessToken);
+//
+//     print(expiryDate);
+//
+//     DateTime now = DateTime.now();
+//
+//     if (expiryDate == null) return;
+//
+//     Duration difference = expiryDate.difference(now);
+//
+//     print(difference);
+//
+//     if (difference.isNegative) {
+//
+//
+//
+//     } else {}
+//   }
+// }

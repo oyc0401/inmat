@@ -1,4 +1,12 @@
-part of 'inmat_library.dart';
+// part of 'inmat_library.dart';
+
+import 'package:jwt_decode/jwt_decode.dart';
+
+import '../utils/mobile_id.dart';
+import 'auth/domain/service/database_handler.dart';
+import 'inmat_core_api.dart';
+import 'inmat_local_interface.dart';
+import 'models/token_model.dart';
 
 class InmatLocal implements InmatLocalInterface {
   InmatLocal();

@@ -13,6 +13,7 @@ import 'package:inmat/utils/inmat_colors.dart';
 import 'package:ios_utsname_ext/extension.dart';
 
 
+import 'inmat/inmat.dart';
 import 'inmat/inmat_library.dart';
 import 'src/account/login_main/signin_page.dart';
 

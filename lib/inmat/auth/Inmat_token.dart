@@ -1,5 +1,5 @@
-import 'domain/model/profile_model.dart';
-import 'domain/model/token_model.dart';
+import '../models/profile_model.dart';
+import '../models/token_model.dart';
 
 /// 토큰은 저장소에서 꺼내진다.
 /// 로그인을 하면 토큰에 값이 추가된다.

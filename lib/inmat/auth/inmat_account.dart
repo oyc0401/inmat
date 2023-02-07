@@ -6,16 +6,20 @@ class InMatAccount {
   static registerEmail({
     required String id,
     required String password,
-    required Profile profile,
+    required age,
+    required email,
+    required gender,
+    required nickName,
+    required phoneNumber,
   }) async {
     await InMatApi.auth.registerEmail(
       id: id,
       password: password,
-      email: profile.email,
-      age: profile.age,
-      gender: profile.gender,
-      nickName: profile.nickName,
-      phoneNumber: profile.phoneNumber,
+      email: email,
+      age: age,
+      gender: gender,
+      nickName: nickName,
+      phoneNumber: phoneNumber,
     );
   }
 
@@ -34,18 +38,18 @@ class InMatAccount {
   }
 }
 
-class Profile {
-  Profile({
-    required this.age,
-    required this.email,
-    required this.gender,
-    required this.nickName,
-    required this.phoneNumber,
-  });
-
-  int age;
-  String email;
-  String gender;
-  String nickName;
-  String phoneNumber;
-}
+// class Profile {
+//   Profile({
+//     required this.age,
+//     required this.email,
+//     required this.gender,
+//     required this.nickName,
+//     required this.phoneNumber,
+//   });
+//
+//   int age;
+//   String email;
+//   String gender;
+//   String nickName;
+//   String phoneNumber;
+// }

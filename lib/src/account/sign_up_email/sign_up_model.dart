@@ -148,7 +148,7 @@ class SignUpModel extends SignUpObject {
   checkID() async {
     if (!validUsername) {
       Message.showMessage("잘못된 아이디 형식 입니다. 영문 or 숫자 3 ~ 10 자");
-    }else{
+    } else {
       try {
         _canID = await InMatAccount.checkId(id: username);
       } on OverlappingAccount {
@@ -164,7 +164,7 @@ class SignUpModel extends SignUpObject {
   checkNickName() async {
     if (!validNickName) {
       Message.showMessage("잘못된 닉네임 형식 입니다. 한글 2자 ~ 8자");
-    }else{
+    } else {
       try {
         _canNickName = await InMatAccount.checkNickName(nickName: nickName);
       } on OverlappingNickName {
@@ -192,12 +192,11 @@ class SignUpModel extends SignUpObject {
       await InMatAccount.registerEmail(
         id: username,
         password: password,
-        profile: Profile(
-            email: email,
-            age: int.parse(age),
-            gender: gender,
-            nickName: nickName,
-            phoneNumber: "$phoneNumber1-$phoneNumber2-$phoneNumber3"),
+        email: email,
+        age: int.parse(age),
+        gender: gender,
+        nickName: nickName,
+        phoneNumber: "$phoneNumber1-$phoneNumber2-$phoneNumber3",
       );
       Message.showMessage('회원가입 성공');
     } on OverlappingAccount {

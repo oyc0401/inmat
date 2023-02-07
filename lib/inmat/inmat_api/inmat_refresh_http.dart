@@ -1,15 +1,16 @@
 // import 'dart:convert';
 //
 // import 'package:http/http.dart';
-// import 'package:inmat/inmat/auth/domain/model/token_model.dart';
 // import 'package:inmat/inmat/inmat_api/inmat_api.dart';
 // import 'package:inmat/inmat/inmat_library.dart';
 // import 'package:jwt_decode/jwt_decode.dart';
 //
 //
+// import '../models/token_model.dart';
 // import 'http_module.dart';
 // import 'inmat_exception.dart';
 // import '../auth/inmat_auth.dart';
+// import 'inmat_http.dart';
 //
 //
 // // enum Http { get, post, patch }

@@ -4,11 +4,16 @@ part 'profile_model.g.dart';
 
 part 'profile_model.freezed.dart';
 
+
+
+// part of 'inmat_models.dart';
+
+
 // $ flutter pub run build_runner build
 
 @freezed
-class ProfileModel with _$ProfileModel {
-  factory ProfileModel({
+class Profile with _$Profile {
+  factory Profile({
     required int userId,
     required String username,
     required String email,
@@ -17,8 +22,8 @@ class ProfileModel with _$ProfileModel {
     required int age,
     required String gender,
     required String? profileImgUrl,
-  }) = _ProfileModel;
+  }) = _Profile;
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$ProfileModelFromJson(json);
+  factory Profile.fromJson(Map<String, dynamic> json) =>
+      _$ProfileFromJson(json);
 }

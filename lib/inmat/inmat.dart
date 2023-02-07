@@ -1,4 +1,7 @@
-part of 'inmat_library.dart';
+// part of 'inmat_library.dart';
+
+import 'inmat_data.dart';
+import 'inmat_local.dart';
 
 class Inmat {
   Inmat._();
@@ -10,7 +13,6 @@ class Inmat {
   static InmatData get user {
     return _delegateData ??= InmatData(local);
   }
-
 
   static Future<void> initializeApp() async {
     await local.initialize();

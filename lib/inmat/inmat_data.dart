@@ -1,4 +1,10 @@
-part of 'inmat_library.dart';
+// part of 'inmat_library.dart';
+
+import 'auth/Inmat_token.dart';
+import 'inmat_api/inmat_exception.dart';
+import 'inmat_core_api.dart';
+import 'inmat_local_interface.dart';
+import 'models/profile_model.dart';
 
 class InmatData {
   InmatData(this.local);

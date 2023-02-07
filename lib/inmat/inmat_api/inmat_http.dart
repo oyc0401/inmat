@@ -1,11 +1,8 @@
-import 'dart:convert';
-
-import 'package:http/http.dart';
-import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/utils/mobile_id.dart';
 
 import 'http_module.dart';
 import 'inmat_exception.dart';
+
+enum Http { get, post, patch }
 
 
 class InMatHttp {

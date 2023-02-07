@@ -1,11 +1,13 @@
-import 'package:inmat/inmat/inmat_library.dart';
 
+import '../inmat.dart';
+import '../inmat_data.dart';
+import '../inmat_local.dart';
 import 'user_model.dart';
 
 import 'package:jwt_decode/jwt_decode.dart';
 
-import 'domain/model/profile_model.dart';
-import 'domain/model/token_model.dart';
+import '../models/profile_model.dart';
+import '../models/token_model.dart';
 import 'domain/service/get_token.dart';
 
 import '../inmat_api/inmat_api.dart';

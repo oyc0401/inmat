@@ -1,5 +1,5 @@
 import '../../../database/token_database.dart';
-import '../model/token_model.dart';
+import '../../../models/token_model.dart';
 
 
 
