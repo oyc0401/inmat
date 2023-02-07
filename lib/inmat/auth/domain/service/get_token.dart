@@ -6,16 +6,6 @@ import '../model/profile_model.dart';
 import '../model/token_model.dart';
 
 class GetToken {
-  static Future<TokenModel?> getTokenInDB() async {
-    TokenDataBase dataBase = TokenDataBase();
-    Map<String, dynamic> json = await dataBase.get();
-    if (json.isEmpty) {
-      return null;
-    } else {
-      TokenModel token = TokenModel.fromJson(json);
-      return token;
-    }
-  }
 
   static Future<ProfileModel> getProfile(String accessToken) async {
     Map<String, dynamic> map =

@@ -14,6 +14,7 @@ class Inmat {
   }
 
   static Future<void> initializeApp() async {
+    await user.tokenInitial();
     await user.initialize();
   }
 }

@@ -8,22 +8,24 @@ class InmatData {
   ProfileController profileController = ProfileController();
   AuthStatus authStatus = AuthStatus.guest;
   late String deviceIdentifier;
-  DataBaseHandler db = DataBaseHandler();
-
+  TokenDataBase dataBase = TokenDataBase();
 
   Future<void> initialize() async {
     return await _init();
   }
 
+  tokenInitial() async {
+    TokenModel? localToken = await dataBase.getLocalToken();
+    tokenController.set(localToken);
+  }
+
   Future<void> _init() async {
     deviceIdentifier = await MobileId.getMobileId();
-    // DB 에서 토큰 가져옴.
-    TokenModel? DBToken = await GetToken.getTokenInDB();
 
-    if (DBToken != null) {
+    if (tokenController.tokenIsEmpty) {
       try {
         TokenModel newToken =
-            await RefreshTokenIssue.getValidToken(DBToken, deviceIdentifier);
+            await RefreshTokenIssue.getValidToken(tokenController.token!, deviceIdentifier);
 
         ProfileModel profile = await GetToken.getProfile(newToken.accessToken);
 
@@ -36,7 +38,7 @@ class InmatData {
         print("InmatData: 토큰이 만료되었습니다.");
         // 토큰이 만료되었으면
         // DB 삭제
-        db.delete();
+        dataBase.delete();
 
         print("InmatData: 다시 로그인 해주세요.");
         // tokenController = TokenController();

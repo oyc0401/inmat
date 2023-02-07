@@ -31,7 +31,7 @@ class InmatAuth {
   }
 
   void signOut() {
-    data.db.delete();
+    data.dataBase.delete();
     data.tokenController.clear();
     data.profileController.clear();
   }
@@ -41,7 +41,7 @@ class InmatAuth {
     await GetToken.getTokenEmail(id, password, data.deviceIdentifier);
 
     data.tokenController.set(tokenModel);
-    await data.db.saveDBToken(tokenModel);
+    await data.dataBase.saveLocalToken(tokenModel);
 
     // jwt decode
     String token = tokenModel.accessToken;

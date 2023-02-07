@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 //   }
 // }
 
-class TokenDataBase {
+class DataBaseToken {
   Future<void> save(Map<String, dynamic> token) async {
     TokenDB db = await TokenDB.Instance();
     db.save(token);
