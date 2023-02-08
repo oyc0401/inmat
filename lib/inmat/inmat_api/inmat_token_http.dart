@@ -1,5 +1,4 @@
 import '../inmat.dart';
-import '../inmat_local.dart';
 import '../models/token_model.dart';
 import '../exception/inmat_exception.dart';
 import 'inmat_http.dart';
@@ -23,11 +22,11 @@ class InmatTokenHttp extends InMatHttp {
   @override
   dynamic execute() async {
     return await doubleCheckToken(() async {
-      InmatLocal local = Inmat.local;
-      Token token = await local.getValidToken();
+
+      Token token = await Inmat.local.getValidToken();
       super.token = token.accessToken;
       super.refreshToken = token.refreshToken;
-      super.deviceIdentifier = local.deviceIdentifier;
+      super.deviceIdentifier = Inmat.local.deviceIdentifier;
 
       return super.execute();
     });

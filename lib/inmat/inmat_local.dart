@@ -1,11 +1,11 @@
+import 'package:inmat/inmat/service/mobile_id.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
-import '../utils/mobile_id.dart';
-import 'service/database_handler.dart';
+import 'service/token_database_controller.dart';
 
-import 'inmat_api_core.dart';
 import 'inmat_local_interface.dart';
 import 'models/token_model.dart';
+import 'service/get_token.dart';
 
 class InmatLocal implements InmatLocalInterface {
   InmatLocal();
@@ -14,11 +14,16 @@ class InmatLocal implements InmatLocalInterface {
 
   Token? _token;
 
-  Token? get currentToken => _token;
-
   String _deviceIdentifier = "";
 
+  @override
+  Token? get currentToken => _token;
+
+  @override
   String get deviceIdentifier => _deviceIdentifier;
+
+  @override
+  bool get tokenIsEmpty => _token == null;
 
   @override
   void clearToken() {
@@ -27,19 +32,23 @@ class InmatLocal implements InmatLocalInterface {
   }
 
   @override
-  bool tokenIsEmpty() {
-    return _token == null;
-  }
-
-  void setToken(Token? model) {
+  void saveToken(Token? model) {
     _token = model;
+    if (model != null) {
+      dataBase.saveLocalToken(model);
+    } else {
+      dataBase.delete();
+    }
   }
 
   Future<void> _regenerateToken() async {
     assert(_token != null);
-    Token newToken = await InmatCoreApi.issueToken(_token!, _deviceIdentifier);
-    setToken(newToken);
+    Token newToken = await GetToken.issueToken(_token!, _deviceIdentifier);
+    saveToken(newToken);
     dataBase.saveLocalToken(newToken);
+
+
+
   }
 
   bool _isValid() {
@@ -48,7 +57,6 @@ class InmatLocal implements InmatLocalInterface {
     }
     DateTime? expiryDate = Jwt.getExpiryDate(_token!.accessToken);
 
-    // print(expiryDate);
     if (expiryDate == null) {
       throw Exception("토큰이 이상해요!");
     }
@@ -57,12 +65,12 @@ class InmatLocal implements InmatLocalInterface {
 
     Duration difference = expiryDate.difference(now);
 
-    // print('토큰 남은시간: $difference');
-
     return !difference.isNegative;
   }
 
+  @override
   Future<Token> getValidToken() async {
+    assert(_token != null);
     bool valid = _isValid();
 
     if (!valid) {
@@ -72,6 +80,7 @@ class InmatLocal implements InmatLocalInterface {
     return _token!;
   }
 
+  @override
   Future<void> initialize() async {
     return await _init();
   }
@@ -79,6 +88,8 @@ class InmatLocal implements InmatLocalInterface {
   Future<void> _init() async {
     _deviceIdentifier = await MobileId.getMobileId();
     Token? localToken = await dataBase.getLocalToken();
-    setToken(localToken);
+    saveToken(localToken);
   }
+
+
 }

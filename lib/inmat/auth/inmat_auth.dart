@@ -1,3 +1,4 @@
+import 'package:inmat/inmat/inmat_local_interface.dart';
 
 import '../inmat.dart';
 import '../inmat_data.dart';
@@ -13,19 +14,18 @@ import '../service/get_token.dart';
 import '../inmat_api/inmat_api_library.dart';
 
 class InmatAuth {
-  InmatAuth(this.data,this.local);
+  InmatAuth(this.data, this.local);
 
   InmatData data;
-  InmatLocal local;
+  InmatLocalInterface local;
 
-  static InmatAuth get instance => InmatAuth(Inmat.user,Inmat.local);
+  static InmatAuth get instance => InmatAuth(Inmat.user, Inmat.local);
 
   User? get currentUser {
-    if (local.tokenIsEmpty()) {
+    if (local.tokenIsEmpty) {
       return null;
     }
-    assert(data.profile != null &&
-        local.currentToken != null);
+    assert(data.profile != null && !local.tokenIsEmpty);
 
     return User(
       profileModel: data.profile!,
@@ -34,17 +34,15 @@ class InmatAuth {
   }
 
   void signOut() {
-    local.dataBase.delete();
     local.clearToken();
     data.clearProfile();
   }
 
   Future<void> signInEmail(String id, String password) async {
     Token tokenModel =
-    await GetToken.getTokenEmail(id, password, local.deviceIdentifier);
+        await GetToken.getTokenEmail(id, password, local.deviceIdentifier);
 
-    local.setToken(tokenModel);
-    await local.dataBase.saveLocalToken(tokenModel);
+    local.saveToken(tokenModel);
 
     // jwt decode
     String token = tokenModel.accessToken;
@@ -53,26 +51,9 @@ class InmatAuth {
 
     // [ExpirationAccessToken], [AccessDenied]등 의 예외가 있지만
     // 여기선 로그인 직후에 가져오는 것이라 생략한다.
-    Profile profile = await GetToken.getProfile(tokenModel.accessToken);
+    Profile profile = await GetToken.getProfile();
     data.setProfile(profile);
   }
-
-  // Future<void> regenerateToken() async {
-  //   Token? token = local.token;
-  //   if (token == null) {
-  //     throw Exception("토큰을 재발급 하려는데 현재 토큰이 없습니다.");
-  //   }
-  //
-  //   Map<String, dynamic> json = await InMatApi.auth.issue(
-  //     accessToken: token.accessToken,
-  //     refreshToken: token.refreshToken,
-  //     deviceIdentifier: data.deviceIdentifier,
-  //   );
-  //
-  //   Token newToken = Token.fromJson(json);
-  //
-  //   data.setToken(newToken);
-  // }
 
   Future<void> updateProfile({
     required int age,

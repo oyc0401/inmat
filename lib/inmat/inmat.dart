@@ -12,7 +12,7 @@ class Inmat {
 
   static InmatData? _delegateData;
 
-  static InmatLocal local = InmatLocal();
+  static InmatLocalInterface local = InmatLocal();
 
   static InmatData get user {
     return _delegateData ??= InmatData(local);
@@ -25,6 +25,6 @@ class Inmat {
 
   @visibleForTesting
   static Future<void> initialTest(Token token) async {
-    local.setToken(token);
+    local.saveToken(token);
   }
 }

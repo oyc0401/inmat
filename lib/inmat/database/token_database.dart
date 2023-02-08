@@ -1,20 +1,11 @@
-import 'single_database.dart';
+import 'package:inmat/inmat/database/single_database_platform.dart';
 
-class DataBaseToken {
-  final String key = "token_json";
+class DataBaseToken extends SingleDatabasePlatform {
+  DataBaseToken._(super.database);
 
-  Future<void> save(Map<String, dynamic> token) async {
-    SingleDatabase db = await SingleDatabase.instance(key);
-    db.save(token);
-  }
+  static const String key = "token_json";
 
-  Future<Map<String, dynamic>> get() async {
-    SingleDatabase db = await SingleDatabase.instance(key);
-    return db.get();
-  }
-
-  Future<void> delete() async {
-    SingleDatabase db = await SingleDatabase.instance(key);
-    db.delete();
+  static Future<DataBaseToken> instance() async {
+    return DataBaseToken._(await SingleDatabasePlatform.init(key));
   }
 }

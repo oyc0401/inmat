@@ -1,11 +1,10 @@
 import '../database/token_database.dart';
 import '../models/token_model.dart';
 
-class TokenDataBase{
-   final DataBaseToken _tokenDataBase = DataBaseToken();
-
+class TokenDataBase {
   Future<Token?> getLocalToken() async {
-    Map<String, dynamic> json = await _tokenDataBase.get();
+    final tokenDataBase = await DataBaseToken.instance();
+    Map<String, dynamic> json = tokenDataBase.read();
     if (json.isEmpty) {
       return null;
     } else {
@@ -15,10 +14,12 @@ class TokenDataBase{
   }
 
   Future<void> saveLocalToken(Token model) async {
-    _tokenDataBase.save(model.toJson());
+    final tokenDataBase = await DataBaseToken.instance();
+    tokenDataBase.save(model.toJson());
   }
 
   Future<void> delete() async {
-    await _tokenDataBase.delete();
+    final tokenDataBase = await DataBaseToken.instance();
+     tokenDataBase.delete();
   }
 }
