@@ -171,7 +171,7 @@ class LogOutButton extends StatelessWidget {
         color: Colors.redAccent,
         child: const Text("로그아웃"),
         onPressed: () {
-          InmatAuth.instance.signOut();
+          InmatAuth.instance.logout();
           Provider.of<ProfileViewModel>(context, listen: false).logout();
         },
       ),

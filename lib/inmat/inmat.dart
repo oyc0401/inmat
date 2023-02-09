@@ -1,6 +1,4 @@
-// part of 'inmat_library.dart';
-
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
 import 'inmat_data.dart';
 import 'inmat_local.dart';

@@ -21,6 +21,7 @@ class InmatLocalInterface {
   /// 현재 토큰을 준다.
   /// 토큰이 만료되었으면 새로 토큰을 발급해서 준다.
   /// 토큰이 현재 존재한다고 가정을 한다. 토큰이 비어있으면 오류가 발생한다.
+  /// 토큰이 만료되지 않았어도 서버에 보내는 시간동안 만료될 수 있으니 주의해야한다.
   /// If token has been validated, issue new token
   Future<Token> getValidToken() async {
     throw UnimplementedError();
@@ -39,7 +40,7 @@ class InmatLocalInterface {
     throw UnimplementedError();
   }
 
-  /// 만료되었는지 알 수 없는 현재 토큰을 준다.
+  /// 현재 토큰을 준다. 만료되었는지 알 수 없다.
   Token? get currentToken {
     throw UnimplementedError();
   }

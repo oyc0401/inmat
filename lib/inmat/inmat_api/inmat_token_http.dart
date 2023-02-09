@@ -22,10 +22,12 @@ class InmatTokenHttp extends InMatHttp {
   @override
   dynamic execute() async {
     return await doubleCheckToken(() async {
+      if (!Inmat.local.tokenIsEmpty) {
+        Token token = await Inmat.local.getValidToken();
+        super.token = token.accessToken;
+        super.refreshToken = token.refreshToken;
+      }
 
-      Token token = await Inmat.local.getValidToken();
-      super.token = token.accessToken;
-      super.refreshToken = token.refreshToken;
       super.deviceIdentifier = Inmat.local.deviceIdentifier;
 
       return super.execute();

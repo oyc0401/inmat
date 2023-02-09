@@ -50,6 +50,16 @@ class AuthApi {
     return await inMatHttp.execute();
   }
 
+  ///로그아웃 API
+  Future<Map<String, dynamic>> logout() async {
+    InmatTokenHttp inMatHttp = InmatTokenHttp(
+      Http.delete,
+      message: "로그아웃",
+      path: "/auth/logout",
+    );
+    return await inMatHttp.execute();
+  }
+
   ///회원 가입 API
   Future<void> registerEmail({
     required String id,

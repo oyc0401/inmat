@@ -33,9 +33,10 @@ class InmatAuth {
     );
   }
 
-  void signOut() {
+  Future<void> logout() async {
     local.clearToken();
     data.clearProfile();
+    await InmatApi.auth.logout();
   }
 
   Future<void> signInEmail(String id, String password) async {
