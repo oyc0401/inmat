@@ -16,7 +16,7 @@ class Inmat {
     return _delegateData ??= InmatData(local);
   }
 
-  static Future<void> initializeApp() async {
+  static Future<void> initialize() async {
     await local.initialize();
     await user.initialize();
   }

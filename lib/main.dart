@@ -20,7 +20,7 @@ import 'src/navigator/NavigatePage.dart';
 void main() async {
   // DB에서 유저 정보 가져오기
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  await Inmat.initializeApp();
+  await Inmat.initialize();
 
   runApp(const MyApp());
 }
