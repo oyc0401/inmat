@@ -5,7 +5,7 @@ import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 
 void main() {
   group("auth api 테스트", () {
-    const String testId = "flutter1";
+    const String testId = "test123";
     const String testPassword = "qwe12345&&";
     const String testDeviceIdentifier = "dart_pad";
 
