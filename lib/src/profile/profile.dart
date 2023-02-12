@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/inmat.dart';
+import 'package:inmat/inmat/models/token_model.dart';
 import 'package:inmat/utils/inmat_colors.dart';
+import 'package:inmat/utils/navigator_context.dart';
 import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
@@ -68,6 +71,33 @@ class _ProfilePageState extends State<ProfilePage> {
                   : Container(),
               SizedBox(
                 height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CupertinoButton(
+                  color: Colors.orangeAccent,
+                  child: const Text("토큰 만료 시키기"),
+                  onPressed: () {
+                    Token testToken = Token(
+                      accessToken:
+                          "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbHV0dGVyMSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NzUyNTg2Nzd9.cz_hPcfxRmGbxjLAFhus7Q-_GhL5oZ5bSgzecNV95pF82fvTpB_KJ9p-Etnj3IdSMU6U-3iyfASmZUvhBeWdZQ",
+                      refreshToken:
+                          "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbHV0dGVyMSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NzUyNzEyMTd9.Rn_qBBydqgHDeEKvk0__T8iSvUYDrzqgjFEGv2nMF-NSegCNR_-L382zLIJppP0dSh_BIa22WZQlAjy07oJdsg",
+                    );
+                    Inmat.testInitial(testToken);
+
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CupertinoButton(
+                  color: Colors.purple,
+                  child: const Text("context 출력"),
+                  onPressed: () {
+                    print('context: ${NavigatorContext.context.hashCode}');
+                  },
+                ),
               ),
             ],
           ),

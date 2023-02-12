@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
+import 'package:inmat/utils/on_resign_in.dart';
+import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 
 import '../main/providers/community_view_model.dart';
@@ -27,10 +30,17 @@ class _WritePostState extends State<WritePost> {
             onPressed: () async {
               if (title != '' && content != '') {
                 /// ToDo 게시글 새로고침이 여기에도 있네여
-                await InmatApi.community
-                    .writePost(title: title, content: content);
-                Provider.of<CommunityViewModel>(context, listen: false).init();
-                Navigator.pop(context);
+                InmatApi.community
+                    .writePost(title: title, content: content)
+                    .onRefreshDenied(() {
+                  OnReSignIn.reSignIn(context);
+                }).onError((error) {
+                  OnReSignIn.onError(error);
+                }).execute((value) {
+                  Provider.of<CommunityViewModel>(context, listen: false)
+                      .init(context);
+                  Navigator.pop(context);
+                });
               } else {
                 _showDialog();
               }

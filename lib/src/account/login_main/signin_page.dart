@@ -29,13 +29,13 @@ class _SignInMainPageState extends State<SignInMainPage> {
         iconTheme: const IconThemeData(
           color: Colors.black, //색변경
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-            // 뒤로가기 버튼 누르면 이동하는 곳
-          },
-        ),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back_ios),
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //     // 뒤로가기 버튼 누르면 이동하는 곳
+        //   },
+        // ),
       ),
       body: SafeArea(
         child: Padding(

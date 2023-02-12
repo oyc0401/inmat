@@ -39,6 +39,11 @@ class InmatAuth {
     await InmatApi.auth.logout();
   }
 
+  void resignIn()  {
+    local.clearToken();
+    data.clearProfile();
+  }
+
   Future<void> signInEmail(String id, String password) async {
     Token tokenModel =
         await GetToken.getTokenEmail(id, password, local.deviceIdentifier);

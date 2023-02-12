@@ -2,14 +2,16 @@ part of '../inmat_api_library.dart';
 
 class InmatRestaurantApi {
   ///홈화면 조회 API
-  Future<Map<String, dynamic>> getHome() async {
+  InmatCatchException<Map<String, dynamic>> getHome([BuildContext? coco]) {
     InmatTokenHttp http = InmatTokenHttp(
       Http.get,
       message: "홈 화면 불러오기",
       path: "/restaurants",
     );
+     return InmatCatchException.basic(() async {
+      return await http.execute();
+    });
 
-    return await http.execute();
   }
 
   ///음식점 상세 조회 API

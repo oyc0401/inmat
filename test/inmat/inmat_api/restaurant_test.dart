@@ -36,24 +36,28 @@ void main() {
     });
 
     test("홈화면 불러오기", () async {
-      Map<String, dynamic> json = await InmatApi.restaurant.getHome();
+      InmatApi.restaurant.getHome()
+          .onError((error) => null)
+          .onRefreshDenied(() {})
+          .execute((json) {
+        HomeModelJson jsonModel = HomeModelJson.fromJson(json);
 
-      HomeModelJson jsonModel = HomeModelJson.fromJson(json);
+        List<BannerModel> banners =
+        jsonModel.bannerList.map((e) => BannerModel.fromJson(e)).toList();
 
-      List<BannerModel> banners =
-          jsonModel.bannerList.map((e) => BannerModel.fromJson(e)).toList();
+        List<TodayModel> todays = jsonModel.todayRecommendList
+            .map((e) => TodayModel.fromJson(e))
+            .toList();
 
-      List<TodayModel> todays = jsonModel.todayRecommendList
-          .map((e) => TodayModel.fromJson(e))
-          .toList();
+        List<ReviewModel> reviews = jsonModel.recentReviewList
+            .map((e) => ReviewModel.fromJson(e))
+            .toList();
 
-      List<ReviewModel> reviews = jsonModel.recentReviewList
-          .map((e) => ReviewModel.fromJson(e))
-          .toList();
+        List<RestaurantModel> restaurants = jsonModel.restaurantList
+            .map((e) => RestaurantModel.fromJson(e))
+            .toList();
+      });
 
-      List<RestaurantModel> restaurants = jsonModel.restaurantList
-          .map((e) => RestaurantModel.fromJson(e))
-          .toList();
     });
 
 // Registers a function to be run before tests

@@ -9,19 +9,8 @@ class PostModel {
   final ContentModel post;
   final List<CommentModel> comments;
 
-  static Future<PostModel> getPost(int id) async {
-    Map<String, dynamic> json = await InmatApi.community.getPost(id);
 
-    ContentModel contentModel = ContentModel.fromJson(json);
-    print('ContentModel.fromJson(json)');
-
-    List<CommentModel> comments = _parseComment(
-        contentModel.commentInfoDtoList);
-
-    return PostModel._(contentModel, comments);
-  }
-
-  static List<CommentModel> _parseComment(List commentsMap) {
+  static List<CommentModel> parseComment(List commentsMap) {
     List lili=[];
 
     // print(commentsMap[0]);

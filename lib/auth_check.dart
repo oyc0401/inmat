@@ -9,6 +9,7 @@ import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/auth/user.dart';
 import 'package:inmat/inmat/inmat_data.dart';
 import 'package:inmat/utils/inmat_colors.dart';
+import 'package:inmat/utils/navigator_context.dart';
 
 import 'package:ios_utsname_ext/extension.dart';
 
@@ -31,6 +32,9 @@ class AuthCheck extends StatefulWidget {
 class _AuthCheckState extends State<AuthCheck> {
   @override
   Widget build(BuildContext context) {
+
+    NavigatorContext.setContext(Navigator.of(context).context);
+
     User? user = InmatAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(

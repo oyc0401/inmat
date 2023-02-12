@@ -3,6 +3,7 @@ import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/auth/user.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 import 'package:inmat/inmat/exception/inmat_exception.dart';
+import 'package:inmat/utils/on_resign_in.dart';
 import 'package:inmat/utils/toast.dart';
 
 import '../domain/models/comment_model.dart';
@@ -10,12 +11,11 @@ import '../domain/models/content_model.dart';
 import '../domain/service/post_model.dart';
 
 class PostViewModel with ChangeNotifier {
-  PostViewModel(this._id) {
-    init();
+  PostViewModel(this._id,BuildContext context) {
+    init(context);
   }
 
   final int _id;
-  late PostModel _postModel;
   bool complete = false;
 
   late bool isHeart;
@@ -24,13 +24,15 @@ class PostViewModel with ChangeNotifier {
 
   String _writtenComment = "";
 
-  ContentModel get content => _postModel.post;
+  late ContentModel _content;
 
-  List<CommentModel> get comments => _postModel.comments;
+  ContentModel get content => _content;
 
-  void writeComment() {
+  List<CommentModel> _comments = [];
 
+  List<CommentModel> get comments => _comments;
 
+  void writeComment(BuildContext context) {
     User user = InmatAuth.instance.currentUser!;
     comments.add(CommentModel(
         commentId: 00,
@@ -45,47 +47,58 @@ class PostViewModel with ChangeNotifier {
         myLike: false));
     notifyListeners();
 
-    try {
-      InmatApi.community.writeComment(_id, _writtenComment);
-      _writtenComment='';
-    } on DataBaseFailed {
+    InmatApi.community.writeComment(_id, _writtenComment).onRefreshDenied(() {
+      OnReSignIn.reSignIn(context);
+    }).onDataBaseFailed(() {
       Message.showMessage('게시물이 삭제 되었습니다.');
       print("없는 게시물 입니다.");
-    } catch (e) {
-      print('PostViewModel: $e');
-    }
-
-    // _postModel.comments.add(CommentModel(commentId: commentId, nickName: nickName, profileImgUrl: profileImgUrl, contents: contents, countCommentLike: countCommentLike, createdAt: createdAt, groupNumber: groupNumber, parentId: parentId, checkUpdated: checkUpdated, myLike: myLike));
+    }).onError((error) {
+      OnReSignIn.onError(error);
+    }).execute((value) {
+      _writtenComment = '';
+    });
   }
 
-  clickHeart() {
+  void clickHeart(BuildContext context) {
     if (isHeart) {
       isHeart = false;
       heartCount--;
-      InmatApi.community.deleteHeart(_id);
+      InmatApi.community.deleteHeart(_id).onRefreshDenied(() {
+        OnReSignIn.reSignIn(context);
+      }).onError((error) {
+        OnReSignIn.onError(error);
+      }).execute((value) => null);
     } else {
       isHeart = true;
       heartCount++;
-      InmatApi.community.setHeart(_id);
+      InmatApi.community.setHeart(_id).onRefreshDenied(() {
+        OnReSignIn.reSignIn(context);
+      }).onError((error) {
+        OnReSignIn.onError(error);
+      }).execute((value) => null);
     }
     notifyListeners();
   }
 
   void setText(String comment) => _writtenComment = comment;
 
-  init() async {
-    try {
-      _postModel = await PostModel.getPost(_id);
-      isHeart = _postModel.post.myLike;
-      commentCount = _postModel.post.countPostLike;
-      heartCount = _postModel.post.countPostLike;
+  init(BuildContext context) async {
+    await InmatApi.community.getPost(_id).onRefreshDenied(() {
+      OnReSignIn.reSignIn(context);
+    }).onError((error) {
+      OnReSignIn.onError(error);
+    }).execute((json) {
+      _content = ContentModel.fromJson(json);
+      print('ContentModel.fromJson(json)');
+
+      _comments = PostModel.parseComment(content.commentInfoDtoList);
+
+      isHeart = _content.myLike;
+      commentCount = _content.countPostLike;
+      heartCount = _content.countPostLike;
       complete = true;
+
       notifyListeners();
-    } on DataBaseFailed {
-      Message.showMessage('게시물이 삭제 되었습니다.');
-      print("없는 게시물 입니다.");
-    } catch (e) {
-      print(e);
-    }
+    });
   }
 }
