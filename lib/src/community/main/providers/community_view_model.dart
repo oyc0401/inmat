@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:inmat/inmat/exception/inmat_exception.dart';
 
 
 import 'package:inmat/src/community/view/screens/post_view.dart';
@@ -18,8 +19,16 @@ class CommunityViewModel with ChangeNotifier {
   List<PostThumbModel> get posts => _posts;
 
   init() async {
-    _posts = await CommunityModel.getPosts();
+     CommunityModel.getPosts().then((value)  {
+    _posts=value;
     success = true;
+    }).onError((error, stackTrace)  {
+      print(error);
+     }).catchError((){
+
+       print("캐치");
+     });
+
     notifyListeners();
   }
 
