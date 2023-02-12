@@ -20,7 +20,7 @@ void main() {
       );
 
       testToken = Token.fromJson(json);
-      Inmat.initialTest(testToken);
+      Inmat.testInitial(testToken);
     });
 
     test("서명된 url 얻기", () async {

@@ -89,7 +89,7 @@ class InMatHttp {
           throw DataBaseFailed();
         default:
           throw Exception(
-              'Failed to $message: ${response['code']}, ${response['message']}');
+              'Failed to $message: status: ${response['code']}, message: ${response['message']}');
 
         // Failed to 게시글 삭제: 3200, 게시글 삭제에 실패하였습니다.
       }

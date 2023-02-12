@@ -1,5 +1,3 @@
-
-
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +18,12 @@ import 'src/navigator/NavigatePage.dart';
 void main() async {
   // DB에서 유저 정보 가져오기
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  await Inmat.initialize();
+  Token testToken = Token(
+    accessToken: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbHV0dGVyMSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NzUyNTg2Nzd9.cz_hPcfxRmGbxjLAFhus7Q-_GhL5oZ5bSgzecNV95pF82fvTpB_KJ9p-Etnj3IdSMU6U-3iyfASmZUvhBeWdZQ",
+    refreshToken: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbHV0dGVyMSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NzUyNzEyMTd9.Rn_qBBydqgHDeEKvk0__T8iSvUYDrzqgjFEGv2nMF-NSegCNR_-L382zLIJppP0dSh_BIa22WZQlAjy07oJdsg",
+  );
+  Inmat.testInitial(testToken);
+  // await Inmat.initialize();
 
   runApp(const MyApp());
 }
@@ -37,10 +40,11 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: '인맛',
-        builder: (context, child) => MediaQuery(
-          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-          child: child!,
-        ),
+        builder: (context, child) =>
+            MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: child!,
+            ),
         theme: ThemeData(
           fontFamily: 'Binggrae2',
           useMaterial3: true,
@@ -55,8 +59,6 @@ class MyApp extends StatelessWidget {
   }
 
   Widget productMode() {
-
-
     switch (Inmat.user.authStatus) {
       case AuthStatus.user:
         return const NavigatePage();
@@ -65,8 +67,6 @@ class MyApp extends StatelessWidget {
         return const SignInMainPage();
     }
   }
-
-
 
 
 }

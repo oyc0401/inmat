@@ -2,13 +2,16 @@ part of '../inmat_api_library.dart';
 
 class InmatCommunityApi {
   ///커뮤니티 조회 API
-  Future<List<Map>> getPosts() async {
+  InmatApiException<List<Map>> getPosts() {
     InmatTokenHttp http = InmatTokenHttp(
       Http.get,
       message: "커뮤니티 불러오기",
       path: "/communities",
     );
-    return (await http.execute()).cast<Map>();
+
+    return InmatApiException(() async {
+      return await (await http.execute()).cast<Map>();
+    });
   }
 
   ///특정 게시물 조회 API

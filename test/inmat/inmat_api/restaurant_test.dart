@@ -32,7 +32,7 @@ void main() {
       );
 
       testToken = Token.fromJson(json);
-      Inmat.initialTest(testToken);
+      Inmat.testInitial(testToken);
     });
 
     test("홈화면 불러오기", () async {

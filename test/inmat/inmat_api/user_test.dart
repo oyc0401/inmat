@@ -29,7 +29,7 @@ void main() {
       );
 
       testToken = Token.fromJson(json);
-      Inmat.initialTest(testToken);
+      Inmat.testInitial(testToken);
     });
 
     test("로그인", () async {

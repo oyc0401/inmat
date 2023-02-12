@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:inmat/inmat/models/profile_model.dart';
 
 import 'inmat_data.dart';
 import 'inmat_local.dart';
@@ -21,8 +22,20 @@ class Inmat {
     await user.initialize();
   }
 
-  @visibleForTesting
-  static Future<void> initialTest(Token token) async {
+  static Future<void> testInitial(Token token) async {
     local.saveToken(token);
+    user.setProfile(
+      Profile(
+        userId: 34,
+        username: "username",
+        email: "email",
+        phoneNumber: "phoneNumber",
+        nickName: "nickName",
+        age: 2,
+        gender: "gender",
+        profileImgUrl: "profileImgUrl",
+      ),
+    );
+    user.authStatus=AuthStatus.user;
   }
 }
