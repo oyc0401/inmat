@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'post_thumb_data.dart';
+part of 'community_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PostThumbModel _$$_PostThumbModelFromJson(Map<String, dynamic> json) =>
-    _$_PostThumbModel(
+_$_CommunityModel _$$_CommunityModelFromJson(Map<String, dynamic> json) =>
+    _$_CommunityModel(
       postId: json['postId'] as int,
       nickName: json['nickName'] as String,
       topic: json['topic'] as String,
@@ -18,7 +18,7 @@ _$_PostThumbModel _$$_PostThumbModelFromJson(Map<String, dynamic> json) =>
       imgUrl: json['imgUrl'] as String?,
     );
 
-Map<String, dynamic> _$$_PostThumbModelToJson(_$_PostThumbModel instance) =>
+Map<String, dynamic> _$$_CommunityModelToJson(_$_CommunityModel instance) =>
     <String, dynamic>{
       'postId': instance.postId,
       'nickName': instance.nickName,

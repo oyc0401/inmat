@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inmat/inmat/exception/inmat_exception.dart';
 
-import 'package:inmat/src/community/screens/post_view.dart';
-import 'package:inmat/src/community/screens/write_post.dart';
+import 'package:inmat/src/community/screens/view.dart';
+import 'package:inmat/src/community/screens/write.dart';
 import 'package:inmat/utils/on_resign_in.dart';
 import 'package:inmat/utils/toast.dart';
 
 import '../../../inmat/inmat_api/inmat_api_library.dart';
-import '../models/post_thumb_data.dart';
+import '../models/community_model.dart';
 
 
 class CommunityViewModel with ChangeNotifier {
@@ -15,18 +15,18 @@ class CommunityViewModel with ChangeNotifier {
     init();
   }
 
-  late List<PostThumbModel> _posts;
+  late List<CommunityModel> _posts;
   bool success = false;
 
-  List<PostThumbModel> get posts => _posts;
+  List<CommunityModel> get posts => _posts;
 
   init() async {
    await InmatApi.community.getPosts()
         .execute((list) {
-      List<PostThumbModel> value = [];
+      List<CommunityModel> value = [];
       for (var map in list) {
         value.add(
-          PostThumbModel.fromJson(map),
+          CommunityModel.fromJson(map),
         );
       }
       _posts = value;

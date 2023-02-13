@@ -1,13 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'post_thumb_data.g.dart';
-part 'post_thumb_data.freezed.dart';
+part 'community_model.g.dart';
+part 'community_model.freezed.dart';
 
 // $ flutter pub run build_runner build
 
 @freezed
-class PostThumbModel with _$PostThumbModel {
-  factory PostThumbModel({
+class CommunityModel with _$CommunityModel {
+  factory CommunityModel({
     required int postId,
     required String nickName,
     required String topic,
@@ -16,8 +16,8 @@ class PostThumbModel with _$PostThumbModel {
     required int countComment,
     required String createdAt,
     required String? imgUrl,
-  }) = _PostThumbModel;
+  }) = _CommunityModel;
 
-  factory PostThumbModel.fromJson(Map<String, dynamic> json) =>
-      _$PostThumbModelFromJson(json);
+  factory CommunityModel.fromJson(Map<String, dynamic> json) =>
+      _$CommunityModelFromJson(json);
 }

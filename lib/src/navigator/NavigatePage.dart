@@ -9,7 +9,7 @@ import '../search/screens/search.dart';
 
 import '../spinner/RandomFoodSelect.dart';
 
-import '../community/screens/community_main.dart';
+import '../community/screens/community.dart';
 import '../community/providers/community_view_model.dart';
 
 import '../profile/profile.dart';

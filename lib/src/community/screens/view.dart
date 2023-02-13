@@ -13,9 +13,9 @@ import 'package:provider/provider.dart';
 import '../providers/community_view_model.dart';
 import '../models/content_model.dart';
 import '../providers/post_view_model.dart';
-import '../widgets/Comment.dart';
-import '../widgets/comment_text_form.dart';
-import '../widgets/contents.dart';
+import '../widgets/view.comment.dart';
+import '../widgets/view.comment_text_form.dart';
+import '../widgets/view.contents.dart';
 
 class MyBehavior extends ScrollBehavior {
   @override

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'post_thumb_data.dart';
+part of 'community_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PostThumbModel _$PostThumbModelFromJson(Map<String, dynamic> json) {
-  return _PostThumbModel.fromJson(json);
+CommunityModel _$CommunityModelFromJson(Map<String, dynamic> json) {
+  return _CommunityModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PostThumbModel {
+mixin _$CommunityModel {
   int get postId => throw _privateConstructorUsedError;
   String get nickName => throw _privateConstructorUsedError;
   String get topic => throw _privateConstructorUsedError;
@@ -31,15 +31,15 @@ mixin _$PostThumbModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PostThumbModelCopyWith<PostThumbModel> get copyWith =>
+  $CommunityModelCopyWith<CommunityModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PostThumbModelCopyWith<$Res> {
-  factory $PostThumbModelCopyWith(
-          PostThumbModel value, $Res Function(PostThumbModel) then) =
-      _$PostThumbModelCopyWithImpl<$Res, PostThumbModel>;
+abstract class $CommunityModelCopyWith<$Res> {
+  factory $CommunityModelCopyWith(
+          CommunityModel value, $Res Function(CommunityModel) then) =
+      _$CommunityModelCopyWithImpl<$Res, CommunityModel>;
   @useResult
   $Res call(
       {int postId,
@@ -53,9 +53,9 @@ abstract class $PostThumbModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PostThumbModelCopyWithImpl<$Res, $Val extends PostThumbModel>
-    implements $PostThumbModelCopyWith<$Res> {
-  _$PostThumbModelCopyWithImpl(this._value, this._then);
+class _$CommunityModelCopyWithImpl<$Res, $Val extends CommunityModel>
+    implements $CommunityModelCopyWith<$Res> {
+  _$CommunityModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -112,11 +112,11 @@ class _$PostThumbModelCopyWithImpl<$Res, $Val extends PostThumbModel>
 }
 
 /// @nodoc
-abstract class _$$_PostThumbModelCopyWith<$Res>
-    implements $PostThumbModelCopyWith<$Res> {
-  factory _$$_PostThumbModelCopyWith(
-          _$_PostThumbModel value, $Res Function(_$_PostThumbModel) then) =
-      __$$_PostThumbModelCopyWithImpl<$Res>;
+abstract class _$$_CommunityModelCopyWith<$Res>
+    implements $CommunityModelCopyWith<$Res> {
+  factory _$$_CommunityModelCopyWith(
+          _$_CommunityModel value, $Res Function(_$_CommunityModel) then) =
+      __$$_CommunityModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -131,11 +131,11 @@ abstract class _$$_PostThumbModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PostThumbModelCopyWithImpl<$Res>
-    extends _$PostThumbModelCopyWithImpl<$Res, _$_PostThumbModel>
-    implements _$$_PostThumbModelCopyWith<$Res> {
-  __$$_PostThumbModelCopyWithImpl(
-      _$_PostThumbModel _value, $Res Function(_$_PostThumbModel) _then)
+class __$$_CommunityModelCopyWithImpl<$Res>
+    extends _$CommunityModelCopyWithImpl<$Res, _$_CommunityModel>
+    implements _$$_CommunityModelCopyWith<$Res> {
+  __$$_CommunityModelCopyWithImpl(
+      _$_CommunityModel _value, $Res Function(_$_CommunityModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,7 +150,7 @@ class __$$_PostThumbModelCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? imgUrl = freezed,
   }) {
-    return _then(_$_PostThumbModel(
+    return _then(_$_CommunityModel(
       postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
@@ -189,8 +189,8 @@ class __$$_PostThumbModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PostThumbModel implements _PostThumbModel {
-  _$_PostThumbModel(
+class _$_CommunityModel implements _CommunityModel {
+  _$_CommunityModel(
       {required this.postId,
       required this.nickName,
       required this.topic,
@@ -200,8 +200,8 @@ class _$_PostThumbModel implements _PostThumbModel {
       required this.createdAt,
       required this.imgUrl});
 
-  factory _$_PostThumbModel.fromJson(Map<String, dynamic> json) =>
-      _$$_PostThumbModelFromJson(json);
+  factory _$_CommunityModel.fromJson(Map<String, dynamic> json) =>
+      _$$_CommunityModelFromJson(json);
 
   @override
   final int postId;
@@ -222,14 +222,14 @@ class _$_PostThumbModel implements _PostThumbModel {
 
   @override
   String toString() {
-    return 'PostThumbModel(postId: $postId, nickName: $nickName, topic: $topic, contents: $contents, countPostLike: $countPostLike, countComment: $countComment, createdAt: $createdAt, imgUrl: $imgUrl)';
+    return 'CommunityModel(postId: $postId, nickName: $nickName, topic: $topic, contents: $contents, countPostLike: $countPostLike, countComment: $countComment, createdAt: $createdAt, imgUrl: $imgUrl)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PostThumbModel &&
+            other is _$_CommunityModel &&
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.nickName, nickName) ||
                 other.nickName == nickName) &&
@@ -253,19 +253,19 @@ class _$_PostThumbModel implements _PostThumbModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PostThumbModelCopyWith<_$_PostThumbModel> get copyWith =>
-      __$$_PostThumbModelCopyWithImpl<_$_PostThumbModel>(this, _$identity);
+  _$$_CommunityModelCopyWith<_$_CommunityModel> get copyWith =>
+      __$$_CommunityModelCopyWithImpl<_$_CommunityModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PostThumbModelToJson(
+    return _$$_CommunityModelToJson(
       this,
     );
   }
 }
 
-abstract class _PostThumbModel implements PostThumbModel {
-  factory _PostThumbModel(
+abstract class _CommunityModel implements CommunityModel {
+  factory _CommunityModel(
       {required final int postId,
       required final String nickName,
       required final String topic,
@@ -273,10 +273,10 @@ abstract class _PostThumbModel implements PostThumbModel {
       required final int countPostLike,
       required final int countComment,
       required final String createdAt,
-      required final String? imgUrl}) = _$_PostThumbModel;
+      required final String? imgUrl}) = _$_CommunityModel;
 
-  factory _PostThumbModel.fromJson(Map<String, dynamic> json) =
-      _$_PostThumbModel.fromJson;
+  factory _CommunityModel.fromJson(Map<String, dynamic> json) =
+      _$_CommunityModel.fromJson;
 
   @override
   int get postId;
@@ -296,6 +296,6 @@ abstract class _PostThumbModel implements PostThumbModel {
   String? get imgUrl;
   @override
   @JsonKey(ignore: true)
-  _$$_PostThumbModelCopyWith<_$_PostThumbModel> get copyWith =>
+  _$$_CommunityModelCopyWith<_$_CommunityModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

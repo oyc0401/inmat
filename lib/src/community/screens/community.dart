@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:inmat/widgets/ink_button.dart';
 
 import '../providers/community_view_model.dart';
-import '../widgets/post_thumb.dart';
+import '../widgets/community.post_thumb.dart';
 
 class Community extends StatelessWidget {
   const Community({Key? key}) : super(key: key);

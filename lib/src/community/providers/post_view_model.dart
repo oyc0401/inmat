@@ -8,7 +8,7 @@ import 'package:inmat/utils/toast.dart';
 
 import '../models/comment_model.dart';
 import '../models/content_model.dart';
-import '../view/domain/service/post_model.dart';
+
 
 class PostViewModel with ChangeNotifier {
   PostViewModel(this._id, BuildContext context) {
