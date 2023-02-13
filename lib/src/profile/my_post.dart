@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 import 'package:inmat/widgets/shelf.dart';
 
-import '../community/view/screens/post_view.dart';
+import '../community/screens/post_view.dart';
 
 class MyPost extends StatefulWidget {
   const MyPost({Key? key}) : super(key: key);

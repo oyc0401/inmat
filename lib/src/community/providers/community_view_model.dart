@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inmat/inmat/exception/inmat_exception.dart';
 
-import 'package:inmat/src/community/view/screens/post_view.dart';
-import 'package:inmat/src/community/write/write_post.dart';
+import 'package:inmat/src/community/screens/post_view.dart';
+import 'package:inmat/src/community/screens/write_post.dart';
 import 'package:inmat/utils/on_resign_in.dart';
 import 'package:inmat/utils/toast.dart';
 
-import '../../../../inmat/inmat_api/inmat_api_library.dart';
-import '../../models/post_thumb_data.dart';
-import '../service/post_api.dart';
+import '../../../inmat/inmat_api/inmat_api_library.dart';
+import '../models/post_thumb_data.dart';
+
 
 class CommunityViewModel with ChangeNotifier {
   CommunityViewModel() {

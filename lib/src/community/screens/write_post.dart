@@ -6,7 +6,7 @@ import 'package:inmat/utils/on_resign_in.dart';
 import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 
-import '../main/providers/community_view_model.dart';
+import '../providers/community_view_model.dart';
 
 class WritePost extends StatefulWidget {
   WritePost({Key? key}) : super(key: key);

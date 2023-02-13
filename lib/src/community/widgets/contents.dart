@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/widgets/shelf.dart';
 
-import '../../widgets/count_icon.dart';
+import 'count_icon.dart';
 
 class ContentWidget extends StatelessWidget {
   const ContentWidget({

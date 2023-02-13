@@ -6,9 +6,9 @@ import 'package:inmat/inmat/exception/inmat_exception.dart';
 import 'package:inmat/utils/on_resign_in.dart';
 import 'package:inmat/utils/toast.dart';
 
-import '../domain/models/comment_model.dart';
-import '../domain/models/content_model.dart';
-import '../domain/service/post_model.dart';
+import '../models/comment_model.dart';
+import '../models/content_model.dart';
+import '../view/domain/service/post_model.dart';
 
 class PostViewModel with ChangeNotifier {
   PostViewModel(this._id, BuildContext context) {
@@ -75,7 +75,7 @@ class PostViewModel with ChangeNotifier {
       _content = ContentModel.fromJson(json);
       print('ContentModel.fromJson(json)');
 
-      _comments = PostModel.parseComment(content.commentInfoDtoList);
+      _comments = parseComment(content.commentInfoDtoList);
 
       isHeart = _content.myLike;
       commentCount = _content.countPostLike;
@@ -84,5 +84,33 @@ class PostViewModel with ChangeNotifier {
 
       notifyListeners();
     });
+  }
+
+
+  List<CommentModel> parseComment(List commentsMap) {
+    List lili=[];
+
+    // print(commentsMap[0]);
+
+    for(List listMap in commentsMap){
+      for(Map<String, dynamic> map in listMap){
+        lili.add(map);
+      }
+    }
+    // print('a');
+
+    //
+    // List<Map<String, dynamic>> maps = commentsMap.cast<Map<String, dynamic>>();
+
+
+    // print(maps);
+    // maps.map((data) {
+    //   print(data);
+    // }).toList();
+
+    List<CommentModel> comments =
+    lili.map((data) => CommentModel.fromJson(data)).toList();
+    print('CommentModel.fromJson(data)).toList()');
+    return comments;
   }
 }

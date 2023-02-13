@@ -6,7 +6,7 @@ import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/inmat_data.dart';
 
 import 'package:inmat/manager/add_restaurant.dart';
-import 'package:inmat/src/community/main/providers/community_view_model.dart';
+import 'package:inmat/src/community/providers/community_view_model.dart';
 import 'package:provider/provider.dart';
 
 import 'auth_check.dart';

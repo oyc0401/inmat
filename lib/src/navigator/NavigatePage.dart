@@ -9,8 +9,8 @@ import '../search/screens/search.dart';
 
 import '../spinner/RandomFoodSelect.dart';
 
-import '../community/main/screens/community_main.dart';
-import '../community/main/providers/community_view_model.dart';
+import '../community/screens/community_main.dart';
+import '../community/providers/community_view_model.dart';
 
 import '../profile/profile.dart';
 

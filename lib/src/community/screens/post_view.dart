@@ -4,17 +4,18 @@ import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 import 'package:inmat/inmat/exception/inmat_exception.dart';
 import 'package:inmat/inmat/models/token_model.dart';
-import 'package:inmat/src/community/view/domain/models/comment_model.dart';
-import 'package:inmat/src/community/view/widgets/contents.dart';
+import 'package:inmat/src/community/models/comment_model.dart';
+
 import 'package:inmat/utils/on_resign_in.dart';
 import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 
-import '../../main/providers/community_view_model.dart';
-import '../domain/models/content_model.dart';
+import '../providers/community_view_model.dart';
+import '../models/content_model.dart';
 import '../providers/post_view_model.dart';
 import '../widgets/Comment.dart';
 import '../widgets/comment_text_form.dart';
+import '../widgets/contents.dart';
 
 class MyBehavior extends ScrollBehavior {
   @override
