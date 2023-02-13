@@ -2,7 +2,7 @@ part of '../inmat_api_library.dart';
 
 class InmatCommunityApi {
   ///커뮤니티 조회 API
-  InmatCatchException<List<Map>> getPosts() {
+  InmatCatchException<List<Map<String, dynamic>>> getPosts() {
     InmatTokenHttp http = InmatTokenHttp(
       Http.get,
       message: "커뮤니티 불러오기",
@@ -10,7 +10,7 @@ class InmatCommunityApi {
     );
 
     return InmatCatchException.basic(() async {
-      return await (await http.execute()).cast<Map>();
+      return await (await http.execute()).cast<Map<String, dynamic>>();
     });
   }
 
@@ -42,7 +42,6 @@ class InmatCommunityApi {
     return InmatCatchException.basic(() async {
       return await http.execute();
     });
-
   }
 
   ///게시글 삭제 API

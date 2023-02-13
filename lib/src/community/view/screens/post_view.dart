@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 import 'package:inmat/inmat/exception/inmat_exception.dart';
+import 'package:inmat/inmat/models/token_model.dart';
 import 'package:inmat/src/community/view/domain/models/comment_model.dart';
 import 'package:inmat/src/community/view/widgets/contents.dart';
 import 'package:inmat/utils/on_resign_in.dart';
@@ -29,7 +32,7 @@ class PostView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => PostViewModel(id,context),
+      create: (context) => PostViewModel(id, context),
       child: Consumer<PostViewModel>(
         builder: (context, model, child) {
           return Scaffold(
@@ -40,16 +43,11 @@ class PostView extends StatelessWidget {
                   onPressed: () {
                     /// ToDo 본인만 지우는 버튼이 보이게 변경해야함.
                     ///
-                    InmatApi.community.deletePost(id).onRefreshDenied(() {
-                      OnReSignIn.reSignIn(context);
-                    }).onError((error) {
-                      OnReSignIn.onError(error);
-                    }).execute((value) {
+                    InmatApi.community.deletePost(id).execute((value) {
                       Provider.of<CommunityViewModel>(context, listen: false)
-                          .init(context);
+                          .init();
                       Navigator.pop(context);
                     });
-
                   },
                   icon: Icon(Icons.delete),
                 )
@@ -89,6 +87,9 @@ class PostView extends StatelessWidget {
   }
 
   Widget contentsSection(BuildContext context) {
+    if (!Provider.of<PostViewModel>(context).complete) {
+      return Container();
+    }
     ContentModel data = Provider.of<PostViewModel>(context).content;
 
     Widget wid = ContentWidget(

@@ -11,8 +11,8 @@ import '../../models/post_thumb_data.dart';
 import '../service/post_api.dart';
 
 class CommunityViewModel with ChangeNotifier {
-  CommunityViewModel(BuildContext context) {
-    init(context);
+  CommunityViewModel() {
+    init();
   }
 
   late List<PostThumbModel> _posts;
@@ -20,13 +20,9 @@ class CommunityViewModel with ChangeNotifier {
 
   List<PostThumbModel> get posts => _posts;
 
-  init(BuildContext context) async {
-    InmatApi.community.getPosts()
-        .onRefreshDenied(() {
-      OnReSignIn.reSignIn(context);
-    }).onError((error) {
-      OnReSignIn.onError(error);
-    }).execute((list) {
+  init() async {
+   await InmatApi.community.getPosts()
+        .execute((list) {
       List<PostThumbModel> value = [];
       for (var map in list) {
         value.add(

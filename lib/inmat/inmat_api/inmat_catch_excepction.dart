@@ -59,6 +59,7 @@ class InmatCatchException<T> {
         OnReSignIn.reSignIn();
       })
       ..onError((error) {
+        print(error);
         OnReSignIn.onError(error);
       });
   }

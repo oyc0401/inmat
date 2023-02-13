@@ -32,13 +32,9 @@ class _WritePostState extends State<WritePost> {
                 /// ToDo 게시글 새로고침이 여기에도 있네여
                 InmatApi.community
                     .writePost(title: title, content: content)
-                    .onRefreshDenied(() {
-                  OnReSignIn.reSignIn(context);
-                }).onError((error) {
-                  OnReSignIn.onError(error);
-                }).execute((value) {
+                    .execute((value) {
                   Provider.of<CommunityViewModel>(context, listen: false)
-                      .init(context);
+                      .init();
                   Navigator.pop(context);
                 });
               } else {

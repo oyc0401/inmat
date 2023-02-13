@@ -10,8 +10,8 @@ import '../model/today_model.dart';
 import '../service/data.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  HomeViewModel(BuildContext context) {
-    init(context);
+  HomeViewModel() {
+    init();
   }
 
   bool complete = false;
@@ -21,8 +21,8 @@ class HomeViewModel extends ChangeNotifier {
   List<ReviewModel> recentReviews = [];
   List<RestaurantModel> restaurants = [];
 
-  init(BuildContext context) async {
-    InmatApi.restaurant.getHome(context).execute((json) {
+  init() async {
+    InmatApi.restaurant.getHome().execute((json) {
       HomeModelJson jsonModel = HomeModelJson.fromJson(json);
 
       banners =

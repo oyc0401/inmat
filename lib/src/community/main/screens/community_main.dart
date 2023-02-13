@@ -18,7 +18,7 @@ class Community extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Provider.of<CommunityViewModel>(context,listen: false).init(context);
+              Provider.of<CommunityViewModel>(context,listen: false).init();
             },
             icon: Icon(Icons.refresh),
           )

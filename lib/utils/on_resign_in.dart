@@ -18,6 +18,6 @@ class OnReSignIn {
 
 
   static onError(dynamic error){
-    Message.showMessage(error);
+    Message.showMessage(error.toString());
   }
 }

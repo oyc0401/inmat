@@ -11,7 +11,7 @@ import '../domain/models/content_model.dart';
 import '../domain/service/post_model.dart';
 
 class PostViewModel with ChangeNotifier {
-  PostViewModel(this._id,BuildContext context) {
+  PostViewModel(this._id, BuildContext context) {
     init(context);
   }
 
@@ -47,13 +47,9 @@ class PostViewModel with ChangeNotifier {
         myLike: false));
     notifyListeners();
 
-    InmatApi.community.writeComment(_id, _writtenComment).onRefreshDenied(() {
-      OnReSignIn.reSignIn(context);
-    }).onDataBaseFailed(() {
+    InmatApi.community.writeComment(_id, _writtenComment).onDataBaseFailed(() {
       Message.showMessage('게시물이 삭제 되었습니다.');
       print("없는 게시물 입니다.");
-    }).onError((error) {
-      OnReSignIn.onError(error);
     }).execute((value) {
       _writtenComment = '';
     });
@@ -63,19 +59,11 @@ class PostViewModel with ChangeNotifier {
     if (isHeart) {
       isHeart = false;
       heartCount--;
-      InmatApi.community.deleteHeart(_id).onRefreshDenied(() {
-        OnReSignIn.reSignIn(context);
-      }).onError((error) {
-        OnReSignIn.onError(error);
-      }).execute((value) => null);
+      InmatApi.community.deleteHeart(_id).execute((value) => null);
     } else {
       isHeart = true;
       heartCount++;
-      InmatApi.community.setHeart(_id).onRefreshDenied(() {
-        OnReSignIn.reSignIn(context);
-      }).onError((error) {
-        OnReSignIn.onError(error);
-      }).execute((value) => null);
+      InmatApi.community.setHeart(_id).execute((value) => null);
     }
     notifyListeners();
   }
@@ -83,11 +71,7 @@ class PostViewModel with ChangeNotifier {
   void setText(String comment) => _writtenComment = comment;
 
   init(BuildContext context) async {
-    await InmatApi.community.getPost(_id).onRefreshDenied(() {
-      OnReSignIn.reSignIn(context);
-    }).onError((error) {
-      OnReSignIn.onError(error);
-    }).execute((json) {
+    await InmatApi.community.getPost(_id).execute((json) {
       _content = ContentModel.fromJson(json);
       print('ContentModel.fromJson(json)');
 
