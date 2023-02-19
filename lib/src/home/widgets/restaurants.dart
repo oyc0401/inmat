@@ -41,6 +41,7 @@ class RestaurantList extends StatelessWidget {
                   )),
               onPressed: () {
                 print("새로고침");
+                Provider.of<HomeViewModel>(context,listen: false).init();
               },
               icon: const Icon(
                 Icons.refresh,

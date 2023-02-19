@@ -20,6 +20,7 @@ ReviewModel _$ReviewModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReviewModel {
+  int get restaurantId => throw _privateConstructorUsedError;
   int get reviewId => throw _privateConstructorUsedError;
   String? get imgUrl => throw _privateConstructorUsedError;
   String get restaurantName => throw _privateConstructorUsedError;
@@ -40,7 +41,8 @@ abstract class $ReviewModelCopyWith<$Res> {
       _$ReviewModelCopyWithImpl<$Res, ReviewModel>;
   @useResult
   $Res call(
-      {int reviewId,
+      {int restaurantId,
+      int reviewId,
       String? imgUrl,
       String restaurantName,
       String nickName,
@@ -61,6 +63,7 @@ class _$ReviewModelCopyWithImpl<$Res, $Val extends ReviewModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? restaurantId = null,
     Object? reviewId = null,
     Object? imgUrl = freezed,
     Object? restaurantName = null,
@@ -69,6 +72,10 @@ class _$ReviewModelCopyWithImpl<$Res, $Val extends ReviewModel>
     Object? contents = null,
   }) {
     return _then(_value.copyWith(
+      restaurantId: null == restaurantId
+          ? _value.restaurantId
+          : restaurantId // ignore: cast_nullable_to_non_nullable
+              as int,
       reviewId: null == reviewId
           ? _value.reviewId
           : reviewId // ignore: cast_nullable_to_non_nullable
@@ -106,7 +113,8 @@ abstract class _$$_ReviewModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int reviewId,
+      {int restaurantId,
+      int reviewId,
       String? imgUrl,
       String restaurantName,
       String nickName,
@@ -125,6 +133,7 @@ class __$$_ReviewModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? restaurantId = null,
     Object? reviewId = null,
     Object? imgUrl = freezed,
     Object? restaurantName = null,
@@ -133,6 +142,10 @@ class __$$_ReviewModelCopyWithImpl<$Res>
     Object? contents = null,
   }) {
     return _then(_$_ReviewModel(
+      restaurantId: null == restaurantId
+          ? _value.restaurantId
+          : restaurantId // ignore: cast_nullable_to_non_nullable
+              as int,
       reviewId: null == reviewId
           ? _value.reviewId
           : reviewId // ignore: cast_nullable_to_non_nullable
@@ -165,7 +178,8 @@ class __$$_ReviewModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ReviewModel implements _ReviewModel {
   _$_ReviewModel(
-      {required this.reviewId,
+      {required this.restaurantId,
+      required this.reviewId,
       required this.imgUrl,
       required this.restaurantName,
       required this.nickName,
@@ -175,6 +189,8 @@ class _$_ReviewModel implements _ReviewModel {
   factory _$_ReviewModel.fromJson(Map<String, dynamic> json) =>
       _$$_ReviewModelFromJson(json);
 
+  @override
+  final int restaurantId;
   @override
   final int reviewId;
   @override
@@ -190,7 +206,7 @@ class _$_ReviewModel implements _ReviewModel {
 
   @override
   String toString() {
-    return 'ReviewModel(reviewId: $reviewId, imgUrl: $imgUrl, restaurantName: $restaurantName, nickName: $nickName, ratingStar: $ratingStar, contents: $contents)';
+    return 'ReviewModel(restaurantId: $restaurantId, reviewId: $reviewId, imgUrl: $imgUrl, restaurantName: $restaurantName, nickName: $nickName, ratingStar: $ratingStar, contents: $contents)';
   }
 
   @override
@@ -198,6 +214,8 @@ class _$_ReviewModel implements _ReviewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ReviewModel &&
+            (identical(other.restaurantId, restaurantId) ||
+                other.restaurantId == restaurantId) &&
             (identical(other.reviewId, reviewId) ||
                 other.reviewId == reviewId) &&
             (identical(other.imgUrl, imgUrl) || other.imgUrl == imgUrl) &&
@@ -213,8 +231,8 @@ class _$_ReviewModel implements _ReviewModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, reviewId, imgUrl, restaurantName,
-      nickName, ratingStar, contents);
+  int get hashCode => Object.hash(runtimeType, restaurantId, reviewId, imgUrl,
+      restaurantName, nickName, ratingStar, contents);
 
   @JsonKey(ignore: true)
   @override
@@ -232,7 +250,8 @@ class _$_ReviewModel implements _ReviewModel {
 
 abstract class _ReviewModel implements ReviewModel {
   factory _ReviewModel(
-      {required final int reviewId,
+      {required final int restaurantId,
+      required final int reviewId,
       required final String? imgUrl,
       required final String restaurantName,
       required final String nickName,
@@ -242,6 +261,8 @@ abstract class _ReviewModel implements ReviewModel {
   factory _ReviewModel.fromJson(Map<String, dynamic> json) =
       _$_ReviewModel.fromJson;
 
+  @override
+  int get restaurantId;
   @override
   int get reviewId;
   @override

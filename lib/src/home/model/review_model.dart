@@ -9,6 +9,7 @@ part 'review_model.freezed.dart';
 @freezed
 class ReviewModel with _$ReviewModel {
   factory ReviewModel({
+    required int restaurantId,
     required int reviewId,
     required String? imgUrl,
     required String restaurantName,
