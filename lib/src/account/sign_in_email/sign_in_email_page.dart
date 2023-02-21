@@ -75,12 +75,8 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
                     LoginButton(
                       onclick: () async {
                         await Provider.of<EmailSignInModel>(context, listen: false)
-                            .signIn();
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => NavigatePage()),
-                          (route) => false,
-                        );
+                            .signIn(context);
+
                       },
                     ),
                     Spacer(),

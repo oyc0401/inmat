@@ -73,6 +73,8 @@ PODS:
   - GTMSessionFetcher/Core (1.7.2)
   - image_picker_ios (0.0.1):
     - Flutter
+  - kakao_flutter_sdk_common (1.4.0):
+    - Flutter
   - naver_map_plugin (0.9.4):
     - Flutter
     - NMapsMap
@@ -87,6 +89,8 @@ PODS:
     - FMDB (>= 2.7.5)
   - SwiftyGif (5.4.4)
   - Toast (4.0.0)
+  - webview_flutter_wkwebview (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -98,9 +102,11 @@ DEPENDENCIES:
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - kakao_flutter_sdk_common (from `.symlinks/plugins/kakao_flutter_sdk_common/ios`)
   - naver_map_plugin (from `.symlinks/plugins/naver_map_plugin/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   trunk:
@@ -136,12 +142,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_sign_in_ios/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
+  kakao_flutter_sdk_common:
+    :path: ".symlinks/plugins/kakao_flutter_sdk_common/ios"
   naver_map_plugin:
     :path: ".symlinks/plugins/naver_map_plugin/ios"
   shared_preferences_ios:
     :path: ".symlinks/plugins/shared_preferences_ios/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
@@ -161,6 +171,7 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
+  kakao_flutter_sdk_common: ee154ed8f05ee1fec394052d6f9db86c8a84f4f9
   naver_map_plugin: d1d67733c56b20b88270d9da51218e18fa916232
   NMapsMap: a2593320fca2bb09e521c05b4dffee4da42e96ed
   SDWebImage: 9bec4c5cdd9579e1f57104735ee0c37df274d593
@@ -168,6 +179,7 @@ SPEC CHECKSUMS:
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 

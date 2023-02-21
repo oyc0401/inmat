@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inmat/cloud/kakao_sign_in.dart';
 import 'package:inmat/src/account/sign_in_email/sign_in_email_page.dart';
 import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/utils/toast.dart';
@@ -113,7 +114,10 @@ class _SignInMainPageState extends State<SignInMainPage> {
         SocialLoginButton(
           text: '카카오로 계속하기',
           onclick: () {
-            Message.showMessage("개발 중 입니다.");
+            KakaoLogin kakao=KakaoLogin();
+            kakao.signInWithKaKao();
+
+            // Message.showMessage("개발 중 입니다.");
           },
           color: const Color(0xffFFE26A),
           textColor: const Color(0xff2E2E2E),

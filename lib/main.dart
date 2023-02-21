@@ -14,6 +14,7 @@ import 'inmat/models/token_model.dart';
 import 'src/account/login_main/signin_page.dart';
 import 'src/navigator/NavigatePage.dart';
 import 'utils/navigator_context.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao;
 
 void main() async {
   // DB에서 유저 정보 가져오기
@@ -25,7 +26,12 @@ void main() async {
   //       "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbHV0dGVyMSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NzUyNzEyMTd9.Rn_qBBydqgHDeEKvk0__T8iSvUYDrzqgjFEGv2nMF-NSegCNR_-L382zLIJppP0dSh_BIa22WZQlAjy07oJdsg",
   // );
   // Inmat.testInitial(testToken);
+
+
   await Inmat.initialize();
+
+  kakao.KakaoSdk.init(nativeAppKey:'405c325522945902e2860008ec451ea0');
+
 
   runApp(const MyApp());
 }
