@@ -27,7 +27,7 @@ void main() {
 
         Token tokenModel = Token.fromJson(json);
       },
-      skip: "401 오류 뜸",
+      // skip: "401 오류 뜸",
     );
 
     test(
