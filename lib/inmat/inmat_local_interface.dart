@@ -12,6 +12,12 @@ class InmatLocalInterface {
     throw UnimplementedError();
   }
 
+  /// 토큰을 전역 변수에만 저장한다.
+  /// save token in global variable
+  void saveTokenMemory(Token? model) {
+    throw UnimplementedError();
+  }
+
   /// 토큰을 전역 변수와 데이터베이스에서 삭제한다.
   /// clear token in global variable, database
   void clearToken() {

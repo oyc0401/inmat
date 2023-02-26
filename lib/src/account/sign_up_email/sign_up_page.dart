@@ -71,23 +71,24 @@ class SignUpPage extends StatelessWidget {
                 //   padding: const EdgeInsets.all(30.0),
                 //   child: ProfileFormBox(),
                 // ),
+                ProfileFormBox(),
 
-                CupertinoButton(
-                  child: Text("이동"),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) {
-                          return ChangeNotifierProvider<SignUpModel>.value(
-                            value: signUpModel,
-                            child: SignUpTestPage(),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
+                // CupertinoButton(
+                //   child: Text("이동"),
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       CupertinoPageRoute(
+                //         builder: (context) {
+                //           return ChangeNotifierProvider<SignUpModel>.value(
+                //             value: signUpModel,
+                //             child: SignUpTestPage(),
+                //           );
+                //         },
+                //       ),
+                //     );
+                //   },
+                // ),
                 // Padding(
                 //     padding: EdgeInsets.symmetric(horizontal: 30),
                 //     child: ProfileFormBox()),
@@ -124,15 +125,15 @@ class SignupBox extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: IdTextField(
-              onclick: () {
-                Provider.of<SignUpModel>(context, listen: false).checkID();
-              },
-              turnOn: Provider.of<SignUpModel>(context).canId,
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //   child: IdTextField(
+          //     onclick: () {
+          //       // Provider.of<SignUpModel>(context, listen: false).checkID();
+          //     },
+          //     turnOn: Provider.of<SignUpModel>(context).canId,
+          //   ),
+          // ),
           const PassWordTextField(),
           const SizedBox(height: 20),
           const EmailTextField(),
@@ -149,6 +150,7 @@ class SignupBox extends StatelessWidget {
           GuestLoginText(
             onclick: () {},
           ),
+
         ],
       ),
     );
@@ -176,7 +178,7 @@ class IdTextField extends StatelessWidget {
         ),
         SignUpTextField(
           onChanged: (text) {
-            Provider.of<SignUpModel>(context, listen: false).setUsername(text);
+            // Provider.of<SignUpModel>(context, listen: false).setUsername(text);
           },
         ),
         InkWell(

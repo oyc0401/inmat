@@ -41,14 +41,16 @@ class InmatLocal implements InmatLocalInterface {
     }
   }
 
+  @override
+  void saveTokenMemory(Token? model) {
+    _token = model;
+  }
+
   Future<void> _regenerateToken() async {
     assert(_token != null);
     Token newToken = await GetToken.issueToken(_token!, _deviceIdentifier);
     saveToken(newToken);
     dataBase.saveLocalToken(newToken);
-
-
-
   }
 
   bool _isValid() {
@@ -90,6 +92,4 @@ class InmatLocal implements InmatLocalInterface {
     Token? localToken = await dataBase.getLocalToken();
     saveToken(localToken);
   }
-
-
 }

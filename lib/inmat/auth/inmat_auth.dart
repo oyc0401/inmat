@@ -44,9 +44,9 @@ class InmatAuth {
     data.clearProfile();
   }
 
-  Future<void> signInEmail(String id, String password) async {
+  Future<void> signInEmail(String email, String password) async {
     Token tokenModel =
-        await GetToken.getTokenEmail(id, password, local.deviceIdentifier);
+        await GetToken.getTokenEmail(email, password, local.deviceIdentifier);
 
     local.saveToken(tokenModel);
 
@@ -79,10 +79,10 @@ class InmatAuth {
         gender: gender,
         nickName: nickName,
         profileImgUrl: profileImgUrl,
-        phoneNumber: data.profile!.phoneNumber,
+        // phoneNumber: data.profile!.phoneNumber,
         email: data.profile!.email,
         userId: data.profile!.userId,
-        username: data.profile!.username,
+        // username: data.profile!.username,
       ),
     );
   }

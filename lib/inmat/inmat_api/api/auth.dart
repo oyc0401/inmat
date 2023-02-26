@@ -12,7 +12,7 @@ class AuthApi {
       message: "이메일 로그인",
       path: "/auth/login",
       body: {
-        "username": id,
+        "email": id,
         "password": password,
       },
       deviceIdentifier: deviceIdentifier,
@@ -27,7 +27,7 @@ class AuthApi {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "익명 로그인",
-      path: "/auth/login-anonymous",
+      path: "/auth/login-guest",
       deviceIdentifier: deviceIdentifier,
     );
     return await inMatHttp.execute();
@@ -62,41 +62,41 @@ class AuthApi {
 
   ///회원 가입 API
   Future<void> registerEmail({
-    required String id,
+    // required String id,
     required String password,
     required String email,
     required int age,
     required String gender,
     required String nickName,
-    required String phoneNumber,
+    // required String phoneNumber,
   }) async {
     InMatHttp inMatHttp = InMatHttp(
       Http.post,
       message: "회원가입",
       path: "/auth/signup",
       body: {
-        "username": id,
+        // "username": id,
         "password": password,
         "email": email,
         "age": age,
         "gender": gender,
         "nickName": nickName,
-        "phoneNumber": phoneNumber,
+        // "phoneNumber": phoneNumber,
       },
     );
     return await inMatHttp.execute();
   }
 
-  ///아이디 중복 체크 API
-  Future<String> checkId(String id) async {
-    InMatHttp inMatHttp = InMatHttp(
-      Http.post,
-      message: "아이디 중복 체크",
-      path: "/auth/username",
-      body: {'username': id},
-    );
-    return await inMatHttp.execute();
-  }
+  // ///아이디 중복 체크 API
+  // Future<String> checkId(String id) async {
+  //   InMatHttp inMatHttp = InMatHttp(
+  //     Http.post,
+  //     message: "아이디 중복 체크",
+  //     path: "/auth/username",
+  //     body: {'username': id},
+  //   );
+  //   return await inMatHttp.execute();
+  // }
 
   ///닉네임 중복 체크 API
   Future<String> checkNickName(String nickName) async {

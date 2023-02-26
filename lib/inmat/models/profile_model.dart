@@ -15,9 +15,9 @@ part 'profile_model.freezed.dart';
 class Profile with _$Profile {
   factory Profile({
     required int userId,
-    required String username,
+    // required String username,
     required String email,
-    required String phoneNumber,
+    // required String phoneNumber,
     required String nickName,
     required int age,
     required String gender,

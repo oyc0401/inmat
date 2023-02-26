@@ -23,13 +23,13 @@ class Inmat {
   }
 
   static Future<void> testInitial(Token token) async {
-    local.saveToken(token);
+    local.saveTokenMemory(token);
     user.setProfile(
       Profile(
         userId: 34,
-        username: "username",
+        // username: "username",
         email: "email",
-        phoneNumber: "phoneNumber",
+        // phoneNumber: "phoneNumber",
         nickName: "nickName",
         age: 2,
         gender: "gender",

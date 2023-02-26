@@ -119,54 +119,54 @@ class ProfileFormBox extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          Row(
-            children: [
-              Flexible(
-                flex: 3,
-                child: TextField(
-                  onChanged: (text) {
-                    Provider.of<SignUpModel>(context, listen: false)
-                        .setPhoneNumber1(text);
-                  },
-                  decoration: const InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 4),
-              Flexible(
-                flex: 4,
-                child: TextField(
-                  onChanged: (text) {
-                    Provider.of<SignUpModel>(context, listen: false)
-                        .setPhoneNumber2(text);
-                  },
-                  decoration: const InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 4),
-              Flexible(
-                flex: 4,
-                child: TextField(
-                  onChanged: (text) {
-                    Provider.of<SignUpModel>(context, listen: false)
-                        .setPhoneNumber3(text);
-                  },
-                  decoration: const InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     Flexible(
+          //       flex: 3,
+          //       child: TextField(
+          //         onChanged: (text) {
+          //           Provider.of<SignUpModel>(context, listen: false)
+          //               .setPhoneNumber1(text);
+          //         },
+          //         decoration: const InputDecoration(
+          //           contentPadding:
+          //               EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+          //           border: OutlineInputBorder(),
+          //         ),
+          //       ),
+          //     ),
+          //     const SizedBox(width: 4),
+          //     Flexible(
+          //       flex: 4,
+          //       child: TextField(
+          //         onChanged: (text) {
+          //           Provider.of<SignUpModel>(context, listen: false)
+          //               .setPhoneNumber2(text);
+          //         },
+          //         decoration: const InputDecoration(
+          //           contentPadding:
+          //               EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+          //           border: OutlineInputBorder(),
+          //         ),
+          //       ),
+          //     ),
+          //     const SizedBox(width: 4),
+          //     Flexible(
+          //       flex: 4,
+          //       child: TextField(
+          //         onChanged: (text) {
+          //           Provider.of<SignUpModel>(context, listen: false)
+          //               .setPhoneNumber3(text);
+          //         },
+          //         decoration: const InputDecoration(
+          //           contentPadding:
+          //               EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+          //           border: OutlineInputBorder(),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           SizedBox(
             height: 50,
           )

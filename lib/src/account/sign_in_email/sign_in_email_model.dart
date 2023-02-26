@@ -8,7 +8,7 @@ import '../../navigator/NavigatePage.dart';
 
 
 class EmailSignInModel with ChangeNotifier {
-  String _username = "test123";
+  String _username = "test123@gmail.com";
   String _password = "qwe12345&&";
 
   String get username => _username;

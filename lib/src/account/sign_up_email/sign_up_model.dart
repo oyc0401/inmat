@@ -6,18 +6,18 @@ import 'package:inmat/inmat/exception/inmat_exception.dart';
 import 'package:inmat/utils/toast.dart';
 
 class SignUpObject with ChangeNotifier {
-  String _username = "";
+  // String _username = "";
   String _password = "";
   String _rePassword = "";
   String _email = "";
   String _age = '0';
   String _gender = "";
   String _nickName = "";
-  String _phoneNumber1 = "";
-  String _phoneNumber2 = "";
-  String _phoneNumber3 = "";
+  // String _phoneNumber1 = "";
+  // String _phoneNumber2 = "";
+  // String _phoneNumber3 = "";
 
-  String get username => _username;
+  // String get username => _username;
 
   String get password => _password;
 
@@ -31,16 +31,16 @@ class SignUpObject with ChangeNotifier {
 
   String get nickName => _nickName;
 
-  String get phoneNumber1 => _phoneNumber1;
+  // String get phoneNumber1 => _phoneNumber1;
+  //
+  // String get phoneNumber2 => _phoneNumber2;
+  //
+  // String get phoneNumber3 => _phoneNumber3;
 
-  String get phoneNumber2 => _phoneNumber2;
-
-  String get phoneNumber3 => _phoneNumber3;
-
-  setUsername(String username) {
-    _username = username;
-    notifyListeners();
-  }
+  // setUsername(String username) {
+  //   _username = username;
+  //   notifyListeners();
+  // }
 
   setPassword(String password) {
     _password = password;
@@ -72,20 +72,20 @@ class SignUpObject with ChangeNotifier {
     notifyListeners();
   }
 
-  setPhoneNumber1(String number) {
-    _phoneNumber1 = number;
-    notifyListeners();
-  }
-
-  setPhoneNumber2(String number) {
-    _phoneNumber2 = number;
-    notifyListeners();
-  }
-
-  setPhoneNumber3(String number) {
-    _phoneNumber3 = number;
-    notifyListeners();
-  }
+  // setPhoneNumber1(String number) {
+  //   _phoneNumber1 = number;
+  //   notifyListeners();
+  // }
+  //
+  // setPhoneNumber2(String number) {
+  //   _phoneNumber2 = number;
+  //   notifyListeners();
+  // }
+  //
+  // setPhoneNumber3(String number) {
+  //   _phoneNumber3 = number;
+  //   notifyListeners();
+  // }
 }
 
 class SignUpModel extends SignUpObject {
@@ -93,10 +93,10 @@ class SignUpModel extends SignUpObject {
   bool _canID = false;
   bool _canNickName = false;
 
-  String get number => "$phoneNumber1-$phoneNumber2-$phoneNumber3";
+  // String get number => "$phoneNumber1-$phoneNumber2-$phoneNumber3";
 
   // 유효성 검사
-  bool get validUsername => validation.userName(username);
+  // bool get validUsername => validation.userName(username);
 
   bool get validPassword => validation.password(password);
 
@@ -104,41 +104,42 @@ class SignUpModel extends SignUpObject {
 
   bool get validNickName => validation.nickName(nickName);
 
-  bool get validPhoneNumber => validation.phoneNumber(number);
+  // bool get validPhoneNumber => validation.phoneNumber(number);
 
   /// 비밀번호
   bool get correctPassword => password == rePassword;
 
-  bool get canId => _canID;
+  // bool get canId => _canID;
 
   bool get canNickName => _canNickName;
 
   bool get canSignUp {
-    // print("canSignUp");
+    print("canSignUp");
     // print(validUsername);
-    // print(validPassword);
-    // print(validEmail);
-    // print(validNickName);
+    print(validPassword);
+    print(validEmail);
+    print(validNickName);
     // print(validPhoneNumber);
-    // print(correctPassword);
+    print(correctPassword);
     // print(canId);
-    // print(canNickName);
+    print(canNickName);
 
-    return validUsername &&
+    return
+      // validUsername &&
         validPassword &&
         validEmail &&
         validNickName &&
-        validPhoneNumber &&
+        // validPhoneNumber &&
         correctPassword &&
-        canId &&
+        // canId &&
         canNickName;
   }
 
-  @override
-  setUsername(String username) {
-    _canID = false;
-    super.setUsername(username);
-  }
+  // @override
+  // setUsername(String username) {
+  //   _canID = false;
+  //   super.setUsername(username);
+  // }
 
   @override
   setNickName(String nickName) {
@@ -146,21 +147,21 @@ class SignUpModel extends SignUpObject {
     super.setNickName(nickName);
   }
 
-  checkID() async {
-    if (!validUsername) {
-      Message.showMessage("잘못된 아이디 형식 입니다. 영문 or 숫자 3 ~ 10 자");
-    } else {
-      try {
-        _canID = await InMatAccount.checkId(id: username);
-      } on OverlappingAccount {
-        Message.showMessage("사용중인 아이디 입니다.");
-      } catch (e) {
-        Message.showMessage("$e");
-      }
-    }
-
-    notifyListeners();
-  }
+  // checkID() async {
+  //   if (!validUsername) {
+  //     Message.showMessage("잘못된 아이디 형식 입니다. 영문 or 숫자 3 ~ 10 자");
+  //   } else {
+  //     try {
+  //       _canID = await InMatAccount.checkId(id: username);
+  //     } on OverlappingAccount {
+  //       Message.showMessage("사용중인 아이디 입니다.");
+  //     } catch (e) {
+  //       Message.showMessage("$e");
+  //     }
+  //   }
+  //
+  //   notifyListeners();
+  // }
 
   checkNickName() async {
     if (!validNickName) {
@@ -179,25 +180,25 @@ class SignUpModel extends SignUpObject {
   }
 
   Future<void> signup() async {
-    print(username);
+    // print(username);
     print(password);
     print(email);
     print(age);
     print(gender);
     print(nickName);
-    print(phoneNumber1);
-    print(phoneNumber2);
-    print(phoneNumber3);
+    // print(phoneNumber1);
+    // print(phoneNumber2);
+    // print(phoneNumber3);
 
     try {
       await InmatApi.auth.registerEmail(
-        id: username,
+        // id: username,
         password: password,
         email: email,
         age: int.parse(age),
         gender: gender,
         nickName: nickName,
-        phoneNumber: "$phoneNumber1-$phoneNumber2-$phoneNumber3",
+        // phoneNumber: "$phoneNumber1-$phoneNumber2-$phoneNumber3",
       );
 
 

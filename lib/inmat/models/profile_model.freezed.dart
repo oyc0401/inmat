@@ -20,10 +20,10 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Profile {
-  int get userId => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get phoneNumber => throw _privateConstructorUsedError;
+  int get userId =>
+      throw _privateConstructorUsedError; // required String username,
+  String get email =>
+      throw _privateConstructorUsedError; // required String phoneNumber,
   String get nickName => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
@@ -41,9 +41,7 @@ abstract class $ProfileCopyWith<$Res> {
   @useResult
   $Res call(
       {int userId,
-      String username,
       String email,
-      String phoneNumber,
       String nickName,
       int age,
       String gender,
@@ -64,9 +62,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   @override
   $Res call({
     Object? userId = null,
-    Object? username = null,
     Object? email = null,
-    Object? phoneNumber = null,
     Object? nickName = null,
     Object? age = null,
     Object? gender = null,
@@ -77,17 +73,9 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       nickName: null == nickName
           ? _value.nickName
@@ -118,9 +106,7 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   @useResult
   $Res call(
       {int userId,
-      String username,
       String email,
-      String phoneNumber,
       String nickName,
       int age,
       String gender,
@@ -138,9 +124,7 @@ class __$$_ProfileCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
-    Object? username = null,
     Object? email = null,
-    Object? phoneNumber = null,
     Object? nickName = null,
     Object? age = null,
     Object? gender = null,
@@ -151,17 +135,9 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       nickName: null == nickName
           ? _value.nickName
@@ -188,9 +164,7 @@ class __$$_ProfileCopyWithImpl<$Res>
 class _$_Profile implements _Profile {
   _$_Profile(
       {required this.userId,
-      required this.username,
       required this.email,
-      required this.phoneNumber,
       required this.nickName,
       required this.age,
       required this.gender,
@@ -201,12 +175,10 @@ class _$_Profile implements _Profile {
 
   @override
   final int userId;
-  @override
-  final String username;
+// required String username,
   @override
   final String email;
-  @override
-  final String phoneNumber;
+// required String phoneNumber,
   @override
   final String nickName;
   @override
@@ -218,7 +190,7 @@ class _$_Profile implements _Profile {
 
   @override
   String toString() {
-    return 'Profile(userId: $userId, username: $username, email: $email, phoneNumber: $phoneNumber, nickName: $nickName, age: $age, gender: $gender, profileImgUrl: $profileImgUrl)';
+    return 'Profile(userId: $userId, email: $email, nickName: $nickName, age: $age, gender: $gender, profileImgUrl: $profileImgUrl)';
   }
 
   @override
@@ -227,11 +199,7 @@ class _$_Profile implements _Profile {
         (other.runtimeType == runtimeType &&
             other is _$_Profile &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
             (identical(other.nickName, nickName) ||
                 other.nickName == nickName) &&
             (identical(other.age, age) || other.age == age) &&
@@ -242,8 +210,8 @@ class _$_Profile implements _Profile {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, username, email,
-      phoneNumber, nickName, age, gender, profileImgUrl);
+  int get hashCode => Object.hash(
+      runtimeType, userId, email, nickName, age, gender, profileImgUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -262,9 +230,7 @@ class _$_Profile implements _Profile {
 abstract class _Profile implements Profile {
   factory _Profile(
       {required final int userId,
-      required final String username,
       required final String email,
-      required final String phoneNumber,
       required final String nickName,
       required final int age,
       required final String gender,
@@ -274,13 +240,9 @@ abstract class _Profile implements Profile {
 
   @override
   int get userId;
-  @override
-  String get username;
-  @override
+  @override // required String username,
   String get email;
-  @override
-  String get phoneNumber;
-  @override
+  @override // required String phoneNumber,
   String get nickName;
   @override
   int get age;

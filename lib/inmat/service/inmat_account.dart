@@ -9,10 +9,10 @@ class InMatAccount {
     return message == "닉네임 사용가능!";
   }
 
-  static Future<bool> checkId({
-    required String id,
-  }) async {
-    String message = await InmatApi.auth.checkId(id);
-    return message == "아이디 사용가능!";
-  }
+  // static Future<bool> checkId({
+  //   required String id,
+  // }) async {
+  //   String message = await InmatApi.auth.checkId(id);
+  //   return message == "아이디 사용가능!";
+  // }
 }

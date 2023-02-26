@@ -16,7 +16,7 @@ void main() {
     // const String testPassword = "qwe12345&&";
     // const String testDeviceIdentifier = "dart_pad";
 
-    const String testId = "test123";
+    const String testId = "test123@gmail.com";
     const String testPassword = "qwe12345&&";
     const String testDeviceIdentifier = "dart_pad";
 
@@ -116,9 +116,9 @@ void main() {
 
         Profile previous = Profile(
           userId: model.userId,
-          username: model.username,
+          // username: model.username,
           email: model.email,
-          phoneNumber: model.phoneNumber,
+          // phoneNumber: model.phoneNumber,
           nickName: model.nickName,
           age: age,
           gender: gender,

@@ -7,7 +7,7 @@ void main() {
   group("account api 테스트", () {
     late Token testToken;
 
-    const String testId = "test123";
+    const String testId = "test123@gmail.com";
     const String testPassword = "qwe12345&&";
     const String testDeviceIdentifier = "dart_pad";
 
