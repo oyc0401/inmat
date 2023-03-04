@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
-import 'package:inmat/src/account/login_main/signin_page.dart';
+import 'package:inmat/src/account/screens/sign_in_main_page.dart';
 import 'package:inmat/utils/navigator_context.dart';
 
 import 'toast.dart';

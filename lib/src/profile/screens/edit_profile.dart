@@ -4,7 +4,7 @@ import 'package:inmat/inmat/exception/inmat_exception.dart';
 import 'package:provider/provider.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 
-import 'change_profile_model.dart';
+import '../providers/edit_profile_model.dart';
 
 class ChangeProfile extends StatelessWidget {
   const ChangeProfile({Key? key}) : super(key: key);

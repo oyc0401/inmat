@@ -6,9 +6,9 @@ import 'package:inmat/utils/toast.dart';
 import 'package:provider/provider.dart';
 
 import '../../navigator/NavigatePage.dart';
-import '../sign_up_email/sign_up_page.dart';
+import 'sign_up_page.dart';
 import '../widget/round_button.dart';
-import 'sign_in_email_model.dart';
+import '../providers/sign_in_email_model.dart';
 
 class EmailSignInPage extends StatefulWidget {
   const EmailSignInPage({Key? key}) : super(key: key);

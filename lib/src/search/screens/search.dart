@@ -5,7 +5,6 @@ import 'package:inmat/src/search/providers/search_model.dart';
 import 'package:inmat/src/search/screens/search_result.dart';
 import 'package:provider/provider.dart';
 
-import '../domain/database/recent_search_database.dart';
 import 'search_words.dart';
 import '../widgets/search_input.dart';
 import 'keyword_page.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/inho/restaurant_model.dart';
+
 import 'package:inmat/src/restaurant/screens/review_all.dart';
 import 'package:inmat/src/restaurant/widgets/review_card.dart';
 import 'package:inmat/src/restaurant/screens/write_review.dart';
@@ -8,6 +8,7 @@ import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/widgets/shelf.dart';
 import 'package:provider/provider.dart';
 
+import 'restaurant_model.dart';
 import 'restaurant_title.dart';
 
 

@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/cloud/kakao_sign_in.dart';
-import 'package:inmat/src/account/sign_in_email/sign_in_email_page.dart';
+
+import 'package:inmat/src/account/screens/sign_in_email_page.dart';
 import 'package:inmat/utils/inmat_colors.dart';
 import 'package:inmat/utils/toast.dart';
 
 import 'package:inmat/src/account/widget/custom_text_button.dart';
 import 'package:inmat/widgets/ink_button.dart';
 
+import '../../../_sample/kakao_login.dart';
+import '../../../utils/cloud/google_sign_in.dart';
 import '../widget/round_button.dart';
-import '../../../cloud/google_sign_in.dart';
+
 
 class SignInMainPage extends StatefulWidget {
   const SignInMainPage({Key? key}) : super(key: key);

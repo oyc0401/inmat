@@ -12,7 +12,7 @@ import '../spinner/RandomFoodSelect.dart';
 import '../community/screens/community_page.dart';
 import '../community/providers/community_view_model.dart';
 
-import '../profile/profile.dart';
+import '../profile/screens/profile.dart';
 
 import '../home/providers/home_view_model.dart';
 

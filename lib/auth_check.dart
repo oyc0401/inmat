@@ -15,7 +15,7 @@ import 'package:ios_utsname_ext/extension.dart';
 
 import 'inmat/inmat.dart';
 
-import 'src/account/login_main/signin_page.dart';
+import 'src/account/screens/sign_in_main_page.dart';
 
 import 'src/navigator/NavigatePage.dart';
 

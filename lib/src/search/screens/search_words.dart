@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inmat/src/search/domain/database/recent_search_database.dart';
+
 import 'package:inmat/src/search/providers/search_model.dart';
-import 'package:inmat/widgets/ink_button.dart';
+
 import 'package:inmat/widgets/shelf.dart';
 import 'package:provider/provider.dart';
 
-import '../domain/models/rank.dart';
-import '../domain/models/recent_model.dart';
+import '../models/rank.dart';
+import '../models/recent_model.dart';
 import '../widgets/rank_card.dart';
 import '../widgets/recent_card.dart';
-import 'search_result.dart';
 
 class SearchWords extends StatelessWidget {
   const SearchWords({Key? key}) : super(key: key);

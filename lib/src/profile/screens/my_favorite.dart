@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
 import 'package:inmat/widgets/shelf.dart';
 
-import '../restaurant/screens/restaurant.dart';
+import '../../restaurant/screens/restaurant.dart';
 
 class MyFavorite extends StatefulWidget {
   const MyFavorite({Key? key}) : super(key: key);

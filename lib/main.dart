@@ -5,13 +5,12 @@ import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat.dart';
 import 'package:inmat/inmat/inmat_data.dart';
 
-import 'package:inmat/manager/add_restaurant.dart';
 import 'package:inmat/src/community/providers/community_view_model.dart';
 import 'package:provider/provider.dart';
 
 import 'auth_check.dart';
 import 'inmat/models/token_model.dart';
-import 'src/account/login_main/signin_page.dart';
+import 'src/account/screens/sign_in_main_page.dart';
 import 'src/navigator/NavigatePage.dart';
 import 'utils/navigator_context.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao;

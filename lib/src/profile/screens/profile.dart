@@ -9,15 +9,15 @@ import 'package:provider/provider.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/auth/user.dart';
 
-import '../account/update_profile/change_profile.dart';
-import '../account/login_main/signin_page.dart';
+import 'edit_profile.dart';
+import '../../account/screens/sign_in_main_page.dart';
 
 import 'my_favorite.dart';
 import 'my_post.dart';
 import 'my_review.dart';
 import 'notice.dart';
-import 'providers/profile_view_model.dart';
-import 'widgets/user_form.dart';
+import '../providers/profile_view_model.dart';
+import '../widgets/user_form.dart';
 //화면 이동
 
 class ProfilePage extends StatefulWidget {

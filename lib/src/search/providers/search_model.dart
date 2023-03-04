@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inmat/inmat/auth/inmat_auth.dart';
 import 'package:inmat/inmat/inmat_api/inmat_api_library.dart';
-import 'package:inmat/src/search/domain/database/recent_search_database.dart';
 
-import '../domain/models/rank.dart';
-import '../domain/models/recent_model.dart';
 
+import '../database/recent_search_database.dart';
+import '../models/rank.dart';
+import '../models/recent_model.dart';
 import '../screens/search_result.dart';
 import '../widgets/search_input.dart';
 

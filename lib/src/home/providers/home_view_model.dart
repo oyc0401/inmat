@@ -7,7 +7,7 @@ import '../model/banner_model.dart';
 import '../model/restaurant_model.dart';
 import '../model/review_model.dart';
 import '../model/today_model.dart';
-import '../service/data.dart';
+
 
 class HomeViewModel extends ChangeNotifier {
   HomeViewModel() {
