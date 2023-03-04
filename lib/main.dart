@@ -27,11 +27,9 @@ void main() async {
   // );
   // Inmat.testInitial(testToken);
 
-
   await Inmat.initialize();
 
-  kakao.KakaoSdk.init(nativeAppKey:'405c325522945902e2860008ec451ea0');
-
+  kakao.KakaoSdk.init(nativeAppKey: '405c325522945902e2860008ec451ea0');
 
   runApp(const MyApp());
 }
@@ -52,6 +50,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Binggrae2',
         useMaterial3: true,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          elevation: 0,
+          scrolledUnderElevation: 1,
+          shadowColor: Colors.black,
+        ),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: Color(0xff262626)),
+        ),
       ),
       home: const MyHome(),
     );

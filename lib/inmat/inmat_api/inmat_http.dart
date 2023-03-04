@@ -55,9 +55,19 @@ class InMatHttp {
         break;
     }
 
+    String sub(String text) {
+      int max = 330;
+      bool over = text.length > max;
+      int end = over ? max : text.length;
+      if (over) {
+        return "${text.substring(0, end)} ...";
+      }
+      return text.substring(0, end);
+    }
+
     /// 디버그 할 때 [debug]를 true 로 하면 모든 통신의 값을 출력한다.
     const bool debug = true;
-    if (debug) developer.log("✉️ $request", name: "http");
+    if (debug) developer.log("✉️ ${sub(request.toString())}", name: "http");
 
     _throwException(request);
 

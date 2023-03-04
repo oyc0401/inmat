@@ -9,7 +9,7 @@ import '../search/screens/search.dart';
 
 import '../spinner/RandomFoodSelect.dart';
 
-import '../community/screens/community.dart';
+import '../community/screens/community_page.dart';
 import '../community/providers/community_view_model.dart';
 
 import '../profile/profile.dart';
@@ -95,7 +95,7 @@ class _NavigatePageState extends State<NavigatePage> {
       const Home(),
       const Search(),
       const RandomFoodSelect(),
-      const Community(),
+      const CommunityPage(),
       const ProfilePage(),
     ];
   }
