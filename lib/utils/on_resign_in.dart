@@ -8,7 +8,7 @@ import 'toast.dart';
 class OnReSignIn {
   static reSignIn([BuildContext? cococo]) {
     Message.showMessage("다시 로그인 해주세요.");
-    InmatAuth.instance.resignIn();
+    InmatAuth.instance.clear();
     Navigator.pushAndRemoveUntil(
       NavigatorContext.context,
       CupertinoPageRoute(builder: (_) => const SignInMainPage()),

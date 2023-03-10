@@ -10,10 +10,6 @@ import 'package:inmat/src/home/model/home_model_json.dart';
 import 'package:inmat/src/home/model/restaurant_model.dart';
 import 'package:inmat/src/home/model/review_model.dart';
 import 'package:inmat/src/home/model/today_model.dart';
-import 'package:inmat/src/profile/models/my_favorite_model.dart';
-import 'package:inmat/src/profile/models/my_review_model.dart';
-import 'package:inmat/src/profile/models/posts_model.dart';
-import 'package:inmat/src/search/domain/models/recent_model.dart';
 
 void main() {
   group("restaurant api 테스트", () {

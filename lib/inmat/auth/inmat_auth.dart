@@ -1,3 +1,4 @@
+import 'package:inmat/inmat/exception/inmat_exception.dart';
 import 'package:inmat/inmat/inmat_local_interface.dart';
 
 import '../inmat.dart';
@@ -34,12 +35,16 @@ class InmatAuth {
   }
 
   Future<void> logout() async {
-    local.clearToken();
-    data.clearProfile();
-    await InmatApi.auth.logout();
+    clear();
+    try{
+      await InmatApi.auth.logout();
+    }on AccessDenied{
+      print("로그아웃을 하는데 토큰이 만료되어서 오류가 발생했습니다.");
+    }
+
   }
 
-  void resignIn()  {
+  void clear()  {
     local.clearToken();
     data.clearProfile();
   }
